@@ -1,0 +1,8 @@
+input.ng-valid{
+    border-left: 5px solid green;
+}
+
+a[checked="yellow"]{
+    width:60px;
+    background-color:#fdd835;
+}

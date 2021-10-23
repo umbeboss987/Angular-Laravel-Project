@@ -1,0 +1,108 @@
+<div class="container">
+    <!-- =====  BANNER STRAT  ===== -->
+    <div class="breadcrumb mt_30 ptb_20">
+      <h1>Checkout Page</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="active">Checkout Page</li>
+      </ul>
+    </div>
+    <!-- =====  BREADCRUMB END===== -->
+    <div class="row ">
+      <div id="column-left" class="col-sm-4 col-md-4 col-lg-3 hidden-xs">
+      </div>
+      <div class="col-sm-8 col-md-8 col-lg-9 mb_30">
+        <form action="" method="POST" [formGroup]="OrderForm" (ngSubmit)="addOrder()">
+        <div class="panel-group" id="accordion">
+          <div class="panel panel-default ">
+            <div class="panel-heading">
+              <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Step 1: Delivery Details <i class="fa fa-caret-down"></i></a> </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+              <div class="panel-body">
+                  <div class="radio">
+                      <span style="font-size:15px; position:relative; bottom:10px;" class="">Insert address</span>
+                  </div>
+                  <div id="shipping-existing">
+                   <input formControlName="address" type="text" class="" placeholder="Enter shipping address" style="width:60%;">
+                  </div>
+                  <br>
+                  <div class="buttons clearfix">
+                    <div class="pull-right">
+                      <input type="button" class="btn" data-loading-text="Loading..." id="button-shipping-address" value="Continue">
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default ">
+            <div class="panel-heading">
+              <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapsefive">Step 2: Payment Method  <i class="fa fa-caret-down"></i></a> </h4>
+            </div>
+            <div id="collapsefive" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>Please select the preferred payment method to use on this order.</p>
+                <div class="radio">
+                  <label>
+                    <input type="checkbox" formControlName="payment_method" checked="checked" value="cash_on_delivery" name="payment_method"> Cash On Delivery </label>
+                </div>
+                <p><strong>Add Comments About Your Order</strong></p>
+                <p>
+                  <textarea class="form-control" rows="8" name="comment"></textarea>
+                </p>
+                <div class="buttons">
+                  <div class="pull-right mt_20">I have read and agree to the <a class="agree" href="#"><b>Terms &amp; Conditions</b></a>
+                    <input   type="checkbox" value="1" name="agree"> &nbsp;
+                    <input type="button" class="btn" data-loading-text="Loading..." id="button-payment-method" value="Continue">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default ">
+            <div class="panel-heading">
+              <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapsesix">Step 3: Confirm Order <i class="fa fa-caret-down"></i></a> </h4>
+            </div>
+            <div id="collapsesix" class="panel-collapse ">
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <td class="text-left">Product Name</td>
+                        <td class="text-left">Model</td>
+                        <td class="text-right">Quantity</td>
+                        <td class="text-right">Unit Price</td>
+                        <td class="text-right">Total</td>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let item of items">
+                      <tr>
+                        <td class="text-left"><a href="">{{item.name}}</a></td>
+                        <td class="text-left">Product 19</td>
+                        <td class="text-right">{{item.quantity}}</td>
+                        <td class="text-right">${{item.price}}</td>
+                        <td class="text-right">${{item.sub_total}}</td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td class="text-right" colspan="4"><strong>Total:</strong></td>
+                        <td class="text-right">${{this.total}}</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+                <div class="buttons">
+                  <div class="pull-right">
+                    <input type="submit" data-loading-text="Loading..." class="btn" id="button-confirm" value="Confirm Order">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>

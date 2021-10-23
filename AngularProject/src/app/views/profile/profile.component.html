@@ -1,0 +1,219 @@
+<div class="container">
+    <!-- =====  BANNER STRAT  ===== -->
+    <div class="breadcrumb mt_30 ptb_20">
+      <h1>Account</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="active">Account</li>
+      </ul>
+    </div>
+    <!-- =====  BREADCRUMB END===== -->
+    <div class="row">
+      <div class="col-md-3">
+        <div id="exTab3">
+          <ul class="nav nav-tabs">
+            <li class="active"> <a href="#r1" data-toggle="tab">Dashboard</a> </li>
+            <li><a href="#r2" data-toggle="tab">Account Details</a> </li>
+            <li><a href="#r3" data-toggle="tab">My Order List</a> </li>
+            <li><a href="#r4" data-toggle="tab">Change Password</a> </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="tab-content ">
+          <div class="tab-pane active" id="r1">
+            <div class="heading-part mb_10 mt_30">
+              <h3 class="sub_title">Account Dashboard</h3>
+            </div>
+            <div class="heading-part">
+              <h3 class="sub_title">Hello, User</h3>
+            </div>
+            <p>Subscribe to the Print Doodles mailing list to receive updates on new product, special offers and other discount information. <a class="account-link" id="subscribelink" href="#">Click Here</a></p>
+            <div class="heading-part mtb_20">
+              <h3 class="sub_title">Account Information</h3>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="cart-total-table address-box commun-table">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Shipping Address</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <ul>
+                              <li class="inner-heading">
+                                <b>Denial tom</b>
+                              </li>
+                              <li>
+                                <p>Steetwear ltd</p>
+                              </li>
+                              <li>
+                                <p>600 Anton Boulevard Costa</p>
+                              </li>
+                              <li>
+                                <p>Mesa, California</p>
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="cart-total-table address-box commun-table">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Billing Address</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <ul>
+                              <li class="inner-heading">
+                                <b>Denial tom</b>
+                              </li>
+                              <li>
+                                <p>Steetwear ltd</p>
+                              </li>
+                              <li>
+                                <p>600 Anton Boulevard Costa</p>
+                              </li>
+                              <li>
+                                <p>Mesa, California</p>
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="r2">
+            <h3 class="mt_30 sub_title">Account Details</h3>
+            <form [formGroup]="formAccount" class="main-form full" method="POST" (ngSubmit)="createAccount()">
+              <div class="mb_20">
+                <div class="row">
+                  <div class="col-xs-12 mb_20">
+                    <div class="heading-part mb_20">
+                      <h3 class="main_title sub-heading">Shipping Address</h3>
+                    </div>
+                    <hr>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="input-box mb_20">
+                      <input formControlName= "full_name" type="text" required="" placeholder="Full Name">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="input-box mb_20">
+                      <input type="text" required="" placeholder="Contact Number" formControlName= "telephone_number">
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="input-box mb_20">
+                      <input type="text" required="" placeholder="Shipping Address" formControlName= "address">
+                      <span>Please provide the number and street.</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="input-box mb_20">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                  </div>
+                  <div class="col-sm-6">
+                  </div>
+                </div>
+                <button class="btn">Subscribe</button>
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane" id="r3">
+            <h3 class="mt_30 mb_10 sub_title">My Order List</h3>
+            <div class="row">
+              <div class="col-xs-12 mb_xs-30">
+                <div class="cart-item-table commun-table">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th colspan="4">
+                            <ul>
+                              <li><span>Product</span></li>
+                              <li><span>Total</span></li>
+                            </ul>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let singleOrder of order ">
+                          <td>
+                            <a href="category_page.html">
+                              <div class="product-image"><img alt="Streetwear" src="{{singleOrder.photo}}"></div>
+                            </a>
+                          </td>
+                          <td>
+                            <div class="product-title">
+                              <a href="category_page.html">{{singleOrder.name}}</a>
+                            </div>
+                            <div class="product-info-stock-sku ">
+                              <div>
+                                <label>Quantity: </label>
+                                <span class="info-deta">{{singleOrder.quantity}}</span>
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="base-price price-box">
+                              <span class="price">${{singleOrder.price}}</span>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="r4">
+            <h3 class="mt_30 mb_10 sub_title">Change Password</h3>
+            <form class="main-form full" [formGroup]="formUpdateUser" method="PUT" (ngSubmit)="userUpdate()">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="input-box mb_20">
+                    <label for="old-pass">New Password</label>
+                    <input type="password" placeholder="Old Password" required="" id="old-pass" formControlName="password">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="input-box mb_20">
+                    <label for="login-pass">Email</label>
+                    <input type="password" placeholder="Enter your email" required=""formControlName="email">
+                  </div>
+                </div>
+                <div class="col-xs-12">
+                  <button type="submit" class="btn btn-black pull-left">Change Password</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

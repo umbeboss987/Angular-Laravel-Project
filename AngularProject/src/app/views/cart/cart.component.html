@@ -1,0 +1,126 @@
+<div class="row">
+    <div class="col-xs-12 mb_xs-30">
+      <div class="cart-item-table commun-table">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Sub Total</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of item$; let j=index">
+                <td>
+                  <a href="product-page.html">
+                    <div class="product-image"><img alt="Streetwear" src="{{item.photo}}"></div>
+                  </a>
+                </td>
+                <td>
+                  <div class="product-title">
+                    <a href="product-page.html">{{item.name}}</a>
+                  </div>
+                </td>
+                <td>
+                  <ul>
+                    <li>
+                      <div class="base-price price-box">
+                        <span class="price">${{item.price}}</span>
+                      </div>
+                    </li>
+                  </ul>
+                </td>
+                <td>
+                  <div class="input-box">
+                      <h4>{{item.quantity}}</h4>
+                  </div>
+                </td>
+                <td>
+                  <div class="total-price price-box">
+                    <span class="price" >{{item.sub_total}}</span>
+                  </div>
+                </td>
+                <td>
+                  <i (click)="deleteItem(item.id)" title="Remove Item From Cart" data-id="100" class="fa fa-trash cart-remove-item"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mb_30">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="mt_30">
+          <a [routerLink]="['/products']" class="btn btn-black">Continue Shopping</a>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="mt_30 pull-right">
+          <a class="btn btn-black">Update Cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <hr>
+  <div class="mtb_30">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="cart-total-table commun-table">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th colspan="2">Cart Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Item(s) Subtotal</td>
+                  <td>
+                    <div class="price-box">
+                      <span class="price">{{this.total}}</span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Shipping</td>
+                  <td>
+                    <div class="price-box">
+                      <span class="price">$0.00</span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b>Amount Payable</b></td>
+                  <td>
+                    <div class="price-box">
+                      <span class="price"><b>{{this.total}}</b></span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="mt_30">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="pull-right">
+          <a href="checkout_page.html" class="btn btn-black">Proceed to checkout </a>
+        </div>
+      </div>
+    </div>
+  </div>
+

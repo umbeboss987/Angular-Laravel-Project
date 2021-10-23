@@ -1,0 +1,112 @@
+<div class="container">
+    <!-- =====  BANNER STRAT  ===== -->
+    <div class="breadcrumb mt_30 ptb_20">
+      <h1>Login</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="active">Login</li>
+      </ul>
+    </div>
+    <!-- =====  BREADCRUMB END===== -->
+    <div class="row ">
+      <div class="bg-gray col-sm-8 col-md-8 col-lg-9 mb_30 ptb_80">
+        <!-- contact  -->
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <div class="panel-login">
+              <div class="panel-heading">
+                <div class="row mb_20">
+                  <div class="col-xs-6 sub_title">
+                    <a  checked="" class="active" id="register-form-link" (click)="register()">Register</a>
+                  </div>
+                  <div class="col-xs-6 sub_title">
+                    <a class="active" id="login-form-link" (click)="login()">Login</a>
+                  </div>
+                </div>
+                <hr>
+              </div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <form id="login-form" [formGroup]="formUserSignIn" method="POST"  (ngSubmit)="signIn()" *ngIf="this.showFormSignIn == true">
+                      <div class="form-group">
+                        <input type="text"  name="name" id="name" tabindex="1" class="form-control" placeholder="Username" value="name" formControlName="name">
+                        <div class="alert alert-danger" role="alert" 
+                         *ngIf="!formUserSignIn.get('name')?.valid && formUserSignIn.get('name')?.touched">
+                         Field required.
+                      </div>
+                      </div>
+                      <div class="form-group">
+                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" formControlName="password">
+                        <div class="alert alert-danger" role="alert" 
+                         *ngIf="!formUserSignIn.get('password')?.valid && formUserSignIn.get('password')?.touched">
+                         Field required.
+                      </div>
+                      </div>
+                      <div class="form-group text-center">
+                        <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                        <label for="remember"> Remember Me</label>
+                      </div>
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="text-center">
+                              <a href="#" tabindex="5" class="forgot-password">Forgot Password?</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                    <form  [formGroup]="formGroup" method="POST"  (ngSubmit)="signUp()" *ngIf="this.showFormSignUp == true">
+                      <div class="form-group">
+                        <input type="text"  name="name" id="name" tabindex="1" class="form-control" placeholder="Username"  formControlName="name">
+                        <div class="alert alert-danger" role="alert" 
+                         *ngIf="!formGroup.get('name')?.valid && formGroup.get('name')?.touched">
+                         Field required.
+                      </div>
+                      </div>
+                      <div class="form-group">
+                        <input type="email"   id="email" tabindex="1" class="form-control" placeholder="Email Address"  formControlName="email">
+                        <div class="alert alert-danger" role="alert" 
+                         *ngIf="!formGroup.get('email')?.valid && formGroup.get('email')?.touched">
+                         Field required.
+                      </div>
+                      </div>
+                      <div class="form-group">
+                        <input type="password"   id="password" tabindex="2" class="form-control" placeholder="Password" formControlName="password">
+                        <div class="alert alert-danger" role="alert" 
+                         *ngIf="!formGroup.get('password')?.valid && formGroup.get('password')?.touched">
+                         Field required.
+                      </div>
+                      </div>
+                      <div class="form-group">
+                        <input type="password"  name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+                        <div class="alert alert-danger" role="alert" 
+                         *ngIf="!formGroup.get('confirm-passwor')?.valid && formGroup.get('password')?.touched">
+                         Field required.
+                      </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
