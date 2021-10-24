@@ -17,7 +17,7 @@ import { Cart } from 'src/app/model/cart';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  product$ : Observable<Products[]>;
+  product$? : Products[];
   formGroup : FormGroup;
 
   constructor( private fb: FormBuilder, private store : Store<IAppState> , private router: ActivatedRoute) { 
@@ -26,7 +26,9 @@ export class ProductComponent implements OnInit {
       insertProduct: "",
       quantity: ""
     }) 
-    this.product$ = this.store.select<Products[]>(selectProductList);
+     this.store.select<Products[]>(selectProductList).subscribe(res => {
+      this.product$ = res;
+    });
   }
 
   ngOnInit(): void {

@@ -1,5 +1,6 @@
 <div class="container">
     <!-- =====  BANNER STRAT  ===== -->
+    
     <div class="breadcrumb mt_30 ptb_20">
       <h1>Category</h1>
       <ul>
@@ -46,8 +47,8 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="product-layout  product-grid  col-lg-3 col-md-4 col-xs-6 " *ngFor="let product of products | async">
+        <div class="row" id="data">
+          <div class="product-layout product product-grid  col-lg-3 col-md-4 col-xs-6 " *ngFor="let product of products | async">
             <div class="item" >
               <div class="thumbnail" >
                 <div class=""> <a > <img data-name="product_image" src="{{product.photo}}" alt="iPod Classic" title="iPod Classic" class="img-responsive" /></a></div>
@@ -67,7 +68,7 @@
             </div>
           </div>
         </div>
-        <div class="pagination-nav text-center mt_50">
+        <div class="pagination-nav text-center mt_50" id="navProduct">
           <ul>
             <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
             <li class="active"><a href="#">1</a></li>

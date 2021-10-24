@@ -9,7 +9,7 @@
       </ul>
     </div>
     <!-- =====  BREADCRUMB END===== -->
-    <div class="row " *ngFor="let p of product$ | async">
+    <div class="row " *ngFor="let p of product$">
       <div class="col-sm-8 col-md-8 col-lg-9 mb_30">
         <div class="row mt_10 ">
         <form  [formGroup]= "formGroup" method="POST" (ngSubmit)="addCartItem()"> 

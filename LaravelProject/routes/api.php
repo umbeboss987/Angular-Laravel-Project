@@ -38,16 +38,16 @@ Route::get('getId', [UserController::class, 'getId']);
  Route::get('getOrdersAccount', [OrderController::class, 'orderList']);
  Route::get('product/{id}',[ProductController::class ,'singleProduct']);
  Route::get('products',[ProductController::class ,'getProducts']);
- Route::put('updateUser', [UserController::class, 'updateUser']);
+ Route::put('updateUser', ['middleware' => 'auth.role:user', UserController::class, 'updateUser']);
 
 
 Route::group([
 
-    'middleware' => 'api',
+    'middleware' => 'api.role',
     'prefix' => 'auth'
 
 ], function ($router) {
-    Route::post('login', [AuthController::class, 'login'])->name('login');
+    Route::post('login', ['middleware' => 'auth.role:user,admin', AuthController::class, 'login'])->name('login');
     Route::get('logout', 'AuthController@logout');
     Route::post('me', [AuthController::class, 'me'])->name('me');
     Route::get('getId', [AuthController::class, 'getAuthUser']);
