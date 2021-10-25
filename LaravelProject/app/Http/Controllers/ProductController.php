@@ -14,14 +14,18 @@ class ProductController extends Controller
 {
     function getProducts (){
         $data= Product::all();
-        return  response()->json($data,200);
+        if(empty($data) || is_null($data)){
+            return response()->json(['message' => 'data not found'], 404);
+        }else{
+            return  response()->json($data,200);
+        }
     }
 
     function singleProduct($id)
     {
         try {
             $data = Product::find($id);
-            if (is_null($data)) {
+            if (empty($data) || is_null($data)) {
                 return response()->json(['message' => 'data not found'], 404);
             } else {
                 return response()->json([$data], 200);
@@ -35,7 +39,7 @@ class ProductController extends Controller
     {
         try {
             $data = Product::where('type', $product_type)->get();
-            if (empty($data)) {
+            if (empty($data) || is_null($data)) {
                 return response()->json(['message' => 'data not found'], 404);
             } else {
                 return response()->json($data, 200);

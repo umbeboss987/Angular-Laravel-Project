@@ -24,7 +24,7 @@ export class ProductsEffect {
             switchMap(() => this.products_service.getAll()),
             switchMap((productsResp: Products[]) =>
               of( GetProductsAction({products : productsResp}))
-            )
+            ) 
          );
    });
     
