@@ -4,12 +4,6 @@ import { Observable } from 'rxjs';
 import { Products } from '../model/products';
 import { AppConstants } from '../app.constants';
 
-
-const Url = 'http://127.0.0.1:8000/api/products';
-const Url2 = 'http://127.0.0.1:8000/api/product/';
-
-const Url4 =  `${AppConstants.SERVICES_BASE_URL}/products/`
-
 @Injectable({
   providedIn: 'root'
 })
@@ -22,17 +16,15 @@ export class ProductsService {
 
 
   getAll (): Observable<Products[]> {
-    return this.http.get<Products[]>(Url);
+    return this.http.get<Products[]>(`${AppConstants.SERVICES_BASE_URL}/products`);
   }
 
   getSingleProduct (id: number): Observable<Products[]>{
-    const Url3 = `${Url2}${id}` 
-    return this.http.get<Products[]>(Url3);
+    return this.http.get<Products[]>(`${AppConstants.SERVICES_BASE_URL}/product/${id}`);
   }
 
   getProductsType(type: String): Observable<Products[]>{
-    console.log(`${Url4}type`);
-    return this.http.get<Products[]>(`${Url4}${type}`);
+    return this.http.get<Products[]>(`${AppConstants.SERVICES_BASE_URL}/products/${type}`);
   }
 
   

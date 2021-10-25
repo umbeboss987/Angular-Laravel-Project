@@ -43,11 +43,11 @@ Route::get('getId', [UserController::class, 'getId']);
 
 Route::group([
 
-    'middleware' => 'api.role',
+    'middleware' => 'api',
     'prefix' => 'auth'
 
 ], function ($router) {
-    Route::post('login', ['middleware' => 'auth.role:user,admin', AuthController::class, 'login'])->name('login');
+    Route::post('login', ['middleware' => 'auth.role:admin,user', AuthController::class, 'login'])->name('login');
     Route::get('logout', 'AuthController@logout');
     Route::post('me', [AuthController::class, 'me'])->name('me');
     Route::get('getId', [AuthController::class, 'getAuthUser']);
