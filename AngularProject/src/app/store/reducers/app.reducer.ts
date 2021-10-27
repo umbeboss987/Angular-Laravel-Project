@@ -6,6 +6,7 @@ import { IAppState} from '../state/app.state';
 import {  RouterReducerState , routerReducer} from '@ngrx/router-store';
 import { orderReducer } from './order.reducer';
 import { accountReducer } from './account.reducer';
+import { errorReducer } from './error.reducer';
 
 
 
@@ -16,5 +17,6 @@ export const appReducers: ActionReducerMap<IAppState, any> = {
     userState: userReducer,
     orderState: orderReducer,
     accountState: accountReducer,
+    errorState : errorReducer,
 };
 

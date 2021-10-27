@@ -16,9 +16,14 @@ export enum ProductActionsType {
 
  export const ProductsTypeAction = createAction('PRODUCTS_TYPE_ACTION', props<{type_item: String}>());
  export const ProductsTypeActionSuccess = createAction('PRODUCTS_TYPE_ACTION_SUCCESS', props<{products: Products[]}>());
+ export const ProductsTypeActionFail = createAction('PRODUCTS_TYPE_ACTION_FAIL', props<{message: string}>());
+
  export const ShowAllProductsAction = createAction('ALL_PRODUCTS');
  export const GetProductsAction = createAction('GET_PRODUCTS', props<{products: Products[]}>());
+ export const GetProductsActionFail = createAction('GET_PRODUCTS', props<{message: string}>());
+
  export const ShowSingleProductAction = createAction('SINGLE_PRODUCT');
  export const GetSingleProductAction = createAction('GET_SINGLE_PRODUCT', props<{products: Products[]}>());
+ export const GetSingleProductActionFail = createAction('GET_SINGLE_PRODUCT_FAIL', props<{message: string}>());
 
 

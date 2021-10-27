@@ -4,14 +4,22 @@ import { Action } from '@ngrx/store';
 import { ProductsService } from "src/app/services/products.service";
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { switchMap, map , mergeMap, filter, withLatestFrom, } from 'rxjs/operators';
+import { switchMap, map , mergeMap, filter, withLatestFrom, catchError, } from 'rxjs/operators';
 import {
   RouterNavigatedAction,
   routerNavigationAction,
   ROUTER_NAVIGATION,
 } from '@ngrx/router-store';
 
-import {ShowAllProductsAction, GetProductsAction, ProductActionsType, GetSingleProductAction, ShowSingleProductAction, ProductsTypeActionSuccess, ProductsTypeAction} from '../actions/products.actions'
+import {ShowAllProductsAction,
+        GetProductsAction, 
+        ProductActionsType, 
+        GetSingleProductAction, 
+        ShowSingleProductAction, 
+        ProductsTypeActionSuccess, 
+        ProductsTypeAction, 
+        GetSingleProductActionFail,
+        ProductsTypeActionFail} from '../actions/products.actions'
 
 @Injectable ()
 
@@ -39,8 +47,10 @@ loadSingleProducts$ : Observable<Action> = createEffect(() => {
       }),
       switchMap((id: number) => {
       return this.products_service.getSingleProduct(id).pipe(
-        switchMap((product) => of( GetSingleProductAction({products : product})))
+        switchMap((product) => of(GetSingleProductAction({products : product})))
       )
+    }),catchError((errorResp) =>{
+      return of(GetSingleProductActionFail({message : errorResp.error.message}))
     })
   )   
 }); 
@@ -69,6 +79,8 @@ loadSingleProducts$ : Observable<Action> = createEffect(() => {
             })
           );
         }
+      }),catchError((errorResp) =>{
+        return of(ProductsTypeActionFail({message : errorResp.error.message}))
       })
     )
   });

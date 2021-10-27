@@ -3,13 +3,19 @@ import { Actions, ofType,createEffect } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { switchMap, map , mergeMap, filter, withLatestFrom} from 'rxjs/operators';
+import { switchMap, map , mergeMap, filter, withLatestFrom, catchError} from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import {
   routerNavigationAction,
   ROUTER_NAVIGATION,
 } from '@ngrx/router-store';
-import { UpdateUserAction, UpdateUserActionSuccess, UserLoginAction, UserLoginActionSuccess, UserSignUpAction, UserSignUpActionSuccess } from "src/app/store/actions/user.actions";
+import { UpdateUserAction, 
+         UpdateUserActionSuccess, 
+         UserLoginAction, 
+         UserLoginActionFail, 
+         UserLoginActionSuccess, 
+         UserSignUpAction, 
+         UserSignUpActionSuccess } from "src/app/store/actions/user.actions";
 import { AuthService } from "src/app/auth/auth.service";
 
 
@@ -35,13 +41,12 @@ export class UserEffects {
   UserSignIn$: Observable<Action> = createEffect(() => {
     return this.actions$.pipe(
       ofType(UserLoginAction),
-      mergeMap((action) => {
-        return this.auth_service.authenticate(action.user).
-          pipe(
-            map((user :any) => {
-              return UserLoginActionSuccess({ userAuth: user });
-            }),
-          );
+      switchMap((action) => {
+        return this.auth_service.authenticate(action.user).pipe(
+            switchMap((user:any) => of(UserLoginActionSuccess({ userAuth: user })))           
+          )
+      }), catchError((errorResp) => {
+        return of(UserLoginActionFail({ message: errorResp.error.message }));
       })
     );
   });

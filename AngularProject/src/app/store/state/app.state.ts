@@ -16,16 +16,17 @@ export interface IAppState{
     userState: UserState
     orderState: OrderState;
     accountState: AccountState;
+    errorState : ErrorState;
 }
 
 export interface ProductsState {
     products: Products[];
-    message: any;
+    message: string;
 }
 
 export const initialProductsState :ProductsState = {
     products: [],
-    message: null
+    message: '',
 }
 
 export interface CartState {
@@ -46,11 +47,13 @@ export const initialCartState :CartState = {
 export interface UserState{
     user: User[];
     userAuth: UserAuth[];
+    message : string;
 }
 
 export const initialUserState :UserState = {
     user: [],
-    userAuth: []
+    userAuth: [],
+    message : '',
 }
 
 export interface OrderState {
@@ -69,4 +72,12 @@ export interface AccountState{
 
 export const initialAccountState :AccountState = {
     account: []
+}
+
+export interface ErrorState{
+    errorMessage: string;
+}
+
+export const initialErrorState : ErrorState = {
+    errorMessage: '',
 }

@@ -1,4 +1,4 @@
-import {GetProductsAction, GetSingleProductAction, ProductsTypeAction, ProductsTypeActionSuccess} from '../actions/products.actions'; 
+import {GetProductsAction, GetSingleProductAction, GetSingleProductActionFail, ProductsTypeAction, ProductsTypeActionFail, ProductsTypeActionSuccess} from '../actions/products.actions'; 
 import { ProductActionsType } from '../actions/products.actions';
 import {initialProductsState, ProductsState } from '../state/app.state';
 import {createReducer, on } from '@ngrx/store';
@@ -14,6 +14,14 @@ const _productsReducer = createReducer(
         }
     }),
 
+    on(ProductsTypeActionFail, (state, action :any) => {
+        return {
+            ...state,
+            message: action.message
+        }
+    }),
+
+
     on(GetProductsAction, (state, action :any) => {
         return {
             ...state,
@@ -25,6 +33,13 @@ const _productsReducer = createReducer(
         return {
             ...state,
             products:  action.products
+        }
+    }),
+
+    on(GetSingleProductActionFail, (state, action :any) => {
+        return {
+            ...state,
+            message:  action.message
         }
     })
 )
