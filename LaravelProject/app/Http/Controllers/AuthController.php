@@ -30,7 +30,7 @@ class AuthController extends Controller
         $credentials = $req->only('name', 'password');
        try {
             if(!$token =auth()->attempt($credentials)){
-                return response()->json(['message' => 'Invalid credentials', 401]);            
+                return response()->json(['message' => 'Invalid credentials'], 401);            
             }else{
 
                 $user = User::where('name', $req->input('name'))->first();
