@@ -18,19 +18,9 @@ import { selectShareDataResponse } from 'src/app/store/selectors/shared.selector
 })
 export class SignInComponent implements OnInit {
 
-  user?: User;
-
   formGroup: FormGroup;
 
   formUserSignIn: FormGroup;
-
-  token:any;
-
-  data:any;
-
-  responseData : any;
-
-  user$?: Observable<any>;
 
   clicked? = false;
 
@@ -54,13 +44,7 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //signUp(): void {
-  //  let formUser: User =  this.formGroup?.value;
-  //  console.log(formUser);
-  //  this.user_service.signUp(formUser).subscribe(res =>{
-  //   console.log(res);
-  //  });
- // }
+
   signUp() {
     let formUser: User = {
       'name': this.formGroup.value.name,
@@ -68,24 +52,6 @@ export class SignInComponent implements OnInit {
       'password': this.formGroup.value.password,
     }
     this.store.dispatch(UserSignUpAction({ user: formUser }));
-    this.responseData = this.store.select<any>(selectUserResponseMessage);
-    this.responseData.subscribe((res: any) => {
-      console.log(res);
-      if (typeof res !== 'undefined' && !res.isEmpty) {
-        if (res.status == 200) {
-          this.toastr.success(JSON.stringify(res.body.message)), {
-            timeOut: 2000,
-            progressBar: true,
-          };
-          this.router.navigate(['/signIn']);
-        } else {
-          this.toastr.error(JSON.stringify(res)), {
-            timeOut: 2000,
-            progressBar: true,
-          }
-        }
-      }
-    })
   }
 
 

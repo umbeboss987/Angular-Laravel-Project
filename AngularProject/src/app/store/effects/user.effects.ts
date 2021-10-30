@@ -35,10 +35,26 @@ export class UserEffects {
       ofType(UserSignUpAction),
       switchMap((action) => {
         return this.user_service.signUp(action.user).pipe(
-          switchMap((data : any) => of(UserSignUpActionSuccess({ responseUser: data })))
+          tap(action => {
+            this.toastr.success("user registered");
+            let currentUrl = this.router.url;
+            this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+            this.router.onSameUrlNavigation = 'reload';
+            this.router.navigate([currentUrl]);
+          }),
+          switchMap((data: any) => of(UserSignUpActionSuccess({ responseUser: data }))),
+           catchError((errorResp) => {
+            return of(UserLoginActionFail({ responseUser: errorResp.error.message })).pipe(
+              tap(action => {
+                this.toastr.error(errorResp.error.message);
+                let currentUrl = this.router.url;
+                this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+                this.router.onSameUrlNavigation = 'reload';
+                this.router.navigate([currentUrl]);
+              }),
             )
-        }), catchError((errorResp) => {
-        return of(UserSignUpActionFail({ responseUser: errorResp.error.message }));
+          })
+        )
       })
     );
   });
@@ -56,14 +72,19 @@ export class UserEffects {
             localStorage.setItem('token',JSON.stringify(action.token));
             this.router.navigate(['/']);
           }),
-            switchMap((user:any) => of(UserLoginActionSuccess({ responseUser: user }))),        
+            switchMap((user:any) => of(UserLoginActionSuccess({ responseUser: user }))),    
+             catchError((errorResp) => {
+              return of(UserLoginActionFail({ responseUser: errorResp.error.message })).pipe(
+                tap(action => {
+                  this.toastr.error(errorResp.error.message);
+                  let currentUrl = this.router.url;
+                  this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+                      this.router.navigate([currentUrl]);
+                  });
+                }),
+              )       
+            })    
           )
-      }), catchError((errorResp) => {
-        return of(UserLoginActionFail({ responseUser: errorResp.error.message })).pipe(
-          tap(action => {
-            this.toastr.error(errorResp.error.message);
-          }),
-        )       
       })
     );
   });
