@@ -12,11 +12,13 @@ export enum  UserActionsType {
 
 
 export const UserSignUpAction = createAction('SIGN_UP_ACTION', props<{user: User}>());
-export const UserSignUpActionSuccess = createAction('SIGN_UP_ACTION_SUCCESS', props<{user: User}>())
+export const UserSignUpActionSuccess = createAction('SIGN_UP_ACTION_SUCCESS', props<{responseUser: []}>())
+export const UserSignUpActionFail = createAction('SIGN_UP_ACTION_FAIL', props<{responseUser: []}>())
+
 
 export const UserLoginAction = createAction('LOGIN_ACTION', props<{user: User}>());
-export const UserLoginActionSuccess = createAction('LOGIN_ACTION_SUCCESS', props<{userAuth: UserAuth}>());
-export const UserLoginActionFail = createAction('LOGIN_ACTION_FAIL', props<{message: string}>());
+export const UserLoginActionSuccess = createAction('LOGIN_ACTION_SUCCESS', props<{responseUser: []}>());
+export const UserLoginActionFail = createAction('LOGIN_ACTION_FAIL', props<{responseUser: []}>());
 
 export const UpdateUserAction = createAction('UPDATE_USER_ACTION', props<{user: User}>());
 export const UpdateUserActionSuccess = createAction('UPDATE_USER_ACTION_SUCCESS', props<{user: User}>());

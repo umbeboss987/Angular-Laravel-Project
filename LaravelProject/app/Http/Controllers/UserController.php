@@ -22,11 +22,7 @@ class UserController extends Controller
     function signUp(Request $req){
         $user = User::where('email', $req->input('email'))->first();
      if ($user){
-       $response['status'] = 1;
-       $response['message'] = 'user already exists';
-       $response['code'] = 409;
-
-       return $response;
+       return response()->json(["message" =>"user already exists"], 409);
 
        } else {
         $user = new User();
@@ -34,12 +30,7 @@ class UserController extends Controller
         $user->email = $req->input('email');
         $user->password = bcrypt($req->input('password'));
         $user->save();
-
-        $response['status'] = 0;
-        $response['message'] = 'user registered';
-        $response['code'] = 200;
-
-        return $response;
+        return response()->json(["message" => "user registered"], 200);
        }
 
     }
@@ -49,11 +40,7 @@ class UserController extends Controller
         $token =JWTAuth::attempt($credentials);
        try {
             if(!$token){
-                $response['status'] = 0;
-                $response['code'] = 401;
-                $response['data'] = null;
-                $response['message'] = 'Name or password is incorrect'; 
-                return response()->json($response);            
+                return response()->json(['message'=> 'Name or password is incorrect'], 401);            
             }else{
 
                 $user = User::where('name', $req->input('name'))->first();
@@ -62,19 +49,10 @@ class UserController extends Controller
                     'user_id' => $user->id,
                     'password' => $user->password
                 ])->attempt($credentials);
-         
-                $response['status'] = 1;
-                $response['code'] = 200;
-                $response['data'] = $data;
-                $response['message'] = 'Login successfully';
-         
-                return response()->json($response);
+                return response()->json([$data], 200);
             }
        } catch (JWTException $e) {
-           $response['data'] = null;
-           $response['code'] = 500;
-           $response['message'] = 'Could not create token';
-           return response()->json($response);
+           return response()->json(['message' => 'Could not create token'], 500);
        }
 
      

@@ -25,12 +25,12 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login(Request $req)
-    {
+    function login (Request $req) { 
         $credentials = $req->only('name', 'password');
+        $token =JWTAuth::attempt($credentials);
        try {
-            if(!$token =auth()->attempt($credentials)){
-                return response()->json(['message' => 'Invalid credentials'], 401);            
+            if(!$token){
+                return response()->json(['message'=> 'Name or password is incorrect'], 401);            
             }else{
 
                 $user = User::where('name', $req->input('name'))->first();
@@ -39,21 +39,11 @@ class AuthController extends Controller
                     'user_id' => $user->id,
                     'password' => $user->password
                 ])->attempt($credentials);
-         
-                $response['status'] = 1;
-                $response['code'] = 200;
-                $response['data'] = $data;
-                $response['message'] = 'Login successfully';
-                return response()->json($response); 
+                return response()->json($data, 200);
             }
        } catch (JWTException $e) {
-           $response['data'] = null;
-           $response['code'] = 500;
-           $response['message'] = 'Could not create token';
-           return response()->json($response);
-       }
-       
-        
+           return response()->json(['message' => 'Could not create token'], 500);
+       }    
     }
 
     /**

@@ -15,11 +15,10 @@ const baseURL = `${AppConstants.SERVICES_BASE_URL}/auth/login`;
 })
 export class AuthService {
 
-  constructor(public httpClient: HttpClient, public jwtHelper: JwtHelperService) { }
+  constructor(private http : HttpClient, public jwtHelper: JwtHelperService) { }
 
-  public authenticate(loginData: LoginData): Observable<LoginResult> {
-    return this.httpClient
-      .post<LoginResult>(baseURL, loginData)
+  public authenticate(loginData: LoginData): Observable<any> {
+    return this.http.post<[]>(baseURL, loginData)
   }
 
   public logout() {

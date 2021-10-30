@@ -1,5 +1,5 @@
 import { state } from "@angular/animations";
-import { UpdateUserActionSuccess, UserActionsType, UserLoginAction, UserLoginActionFail, UserLoginActionSuccess } from "src/app/store/actions/user.actions";
+import { UpdateUserActionSuccess, UserActionsType, UserLoginAction, UserLoginActionFail, UserLoginActionSuccess, UserSignUpActionFail, UserSignUpActionSuccess } from "src/app/store/actions/user.actions";
 import { UserState } from "src/app/store/state/app.state";
 import {initialUserState} from '../state/app.state';
 import {createReducer, on } from '@ngrx/store';
@@ -32,13 +32,24 @@ const _userReducer = createReducer(
     on(UserLoginActionSuccess, (state, action) => {
         return {
             ...state,
-            userAuth: [...state.userAuth ,action.userAuth]
+            responseUser: action.responseUser        }
+    }), 
+    on(UserSignUpActionSuccess, (state, action) => {
+        return {
+            ...state,
+            responseUser: action.responseUser  
+        }
+    }), 
+    on(UserSignUpActionFail, (state, action) => {
+        return {
+            ...state,
+            responseUser: action.responseUser  
         }
     }), 
     on(UserLoginActionFail, (state, action) => {
         return {
             ...state,
-            message: action.message
+            responseUser: action.responseUser
         }
     }),
     on(UpdateUserActionSuccess, (state, action) => {

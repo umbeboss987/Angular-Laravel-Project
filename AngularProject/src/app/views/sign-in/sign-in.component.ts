@@ -5,10 +5,11 @@ import { ToastrService } from 'ngx-toastr';
 import {select, Store} from '@ngrx/store';
 import { UserLoginAction, UserSignUpAction} from 'src/app/store/actions/user.actions';
 import { IAppState } from 'src/app/store/state/app.state';
-import { selectUserResponse } from 'src/app/store/selectors/user.selector';
+import { selectUserResponse, selectUserResponseMessage } from 'src/app/store/selectors/user.selector';
 import { UserAuth } from 'src/app/model/userAuth';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { selectShareDataResponse } from 'src/app/store/selectors/shared.selector';
 
 @Component({
   selector: 'app-sign-in',
@@ -26,6 +27,8 @@ export class SignInComponent implements OnInit {
   token:any;
 
   data:any;
+
+  responseData : any;
 
   user$?: Observable<any>;
 
@@ -58,38 +61,37 @@ export class SignInComponent implements OnInit {
   //   console.log(res);
   //  });
  // }
-  signUp(){
-    let formUser: User =  {
-      'name' : this.formGroup.value.name,
-      'email' : this.formGroup.value.email,
-      'password' : this.formGroup.value.password,
-     }
-        this.store.dispatch(UserSignUpAction({user : formUser}));
+  signUp() {
+    let formUser: User = {
+      'name': this.formGroup.value.name,
+      'email': this.formGroup.value.email,
+      'password': this.formGroup.value.password,
+    }
+    this.store.dispatch(UserSignUpAction({ user: formUser }));
+    this.responseData = this.store.select<any>(selectUserResponseMessage);
+    this.responseData.subscribe((res: any) => {
+      console.log(res);
+      if (typeof res !== 'undefined' && !res.isEmpty) {
+        if (res.status == 200) {
+          this.toastr.success(JSON.stringify(res.body.message)), {
+            timeOut: 2000,
+            progressBar: true,
+          };
+          this.router.navigate(['/signIn']);
+        } else {
+          this.toastr.error(JSON.stringify(res)), {
+            timeOut: 2000,
+            progressBar: true,
+          }
+        }
+      }
+    })
   }
 
 
   signIn() {
     let form: User = this.formUserSignIn.value;
     this.store.dispatch(UserLoginAction({ user: form }));
-    this.user$ = this.store.select<UserAuth[]>(selectUserResponse);
-    this.user$.subscribe((res: any) => {
-      if (typeof res !== 'undefined' && res.length > 0) {
-        if (res[0].status === 1) {
-          this.toastr.success(JSON.stringify(res[0].message), JSON.stringify(res[0].code), {
-            timeOut: 2000,
-            progressBar: true,
-          });
-          this.token = res[0].data.token;
-          localStorage.setItem('token', JSON.stringify(res[0].data.token));
-          this.router.navigate(['/']);
-        } else {
-          this.toastr.error(JSON.stringify(res[0].message), JSON.stringify(res[0].code), {
-            timeOut: 2000,
-            progressBar: true,
-          })
-        }
-      }
-    })
   }
 
   login() {
