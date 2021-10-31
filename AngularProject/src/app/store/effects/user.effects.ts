@@ -3,7 +3,7 @@ import { Actions, ofType,createEffect } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { Observable, of , } from 'rxjs';
-import { switchMap, map , mergeMap, filter, withLatestFrom, catchError, tap } from 'rxjs/operators';
+import { switchMap, map , mergeMap, filter, withLatestFrom, catchError, tap, exhaustMap } from 'rxjs/operators';
 import { Subscription} from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -30,7 +30,7 @@ export class UserEffects {
     constructor(private actions$ : Actions, private user_service: UserService, private auth_service: AuthService, private toastr: ToastrService, private router: Router){}
     
    
-  UserSignUp$: Observable<Action> = createEffect(() => {
+  UserSignUp$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(UserSignUpAction),
       switchMap((action) => {
@@ -42,8 +42,9 @@ export class UserEffects {
             this.router.onSameUrlNavigation = 'reload';
             this.router.navigate([currentUrl]);
           }),
-          switchMap((data: any) => of(UserSignUpActionSuccess({ responseUser: data }))),
+          map((data: any) => UserSignUpActionSuccess({ responseUser: data })),
            catchError((errorResp) => {
+             console.log(errorResp);
             return of(UserLoginActionFail({ responseUser: errorResp.error.message })).pipe(
               tap(action => {
                 this.toastr.error(errorResp.error.message);
@@ -62,7 +63,7 @@ export class UserEffects {
   
   
   
-  UserSignIn$: Observable<Action> = createEffect(() => {
+  UserSignIn$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(UserLoginAction),
       switchMap((action) => {
@@ -72,8 +73,8 @@ export class UserEffects {
             localStorage.setItem('token',JSON.stringify(action.token));
             this.router.navigate(['/']);
           }),
-            switchMap((user:any) => of(UserLoginActionSuccess({ responseUser: user }))),    
-             catchError((errorResp) => {
+            map((user:any) => UserLoginActionSuccess({ responseUser: user })),    
+            catchError((errorResp) => {
               return of(UserLoginActionFail({ responseUser: errorResp.error.message })).pipe(
                 tap(action => {
                   this.toastr.error(errorResp.error.message);

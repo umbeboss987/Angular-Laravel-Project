@@ -1,18 +1,15 @@
 <div class="container">
-    <div class="banner mt_30">
-      <div class="main-banner owl-carousel">
-        <div class="item"><a href="#"><img src="/assets/images/Main-Banner1.jpg" alt="Main Banner" class="img-responsive" /></a></div>
-        <div class="item"><a href="#"><img src="/assets/images/Main-Banner2.jpg" alt="Main Banner" class="img-responsive" /></a></div>
-        <div class="item"><a href="#"><img src="/assets/images/Main-Banner3.jpg" alt="Main Banner" class="img-responsive" /></a></div>
-      </div>
+  <div class="banner mt_30">
+    <div class="main-banner owl-carousel">
+      <div class="item"><a href="#"><img src="/assets/images/pixel-6.jpeg" alt="Main Banner" class="img-responsive" /></a></div>
+      <div class="item"><a href="#"><img src="/assets/images/macbook-pro-13.jpeg" alt="Main Banner" class="img-responsive" /></a></div>
+      <div class="item"><a href="#"><img src="/assets/images/surface-laptop-4.jpeg" alt="Main Banner" class="img-responsive" /></a></div>
     </div>
   </div>
+</div>
   <!-- =====  BANNER END  ===== -->
   <!-- =====  CMS_BANNER START  ===== -->
-  <div class="container">
-    <div class="row">
-    </div>
-  </div>
+  
   <!-- =====  CMS_BANNER END  ===== -->
   <!-- =====  CONTAINER START  ===== -->
   <div class="container">
@@ -28,10 +25,10 @@
           </ul>
           <div class="tab-content clearfix box">
             <div class="tab-pane active" id="nArrivals">
-              <div  class="row align-items-center">
-                <div *ngFor="let product of products$ | async" class="product-layout  product-grid  col-lg-4 col-md-4 col-md-4 ">
-                  <div  class="item">
-                    <div class="thumbnail">
+              <div  class="row" id="data">
+                <div *ngFor="let product of products$ | async; let i = index"  class="product-layout product product-grid  col-lg-3 col-md-4 col-xs-6">
+                  <div  class="item" >
+                    <div class="thumbnail" *ngIf="i <= 3">
                       <div class="image product-imageblock"> <a > <img data-name="product_image" [src]="product.photo" alt="iPod Classic" title="iPod Classic"> </a> </div>
                       <div class="caption product-detail text-center">
                         <h6 data-name="product_name" class="product-name mt_20"><a [routerLink]= "['/product/', product.id]"  title="Casual Shirt With Ruffle Hem" >{{product.name}}</a></h6>

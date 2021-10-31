@@ -13,15 +13,25 @@ export enum CartActionsType {
 
 export const AddCartItemAction = createAction('ADD_CART_ITEM', props<{item: Cart, id:number}>())
 
-export const AddCartItemActionSuccess = createAction('ADD_CART_ITEM_SUCCESS', props<{item: Cart, id : number}>())
+export const AddCartItemActionSuccess = createAction('ADD_CART_ITEM_SUCCESS', props<{item: Cart}>())
+
+export const AddCartItemActionFail = createAction('ADD_CART_ITEM_FAIL', props<{item: Cart}>())
+
 
 export const GetCartItemAction = createAction('GET_CART_ITEM_ACTION');
 
 export const GetCartItemActionSuccess = createAction('GET_CART_ITEM_ACTION_SUCCESS', props<{item: []}>());
 
+export const GetCartItemActionFail = createAction('GET_CART_ITEM_ACTION_FAIL',props<{message: string}>())
+
+
 export const DeleteCartItem = createAction('DELETE_CART_ITEM_ACTION', props<{id: number}>());
 
 export const DeleteCartItemSuccess = createAction('DELETE_CART_ITEM_ACTION_SUCCESS', props<{item: Cart}>());
+
+export const DeleteCartItemFail = createAction('DELETE_CART_ITEM_ACTION_FAIL', props<{message: string}>());
+
+
 
 export const GetCartTotalAction = createAction('GET_CART_TOTAL_ACTION');
 

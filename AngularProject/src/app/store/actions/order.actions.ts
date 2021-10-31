@@ -6,6 +6,9 @@ export const AddOrderAction = createAction('ADD_ORDER_ITEM', props<{item: Order,
 
 export const AddOrderActionSuccess = createAction('ADD_ORDER_ITEM_SUCCESS', props<{item: Order, user_id: number}>())
 
+export const AddOrderActionFail = createAction('ADD_ORDER_ITEM_SUCCESS', props<{message: string}>())
+
+
 export const GetOrdersList = createAction('GET_ORDER_LIST')
 
 export const GetOrdersListSuccess = createAction('GET_ORDER_LIST_SUCCESS', props<{orderAccount : OrderAccount[]}>())

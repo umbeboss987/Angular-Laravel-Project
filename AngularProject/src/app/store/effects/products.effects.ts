@@ -30,8 +30,8 @@ export class ProductsEffect {
         return  this.actions$.pipe(
             ofType(ShowAllProductsAction),
             switchMap(() => this.products_service.getAll()),
-            switchMap((productsResp: Products[]) =>
-              of( GetProductsAction({products : productsResp}))
+            map((productsResp: Products[]) =>
+               GetProductsAction({products : productsResp})
             ) 
          );
    });

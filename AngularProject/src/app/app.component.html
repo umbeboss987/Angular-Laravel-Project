@@ -74,7 +74,7 @@
       <div class="header">
         <div class="container">
           <nav class="navbar">
-            <div class="navbar-header"> <a class="navbar-brand" href="index.html"> <img alt="MoonStored" src="/assets/images/logo.png"> </a> </div>
+            <div class="navbar-header"> <a class="navbar-brand" [routerLink]="['/home']"> <img alt="MoonStored" src="/assets/images/logo.png"> </a> </div>
             <div class="header-right pull-right mt_50">
               <button class="navbar-toggle pull-right" type="button" data-toggle="collapse" data-target=".js-navbar-collapse"> <span class="i-bar"><i class="fa fa-bars"></i></span></button>
               <div class="shopping-icon" data-target="#cart-dropdown" data-toggle="collapse" aria-expanded="true" role="list">
@@ -142,6 +142,11 @@
                       <button class="btn btn-yellow" style="font-size:11px" (click)="logout()">Log-Out</button>
                     </div>
                 </div>
+                <div class="header_search_toggle desktop-view" *ngIf="!isLoggedIn()">
+                  <div class="search-box">
+                    <button class="btn btn-yellow" style="font-size:11px" [routerLink]="['/signIn']">Login</button>
+                  </div>
+              </div>
               </div>
             </div>
             <div class="collapse navbar-collapse js-navbar-collapse pull-right">
@@ -161,11 +166,7 @@
                     <li> <a [routerLink]="['/products/tablet']">Tablet</a></li>
                   </ul>
                 </li>
-                <li class="dropdown"> <a href="blog_page.html" class="dropdown-toggle" data-toggle="dropdown">Blog</a>
-                  <ul class="dropdown-menu">
-                    <li> <a href="blog_page.html">Blog Page</a></li>
-                    <li> <a href="single_blog.html">Single Blog Post</a></li>
-                  </ul>
+                <li class="dropdown">
                   <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages </a>
                     <ul class="dropdown-menu">
                       <li> <a href="login.html">Login/Register</a></li>
@@ -183,6 +184,8 @@
         </div>
       </div>
     </header>
+    <div class="container">
+    </div>
     <!-- =====  HEADER END  ===== -->
     <!-- =====  BANNER STRAT  ===== -->
     <router-outlet></router-outlet>
