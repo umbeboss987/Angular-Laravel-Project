@@ -27,7 +27,6 @@ Route::get('getId', [UserController::class, 'getId']);
 
 
  Route::post('signUp', [UserController::class, 'signUp']);
- Route::post('addCartItem/{product_id}',[CartController::class, 'addCartItem']);
  Route::get('products/{product_type}',[ProductController::class, 'getProductsType']);
  Route::get('cart',[CartController::class, 'cartOrders']);
  Route::get('sumPriceProducts',[CartController::class, 'sumPriceProducts']);
@@ -47,6 +46,7 @@ Route::group([
     'prefix' => 'auth'
 
 ], function ($router) {
+    Route::post('addCartItem/{product_id}',['middleware' => 'auth.role:user',CartController::class, 'addCartItem']);
     Route::post('login', ['middleware' => 'auth.role:admin,user', AuthController::class, 'login'])->name('login');
     Route::get('logout', 'AuthController@logout');
     Route::post('me', [AuthController::class, 'me'])->name('me');

@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { switchMap, map , mergeMap, filter, withLatestFrom, tap, catchError, exhaustMap, } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/auth/auth.service';
+
 
 import {
   routerNavigationAction,
@@ -43,7 +45,13 @@ export class CartEffects {
            }),
            map((data) => AddCartItemActionSuccess({ item: data })),           
            catchError((err) => { 
-             return of(AddCartItemActionFail({item : err.error.message}))
+             return of(AddCartItemActionFail({item : err.error.message})).pipe(
+              tap(action =>{
+                this.router.navigate(['/signIn']);
+                this.toastr.error(err.error.message);
+              })
+
+             )
            })    
          )
        })

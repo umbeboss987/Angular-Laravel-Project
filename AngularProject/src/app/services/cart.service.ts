@@ -28,8 +28,8 @@ export class CartService {
     }
 
     addCartItem( item : Cart, id : number): Observable<Cart>{
-        const Url = `${Url3}${id}`;
-        return this.http.post<Cart>(Url, item);
+       
+        return this.http.post<Cart>(`${AppConstants.SERVICES_BASE_URL}/auth/addCartItem/${id}`, item);
     }
 
     getAllCartItems(): Observable<[]>{

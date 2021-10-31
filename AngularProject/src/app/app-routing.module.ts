@@ -12,17 +12,16 @@ import { AdminComponent } from './views/private/admin/admin.component';
 import { TestComponent } from './view/test/test.component';
 
 const routes: Routes = [
-  { path: 'product/:id', component: ProductComponent, canActivate :[AuthGuardService] },
+  { path: 'product/:id', component: ProductComponent },
   { path: 'home', component: HomeComponent },
   { path: "", component: HomeComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'products/:type', component: ProductsComponent },
   { path: 'signIn', component: SignInComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'addCartItem/:id', component: ProductComponent },
-  { path: 'checkOut', component: OrderComponent },
-  { path: 'account', component: ProfileComponent },
-  { path: 'admin', component: AdminComponent },
+  { path: 'cart', component: CartComponent ,canActivate :[AuthGuardService]},
+  { path: 'checkOut', component: OrderComponent ,canActivate :[AuthGuardService]},
+  { path: 'account', component: ProfileComponent ,canActivate :[AuthGuardService]},
+  { path: 'admin', component: AdminComponent ,canActivate :[AuthGuardService]},
   { path: 'test', component: TestComponent },
 
 

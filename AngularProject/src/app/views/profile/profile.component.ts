@@ -58,6 +58,7 @@ export class ProfileComponent implements OnInit {
     this.store.dispatch(getDetailsAccountAction());
     this.store.select(selectAccountList).subscribe(res=>{
       this.account = res;
+      console.log(this.account);
     })
   }
 
