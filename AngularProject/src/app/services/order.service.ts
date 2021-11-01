@@ -12,8 +12,8 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  addOrder(order: Order, user_id: number): Observable<Order>{
-    return this.http.post<Order>(`${AppConstants.SERVICES_BASE_URL}/addOrder/${user_id}`,order);
+  addOrder(order: Order): Observable<Order>{
+    return this.http.post<Order>(`${AppConstants.SERVICES_BASE_URL}/auth/addOrder`,order);
   }
 
   getOrdersList(): Observable<OrderAccount[]>{

@@ -14,12 +14,12 @@ import {
 import {ShowAllProductsAction,
         GetProductsAction, 
         ProductActionsType, 
-        GetSingleProductAction, 
-        ShowSingleProductAction, 
         ProductsTypeActionSuccess, 
         ProductsTypeAction, 
         GetSingleProductActionFail,
-        ProductsTypeActionFail} from '../actions/products.actions'
+        ProductsTypeActionFail,
+        GetSingleProductActionSuccess,
+        GetSingleProductAction} from '../actions/products.actions'
 
 @Injectable ()
 
@@ -38,18 +38,11 @@ export class ProductsEffect {
     
 loadSingleProducts$ : Observable<Action> = createEffect(() => {
   return  this.actions$.pipe(
-      ofType(ROUTER_NAVIGATION),
-      filter((r: RouterNavigatedAction) => {
-        return r.payload.routerState.url.startsWith('/product')
-      }),
-      map((r: RouterNavigatedAction) => {
-        return r.payload.routerState.root.firstChild?.params['id'];
-      }),
-      switchMap((id: number) => {
-      return this.products_service.getSingleProduct(id).pipe(
-        switchMap((product) => of(GetSingleProductAction({products : product})))
+      ofType(GetSingleProductAction),
+      switchMap((action) =>  this.products_service.getSingleProduct(action.item_id).pipe(
+        map((product) => GetSingleProductActionSuccess({products : product}))
       )
-    }),catchError((errorResp) =>{
+    ),catchError((errorResp) =>{
       return of(GetSingleProductActionFail({message : errorResp.error.message}))
     })
   )   

@@ -24,9 +24,9 @@ export class OrderEffects{
     return this.actions$.pipe(
       ofType(AddOrderAction),
       switchMap((action) => {
-        return this.order_service.addOrder(action.item, action.user_id).pipe(
-          map((data, id) => {
-            return AddOrderActionSuccess({ item: data, user_id: id});
+        return this.order_service.addOrder(action.item).pipe(
+          map((data) => {
+            return AddOrderActionSuccess({ item: data});
           }), catchError(errorResp => {
             return of(AddOrderActionFail({message : errorResp.error.message})).pipe(
               tap(() =>{

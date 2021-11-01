@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from 'src/app/views/home/home.component';
-import { ProductsComponent } from './views/products/products.component';
-import { ProductComponent } from './views/product/product.component';
-import { SignInComponent } from './views/sign-in/sign-in.component';
+import { HomeComponent } from 'src/app/components/home/home.component';
+import { ProductsComponent } from './components/products/products.component';
+import { ProductComponent } from './components/product/product.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AuthGuardService } from './auth/auth-guard.service';
-import { CartComponent } from './views/cart/cart.component';
-import { OrderComponent } from './views/order/order.component';
-import { ProfileComponent } from './views/profile/profile.component';
-import { AdminComponent } from './views/private/admin/admin.component';
+import { CartComponent } from './components/cart/cart.component';
+import { OrderComponent } from './components/order/order.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { AdminComponent } from './components/private/admin/admin.component';
 import { TestComponent } from './view/test/test.component';
 
 const routes: Routes = [

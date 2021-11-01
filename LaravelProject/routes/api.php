@@ -31,7 +31,6 @@ Route::get('getId', [UserController::class, 'getId']);
  Route::get('cart',[CartController::class, 'cartOrders']);
  Route::get('sumPriceProducts',[CartController::class, 'sumPriceProducts']);
  Route::delete('deleteItem/{id}',[CartController::class, 'deleteItem']);
- Route::post('addOrder/{user_id}',[OrderController::class, 'order']);
  Route::post('account', [AccountController::class, 'addAccount']);
  Route::get('getAccountDetails', [AccountController::class, 'getAccountDetails']);
  Route::get('getOrdersAccount', [OrderController::class, 'orderList']);
@@ -49,6 +48,7 @@ Route::group([
     'prefix' => 'auth'
 
 ], function ($router) {
+    Route::post('addOrder',[OrderController::class, 'order']);
     Route::post('addCartItem/{product_id}',['middleware' => 'auth.role:user',CartController::class, 'addCartItem']);
     Route::get('logout', 'AuthController@logout');
     Route::post('me', [AuthController::class, 'me'])->name('me');

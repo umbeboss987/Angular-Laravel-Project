@@ -1,3 +1,4 @@
+$(document).ready(function ($) {
 $(function() {
 "use strict";
  /*  =====  On responsive swatch left to right colunm  =====  */
@@ -17,7 +18,7 @@ function left_colunm_swetch () {
 }
  /*  =====  magnificPopup  =====  */
  function m_popup_select () {
-    $('#product-thumbnail').magnificPopup({
+    $('#thumbnail').magnificPopup({
     delegate: 'a',
     type: 'image',
     closeOnContentClick: false,
@@ -425,3 +426,4 @@ jQuery( window ).on("load",function() {
      $(".loder").fadeOut("slow");    
 });
 
+})
