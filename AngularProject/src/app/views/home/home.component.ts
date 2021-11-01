@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Products } from 'src/app/model/products';
-import { ProductsService } from 'src/app/services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {select, Store} from '@ngrx/store';
 import { IAppState } from 'src/app/store/state/app.state';
 import { Observable } from 'rxjs';
 import {selectProductById, selectProductList} from 'src/app/store/selectors/products.selector';
 import { GetProductsAction, ShowAllProductsAction } from 'src/app/store/actions/products.actions';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-home',
@@ -29,6 +29,30 @@ export class HomeComponent implements OnInit {
   }
 
 
-  
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    navSpeed: 700,
+    navText: ['', ''],
+    autoplay:true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 1
+      }
+    },
+    nav: true
+  }
 
 }

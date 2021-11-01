@@ -40,14 +40,16 @@ Route::get('getId', [UserController::class, 'getId']);
  Route::put('updateUser', ['middleware' => 'auth.role:user', UserController::class, 'updateUser']);
 
 
+ Route::post('login', ['middleware' => 'auth.role:admin,user', AuthController::class, 'login'])->name('login');
+
+
 Route::group([
 
-    'middleware' => 'api',
+    'middleware' => 'auth.role',
     'prefix' => 'auth'
 
 ], function ($router) {
     Route::post('addCartItem/{product_id}',['middleware' => 'auth.role:user',CartController::class, 'addCartItem']);
-    Route::post('login', ['middleware' => 'auth.role:admin,user', AuthController::class, 'login'])->name('login');
     Route::get('logout', 'AuthController@logout');
     Route::post('me', [AuthController::class, 'me'])->name('me');
     Route::get('getId', [AuthController::class, 'getAuthUser']);

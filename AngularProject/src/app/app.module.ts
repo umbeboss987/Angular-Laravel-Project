@@ -34,6 +34,8 @@ import { OrderEffects } from 'src/app/store/effects/order.effects';
 import { AccountEffects } from './store/effects/account.effects';
 import { AdminComponent } from './views/private/admin/admin.component';
 import { TestComponent } from './view/test/test.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -63,6 +65,7 @@ export function tokenGetter() {
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
+    CarouselModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,

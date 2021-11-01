@@ -8,7 +8,7 @@ import { AppConstants } from '../app.constants';
 import { LoginData } from '../model/LoginData';
 import { LoginResult } from '../model/LoginResult';
 
-const baseURL = `${AppConstants.SERVICES_BASE_URL}/auth/login`;
+const baseURL = `${AppConstants.SERVICES_BASE_URL}/login`;
 
 @Injectable({
   providedIn: 'root'

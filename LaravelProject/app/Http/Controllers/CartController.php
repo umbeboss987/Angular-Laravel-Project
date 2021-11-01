@@ -11,15 +11,17 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class CartController extends Controller
 {
-    function addCartItem (Request $req){
-            $user_id = auth()->user()->id;
+    function addCartItem (Request $req, $product_id){
+            $user_id = JWTAuth::user();
+            // if($user_id == null || undefined){
+            //     return response()->json(['message' => 'user not authenticated'], 401);
+            // }
             $cart = new Cart ();
-            $product_id = $req->route('product_id');
             $product = Product::select('price')->where('id', $product_id)->get();
             $cart->product_id = $product_id;
             $cart->quantity = $req->input('quantity');
             $cart->sub_total = $cart->quantity * $product[0]['price'];
-            $cart->user_id = $user_id;
+            $cart->user_id = $user_id->id;
             $cart->save();  
             return response()->json(['message' =>'ok'], 200);      
     }

@@ -37,7 +37,9 @@
               "src/assets/owl.carousel.css",
               "src/assets/ionicons.min.css",
               "src/assets/magnific-popup.css",
-              "src/assets/bootstrap.css"
+              "src/assets/bootstrap.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css"
             ],
             "scripts": [
               "src/assets/js/jQuery_v3.1.1.min.js",

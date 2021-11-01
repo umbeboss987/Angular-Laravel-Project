@@ -34,17 +34,17 @@ class JWT
             return $this->unauthorized('Your token is invalid. Please, login again.');
         }catch (JWTException $e) {
             //Thrown if token was not found in the request.
-            return $this->unauthorized('Please, attach a Bearer Token to your request');
+            return $this->unauthorized('Please Login');
         }
         //If user was authenticated successfully and user is in one of the acceptable roles, send to next request.
-        if ($user && in_array($user->role, $roles)) {
+        //if ($user && in_array($user->role, $roles)) {
             return $next($request);
         }
     
-        return $this->unauthorized();
-    }
+       // return $this->unauthorized();
     
-    private function unauthorized($message = null){
+    
+     function unauthorized($message = null){
         return response()->json([
             'message' => $message ? $message : 'You are unauthorized to access this resource',
             'success' => false

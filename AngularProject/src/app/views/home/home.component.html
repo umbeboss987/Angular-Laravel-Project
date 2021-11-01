@@ -1,10 +1,17 @@
+
 <div class="container">
   <div class="banner mt_30">
-    <div class="main-banner owl-carousel">
-      <div class="item"><a href="#"><img src="/assets/images/pixel-6.jpeg" alt="Main Banner" class="img-responsive" /></a></div>
-      <div class="item"><a href="#"><img src="/assets/images/macbook-pro-13.jpeg" alt="Main Banner" class="img-responsive" /></a></div>
-      <div class="item"><a href="#"><img src="/assets/images/surface-laptop-4.jpeg" alt="Main Banner" class="img-responsive" /></a></div>
-    </div>
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide>
+          <img src="/assets/images/pixel-6.jpeg" alt="" class="">    
+      </ng-template>  
+      <ng-template  carouselSlide>
+        <img src="/assets/images/macbook-pro-13.jpeg" alt="" class="">    
+      </ng-template>  
+      <ng-template carouselSlide>
+        <img src="/assets/images/surface-laptop-4.jpeg" alt="" class="">    
+      </ng-template>  
+    </owl-carousel-o>
   </div>
 </div>
   <!-- =====  BANNER END  ===== -->
