@@ -16,24 +16,29 @@ import {selectProductById, selectProductList} from 'src/app/store/selectors/prod
 })
 export class ProductsComponent implements OnInit {
 
-  products?: Observable<Products[]>;
+  products: any = [];
 
-  constructor(private products_service: ProductsService, private  router: ActivatedRoute, private store : Store<IAppState>) { }
+  totalLength?: number;
+
+  page: number = 1;
+
+  constructor( private  router: ActivatedRoute, private store : Store<IAppState>) { }
 
   ngOnInit(): void {
     this.getAll();
   }
 
-  getAll(): void {
+  getAll()  {
     let endpoint : String = this.router.snapshot.params['type'];
     if (endpoint != undefined){
       this.store.dispatch(ProductsTypeAction({type_item : endpoint}));
-      this.products = this.store.select(selectProductList);
     } else{
       this.store.dispatch(ShowAllProductsAction());
-      this.products = this.store.select(selectProductList);
     }
-    
+    return this.store.select(selectProductList).subscribe(res =>{
+      this.products = res;
+      this.totalLength = res.length;
+    })
   }
    
 }

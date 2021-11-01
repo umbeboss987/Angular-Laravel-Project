@@ -29,16 +29,6 @@
             </div>
             </div>
           <div class="col-xs-4 page-wrapper">
-            <label class="control-label" for="input-limit">Show :</label>
-            <div class="limit">
-              <select id="input-limit" class="form-control">
-                <option value="8" selected="selected">08</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="75">75</option>
-                <option value="100">100</option>
-              </select>
-            </div>
             </div>
           <div class="col-xs-2 text-right list-grid-wrapper">
             <div class="btn-group btn-list-grid">
@@ -48,7 +38,11 @@
           </div>
         </div>
         <div class="row" id="data">
-          <div class="product-layout product product-grid  col-lg-3 col-md-4 col-xs-6 " *ngFor="let product of products | async">
+          <div class="product-layout product product-grid  col-lg-3 col-md-4 col-xs-6 " *ngFor="let product of products | paginate: {
+          itemsPerPage: 8,
+          currentPage: page,
+          totalItems: totalLength 
+        }">
             <div class="item" >
               <div class="thumbnail" >
                 <div class=""> <a > <img data-name="product_image" src="{{product.photo}}" alt="iPod Classic" title="iPod Classic" class="img-responsive" /></a></div>
@@ -68,14 +62,8 @@
             </div>
           </div>
         </div>
-        <div class="pagination-nav text-center mt_50" id="navProduct">
-          <ul>
-            <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-          </ul>
+        <div class=" text-center mt_50" id="navProduct">
+         <pagination-controls class=""  (pageChange)="page = $event"></pagination-controls>
         </div>
       </div>
     </div>

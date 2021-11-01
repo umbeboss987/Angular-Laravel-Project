@@ -10,6 +10,7 @@ import { OrderComponent } from './components/order/order.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AdminComponent } from './components/private/admin/admin.component';
 import { TestComponent } from './view/test/test.component';
+import { AboutComponent } from './components/about/about.component';
 
 const routes: Routes = [
   { path: 'product/:id', component: ProductComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'account', component: ProfileComponent ,canActivate :[AuthGuardService]},
   { path: 'admin', component: AdminComponent ,canActivate :[AuthGuardService]},
   { path: 'test', component: TestComponent },
+  { path: 'about', component: AboutComponent },
 
 
 ];

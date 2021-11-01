@@ -32,7 +32,7 @@ import { AccountEffects } from './store/effects/account.effects';
 import { AdminComponent } from './components/private/admin/admin.component';
 import { TestComponent } from './view/test/test.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -83,6 +83,7 @@ export function tokenGetter() {
         allowedDomains: ["localhost:8000"],
       },
     }),
+    NgxPaginationModule
     ],    
   providers: [{
     provide: HTTP_INTERCEPTORS,
