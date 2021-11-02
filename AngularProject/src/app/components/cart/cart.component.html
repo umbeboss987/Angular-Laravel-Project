@@ -115,7 +115,7 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="pull-right">
-          <a [routerLink]="['/checkOut']" class="btn btn-black">Proceed to checkout </a>
+          <a [routerLink]="['/checkOut']" *ngIf="this.item$ != undefined && this.item$.length > 0" class="btn btn-black">Proceed to checkout </a>
         </div>
       </div>
     </div>

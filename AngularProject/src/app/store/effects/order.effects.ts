@@ -18,13 +18,17 @@ import { AddOrderAction, AddOrderActionFail, AddOrderActionSuccess, GetOrdersLis
 
 export class OrderEffects{
 
-  constructor(private order_service: OrderService, private actions$ : Actions, private toastr: ToastrService){}
+  constructor(private order_service: OrderService, private actions$ : Actions, private toastr: ToastrService, private router: Router){}
 
   AddOrder$: Observable<Action> = createEffect(() => {
     return this.actions$.pipe(
       ofType(AddOrderAction),
       switchMap((action) => {
         return this.order_service.addOrder(action.item).pipe(
+          tap(()=>{
+            this.toastr.success('Order done');
+            this.router.navigate(['/account']);
+          }),
           map((data) => {
             return AddOrderActionSuccess({ item: data});
           }), catchError(errorResp => {
