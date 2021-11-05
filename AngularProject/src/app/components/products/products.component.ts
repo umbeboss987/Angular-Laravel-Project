@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import {select, Store} from '@ngrx/store';
 import { IAppState } from 'src/app/store/state/app.state';
 import { Observable } from 'rxjs';
-import { GetProductsAction, ProductsTypeAction, ShowAllProductsAction } from 'src/app/store/actions/products.actions';
+import { GetProductsAction, ProductsTypeAction } from 'src/app/store/actions/products.actions';
 import {selectProductById, selectProductList} from 'src/app/store/selectors/products.selector';
 
 
@@ -33,7 +33,7 @@ export class ProductsComponent implements OnInit {
     if (endpoint != undefined){
       this.store.dispatch(ProductsTypeAction({type_item : endpoint}));
     } else{
-      this.store.dispatch(ShowAllProductsAction());
+      this.store.dispatch(GetProductsAction());
     }
     return this.store.select(selectProductList).subscribe(res =>{
       this.products = res;

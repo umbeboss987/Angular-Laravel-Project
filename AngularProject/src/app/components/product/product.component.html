@@ -1,7 +1,7 @@
 
 <div class="container">
     <!-- =====  BANNER STRAT  ===== -->
-  <div class="text-center" *ngIf="!loading$">
+  <div class="text-center" *ngIf="loading$">
     <div class="lds-roller">
       <div></div>
       <div></div>
@@ -14,8 +14,7 @@
     </div>
   </div>
     <!-- =====  BREADCRUMB END===== -->
-  <div *ngIf="loading$">
-    
+  <div *ngIf="!loading$">   
     <div class="row " *ngIf="product$ !== undefined">
       <div class="col-sm-8 col-md-8 col-lg-9 mb_30">
         <div class="row mt_10 ">

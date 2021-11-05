@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Products } from 'src/app/model/products';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import {select, Store} from '@ngrx/store';
 import { IAppState } from 'src/app/store/state/app.state';
 import { Observable } from 'rxjs';
-import {selectProductById, selectProductList} from 'src/app/store/selectors/products.selector';
-import { GetProductsAction, ShowAllProductsAction } from 'src/app/store/actions/products.actions';
+import { selectProductList} from 'src/app/store/selectors/products.selector';
+import { GetProductsAction } from 'src/app/store/actions/products.actions';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
@@ -18,17 +18,13 @@ export class HomeComponent implements OnInit {
 
   constructor(private router: Router, private store: Store<IAppState>) {
     this.products$ = this.store.select<Products[]>(selectProductList);
-    this.store.dispatch( ShowAllProductsAction());
+    this.store.dispatch( GetProductsAction());
    }
 
   ngOnInit(): void {
-    this.getAllProducts();
   }
 
-  getAllProducts(){
-  }
-
-
+  
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,

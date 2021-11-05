@@ -12,7 +12,7 @@ import {
   ROUTER_NAVIGATION,
 } from '@ngrx/router-store';
 
-import {ShowAllProductsAction,
+import {
         GetProductsAction, 
         ProductActionsType, 
         ProductsTypeActionSuccess, 
@@ -20,7 +20,8 @@ import {ShowAllProductsAction,
         GetSingleProductActionFail,
         ProductsTypeActionFail,
         GetSingleProductActionSuccess,
-        GetSingleProductAction} from '../actions/products.actions'
+        GetSingleProductAction,
+        GetProductsActionSuccess} from '../actions/products.actions'
 import { IAppState } from '../state/app.state';
 
 @Injectable ()
@@ -30,10 +31,10 @@ export class ProductsEffect {
 
     loadAllProducts$ : Observable<Action> = createEffect(() => {
         return  this.actions$.pipe(
-            ofType(ShowAllProductsAction),
+            ofType(GetProductsAction),
             switchMap(() => this.products_service.getAll()),
             map((productsResp: Products[]) =>
-               GetProductsAction({products : productsResp})
+               GetProductsActionSuccess({products : productsResp})
             ) 
          );
    });
@@ -64,7 +65,7 @@ loadSingleProducts$ : Observable<Action> = createEffect(() => {
         if (type == undefined) {
           return this.products_service.getAll().pipe(
             map((data) => {
-              return GetProductsAction({ products: data });
+              return GetProductsActionSuccess({ products: data });
             })
           )
         } else {

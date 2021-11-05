@@ -1,12 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Products } from 'src/app/model/products';
 import { ProductsService } from 'src/app/services/products.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import {select, Store} from '@ngrx/store';
-import { IAppState } from 'src/app/store/state/app.state';
-import { Observable } from 'rxjs';
-import { selectProductList} from 'src/app/store/selectors/products.selector';
-import { GetProductsAction, ShowAllProductsAction } from 'src/app/store/actions/products.actions';
 import { AuthService } from './auth/auth.service';
 
 @Component({
