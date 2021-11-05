@@ -20,11 +20,26 @@ export const selectProductList  = createSelector(
     }
 );
 
+export const selectProductLoading  = createSelector(
+  selectProducts,
+  (state: ProductsState) => {
+    return state.loading;
+  }
+);
+
+
 export const selectProductById  = createSelector(
   selectProductList,
   selectCurrentRoute,
   (products: Products[], route: RouterStateUrl) => {
-    return products[route.params['id']];
+    let product = [];
+    for (let index = 0; index < products.length; index++) {
+      if( products[index].id === route.params['id']){
+        product.push(products[index])
+        return  product;
+       } 
+    }
+    return products;
   }
 );
 

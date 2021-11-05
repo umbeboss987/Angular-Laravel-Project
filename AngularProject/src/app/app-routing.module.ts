@@ -7,7 +7,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { CartComponent } from './components/cart/cart.component';
 import { OrderComponent } from './components/order/order.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileComponent } from './components/private/user/profile/profile.component';
 import { AdminComponent } from './components/private/admin/admin.component';
 import { TestComponent } from './view/test/test.component';
 import { AboutComponent } from './components/about/about.component';

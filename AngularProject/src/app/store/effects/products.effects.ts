@@ -1,10 +1,11 @@
 import { Actions, ofType,createEffect } from '@ngrx/effects';
 import { Products } from "src/app/model/products";
-import { Action } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 import { ProductsService } from "src/app/services/products.service";
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { switchMap, map , mergeMap, filter, withLatestFrom, catchError, } from 'rxjs/operators';
+import { NgxSpinnerService } from "ngx-spinner";
+import { switchMap, map , mergeMap, filter, withLatestFrom, catchError, exhaustMap, tap, } from 'rxjs/operators';
 import {
   RouterNavigatedAction,
   routerNavigationAction,
@@ -20,11 +21,12 @@ import {ShowAllProductsAction,
         ProductsTypeActionFail,
         GetSingleProductActionSuccess,
         GetSingleProductAction} from '../actions/products.actions'
+import { IAppState } from '../state/app.state';
 
 @Injectable ()
 
 export class ProductsEffect {
-    constructor(private actions$ : Actions, private products_service: ProductsService){}
+    constructor(private actions$ : Actions, private products_service: ProductsService, private store : Store<IAppState>, private spinner: NgxSpinnerService){}
 
     loadAllProducts$ : Observable<Action> = createEffect(() => {
         return  this.actions$.pipe(
@@ -39,7 +41,7 @@ export class ProductsEffect {
 loadSingleProducts$ : Observable<Action> = createEffect(() => {
   return  this.actions$.pipe(
       ofType(GetSingleProductAction),
-      switchMap((action) =>  this.products_service.getSingleProduct(action.item_id).pipe(
+      exhaustMap((action) =>  this.products_service.getSingleProduct(action.item_id).pipe(
         map((product) => GetSingleProductActionSuccess({products : product}))
       )
     ),catchError((errorResp) =>{

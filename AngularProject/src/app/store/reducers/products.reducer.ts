@@ -7,6 +7,12 @@ import {createReducer, on } from '@ngrx/store';
 
 const _productsReducer = createReducer(
     initialProductsState,
+    on(ProductsTypeAction, (state, action :any) => {
+        return {
+            ...state,
+            loading: false
+        }
+    }),
     on(ProductsTypeActionSuccess, (state, action :any) => {
         return {
             ...state,
@@ -32,7 +38,8 @@ const _productsReducer = createReducer(
     on(GetSingleProductActionSuccess, (state, action :any) => {
         return {
             ...state,
-            products:  action.products
+            products:action.products,
+            loading: true
         }
     }),
 

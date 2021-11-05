@@ -40,5 +40,8 @@ export class ProductsComponent implements OnInit {
       this.totalLength = res.length;
     })
   }
+
+  ngOnDestroy() {
+  }
    
 }

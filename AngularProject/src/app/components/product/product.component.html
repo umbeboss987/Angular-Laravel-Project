@@ -1,20 +1,27 @@
+
 <div class="container">
     <!-- =====  BANNER STRAT  ===== -->
-    <div class="breadcrumb mt_30 ptb_20">
-      <h1>Product Detail</h1>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="category_page.html">Products</a></li>
-        <li class="active">Product Detail</li>
-      </ul>
+  <div class="text-center" *ngIf="!loading$">
+    <div class="lds-roller">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+  </div>
     <!-- =====  BREADCRUMB END===== -->
-    <div class="row " *ngFor="let p of product$">
+  <div *ngIf="loading$">
+    
+    <div class="row " *ngIf="product$ !== undefined">
       <div class="col-sm-8 col-md-8 col-lg-9 mb_30">
         <div class="row mt_10 ">
         <form  [formGroup]= "formGroup" method="POST" (ngSubmit)="addCartItem()"> 
           <div class="col-md-6">
-            <div><a class="thumbnails"> <img data-name="product_image" src="{{p.photo}}" href="" alt="" /></a></div>
+            <div><a class="thumbnails"> <img data-name="product_image" src="{{product$[0].photo}}" href="" alt="" /></a></div>
             <div id="product-thumbnail" class="owl-carousel">
               <div class="item">
                 <div class="image-additional"><a class="thumbnail"  data-fancybox="group1"></a></div>
@@ -22,7 +29,7 @@
             </div>
           </div>
           <div class="col-md-6 prodetail caption product-thumb">
-            <h4 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">{{p.name}}</a></h4>
+            <h4 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">{{product$[0].name}}</a></h4>
             <div class="rating">
               <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span>
               <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span>
@@ -30,7 +37,7 @@
               <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span>
               <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span>
             </div>
-            <span class="price mb_20"><span class="amount"><span class="currencySymbol">$</span>{{p.price}}</span>
+            <span class="price mb_20"><span class="amount"><span class="currencySymbol">$</span>{{product$[0].price}}</span>
             </span>
             <hr>
             <ul class="list-unstyled product_info mtb_20">
@@ -45,7 +52,7 @@
                 <span> In Stock</span></li>
             </ul>
             <hr>
-            <p class="product-desc mtb_30"> {{p.description}}</p>
+            <p class="product-desc mtb_30"> {{product$[0].description}}</p>
             <div id="product">
               <div class="qty mt_30 form-group2">
                 <label>Qty</label>
@@ -116,4 +123,5 @@
         </div>
       </div>
     </div>
+  </div>
   </div>

@@ -22,11 +22,13 @@ export interface IAppState{
 export interface ProductsState {
     products: Products[];
     message: string;
+    loading : boolean;
 }
 
 export const initialProductsState :ProductsState = {
     products: [],
     message: '',
+    loading: false,
 }
 
 export interface CartState {

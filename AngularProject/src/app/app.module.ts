@@ -1,11 +1,11 @@
-import { AfterViewChecked, ElementRef, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from 'src/app/components/home/home.component';
 import { AboutComponent } from 'src/app/components/about/about.component';
 import { ProductsComponent } from 'src/app/components/products/products.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileComponent } from './components/private/user/profile/profile.component';
 import { StoreModule } from '@ngrx/store';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
@@ -33,6 +33,7 @@ import { AdminComponent } from './components/private/admin/admin.component';
 import { TestComponent } from './view/test/test.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import {NgxPaginationModule} from 'ngx-pagination';
+
 
 
 

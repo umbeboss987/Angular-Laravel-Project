@@ -19,8 +19,8 @@ export class ProductsService {
     return this.http.get<Products[]>(`${AppConstants.SERVICES_BASE_URL}/products`);
   }
 
-  getSingleProduct (id: number): Observable<Products[]>{
-    return this.http.get<Products[]>(`${AppConstants.SERVICES_BASE_URL}/product/${id}`);
+  getSingleProduct (id: number): Observable<Products>{
+    return this.http.get<Products>(`${AppConstants.SERVICES_BASE_URL}/product/${id}`);
   }
 
   getProductsType(type: String): Observable<Products[]>{

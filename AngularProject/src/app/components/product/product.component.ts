@@ -3,10 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Products } from 'src/app/model/products';
 import { ProductsService } from 'src/app/services/products.service';
 import {select, Store} from '@ngrx/store';
-import { selectProductList} from 'src/app/store/selectors/products.selector';
+import { selectProductList, selectProductLoading} from 'src/app/store/selectors/products.selector';
 import { GetProductsAction, GetSingleProductAction } from 'src/app/store/actions/products.actions';
 import { IAppState } from 'src/app/store/state/app.state';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { FormBuilder , Validators, FormGroup} from '@angular/forms';
 import { AddCartItemAction } from 'src/app/store/actions/cart.actions';
 import { Cart } from 'src/app/model/cart';
@@ -19,6 +19,8 @@ import { Cart } from 'src/app/model/cart';
 export class ProductComponent implements OnInit {
   product$? : Products[];
   formGroup : FormGroup;
+  subscription?: Subscription;
+  loading$? : Boolean
 
   constructor( private fb: FormBuilder, private store : Store<IAppState> , private router: ActivatedRoute,private router_navigate: Router) { 
      //form group insert product in the cart
@@ -26,13 +28,18 @@ export class ProductComponent implements OnInit {
       insertProduct: "",
       quantity: ""
     })
-    this.store.select<Products[]>(selectProductList).subscribe(res => {
+
+     this.store.select<Boolean>(selectProductLoading).subscribe((res)=>{
+       this.loading$ = res;
+     });
+
+    this.getSingleProduct();
+    this.subscription = this.store.select(selectProductList).subscribe(res => {
       this.product$ = res;
     });
   }
 
   ngOnInit(): void {
-    this.getSingleProduct();
   }
 
   addCartItem() {
@@ -47,5 +54,6 @@ export class ProductComponent implements OnInit {
     this.store.dispatch(GetSingleProductAction({ item_id: id }));
   }
 
+ 
   
 }
