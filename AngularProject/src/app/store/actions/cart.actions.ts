@@ -22,7 +22,7 @@ export const GetCartItemActionFail = createAction('GET_CART_ITEM_ACTION_FAIL',pr
 
 
 export const DeleteCartItem = createAction('DELETE_CART_ITEM_ACTION', props<{id: number}>());
-export const DeleteCartItemSuccess = createAction('DELETE_CART_ITEM_ACTION_SUCCESS', props<{item: Cart}>());
+export const DeleteCartItemSuccess = createAction('DELETE_CART_ITEM_ACTION_SUCCESS', props<{id: number}>());
 export const DeleteCartItemFail = createAction('DELETE_CART_ITEM_ACTION_FAIL', props<{message: string}>());
 
 

@@ -20,18 +20,15 @@ export class CartComponent implements OnInit {
   item$? : CartWithProducts[]
   total? : number;
   subTotals?: Array<string>;
+  subscription? : Subscription;
 
   constructor(private store: Store<IAppState>, private cart_service: CartService) {
-    this.store.dispatch(GetCartItemAction());
+   this.store.dispatch(GetCartItemAction());
    this.getCartList();
+   this.getSumPriceCart();  
   }
 
   ngOnInit(): void {  
-    this.getSumPriceCart();
-    this.cart_service.getRefreshCart().subscribe(() =>{
-    this.store.dispatch(GetCartItemAction());
-    this.store.dispatch(GetCartTotalAction());
-   })
   }
 
 

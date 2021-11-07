@@ -27,8 +27,7 @@ export class CartService {
         return this.refreshCart;
     }
 
-    addCartItem( item : Cart, id : number): Observable<Cart>{
-       
+    addCartItem( item : Cart, id : number): Observable<Cart>{      
         return this.http.post<Cart>(`${AppConstants.SERVICES_BASE_URL}/auth/addCartItem/${id}`, item);
     }
 

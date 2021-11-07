@@ -14,7 +14,6 @@ import {
 
 import {
         GetProductsAction, 
-        ProductActionsType, 
         ProductsTypeActionSuccess, 
         ProductsTypeAction, 
         GetSingleProductActionFail,
@@ -23,11 +22,12 @@ import {
         GetSingleProductAction,
         GetProductsActionSuccess} from '../actions/products.actions'
 import { IAppState } from '../state/app.state';
+import { Router } from '@angular/router';
 
 @Injectable ()
 
 export class ProductsEffect {
-    constructor(private actions$ : Actions, private products_service: ProductsService, private store : Store<IAppState>, private spinner: NgxSpinnerService){}
+    constructor(private actions$ : Actions, private products_service: ProductsService, private store : Store<IAppState>, private router: Router){}
 
     loadAllProducts$ : Observable<Action> = createEffect(() => {
         return  this.actions$.pipe(
@@ -54,23 +54,26 @@ loadSingleProducts$ : Observable<Action> = createEffect(() => {
 
   loadProductsType$: Observable<Action> = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ROUTER_NAVIGATION),
-      filter((r: RouterNavigatedAction) => {
-        return r.payload.routerState.url.startsWith('/products')
-      }),
-      map((r: RouterNavigatedAction) => {
-        return r.payload.routerState.root.firstChild?.params['type'];
-      }),
-      switchMap((type: string) => {
-        if (type == undefined) {
+      ofType(ProductsTypeAction),
+      switchMap((action) => {
+        if (action.type_item == undefined || action.type_item ==  null) {
           return this.products_service.getAll().pipe(
             map((data) => {
+              let currentUrl = this.router.url;
+              this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+              this.router.onSameUrlNavigation = 'reload';
+              this.router.navigate([currentUrl]);
               return GetProductsActionSuccess({ products: data });
             })
           )
         } else {
-          return this.products_service.getProductsType(type).pipe(
+          return this.products_service.getProductsType(action.type_item).pipe(
+           
             map((data) => {
+              let currentUrl = this.router.url;
+              this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+              this.router.onSameUrlNavigation = 'reload';
+              this.router.navigate([currentUrl]);
               return ProductsTypeActionSuccess({ products: data });
             })
           );

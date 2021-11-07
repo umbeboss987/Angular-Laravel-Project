@@ -21,10 +21,13 @@ const _cartReducer = createReducer(
         }
     }),
 
-    on(DeleteCartItemSuccess, (state : any, action :any) => {
+    on(DeleteCartItemSuccess, (state : any, {id} ) => {
+        let item = state.cartWithProducts.filter((single_item : CartWithProducts) => {
+            return single_item.id !== id
+        });
         return {
             ...state,
-            cart: action.item
+            cartWithProducts:  item
         }
     }),
 

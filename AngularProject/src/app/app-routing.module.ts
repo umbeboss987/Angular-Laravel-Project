@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from 'src/app/components/home/home.component';
-import { ProductsComponent } from './components/products/products.component';
-import { ProductComponent } from './components/product/product.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { CartComponent } from './components/cart/cart.component';
@@ -13,11 +11,9 @@ import { TestComponent } from './view/test/test.component';
 import { AboutComponent } from './components/about/about.component';
 
 const routes: Routes = [
-  { path: 'product/:id', component: ProductComponent },
   { path: 'home', component: HomeComponent },
   { path: "", component: HomeComponent },
-  { path: 'products', component: ProductsComponent },
-  { path: 'products/:type', component: ProductsComponent },
+  { path: 'products', loadChildren: () => import ('./components/products/products-module/products-module.module').then(m => m.ProductsModuleModule)},
   { path: 'signIn', component: SignInComponent },
   { path: 'cart', component: CartComponent ,canActivate :[AuthGuardService]},
   { path: 'checkOut', component: OrderComponent ,canActivate :[AuthGuardService]},

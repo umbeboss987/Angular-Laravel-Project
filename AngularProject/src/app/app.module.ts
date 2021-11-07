@@ -4,13 +4,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from 'src/app/components/home/home.component';
 import { AboutComponent } from 'src/app/components/about/about.component';
-import { ProductsComponent } from 'src/app/components/products/products.component';
 import { ProfileComponent } from './components/private/user/profile/profile.component';
 import { StoreModule } from '@ngrx/store';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ProductComponent } from './components/product/product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,7 +18,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { ProductsEffect } from 'src/app/store/effects/products.effects';
 import { StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { appReducers } from 'src/app/store/reducers/app.reducer';
-import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { CartEffects } from 'src/app/store/effects/cart.effects';
 import { UserEffects } from 'src/app/store/effects/user.effects';
 import { TokenInterceptorService } from './services/token-interceptor.service';
@@ -32,7 +29,6 @@ import { AccountEffects } from './store/effects/account.effects';
 import { AdminComponent } from './components/private/admin/admin.component';
 import { TestComponent } from './view/test/test.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -42,13 +38,13 @@ export function tokenGetter() {
 }
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
   declarations: [
     AppComponent,
     HomeComponent,
     AboutComponent,
     ProfileComponent,
-    ProductComponent,
-    ProductsComponent,
     SignInComponent,
     CartComponent,
     OrderComponent,
@@ -75,16 +71,12 @@ export function tokenGetter() {
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([ProductsEffect, CartEffects, UserEffects, OrderEffects, AccountEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    StoreRouterConnectingModule.forRoot({
-     // serializer: CustomSerializer
-     }),
      JwtModule.forRoot({
       config: { //aggiunge athorization header
         tokenGetter: tokenGetter,
         allowedDomains: ["localhost:8000"],
       },
     }),
-    NgxPaginationModule
     ],    
   providers: [{
     provide: HTTP_INTERCEPTORS,

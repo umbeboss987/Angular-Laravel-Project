@@ -36,11 +36,7 @@ export class UserEffects {
       switchMap((action) => {
         return this.user_service.signUp(action.user).pipe(
           tap(action => {
-            this.toastr.success("user registered");
-            let currentUrl = this.router.url;
-            this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-            this.router.onSameUrlNavigation = 'reload';
-            this.router.navigate([currentUrl]);
+            this.toastr.success("user registered");          
           }),
           map((data: any) => UserSignUpActionSuccess({ responseUser: data })),
            catchError((errorResp) => {
@@ -48,10 +44,6 @@ export class UserEffects {
             return of(UserLoginActionFail({ responseUser: errorResp.error.message })).pipe(
               tap(action => {
                 this.toastr.error(errorResp.error.message);
-                let currentUrl = this.router.url;
-                this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-                this.router.onSameUrlNavigation = 'reload';
-                this.router.navigate([currentUrl]);
               }),
             )
           })
@@ -78,10 +70,6 @@ export class UserEffects {
               return of(UserLoginActionFail({ responseUser: errorResp.error.message })).pipe(
                 tap(action => {
                   this.toastr.error(errorResp.error.message);
-                  let currentUrl = this.router.url;
-                  this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-                      this.router.navigate([currentUrl]);
-                  });
                 }),
               )       
             })    

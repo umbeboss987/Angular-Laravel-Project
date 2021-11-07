@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Products } from 'src/app/model/products';
-import { ProductsService } from 'src/app/services/products.service';
 import { ActivatedRoute } from '@angular/router';
 import {select, Store} from '@ngrx/store';
 import { IAppState } from 'src/app/store/state/app.state';
-import { Observable } from 'rxjs';
 import { GetProductsAction, ProductsTypeAction } from 'src/app/store/actions/products.actions';
-import {selectProductById, selectProductList} from 'src/app/store/selectors/products.selector';
-
+import { selectProductList} from 'src/app/store/selectors/products.selector';
+import {Observable} from 'rxjs';
+import {Products} from '../../model/products'
 
 @Component({
   selector: 'app-products',
@@ -16,7 +14,7 @@ import {selectProductById, selectProductList} from 'src/app/store/selectors/prod
 })
 export class ProductsComponent implements OnInit {
 
-  products: any = [];
+  products?: any ;
 
   totalLength?: number;
 
@@ -30,11 +28,7 @@ export class ProductsComponent implements OnInit {
 
   getAll()  {
     let endpoint : String = this.router.snapshot.params['type'];
-    if (endpoint != undefined){
-      this.store.dispatch(ProductsTypeAction({type_item : endpoint}));
-    } else{
-      this.store.dispatch(GetProductsAction());
-    }
+    this.store.dispatch(ProductsTypeAction({type_item : endpoint}));
     return this.store.select(selectProductList).subscribe(res =>{
       this.products = res;
       this.totalLength = res.length;

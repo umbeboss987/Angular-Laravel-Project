@@ -82,7 +82,7 @@ export class CartEffects {
             this.toastr.info('item deleted');
           }),
           map((data) => {
-            return DeleteCartItemSuccess({ item: data});
+            return DeleteCartItemSuccess({ id: action.id});
           }), catchError(errorResp =>{
             return of(DeleteCartItemFail({message: errorResp.error.message}))
           })
