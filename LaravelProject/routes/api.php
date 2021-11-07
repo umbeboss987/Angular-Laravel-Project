@@ -34,9 +34,9 @@ Route::get('getId', [UserController::class, 'getId']);
  Route::post('account', [AccountController::class, 'addAccount']);
  Route::get('getAccountDetails', [AccountController::class, 'getAccountDetails']);
  Route::get('getOrdersAccount', [OrderController::class, 'orderList']);
- Route::get('products/{id}',[ProductController::class ,'singleProduct']);
  Route::get('products',[ProductController::class ,'getProducts']);
  Route::put('updateUser', ['middleware' => 'auth.role:user', UserController::class, 'updateUser']);
+ Route::get('products/product/{id}',[ProductController::class ,'singleProduct']);
 
 
  Route::post('login', ['middleware' => 'auth.role:admin,user', AuthController::class, 'login'])->name('login');

@@ -30,7 +30,6 @@ const _productsReducer = createReducer(
     on(GetProductsAction, (state, action :any) => {
         return {
             ...state,
-            products:  action.products,
             loading: true
         }
     }),
@@ -46,7 +45,6 @@ const _productsReducer = createReducer(
     on(GetSingleProductAction, (state, action :any) => {
         return {
             ...state,
-            products:action.products,
             loading: true
         }
     }),

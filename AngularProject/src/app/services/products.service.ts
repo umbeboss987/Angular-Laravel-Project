@@ -20,7 +20,7 @@ export class ProductsService {
   }
 
   getSingleProduct (id: number): Observable<Products>{
-    return this.http.get<Products>(`${AppConstants.SERVICES_BASE_URL}/products?product=${id}`);
+    return this.http.get<Products>(`${AppConstants.SERVICES_BASE_URL}/products/product/${id}`);
   }
 
   getProductsType(type: String): Observable<Products[]>{

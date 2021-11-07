@@ -42,8 +42,8 @@ export class ProductsEffect {
 loadSingleProducts$ : Observable<Action> = createEffect(() => {
   return  this.actions$.pipe(
       ofType(GetSingleProductAction),
-      exhaustMap((action) =>  this.products_service.getSingleProduct(action.item_id).pipe(
-        map((product) => GetSingleProductActionSuccess({products : product}))
+      switchMap((action) =>  this.products_service.getSingleProduct(action.item_id).pipe(
+        map((product) => GetSingleProductActionSuccess({products : product}))       
       )
     ),catchError((errorResp) =>{
       return of(GetSingleProductActionFail({message : errorResp.error.message}))
@@ -58,11 +58,7 @@ loadSingleProducts$ : Observable<Action> = createEffect(() => {
       switchMap((action) => {
         if (action.type_item == undefined || action.type_item ==  null) {
           return this.products_service.getAll().pipe(
-            map((data) => {
-              let currentUrl = this.router.url;
-              this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-              this.router.onSameUrlNavigation = 'reload';
-              this.router.navigate([currentUrl]);
+            map((data) => {              
               return GetProductsActionSuccess({ products: data });
             })
           )
@@ -70,10 +66,6 @@ loadSingleProducts$ : Observable<Action> = createEffect(() => {
           return this.products_service.getProductsType(action.type_item).pipe(
            
             map((data) => {
-              let currentUrl = this.router.url;
-              this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-              this.router.onSameUrlNavigation = 'reload';
-              this.router.navigate([currentUrl]);
               return ProductsTypeActionSuccess({ products: data });
             })
           );

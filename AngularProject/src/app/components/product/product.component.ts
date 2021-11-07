@@ -31,7 +31,6 @@ export class ProductComponent implements OnInit {
 
      this.store.select<Boolean>(selectProductLoading).subscribe((res)=>{
        this.loading$ = res;
-       console.log(res);
      });
 
     this.getSingleProduct();

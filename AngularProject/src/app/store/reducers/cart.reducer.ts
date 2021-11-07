@@ -22,12 +22,16 @@ const _cartReducer = createReducer(
     }),
 
     on(DeleteCartItemSuccess, (state : any, {id} ) => {
-        let item = state.cartWithProducts.filter((single_item : CartWithProducts) => {
+        let items = state.cartWithProducts.filter((single_item : CartWithProducts) => {
             return single_item.id !== id
+        });
+        let updateTotal = state.cartWithProducts.filter((single_item : CartWithProducts) => {
+                return single_item.id == id
         });
         return {
             ...state,
-            cartWithProducts:  item
+            cartWithProducts:  items,
+            total: Math.trunc( state.total - updateTotal[0].sub_total ) ,
         }
     }),
 

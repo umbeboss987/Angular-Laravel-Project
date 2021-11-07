@@ -36,7 +36,7 @@ export class UserEffects {
       switchMap((action) => {
         return this.user_service.signUp(action.user).pipe(
           tap(action => {
-            this.toastr.success("user registered");          
+            this.toastr.success("user registered");
           }),
           map((data: any) => UserSignUpActionSuccess({ responseUser: data })),
            catchError((errorResp) => {
