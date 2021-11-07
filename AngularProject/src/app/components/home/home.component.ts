@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Products } from 'src/app/model/products';
-import {  Router } from '@angular/router';
+import {  ActivatedRoute, Router } from '@angular/router';
 import {select, Store} from '@ngrx/store';
 import { IAppState } from 'src/app/store/state/app.state';
 import { Observable } from 'rxjs';
 import { selectProductList} from 'src/app/store/selectors/products.selector';
-import { GetProductsAction } from 'src/app/store/actions/products.actions';
+import { GetProductsAction, ProductsTypeAction } from 'src/app/store/actions/products.actions';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
@@ -16,7 +16,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class HomeComponent implements OnInit {
   products$? : Observable<Products[]>;;
 
-  constructor(private router: Router, private store: Store<IAppState>) {
+  constructor(private router: ActivatedRoute, private store: Store<IAppState>) {
     this.products$ = this.store.select<Products[]>(selectProductList);
     this.store.dispatch( GetProductsAction());
    }
@@ -24,6 +24,16 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+
+  // getAll()  {
+  //   let endpoint : String = this.router.snapshot.params['type'];
+  //   this.store.dispatch(ProductsTypeAction({type_item : endpoint}));
+  //   return this.store.select(selectProductList).subscribe(res =>{
+  //     this.products = res;
+  //     this.totalLength = res.length;
+  //   })
+  // }
   
   customOptions: OwlOptions = {
     loop: true,

@@ -1,288 +1,36 @@
 <!DOCTYPE html>
 <!--[if (gte IE 9)|!(IE)]><!-->
 <html lang="en">
-<!--<![endif]-->
-
-<!-- Mirrored from html.lionode.com/moontheme/m004/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Jun 2021 10:51:18 GMT -->
-<head>
-  <!-- =====  BASIC PAGE NEEDS  ===== -->
-  <meta charset="utf-8">
-  <title>MoonStore</title>
-  <!-- =====  SEO MATE  ===== -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-  <meta name="distribution" content="global">
-  <meta name="revisit-after" content="2 Days">
-  <meta name="robots" content="ALL">
-  <meta name="rating" content="8 YEARS">
-  <meta name="Language" content="en-us">
-  <meta name="GOOGLEBOT" content="NOARCHIVE">
-  <!-- =====  MOBILE SPECIFICATION  ===== -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="viewport" content="width=device-width">
-  <!-- =====  CSS  ===== -->
-</head>
-
+  <head>
+    <!-- =====  BASIC PAGE NEEDS  ===== -->
+    <meta charset="utf-8">
+    <title>MoonStore</title>
+    <!-- =====  SEO MATE  ===== -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="distribution" content="global">
+    <meta name="revisit-after" content="2 Days">
+    <meta name="robots" content="ALL">
+    <meta name="rating" content="8 YEARS">
+    <meta name="Language" content="en-us">
+    <meta name="GOOGLEBOT" content="NOARCHIVE">
+    <!-- =====  MOBILE SPECIFICATION  ===== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width">
+    <!-- =====  CSS  ===== -->
+  </head>
+  
 <body>
-  <!-- =====  LODER  ===== -->
-  <div class="wrapper">
-    <div id="subscribe-me" class="modal animated fade in" role="dialog" data-keyboard="true" tabindex="-1">
-      <div class="newsletter-popup">
-        <img class="offer" src="/assets/images/newsbg.jpg" alt="offer">
-        <div class="newsletter-popup-static newsletter-popup-top">
-          <div class="popup-text">
-            <div class="popup-title">50% <span>off</span></div>
-            <div class="popup-desc">
-              <div>Sign up and get 50% off your next Order</div>
-            </div>
-          </div>
-          <form  method="post">
-            <div class="form-group required">
-              <input type="email" name="email-popup" id="email-popup" placeholder="Enter Your Email" class="form-control input-lg" required />
-              <button type="submit" class="btn btn-default btn-lg" id="email-popup-submit">Subscribe</button>
-              <label class="checkme">
-                <input type="checkbox" value="" id="checkme" />Dont show again</label>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- =====  HEADER START  ===== -->
-    <header id="header">
-      <div class="header-top">
+  <app-navbar></app-navbar>
         <div class="container">
-          <div class="row">
-            <div class="col-sm-6">
-              <ul class="header-top-left">
-                <li class="language dropdown"> <span class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"> <img src="/assets/images/English-icon.gif" alt="img"> English <span class="caret"></span> </span>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#"><img src="/assets/images/English-icon.gif" alt="img"> English</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-            <div class="col-sm-6">
-              <ul class="header-top-right text-right">
-                <li class="account"><a [routerLink]="['/account']">My Account</a></li>
-                <li class="cart"><a [routerLink]="['/cart']" >My Cart</a></li>
-              </ul>
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="header">
-        <div class="container">
-          <nav class="navbar">
-            <div class="navbar-header"> <a class="navbar-brand" [routerLink]="['/home']"> <img alt="MoonStored" src="/assets/images/logo.png"> </a> </div>
-            <div class="header-right pull-right mt_50">
-              <button class="navbar-toggle pull-right" type="button" data-toggle="collapse" data-target=".js-navbar-collapse"> <span class="i-bar"><i class="fa fa-bars"></i></span></button>
-              <div class="shopping-icon" data-target="#cart-dropdown" data-toggle="collapse" aria-expanded="true" role="list">
-                <div class="cart-item"><span class="cart-qty">02</span></div>
-                <div id="cart-dropdown" class="cart-menu collapse">
-                  <ul>
-                    <li>
-                      <table class="table table-striped">
-                        <tbody>
-                          <tr>
-                            <td class="text-center"><a href="#"><img src="/assets/images/product/70x84.jpg" alt="iPod Classic" title="iPod Classic"></a></td>
-                            <td class="text-left product-name"><a href="#">MacBook Pro</a>
-                              <span class="text-left price">$20.00</span>
-                              <input class="cart-qty" name="product_quantity" min="1" value="1" type="number">
-                            </td>
-                            <td class="text-center"><a class="close-cart"><i class="fa fa-times-circle"></i></a></td>
-                          </tr>
-                          <tr>
-                            <td class="text-center"><a href="#"><img src="/assets/images/product/70x84.jpg" alt="iPod Classic" title="iPod Classic"></a></td>
-                            <td class="text-left product-name"><a href="#">MacBook Pro</a>
-                              <span class="text-left price">$20.00</span>
-                              <input class="cart-qty" name="product_quantity" min="1" value="1" type="number">
-                            </td>
-                            <td class="text-center"><a class="close-cart"><i class="fa fa-times-circle"></i></a></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </li>
-                    <li>
-                      <table class="table">
-                        <tbody>
-                          <tr>
-                            <td class="text-right"><strong>Sub-Total</strong></td>
-                            <td class="text-right">$2,100.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-right"><strong>Eco Tax (-2.00)</strong></td>
-                            <td class="text-right">$2.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-right"><strong>VAT (20%)</strong></td>
-                            <td class="text-right">$20.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-right"><strong>Total</strong></td>
-                            <td class="text-right">$2,122.00</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </li>
-                    <li>
-                      <form action="http://html.lionode.com/moontheme/m004/cart_page.html">
-                        <input class="btn pull-left mt_10" value="View cart" type="submit">
-                      </form>
-                      <form action="http://html.lionode.com/moontheme/m004/checkout_page.html">
-                        <input class="btn pull-right mt_10" value="Checkout" type="submit">
-                      </form>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="main-search pull-right">
-                <div class="header_search_toggle desktop-view" *ngIf="isLoggedIn()">
-                    <div class="search-box">
-                      <button class="btn btn-yellow" style="font-size:11px" (click)="logout()">Log-Out</button>
-                    </div>
-                </div>
-                <div class="header_search_toggle desktop-view" *ngIf="!isLoggedIn()">
-                  <div class="search-box">
-                    <button class="btn btn-yellow" style="font-size:11px" [routerLink]="['/signIn']">Login</button>
-                  </div>
-              </div>
-              </div>
-            </div>
-            <div class="collapse navbar-collapse js-navbar-collapse pull-right">
-              <ul id="menu" class="nav navbar-nav">
-                <li> <a [routerLink]="['/home']">Home</a></li>
-                <li class="dropdown mega-dropdown">
-                  <ul class="dropdown-menu mega-dropdown-menu row">
-                    <li class="col-md-3">
-                    
-                    </li>
-                  </ul>
-                </li>
-                <li class="dropdown"> <a [routerLink]="['/products']" class="dropdown-toggle" data-toggle="dropdown">Shop </a>
-                  <ul class="dropdown-menu">
-                    <li> <a [routerLink]="['/products/PC']" href="">PC</a></li>
-                    <li> <a [routerLink]="['/products/phone']" >Telefoni</a></li>
-                    <li> <a [routerLink]="['/products/tablet']">Tablet</a></li>
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages </a>
-                    <ul class="dropdown-menu">
-                      <li> <a href="login.html">Login/Register</a></li>
-                      <li> <a href="contact_us.html">Contact us</a></li>
-                      <li> <a href="cart_page.html">My Cart</a></li>
-                      <li> <a href="checkout_page.html">Checkout</a></li>
-                      <li> <a href="wishlist.html">Wishlist</a></li>
-                    </ul>
-                  </li>
-                  <li> <a [routerLink]="['/about']" >About us</a></li>
-              </ul>
-            </div>
-            <!-- /.nav-collapse -->
-          </nav>
-        </div>
-      </div>
-    </header>
-    <div class="container">
-    </div>
-    <!-- =====  HEADER END  ===== -->
-    <!-- =====  BANNER STRAT  ===== -->
-    <router-outlet></router-outlet>
-    <!-- =====  BRAND END  ===== -->
-    <!-- =====  FOOTER START  ===== -->
-    <div class="footer mt_80 ptb_80">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3 footer-block">
-            <div class="content_footercms_right">
-              <div class="footer-contact">
-                <h6 class="footer-title pb_20">Contact Us</h6>
-                <ul>
-                  <li>Offices Addresss: 218, Drimlend Building Sarthana jakatnaka, Surat City Gujarat-395013 INDIA</li>
-                  <li>+91 0987-654-321</li>
-                  <li>Contact@yourcompany.com</li>
-                </ul>
-                <div class="social_icon">
-                  <ul>
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-google"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-2 footer-block">
-            <h6 class="footer-title pb_20">Categories</h6>
-            <ul>
-              <li><a href="#">Women</a></li>
-              <li><a href="#">Men</a></li>
-              <li><a href="#">Footwear</a></li>
-              <li><a href="#">Jewellery</a></li>
-              <li><a href="#">Accessories</a></li>
-              <li><a href="#">Accessories</a></li>
-            </ul>
-          </div>
-          <div class="col-md-2 footer-block">
-            <h6 class="footer-title pb_20">Information</h6>
-            <ul>
-              <li><a href="contact.html">Specials</a></li>
-              <li><a href="#">New Products</a></li>
-              <li><a href="#">Best Sellers</a></li>
-              <li><a href="#">Our Stores</a></li>
-              <li><a href="#">Contact Us</a></li>
-              <li><a href="#">About Us</a></li>
-            </ul>
-          </div>
-          <div class="col-md-2 footer-block">
-            <h6 class="footer-title pb_20">My Account</h6>
-            <ul>
-              <li><a href="#">Checkout</a></li>
-              <li><a href="#">My Account</a></li>
-              <li><a href="#">My Orders</a></li>
-              <li><a href="#">My Credit Slips</a></li>
-              <li><a href="#">My Addresses</a></li>
-              <li><a href="#">My Personal Info</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <h6 class="pb_20">Sign Up Our Newsletter</h6>
-            <p class="mt_10 mb_20">Be sure to follow our blog and sign up for all of our mailing updates!</p>
-            <div class="form-group">
-              <input class="mb_20" type="text" placeholder="Enter Your Email Address">
-              <button class="btn">Subscribe</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom ptb_20">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="copyright-part">Copyright - Created by Lionode © 2018</div>
-          </div>
-          <div class="col-sm-6">
-            <div class="payment-icon text-right">
-              <ul>
-                <li><i class="fa fa-cc-paypal "></i></li>
-                <li><i class="fa fa-cc-stripe"></i></li>
-                <li><i class="fa fa-cc-visa"></i></li>
-                <li><i class="fa fa-cc-discover"></i></li>
-                <li><i class="fa fa-cc-mastercard"></i></li>
-                <li><i class="fa fa-cc-amex"></i></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  <!-- =====  FOOTER END  ===== -->
-  </div>
-  <a id="scrollup">Scroll</a>
+        <!-- =====  HEADER END  ===== -->
+        <!-- =====  BANNER STRAT  ===== -->
+        <router-outlet></router-outlet>
+        <!-- =====  BRAND END  ===== -->
+        <!-- =====  FOOTER START  ===== -->
+  <app-footer></app-footer> 
 </body>
-<!-- Mirrored from html.lionode.com/moontheme/m004/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Jun 2021 10:55:00 GMT -->
+
 </html>

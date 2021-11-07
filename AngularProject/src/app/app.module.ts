@@ -29,6 +29,8 @@ import { AccountEffects } from './store/effects/account.effects';
 import { AdminComponent } from './components/private/admin/admin.component';
 import { TestComponent } from './view/test/test.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NavbarComponent } from './components/layout/navbar/navbar.component';
+import { FooterComponent } from './components/layout/footer/footer.component';
 
 
 
@@ -49,7 +51,9 @@ export function tokenGetter() {
     CartComponent,
     OrderComponent,
     AdminComponent,
-    TestComponent
+    TestComponent,
+    NavbarComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
