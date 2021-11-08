@@ -8,7 +8,7 @@
       </ul>
     </div>
     <!-- =====  BREADCRUMB END===== -->
-    <div class="row">
+    <div class="row" *ngIf="account != undefined && account != null">
       <div class="col-md-3">
         <div id="exTab3">
           <ul class="nav nav-tabs">
@@ -22,13 +22,9 @@
       <div class="col-md-9">
         <div class="tab-content ">
           <div class="tab-pane active" id="r1">
-            <div class="heading-part mb_10 mt_30">
-              <h3 class="sub_title">Account Dashboard</h3>
-            </div>
             <div class="heading-part">
-              <h3 class="sub_title">Hello, User</h3>
+              <h2 class="sub_title">Hello, {{account[0].full_name}}!</h2>
             </div>
-            <p>Subscribe to the Print Doodles mailing list to receive updates on new product, special offers and other discount information. <a class="account-link" id="subscribelink" href="#">Click Here</a></p>
             <div class="heading-part mtb_20">
               <h3 class="sub_title">Account Information</h3>
             </div>
@@ -47,16 +43,18 @@
                           <td>
                             <ul>
                               <li class="inner-heading">
-                                <b>Denial tom</b>
+                                <b>Name</b>
                               </li>
                               <li>
-                                <p>Steetwear ltd</p>
+                                <p>{{account[0].full_name}}</p>
                               </li>
                               <li>
-                                <p>600 Anton Boulevard Costa</p>
+                                <b>Telephone</b>
+                                <p>{{account[0].telephone_number}}</p>
                               </li>
                               <li>
-                                <p>Mesa, California</p>
+                                <b>Address</b>
+                                <p>{{account[0].address}}</p>
                               </li>
                             </ul>
                           </td>
@@ -67,37 +65,6 @@
                 </div>
               </div>
               <div class="col-sm-6">
-                <div class="cart-total-table address-box commun-table">
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>Billing Address</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <ul>
-                              <li class="inner-heading">
-                                <b>Denial tom</b>
-                              </li>
-                              <li>
-                                <p>Steetwear ltd</p>
-                              </li>
-                              <li>
-                                <p>600 Anton Boulevard Costa</p>
-                              </li>
-                              <li>
-                                <p>Mesa, California</p>
-                              </li>
-                            </ul>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

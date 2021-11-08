@@ -31,6 +31,8 @@ import { TestComponent } from './view/test/test.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
+import { OrderListComponent } from './components/private/user/order-list/order-list.component';
+import { UpdateProfileComponent } from './components/private/user/update-profile/update-profile.component';
 
 
 
@@ -54,6 +56,8 @@ export function tokenGetter() {
     TestComponent,
     NavbarComponent,
     FooterComponent,
+    OrderListComponent,
+    UpdateProfileComponent,
   ],
   imports: [
     BrowserModule,
