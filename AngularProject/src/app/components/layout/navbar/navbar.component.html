@@ -136,11 +136,11 @@
                     </li>
                   </ul>
                 </li>
-                <li class="dropdown"> <a [routerLink]="['/products/']" class="dropdown-toggle" data-toggle="dropdown">Shop </a>
+                <li class="dropdown"> <a (click)="getAll('')" [routerLink]="['/products/']" class="dropdown-toggle" data-toggle="dropdown">Shop </a>
                   <ul class="dropdown-menu">
-                    <li> <a [routerLink]="['/products/PC']" href="">PC</a></li>
-                    <li> <a [routerLink]="['/products/phone']" >Telefoni</a></li>
-                    <li> <a [routerLink]="['/products/tablet']">Tablet</a></li>
+                    <li> <a (click)="getAll('PC')" [routerLink]="['/products/PC']">PC</a></li>
+                    <li> <a (click)="getAll('phone')"  [routerLink]="['/products/phone']">Telefoni</a></li>
+                    <li> <a  (click)="getAll('tablet')" [routerLink]="['/products/tablet']">Tablet</a></li>
                   </ul>
                 </li>
                 <li class="dropdown">

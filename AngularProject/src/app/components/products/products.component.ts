@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {select, Store} from '@ngrx/store';
 import { IAppState } from 'src/app/store/state/app.state';
 import { GetProductsAction, ProductsTypeAction } from 'src/app/store/actions/products.actions';
@@ -20,7 +20,8 @@ export class ProductsComponent implements OnInit {
 
   page: number = 1;
 
-  constructor( private  router: ActivatedRoute, private store : Store<IAppState>) { }
+  constructor( private  router: ActivatedRoute, private store : Store<IAppState>) { 
+  }
 
   ngOnInit(): void {
     this.getAll();

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Products } from 'src/app/model/products';
 import {  ActivatedRoute, Router } from '@angular/router';
 import {select, Store} from '@ngrx/store';
@@ -35,6 +35,8 @@ export class HomeComponent implements OnInit {
   //   })
   // }
   
+
+ 
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
