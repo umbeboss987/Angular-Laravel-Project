@@ -33,6 +33,7 @@ import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { OrderListComponent } from './components/private/user/order-list/order-list.component';
 import { UpdateProfileComponent } from './components/private/user/update-profile/update-profile.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -62,6 +63,7 @@ export function tokenGetter() {
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgxPaginationModule,
     StoreModule.forRoot({}, {}),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

@@ -4,8 +4,6 @@ import {select, Store} from '@ngrx/store';
 import { IAppState } from 'src/app/store/state/app.state';
 import { GetProductsAction, ProductsTypeAction } from 'src/app/store/actions/products.actions';
 import { selectProductList} from 'src/app/store/selectors/products.selector';
-import {Observable} from 'rxjs';
-import {Products} from '../../model/products'
 
 @Component({
   selector: 'app-products',

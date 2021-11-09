@@ -30,6 +30,8 @@ export class ProfileComponent implements OnInit {
 
   formUpdateUser : FormGroup;
 
+  totalLength?: number;
+
   constructor(private fb : FormBuilder, private store: Store<IAppState>, private authService: AuthService) { 
    this.formAccount = this.fb.group({
       full_name : "",
@@ -42,8 +44,12 @@ export class ProfileComponent implements OnInit {
       password: "",      
     })
 
-    this.getOrdersList();
     this.getDetailsAccount();
+    this.getOrdersList();
+    this.store.select(_selectOrderAccount).subscribe(res =>{
+      this.order = res; 
+      this.totalLength = res.length;
+    });
   }
 
   ngOnInit(): void {
@@ -63,9 +69,6 @@ export class ProfileComponent implements OnInit {
 
   getOrdersList(){
     this.store.dispatch(GetOrdersList());
-    this.store.select(_selectOrderAccount).subscribe(res =>{
-      this.order = res; 
-    });
   }
 
   userUpdate(){

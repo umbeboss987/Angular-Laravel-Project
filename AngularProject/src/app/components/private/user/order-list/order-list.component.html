@@ -1,1 +1,56 @@
-<p>order-list works!</p>
+
+ <div class="tab-pane" id="r3">
+    <h3 class="mt_30 mb_10 sub_title">My Order List</h3>
+    <div class="row" >
+      <div class="col-xs-12 mb_xs-30">
+        <div class="cart-item-table commun-table">
+          <div class="table-responsive-sm">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th colspan="4">
+                    <ul>
+                      <li><span>Product</span></li>
+                      <li><span>Total</span></li>
+                    </ul>
+                  </th>
+                </tr>
+              </thead>
+              <tbody *ngIf="order != null && order != undefined">
+                <tr *ngFor="let singleOrder of order | paginate: {
+                    itemsPerPage: 3,
+                    currentPage: page,
+                    totalItems: totalLength 
+                  }" >
+                  <td>
+                    <a href="category_page.html">
+                      <div class="product-image"><img style="width:120px;" alt="Streetwear" src="{{singleOrder.photo}}"></div>
+                    </a>
+                  </td>
+                  <td>
+                    <div class="product-title">
+                      <a href="category_page.html">{{singleOrder.name}}</a>
+                    </div>
+                    <div class="product-info-stock-sku ">
+                      <div>
+                        <label>Quantity: </label>
+                        <span class="info-deta">{{singleOrder.quantity}}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="base-price price-box">
+                      <span class="price">${{singleOrder.price}}</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              <div class=" text-center mt_50" id="navProduct">
+                <pagination-controls class=""  (pageChange)="page = $event"></pagination-controls>
+               </div>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
