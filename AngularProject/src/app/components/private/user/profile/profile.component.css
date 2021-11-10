@@ -1,0 +1,33 @@
+.nav-link:hover{
+    background-color: #ffca28;
+    color:white;
+}
+
+.center{
+    margin-left:50px;
+}
+
+
+.nav-link{
+    color:black;
+    font-size:15px;
+}
+
+.navbar{
+    height:50px;
+    padding-bottom:10px;
+}
+
+
+.table{
+    height:230px;
+}
+
+.all{
+    margin: 30px;
+}
+
+.account{
+    padding-bottom:30px;
+}
+

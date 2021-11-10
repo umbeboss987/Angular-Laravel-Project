@@ -18,3 +18,9 @@ export const selectUserResponse = createSelector(
     selectUser,
     (state: UserState) => state.token
   );
+
+
+  export const selectUserAuth = createSelector(
+    selectUser,
+    (state: UserState) => state.user
+  );

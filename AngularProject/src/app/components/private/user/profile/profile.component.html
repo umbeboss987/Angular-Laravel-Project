@@ -1,17 +1,24 @@
-<div class="container">
-    <!-- =====  BANNER STRAT  ===== -->
-    <div class="breadcrumb mt_30 ptb_20">
-      <h1>Account</h1>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li class="active">Account</li>
-      </ul>
-    </div>
-    <!-- =====  BREADCRUMB END===== -->
-    <div class="row" *ngIf="account != undefined && account != null">
+<div class="navbar">
+  <div class="text-center center">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" [routerLink]="['/account']"> Account Information</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/account/updateProfile']">Update Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/account/updateProfile']">Shipping Address</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="text-center all">
+  <h2 class=" account">Account</h2>
+    <div class="row" >
       <div class="col-md-12">
         <div class="tab-content ">
-          <div class="tab-pane active" id="r1">
+          <div class="tab-pane active" id="r1" *ngIf="account !== undefined && account.length > 0">
             <div class="heading-part">
               <h2 class="sub_title">Hello, {{account[0].full_name}}!</h2>
             </div>
@@ -19,7 +26,7 @@
               <h3 class="sub_title">Account Information</h3>
             </div>
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-6" >
                 <div class="cart-total-table address-box commun-table">
                   <div class="table-responsive">
                     <table class="table">
@@ -90,72 +97,81 @@
               <div class="col-sm-6">
               </div>
             </div>
-          </div>
-          <div class="tab-pane" id="r2" *ngIf="account && account.length === 0">
-            <h3 class="mt_30 sub_title">Account Details</h3>
-            <form [formGroup]="formAccount" class="main-form full" method="POST" (ngSubmit)="createAccount()">
-              <div class="mb_20">
-                <div class="row">
-                  <div class="col-xs-12 mb_20">
-                    <div class="heading-part mb_20">
-                      <h3 class="main_title sub-heading">Shipping Address</h3>
-                    </div>
-                    <hr>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="input-box mb_20">
-                      <input formControlName= "full_name" type="text" required="" placeholder="Full Name">
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="input-box mb_20">
-                      <input type="text" required="" placeholder="Contact Number" formControlName= "telephone_number">
-                    </div>
-                  </div>
-                  <div class="col-sm-12">
-                    <div class="input-box mb_20">
-                      <input type="text" required="" placeholder="Shipping Address" formControlName= "address">
-                      <span>Please provide the number and street.</span>
-                    </div>
-                  </div>
-                  <div class="col-sm-12">
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="input-box mb_20">
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                  </div>
-                  <div class="col-sm-6">
-                  </div>
-                </div>
-                <button class="btn">Subscribe</button>
-              </div>
-            </form>
-          </div>
-       
-          <div class="tab-pane" id="r4">
-            <h3 class="mt_30 mb_10 sub_title">Change Password</h3>
-            <form class="main-form full" [formGroup]="formUpdateUser" method="PUT" (ngSubmit)="userUpdate()">
-              <div class="row">
-                <div class="col-xs-12">
-                  <div class="input-box mb_20">
-                    <label for="old-pass">New Password</label>
-                    <input type="password" placeholder="Old Password" required="" id="old-pass" formControlName="password">
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="input-box mb_20">
-                    <label for="login-pass">Email</label>
-                    <input type="password" placeholder="Enter your email" required=""formControlName="email">
-                  </div>
-                </div>
-                <div class="col-xs-12">
-                  <button type="submit" class="btn btn-black pull-left">Change Password</button>
+          </div>    
+          <div class="row" *ngIf="account == undefined || account.length <= 0">
+            <div class="col-sm-6" >
+              <div class="cart-total-table address-box commun-table">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>
+                          <div class="text-center">
+                            <h5 class=""><b class="">Shipping Address</b></h5>
+                          </div>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <ul>
+                            <li class="inner-heading">
+                            <div class="text-center">
+                              <button class="btn btn-yellow" routerLink="['/account/address']">Add a Shipping Address</button>
+                            </div>
+                            </li>
+                            <li>
+                              <p></p>
+                            </li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
-            </form>
-          </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="cart-total-table address-box commun-table">
+                <div class="table-responsive">
+                  <table class="table" *ngIf="user && user.length > 0">
+                    <thead>
+                      <tr>
+                        <th> 
+                        <div class="text-center">
+                          <h5 class=""><b class="">Account</b></h5>
+                        </div>
+                      </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <ul>
+                            <li class="inner-heading">
+                              <h5 class="">Username</h5>
+                            </li>
+                            <li>
+                              <p>{{user[0].name}}</p>
+                            </li>
+                            <li>
+                              <h5 class="">Email</h5>
+                              <p>{{user[0].email}}</p>
+                            </li>   
+                            <li>
+                            </li>                             
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+            </div>
+          </div>    
         </div>
         <app-order-list [order]="order"></app-order-list>
       </div>

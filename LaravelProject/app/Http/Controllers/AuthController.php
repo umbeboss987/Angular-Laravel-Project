@@ -94,8 +94,7 @@ class AuthController extends Controller
     }
 
     function getAuthUser(Request $request){
-        $token = $request->bearerToken();
-         $user =JWTAuth::user()->id;
+         $user =JWTAuth::user();
          return response()->json($user);
      }
 }

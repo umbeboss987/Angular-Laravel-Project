@@ -9,9 +9,10 @@ import { GetOrdersList } from 'src/app/store/actions/order.actions';
 import { Order } from 'src/app/model/order';
 import { _selectOrderAccount } from 'src/app/store/selectors/order.selector';
 import { OrderAccount } from 'src/app/model/orderAccount';
-import { UpdateUserAction } from 'src/app/store/actions/user.actions';
+import { GetUserAction, UpdateUserAction } from 'src/app/store/actions/user.actions';
 import { User } from 'src/app/model/user';
 import { selectAccountList } from 'src/app/store/selectors/account.selector';
+import { selectUserAuth } from 'src/app/store/selectors/user.selector';
 
 
 
@@ -32,6 +33,8 @@ export class ProfileComponent implements OnInit {
 
   totalLength?: number;
 
+  user?: User[];
+
   constructor(private fb : FormBuilder, private store: Store<IAppState>, private authService: AuthService) { 
    this.formAccount = this.fb.group({
       full_name : "",
@@ -50,9 +53,14 @@ export class ProfileComponent implements OnInit {
       this.order = res; 
       this.totalLength = res.length;
     });
+
+    this.store.select(selectUserAuth).subscribe(res =>{
+      this.user = res; 
+    });;
   }
 
   ngOnInit(): void {
+    this.getUser();
   }
   
   createAccount (){
@@ -64,6 +72,7 @@ export class ProfileComponent implements OnInit {
     this.store.dispatch(getDetailsAccountAction());
     this.store.select(selectAccountList).subscribe(res=>{
       this.account = res;
+      console.log(this.account);
     })
   }
 
@@ -74,5 +83,9 @@ export class ProfileComponent implements OnInit {
   userUpdate(){
     let user : User = this.formUpdateUser.value
     this.store.dispatch(UpdateUserAction({ user : user}));
+  }
+
+  getUser(){
+    this.store.dispatch(GetUserAction());
   }
 }

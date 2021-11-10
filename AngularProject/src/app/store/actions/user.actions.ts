@@ -10,6 +10,10 @@ export enum  UserActionsType {
 
 }
 
+export const GetUserAction = createAction('GET_USER');
+export const GetUserActionSuccess = createAction('GET_USER_SUCCESS', props<{user: User}>());
+export const GetUserActionfAIL = createAction('GET_USER_FAIL');
+
 
 export const UserSignUpAction = createAction('SIGN_UP_ACTION', props<{user: User}>());
 export const UserSignUpActionSuccess = createAction('SIGN_UP_ACTION_SUCCESS', props<{responseUser: []}>())

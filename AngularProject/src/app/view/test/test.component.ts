@@ -11,17 +11,17 @@ import { User } from 'src/app/model/user';
 export class TestComponent implements OnInit {
    user? : User;
   constructor(private user_service: UserService) {
-    this.getId();
+    //this.getId();
    };
   
 
   ngOnInit(): void {
   }
 
-  getId() {
-   this.user_service.getId().subscribe(res=>{
-    this.user = res;
-   });
-   console.log(this.user);  
-  } 
+  // getId() {
+  //  this.user_service.getId().subscribe(res=>{
+  //   this.user = res;
+  //  });
+  //  console.log(this.user);  
+  // } 
 }

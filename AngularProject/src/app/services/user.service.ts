@@ -32,7 +32,8 @@ export class UserService {
     return this.http.put<User>('http://127.0.0.1:8000/api/updateUser', user);
   }
 
-  getId(){
+  getUser(){
     return this.http.get<User>('http://127.0.0.1:8000/api/auth/getId');
   }
+
 }
