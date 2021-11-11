@@ -24,7 +24,7 @@ export class AccountEffects{
             mergeMap((action) => {
                 return this.account_service.addAccount(action.account).pipe(
                     map((data) => {
-                        return createAccountActionSuccess({ account: data});
+                        return createAccountActionSuccess({ account: action.account});
                     })
                 );
             })

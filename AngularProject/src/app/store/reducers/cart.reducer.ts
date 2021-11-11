@@ -1,5 +1,4 @@
 import {AddCartItemActionSuccess, DeleteCartItemSuccess, GetCartItemActionSuccess, GetCartTotalActionSuccess} from '../actions/cart.actions';
-import { CartActionsType } from '../actions/cart.actions';
 import { initialCartState,  } from '../state/app.state';
 import {createReducer, on } from '@ngrx/store';
 import { CartWithProducts } from 'src/app/model/CartWithProducts';

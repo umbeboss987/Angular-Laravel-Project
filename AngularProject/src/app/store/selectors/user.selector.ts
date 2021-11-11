@@ -24,3 +24,9 @@ export const selectUserResponse = createSelector(
     selectUser,
     (state: UserState) => state.user
   );
+
+
+  export const selectUserLoading = createSelector(
+    selectUser,
+    (state: UserState) => state.loading
+  );

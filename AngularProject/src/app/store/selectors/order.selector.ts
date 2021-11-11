@@ -14,3 +14,10 @@ export const _selectOrderAccount  = createSelector(
       return state.orderAccount;
     }
 );
+
+export const _selectOrderLoading  = createSelector(
+  selectOrderAccount,
+  (state: OrderState) => {
+    return state.loading;
+  }
+);

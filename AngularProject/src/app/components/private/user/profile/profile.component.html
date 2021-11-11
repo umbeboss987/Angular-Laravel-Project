@@ -2,28 +2,35 @@
   <div class="text-center center">
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link active" [routerLink]="['/account']"> Account Information</a>
+        <a class="nav-link active" [routerLink]="['/account']">Account Information</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/account/updateProfile']">Update Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/account/updateProfile']">Shipping Address</a>
+        <a class="nav-link" [routerLink]="['/account/updateProfile']">Update your Profile</a>
       </li>
     </ul>
   </div>
 </div>
-<div class="text-center all">
+  <!-- =====  BANNER STRAT  ===== -->
+  <div class="text-center" *ngIf="loadingUser || loadingAccount || loadingOrder">
+    <div class="lds-roller">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+<div class="text-center all"  *ngIf="!loadingUser || !loadingAccount || !loadingOrder">
   <h2 class=" account">Account</h2>
     <div class="row" >
       <div class="col-md-12">
         <div class="tab-content ">
           <div class="tab-pane active" id="r1" *ngIf="account !== undefined && account.length > 0">
             <div class="heading-part">
-              <h2 class="sub_title">Hello, {{account[0].full_name}}!</h2>
-            </div>
-            <div class="heading-part mtb_20">
-              <h3 class="sub_title">Account Information</h3>
             </div>
             <div class="row">
               <div class="col-sm-6" >
@@ -64,7 +71,7 @@
               <div class="col-sm-6">
                 <div class="cart-total-table address-box commun-table">
                   <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" *ngIf="user && user.length > 0">
                       <thead>
                         <tr>
                           <th>Account</th>
@@ -78,11 +85,11 @@
                                 <b>Username</b>
                               </li>
                               <li>
-                                <p>{{account[0].full_name}}</p>
+                                <p>{{user[0].name}}</p>
                               </li>
                               <li>
                                 <b>Email</b>
-                                <p>{{account[0].telephone_number}}</p>
+                                <p>{{user[0].email}}</p>
                               </li>   
                               <li>
                               </li>                             
@@ -108,6 +115,7 @@
                         <th>
                           <div class="text-center">
                             <h5 class=""><b class="">Shipping Address</b></h5>
+                           
                           </div>
                         </th>
                       </tr>
@@ -117,9 +125,35 @@
                         <td>
                           <ul>
                             <li class="inner-heading">
-                            <div class="text-center">
-                              <button class="btn btn-yellow" routerLink="['/account/address']">Add a Shipping Address</button>
-                            </div>
+                                  <div class="text-center">
+                                    <div class="section">
+                                      <input class="modal-btn" type="checkbox" id="modal-btn" name="modal-btn"/>
+                                      <label *ngIf="!loadingAccount" for="modal-btn">Add a Shipping Address <i class="uil uil-expand-arrows"></i></label> 		
+                                      <div class="modal">		
+                                          <div class="modal-wrap">
+                                            <h2 class="title">Insert Address</h2>
+                                        <div class="text-center">	
+                                          <form action="" class="" [formGroup]="formAccount" class="main-form full" method="POST" (ngSubmit)="createAccount()">
+                                            <label for="" class="input"> Name
+                                              <input class="modal-input" type="text" placeholder="Name"  formControlName= "full_name" >
+                                            </label>
+                                            <label for="" class="input"> Telephone
+                                              <input class="modal-input" type="text" placeholder="Telephone number"  formControlName= "telephone_number">
+                                            </label>
+                                            <label for="" class="input"> Address
+                                              <input class="modal-input" type="text" placeholder="Address" formControlName= "address" >
+                                            </label>
+                                            <br>
+                                            <label for="" class="">
+                                            <button class="btn">Subscribe</button>
+                                            </label>
+                                          </form>
+                                        </div>
+                                          </div>			          		
+                                      </div>	
+                                      <a href="https://front.codes/" class="logo" target="_blank"></a>	
+                                  </div>
+                                </div>
                             </li>
                             <li>
                               <p></p>
@@ -159,8 +193,7 @@
                               <h5 class="">Email</h5>
                               <p>{{user[0].email}}</p>
                             </li>   
-                            <li>
-                            </li>                             
+                                               
                           </ul>
                         </td>
                       </tr>
@@ -177,3 +210,4 @@
       </div>
     </div>
   </div>
+  

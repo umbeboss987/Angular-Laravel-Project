@@ -37,7 +37,6 @@ import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
-
 export function tokenGetter() {
   return localStorage.getItem("token");
 }

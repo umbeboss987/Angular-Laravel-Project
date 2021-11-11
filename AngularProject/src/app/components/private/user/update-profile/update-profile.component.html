@@ -10,74 +10,23 @@
       </ul>
     </div>
   </div>
-<!--
-
-CREATE ACCOUNT
 
 
-<div class="col-md-5">
-    <div class="tab-pane" *ngIf="account && account.length === 0">
-      <h3 class="mt_30 sub_title">Account Details</h3>
-      <form [formGroup]="formAccount" class="main-form full" method="POST" (ngSubmit)="createAccount()">
-        <div class="mb_20">
-          <div class="row">
-            <div class="col-xs-12 mb_20">
-              <div class="heading-part mb_20">
-                <h3 class=" sub-heading">Shipping Address</h3>
-              </div>
-              <hr>
-            </div>
-            <div class="col-sm-6">
-              <div class="input-box mb_20">
-                <input formControlName= "full_name" type="text" required="" placeholder="Full Name">
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="input-box mb_20">
-                <input type="text" required="" placeholder="Contact Number" formControlName= "telephone_number">
-              </div>
-            </div>
-            <div class="col-sm-12">
-              <div class="input-box mb_20">
-                <input type="text" required="" placeholder="Shipping Address" formControlName= "address">
-                <span>Please provide the number and street.</span>
-              </div>
-            </div>
-            <div class="col-sm-12">
-            </div>
-            <div class="col-sm-6">
-              <div class="input-box mb_20">
-              </div>
-            </div>
-            <div class="col-sm-6">
-            </div>
-            <div class="col-sm-6">
-            </div>
-          </div>
-          <button class="btn">Subscribe</button>
-        </div>
-      </form>
-    </div>
-    </div> 
-
-    
-
-    UPDATE PROFILE
-
-     <div class="tab-pane" id="r4">
+<div class="container">
+     <div class="tab-pane" id="r4" *ngIf="user || user != undefined">
             <h3 class="mt_30 mb_10 sub_title">Change Password</h3>
             <form class="main-form full" [formGroup]="formUpdateUser" method="PUT" (ngSubmit)="userUpdate()">
               <div class="row">
                 <div class="col-xs-12">
                   <div class="input-box mb_20">
                     <label for="old-pass">New Password</label>
-                    <input type="password" placeholder="Old Password" required="" id="old-pass" formControlName="password">
+                    <input type="password"  required="" id="old-pass" formControlName="password">
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="input-box mb_20">
                     <label for="login-pass">Email</label>
-                    <input type="password" placeholder="Enter your email" required=""formControlName="email">
+                    <input type="password"  required=""formControlName="email">
                   </div>
                 </div>
                 <div class="col-xs-12">
@@ -86,4 +35,7 @@ CREATE ACCOUNT
               </div>
             </form>
           </div>
-    -->
+        </div>
+
+
+  

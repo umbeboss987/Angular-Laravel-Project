@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import{User} from '../../../../model/user';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { IAppState } from 'src/app/store/state/app.state';
+import {select, Store} from '@ngrx/store';
+import { GetUserAction, UpdateUserAction } from 'src/app/store/actions/user.actions';
+import { selectUserAuth } from 'src/app/store/selectors/user.selector';
+
 
 @Component({
   selector: 'app-update-profile',
@@ -7,9 +14,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdateProfileComponent implements OnInit {
 
-  constructor() { }
+  formUpdateUser : FormGroup;
+  user?: User[];
+  closeResult = '';
+
+
+  constructor(private fb : FormBuilder, private store: Store<IAppState>) { 
+
+    this.getUser();
+
+    this.formUpdateUser = this.fb.group({
+      email : "",
+      password: "",      
+    })
+
+    this.store.select(selectUserAuth).subscribe(res =>{
+      this.user = res; 
+    });;
+  }
 
   ngOnInit(): void {
   }
+
+  userUpdate(){
+    let user : User = this.formUpdateUser.value
+    this.store.dispatch(UpdateUserAction({ user : user}));
+  }
+
+  getUser(){
+    this.store.dispatch(GetUserAction());
+  }
+
+
 
 }

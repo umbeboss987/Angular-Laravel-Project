@@ -36,6 +36,8 @@ export interface CartState {
     cartWithProducts : CartWithProducts[];
     message: any;
     total: number;
+    loading: boolean;
+
 }
 
 export const initialCartState :CartState = {
@@ -43,6 +45,7 @@ export const initialCartState :CartState = {
     cartWithProducts : [],
     message: null,
     total : 0,
+    loading: false
 }
 
 
@@ -50,30 +53,37 @@ export interface UserState{
     user: User[];
     userAuth: UserAuth[];
     token: string
+    loading: boolean;
 }
 
 export const initialUserState :UserState = {
     user: [],
     userAuth: [],
-    token: ''
+    token: '',
+    loading: false
 }
 
 export interface OrderState {
     orders: Order[];
     orderAccount: OrderAccount[];
+    loading: boolean;
 }
 
 export const initialOrderState :OrderState = {
     orders: [],
-    orderAccount: []
+    orderAccount: [],
+    loading: false
+    
 }
 
 export interface AccountState{
     account: Account[];
+    loading: boolean;
 }
 
 export const initialAccountState :AccountState = {
-    account: []
+    account: [],
+    loading: false
 }
 
 export interface ResponseState{

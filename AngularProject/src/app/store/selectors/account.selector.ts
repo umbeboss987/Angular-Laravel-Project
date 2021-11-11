@@ -16,3 +16,11 @@ export const selectAccountList  = createSelector(
       return state.account;
     }
 );
+
+
+export const selectAccountLoading  = createSelector(
+  selectAccount,
+  (state: AccountState) => {
+    return state.loading;
+  }
+);
