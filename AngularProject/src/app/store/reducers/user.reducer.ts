@@ -32,12 +32,15 @@ const _userReducer = createReducer(
     on(UserLoginActionSuccess, (state, action) => {
         return {
             ...state,
-            responseUser: action.responseUser        }
+            responseUser: action.responseUser,
+            singleUser: action.user  
+        }
     }), 
     on(UserSignUpActionSuccess, (state, action) => {
         return {
             ...state,
-            responseUser: action.responseUser  
+            responseUser: action.responseUser, 
+            singleUser: action.user
         }
     }), 
     on(UserSignUpActionFail, (state, action) => {
@@ -55,7 +58,7 @@ const _userReducer = createReducer(
     on(UpdateUserActionSuccess, (state, action) => {
         return {
             ...state,
-            user: [action.user]
+            singleUser: action.user
         }
     }),
     on(GetUserAction, (state, action) => {
@@ -67,7 +70,7 @@ const _userReducer = createReducer(
     on(GetUserActionSuccess, (state, action) => {
         return {
             ...state,
-            user: [action.user],
+            singleUser: action.user,
             loading: false
         }
     })

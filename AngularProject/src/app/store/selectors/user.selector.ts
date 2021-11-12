@@ -30,3 +30,8 @@ export const selectUserResponse = createSelector(
     selectUser,
     (state: UserState) => state.loading
   );
+
+  export const selectSingleUser = createSelector(
+    selectUser,
+    (state: UserState) => state.singleUser
+  );

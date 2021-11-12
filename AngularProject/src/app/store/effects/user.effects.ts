@@ -38,7 +38,7 @@ export class UserEffects {
           tap(action => {
             this.toastr.success("user registered");
           }),
-          map((data: any) => UserSignUpActionSuccess({ responseUser: data })),
+          map((data: any) => UserSignUpActionSuccess({ responseUser: data, user: action.user})),
            catchError((errorResp) => {
              console.log(errorResp);
             return of(UserLoginActionFail({ responseUser: errorResp.error.message })).pipe(
@@ -62,10 +62,10 @@ export class UserEffects {
         return this.auth_service.authenticate(action.user).pipe(
           tap(action => {
             this.toastr.success("Logged succesfully");
-            localStorage.setItem('token',JSON.stringify(action.token));
+            localStorage.setItem('token',JSON.stringify(action.token.token));
             this.router.navigate(['/']);
           }),
-            map((user:any) => UserLoginActionSuccess({ responseUser: user })),    
+            map((user:any) => UserLoginActionSuccess({ responseUser: user , user : action.user })),    
             catchError((errorResp) => {
               return of(UserLoginActionFail({ responseUser: errorResp.error.message })).pipe(
                 tap(action => {

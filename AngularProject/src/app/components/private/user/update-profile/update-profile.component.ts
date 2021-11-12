@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { IAppState } from 'src/app/store/state/app.state';
 import {select, Store} from '@ngrx/store';
 import { GetUserAction, UpdateUserAction } from 'src/app/store/actions/user.actions';
-import { selectUserAuth } from 'src/app/store/selectors/user.selector';
+import { selectSingleUser, selectUserAuth } from 'src/app/store/selectors/user.selector';
 
 
 @Component({
@@ -15,7 +15,7 @@ import { selectUserAuth } from 'src/app/store/selectors/user.selector';
 export class UpdateProfileComponent implements OnInit {
 
   formUpdateUser : FormGroup;
-  user?: User[];
+  user?: User;
   closeResult = '';
 
 
@@ -23,26 +23,26 @@ export class UpdateProfileComponent implements OnInit {
 
     this.getUser();
 
+    this.store.select(selectSingleUser).subscribe(res =>{
+      this.user = res; 
+    });
+
+
     this.formUpdateUser = this.fb.group({
       email : "",
       username: "",      
     })
-    
-
-    this.store.select(selectUserAuth).subscribe(res =>{
-      this.user = res; 
-      console.log(this.user[0].name)
-    });;
 
     if(this.user){
-      this.formUpdateUser.patchValue({
-        email: this.user[0].email,
-        username : this.user[0].name
+      this.formUpdateUser.setValue({
+        email: this.user.email,
+        username : this.user.name
       })
-      }
+    }
   }
 
   ngOnInit(): void {
+    
   }
 
   userUpdate(){
@@ -53,7 +53,5 @@ export class UpdateProfileComponent implements OnInit {
   getUser(){
     this.store.dispatch(GetUserAction());
   }
-
-
 
 }

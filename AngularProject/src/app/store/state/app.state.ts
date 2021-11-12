@@ -23,12 +23,22 @@ export interface ProductsState {
     products: Products[];
     message: string;
     loading : boolean;
+    singleProduct : Products;
 }
 
 export const initialProductsState :ProductsState = {
     products: [],
     message: '',
     loading: false,
+    singleProduct: {
+        id: 0,
+        name: '',
+        description: '',
+        price: 0,
+        photo: '',
+        type: '',
+        quantity: 0,
+    }
 }
 
 export interface CartState {
@@ -54,13 +64,20 @@ export interface UserState{
     userAuth: UserAuth[];
     token: string
     loading: boolean;
+    singleUser : User;
 }
 
 export const initialUserState :UserState = {
     user: [],
     userAuth: [],
     token: '',
-    loading: false
+    loading: false,
+    singleUser : {
+        id: 0,
+        name: '',
+        password: '',
+        email: '',
+    }
 }
 
 export interface OrderState {

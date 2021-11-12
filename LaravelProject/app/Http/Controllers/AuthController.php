@@ -38,7 +38,7 @@ class AuthController extends Controller
                     'user_id' => $user->id,
                     'password' => $user->password
                 ])->attempt($credentials);
-                return response()->json($data, 200);
+                return response()->json(['token' => $data,'user' => $user],200);
             }
        } catch (JWTException $e) {
            return response()->json(['message' => 'Could not create token'], 500);

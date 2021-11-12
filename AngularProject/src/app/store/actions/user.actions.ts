@@ -16,12 +16,12 @@ export const GetUserActionfAIL = createAction('GET_USER_FAIL');
 
 
 export const UserSignUpAction = createAction('SIGN_UP_ACTION', props<{user: User}>());
-export const UserSignUpActionSuccess = createAction('SIGN_UP_ACTION_SUCCESS', props<{responseUser: []}>())
+export const UserSignUpActionSuccess = createAction('SIGN_UP_ACTION_SUCCESS', props<{responseUser: [],user:User}>())
 export const UserSignUpActionFail = createAction('SIGN_UP_ACTION_FAIL', props<{responseUser: []}>())
 
 
 export const UserLoginAction = createAction('LOGIN_ACTION', props<{user: User}>());
-export const UserLoginActionSuccess = createAction('LOGIN_ACTION_SUCCESS', props<{responseUser: []}>());
+export const UserLoginActionSuccess = createAction('LOGIN_ACTION_SUCCESS', props<{responseUser: [],  user:User}>());
 export const UserLoginActionFail = createAction('LOGIN_ACTION_FAIL', props<{responseUser: []}>());
 
 export const UpdateUserAction = createAction('UPDATE_USER_ACTION', props<{user: User}>());

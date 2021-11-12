@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Products } from 'src/app/model/products';
 import { ProductsService } from 'src/app/services/products.service';
 import {select, Store} from '@ngrx/store';
-import { selectProductList, selectProductLoading} from 'src/app/store/selectors/products.selector';
+import { selectProductList, selectProductLoading, selectSingleProduct} from 'src/app/store/selectors/products.selector';
 import { GetProductsAction, GetSingleProductAction } from 'src/app/store/actions/products.actions';
 import { IAppState } from 'src/app/store/state/app.state';
 import { Observable, Subscription } from 'rxjs';
@@ -17,7 +17,7 @@ import { Cart } from 'src/app/model/cart';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  product$? : Products[];
+  product$? : Products;
   formGroup : FormGroup;
   subscription?: Subscription;
   loading$? : Boolean
@@ -34,7 +34,7 @@ export class ProductComponent implements OnInit {
      });
 
     this.getSingleProduct();
-    this.subscription = this.store.select(selectProductList).subscribe(res => {
+    this.subscription = this.store.select(selectSingleProduct).subscribe(res => {
       this.product$ = res;
     });
   }

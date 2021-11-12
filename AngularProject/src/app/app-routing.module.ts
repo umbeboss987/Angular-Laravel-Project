@@ -11,6 +11,7 @@ import { TestComponent } from './view/test/test.component';
 import { AboutComponent } from './components/about/about.component';
 import { OrderListComponent } from './components/private/user/order-list/order-list.component';
 import { UpdateProfileComponent } from './components/private/user/update-profile/update-profile.component';
+import { UpdateAddressComponent } from './components/private/user/update-address/update-address.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -24,6 +25,8 @@ const routes: Routes = [
   { path: 'test', component: TestComponent },
   { path: 'about', component: AboutComponent },
   { path: 'account/updateProfile', component: UpdateProfileComponent },
+  { path: 'account/updateAddress', component: UpdateAddressComponent },
+
 
 
 ];

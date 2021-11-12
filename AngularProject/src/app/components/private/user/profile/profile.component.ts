@@ -12,7 +12,7 @@ import { OrderAccount } from 'src/app/model/orderAccount';
 import { GetUserAction, UpdateUserAction } from 'src/app/store/actions/user.actions';
 import { User } from 'src/app/model/user';
 import { selectAccountList, selectAccountLoading } from 'src/app/store/selectors/account.selector';
-import { selectUserAuth, selectUserLoading } from 'src/app/store/selectors/user.selector';
+import { selectSingleUser, selectUserAuth, selectUserLoading } from 'src/app/store/selectors/user.selector';
 
 
 
@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
 
   totalLength?: number;
 
-  user?: User[];
+  user?: User;
 
   loadingUser?: boolean;
 
@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit {
       this.totalLength = res.length;
     });
 
-    this.store.select(selectUserAuth).subscribe(res =>{
+    this.store.select(selectSingleUser).subscribe(res =>{
       this.user = res; 
     });;
 

@@ -52,7 +52,7 @@ const _productsReducer = createReducer(
     on(GetSingleProductActionSuccess, (state, action :any) => {
         return {
             ...state,
-            products:action.products,
+            singleProduct: action.products,
             loading: false
         }
     }),

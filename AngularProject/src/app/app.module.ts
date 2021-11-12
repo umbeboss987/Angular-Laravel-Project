@@ -34,6 +34,7 @@ import { FooterComponent } from './components/layout/footer/footer.component';
 import { OrderListComponent } from './components/private/user/order-list/order-list.component';
 import { UpdateProfileComponent } from './components/private/user/update-profile/update-profile.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { UpdateAddressComponent } from './components/private/user/update-address/update-address.component';
 
 
 
@@ -58,6 +59,7 @@ export function tokenGetter() {
     FooterComponent,
     OrderListComponent,
     UpdateProfileComponent,
+    UpdateAddressComponent,
   ],
   imports: [
     BrowserModule,

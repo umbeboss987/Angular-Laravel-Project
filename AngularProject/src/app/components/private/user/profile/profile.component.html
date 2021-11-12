@@ -4,9 +4,6 @@
       <li class="nav-item">
         <a class="nav-link active" [routerLink]="['/account']">Account Information</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/account/updateProfile']">Update your Profile</a>
-      </li>
     </ul>
   </div>
 </div>
@@ -60,6 +57,9 @@
                                 <b>Address</b>
                                 <p>{{account[0].address}}</p>
                               </li>
+                              <li>
+                                <button class="btn btn-primary bottoni" [routerLink]="['/account/updateAddress']">Update Address</button>
+                              </li>
                             </ul>
                           </td>
                         </tr>
@@ -71,7 +71,7 @@
               <div class="col-sm-6">
                 <div class="cart-total-table address-box commun-table">
                   <div class="table-responsive">
-                    <table class="table" *ngIf="user && user.length > 0">
+                    <table class="table" *ngIf="user">
                       <thead>
                         <tr>
                           <th>Account</th>
@@ -85,13 +85,14 @@
                                 <b>Username</b>
                               </li>
                               <li>
-                                <p>{{user[0].name}}</p>
+                                <p>{{user.name}}</p>
                               </li>
                               <li>
                                 <b>Email</b>
-                                <p>{{user[0].email}}</p>
+                                <p>{{user.email}}</p>
                               </li>   
                               <li>
+                                <button class="btn btn-primary bottoni"  [routerLink]="['/account/updateProfile']">Update Profile</button>
                               </li>                             
                             </ul>
                           </td>
@@ -169,7 +170,7 @@
             <div class="col-sm-6">
               <div class="cart-total-table address-box commun-table">
                 <div class="table-responsive">
-                  <table class="table" *ngIf="user && user.length > 0">
+                  <table class="table" *ngIf="user ">
                     <thead>
                       <tr>
                         <th> 
@@ -187,13 +188,15 @@
                               <h5 class="">Username</h5>
                             </li>
                             <li>
-                              <p>{{user[0].name}}</p>
+                              <p>{{user.name}}</p>
                             </li>
                             <li>
                               <h5 class="">Email</h5>
-                              <p>{{user[0].email}}</p>
+                              <p>{{user.email}}</p>
                             </li>   
-                                               
+                            <li>
+                              <button class="btn btn-primary bottoni" [routerLink]="['/account/updateProfile']">update profile</button>
+                            </li>                 
                           </ul>
                         </td>
                       </tr>

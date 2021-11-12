@@ -27,6 +27,13 @@ export const selectProductLoading  = createSelector(
   }
 );
 
+export const selectSingleProduct  = createSelector(
+  selectProducts,
+  (state: ProductsState) => {
+    return state.singleProduct;
+  }
+);
+
 
 export const selectProductById  = createSelector(
   selectProductList,
