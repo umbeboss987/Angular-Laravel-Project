@@ -23,9 +23,11 @@ export class CartComponent implements OnInit {
   subscription? : Subscription;
 
   constructor(private store: Store<IAppState>, private cart_service: CartService) {
+   this.store.select(selectCartTotal).subscribe((res) =>{
+    this.total = res;
+   });
    this.store.dispatch(GetCartItemAction());
    this.getCartList();
-   this.getSumPriceCart();  
   }
 
   ngOnInit(): void {  
@@ -41,11 +43,5 @@ export class CartComponent implements OnInit {
     this.store.dispatch(DeleteCartItem({id : id }));
   }
 
-  getSumPriceCart (){
-    this.store.dispatch(GetCartTotalAction());
-    this.store.select(selectCartTotal).subscribe(res =>{
-      this.total = res;
-    });
-  }
  
 }

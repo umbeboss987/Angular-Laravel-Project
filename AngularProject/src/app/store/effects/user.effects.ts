@@ -85,6 +85,7 @@ export class UserEffects {
         return this.user_service.updateUser(action.user).
           pipe(
             map((user :any) => {
+              console.log(user);
               return UpdateUserActionSuccess({ user: user });
             }),
           );

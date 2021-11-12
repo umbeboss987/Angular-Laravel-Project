@@ -7,16 +7,19 @@ import { CartWithProducts } from 'src/app/model/CartWithProducts';
 
 const _cartReducer = createReducer(
     initialCartState,
-    on(AddCartItemActionSuccess, (state, action :any) => {
+    on(AddCartItemActionSuccess, (state : any, action :any) => {
+        let newtotal = action.item
+        console.log(newtotal.data.sub_total);
         return {
             ...state,
-            cart: action.products
+            cart: action.products,
+            total: (state.total + newtotal.data.sub_total),
         }
     }),
     on(GetCartItemActionSuccess, (state : any, action :any) => {
         return {
-            ...state.cartWithProducts,
-            cartWithProducts: action.item
+            ...state,
+            cartWithProducts: action.item,
         }
     }),
 
@@ -31,13 +34,6 @@ const _cartReducer = createReducer(
             ...state,
             cartWithProducts:  items,
             total: Math.trunc( state.total - updateTotal[0].sub_total ) ,
-        }
-    }),
-
-    on(GetCartTotalActionSuccess, (state : any, action :any) => {
-        return {
-            ...state,
-            total: action.total
         }
     }),
 

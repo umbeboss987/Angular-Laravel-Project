@@ -63,7 +63,7 @@ class UserController extends Controller
         $user_id = JWTAuth::user()->id;
         $user = User::find($user_id);
         $user->email = $req->input('email');
-        $user->password = bcrypt($req->input('password'));
+        $user->name = $req->input('username');
         $user->save();
     }
 

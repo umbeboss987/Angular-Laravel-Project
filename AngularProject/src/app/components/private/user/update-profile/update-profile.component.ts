@@ -25,12 +25,21 @@ export class UpdateProfileComponent implements OnInit {
 
     this.formUpdateUser = this.fb.group({
       email : "",
-      password: "",      
+      username: "",      
     })
+    
 
     this.store.select(selectUserAuth).subscribe(res =>{
       this.user = res; 
+      console.log(this.user[0].name)
     });;
+
+    if(this.user){
+      this.formUpdateUser.patchValue({
+        email: this.user[0].email,
+        username : this.user[0].name
+      })
+      }
   }
 
   ngOnInit(): void {
