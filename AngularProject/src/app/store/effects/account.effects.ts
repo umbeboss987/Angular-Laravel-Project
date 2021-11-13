@@ -8,7 +8,7 @@ import {
   routerNavigationAction,
   ROUTER_NAVIGATION,
 } from '@ngrx/router-store';
-import { createAccountAction, createAccountActionSuccess, getDetailsAccountAction, getDetailsAccountActionSuccess } from '../actions/account.actions';
+import { createAccountAction, createAccountActionSuccess, getDetailsAccountAction, getDetailsAccountActionSuccess, updateAccountAction, updateAccountActionSuccess } from '../actions/account.actions';
 import { AccountService } from 'src/app/services/account.service';
 
 @Injectable ()
@@ -38,6 +38,20 @@ export class AccountEffects{
                 return this.account_service.getDetailsAccount().pipe(
                     map((data) => {
                         return getDetailsAccountActionSuccess({ account: data});
+                    })
+                );
+            })
+        );
+    });
+
+    updateAccount$: Observable<Action> = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(updateAccountAction),
+            mergeMap((data) => {
+                console.log(data.account);
+                return this.account_service.updateAccount(data.account).pipe(
+                    map((data) => {
+                        return updateAccountActionSuccess({ account: data});
                     })
                 );
             })

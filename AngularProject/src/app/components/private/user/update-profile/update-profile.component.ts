@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { IAppState } from 'src/app/store/state/app.state';
 import {select, Store} from '@ngrx/store';
 import { GetUserAction, UpdateUserAction } from 'src/app/store/actions/user.actions';
-import { selectSingleUser, selectUserAuth } from 'src/app/store/selectors/user.selector';
+import { selectSingleUser } from 'src/app/store/selectors/user.selector';
 
 
 @Component({

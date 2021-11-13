@@ -24,4 +24,14 @@ class AccountController extends Controller
       $accountDetails = Account::select()->where('user_id', $user_id)->get();
       return response()->json($accountDetails);
     }
+
+    function updateAccount (Request $req){
+      $user_id = JWTAuth::user()->id;
+      $account = Account::where('user_id', $user_id)->update(array(
+        'full_name' => $req->input('full_name'),
+        'address' => $req->input('address'),
+        'telephone_number' => $req->input('telephone_number')
+      ));
+      return response()->json(['message' => 'account updated', 'account' => $account],200);
+    }
 }

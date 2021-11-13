@@ -27,7 +27,9 @@
 }
 
 .all{
-    margin: 30px;
+    margin-bottom: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 .account{
@@ -48,9 +50,9 @@
 }
 
 .bottoni{
-    background-color: #102770;
+    background-color: rgb(255,193,8);
     font-family: 'Poppins', sans-serif;
-    color:  #ffeba7;
+    color:  white;
     font-weight: 500;
     font-size: 15px;
     border: none;
@@ -61,6 +63,14 @@
     color: #102770;
     transition: all 200ms linear;    
     border: none;
+}
+
+.account-table{
+    height: 307px;
+}
+
+.button-update{
+  margin-top:60px ;
 }
 
 
@@ -144,8 +154,8 @@ p{
     align-self: center;
   border: none;
   cursor: pointer;
-  background-color: #102770;
-  color: #ffeba7;
+  background-color: rgb(255,193,8);
+  color: white;
   box-shadow: 0 12px 35px 0 rgba(16,39,112,.25);
 }
 .modal-btn:not(:checked) + label:hover{
@@ -181,8 +191,8 @@ p{
 }
 .modal-btn:checked + label:hover:after,
 .modal-btn:not(:checked) + label:hover:after{
-  background-color: #102770;
-  color: #ffeba7;
+  background-color: rgb(255,193,8);
+  color: white;
 }
 .modal-btn:checked + label:after{
   transition: opacity 300ms 300ms ease, transform 300ms 300ms ease, background-color 250ms linear, color 250ms linear;

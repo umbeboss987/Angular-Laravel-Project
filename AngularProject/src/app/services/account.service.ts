@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AppConstants } from '../app.constants';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Account } from '../model/account';
 
 
@@ -18,5 +18,9 @@ export class AccountService {
 
   getDetailsAccount (){
     return this.http.get<Account>(`${AppConstants.SERVICES_BASE_URL}/getAccountDetails`)
+  }
+
+  updateAccount(account : Account){
+    return this.http.put<Account>(`${AppConstants.SERVICES_BASE_URL}/updateAccount`, account)
   }
 }

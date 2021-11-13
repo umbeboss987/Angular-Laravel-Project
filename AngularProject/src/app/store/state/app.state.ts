@@ -96,11 +96,19 @@ export const initialOrderState :OrderState = {
 export interface AccountState{
     account: Account[];
     loading: boolean;
+    singleAccount: Account;
 }
 
 export const initialAccountState :AccountState = {
     account: [],
-    loading: false
+    loading: false,
+    singleAccount :{
+        user_id: 0,
+        full_name: "",
+        address: '',
+        email: '',
+        telephone_number: ''
+    }
 }
 
 export interface ResponseState{

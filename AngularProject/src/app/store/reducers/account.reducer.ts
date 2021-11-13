@@ -1,5 +1,5 @@
 import {createReducer, on } from '@ngrx/store';
-import { createAccountActionSuccess, getDetailsAccountAction, getDetailsAccountActionSuccess } from '../actions/account.actions';
+import { createAccountActionSuccess, getDetailsAccountAction, getDetailsAccountActionSuccess, updateAccountActionSuccess } from '../actions/account.actions';
 import { initialAccountState } from '../state/app.state';
 
 const _accountReducer = createReducer(
@@ -21,7 +21,16 @@ const _accountReducer = createReducer(
         return {
             ...state,
             account: action.account,
-            loading: false
+            loading: false,
+            singleAccount: action.account
+        }
+    }),
+    on(updateAccountActionSuccess, (state, action :any) => {
+        return {
+            ...state,
+            account: action.account,
+            loading: false,
+            singleAccount: action.account
         }
     }),
 )

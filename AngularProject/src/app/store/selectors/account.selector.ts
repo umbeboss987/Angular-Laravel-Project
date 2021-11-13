@@ -24,3 +24,12 @@ export const selectAccountLoading  = createSelector(
     return state.loading;
   }
 );
+
+
+
+export const selectSingleAccount  = createSelector(
+  selectAccount,
+  (state: AccountState) => {
+    return state.singleAccount;
+  }
+);

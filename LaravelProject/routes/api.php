@@ -37,10 +37,10 @@ Route::get('getId', [UserController::class, 'getId']);
  Route::get('products',[ProductController::class ,'getProducts']);
  Route::put('updateUser', ['middleware' => 'auth.role:user', UserController::class, 'updateUser']);
  Route::get('products/product/{id}',[ProductController::class ,'singleProduct']);
+ Route::put('updateAccount',['middleware' => 'auth.role:user',AccountController::class, 'updateAccount']);
 
 
  Route::post('login', ['middleware' => 'auth.role:admin,user', AuthController::class, 'login'])->name('login');
-
 
 Route::group([
 

@@ -22,7 +22,7 @@
   </div>
 
 <div class="text-center all"  *ngIf="!loadingUser || !loadingAccount || !loadingOrder">
-  <h2 class=" account">Account</h2>
+  <h2 class=" account">Information</h2>
     <div class="row" >
       <div class="col-md-12">
         <div class="tab-content ">
@@ -71,7 +71,7 @@
               <div class="col-sm-6">
                 <div class="cart-total-table address-box commun-table">
                   <div class="table-responsive">
-                    <table class="table" *ngIf="user">
+                    <table class="table account-table" *ngIf="user">
                       <thead>
                         <tr>
                           <th>Account</th>
@@ -91,7 +91,7 @@
                                 <b>Email</b>
                                 <p>{{user.email}}</p>
                               </li>   
-                              <li>
+                              <li class="button-update">
                                 <button class="btn btn-primary bottoni"  [routerLink]="['/account/updateProfile']">Update Profile</button>
                               </li>                             
                             </ul>
@@ -110,7 +110,7 @@
             <div class="col-sm-6" >
               <div class="cart-total-table address-box commun-table">
                 <div class="table-responsive">
-                  <table class="table">
+                  <table class="table account-table">
                     <thead>
                       <tr>
                         <th>
@@ -170,7 +170,7 @@
             <div class="col-sm-6">
               <div class="cart-total-table address-box commun-table">
                 <div class="table-responsive">
-                  <table class="table" *ngIf="user ">
+                  <table class="table account-table" *ngIf="user ">
                     <thead>
                       <tr>
                         <th> 
@@ -185,16 +185,16 @@
                         <td>
                           <ul>
                             <li class="inner-heading">
-                              <h5 class="">Username</h5>
+                              <h5 class=""><b class="">Username</b></h5>
                             </li>
                             <li>
                               <p>{{user.name}}</p>
                             </li>
                             <li>
-                              <h5 class="">Email</h5>
+                              <h5 class=""><b class="">Email</b></h5>
                               <p>{{user.email}}</p>
                             </li>   
-                            <li>
+                            <li class="button-update">
                               <button class="btn btn-primary bottoni" [routerLink]="['/account/updateProfile']">update profile</button>
                             </li>                 
                           </ul>
