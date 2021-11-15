@@ -39,7 +39,7 @@
               "src/assets/magnific-popup.css",
               "src/assets/bootstrap.css",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
-              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css"
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
             ],
             "scripts": [
               "src/assets/js/jQuery_v3.1.1.min.js",
@@ -49,7 +49,13 @@
               "src/assets/js/mail.js",
               "src/assets/js/jquery.firstVisitPopup.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/magnific-popup/dist/jquery.magnific-popup.min.js"
+              "node_modules/magnific-popup/dist/jquery.magnific-popup.min.js",
+              "node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js",
+              "node_modules/admin-lte/plugins/chart.js/Chart.min.js",
+              "node_modules/admin-lte/dist/js/adminlte.js",
+              "node_modules/admin-lte/dist/js/demo.js",
+              "node_modules/admin-lte/dist/js/pages/dashboard3.js"
+
             ],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
@@ -65,7 +71,7 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumError": "1mb"
                 }
               ],
               "fileReplacements": [

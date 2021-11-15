@@ -27,6 +27,7 @@
     "@ngrx/store": "^12.4.0",
     "@ngrx/store-devtools": "^12.4.0",
     "@types/googlemaps": "^3.43.3",
+    "admin-lte": "^3.1.0",
     "bootstrap": "^4.6.1",
     "jQuery": "^1.7.4",
     "jquery": "^3.6.0",
@@ -38,6 +39,7 @@
     "ngx-spinner": "^12.0.0",
     "ngx-toastr": "^14.1.0",
     "rxjs": "~6.6.0",
+    "save": "^2.4.0",
     "tslib": "^2.3.1",
     "zone.js": "~0.11.4"
   },
