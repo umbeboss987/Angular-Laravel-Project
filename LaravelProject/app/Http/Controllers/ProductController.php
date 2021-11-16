@@ -48,4 +48,10 @@ class ProductController extends Controller
             return response()->json(['message' => $e->getMessage()], 400);
         }   
     }
+
+    function deleteProduct ($product_id){
+        $product =Product::find($product_id);
+        $data = Product::find($product_id)->delete();
+        return response()->json(['message' => 'product deleted', 'product' => $product], 200);
+    }
 }

@@ -20,7 +20,9 @@ import {
         ProductsTypeActionFail,
         GetSingleProductActionSuccess,
         GetSingleProductAction,
-        GetProductsActionSuccess} from '../actions/products.actions'
+        GetProductsActionSuccess,
+        DeleteSingleProductAction,
+        DeleteSingleProductActionSuccess} from '../actions/products.actions'
 import { IAppState } from '../state/app.state';
 import { Router } from '@angular/router';
 
@@ -75,6 +77,20 @@ loadSingleProducts$ : Observable<Action> = createEffect(() => {
       })
     )
   });
+
+      
+ delteSingleProduct$ : Observable<Action> = createEffect(() => {
+  return  this.actions$.pipe(
+      ofType(DeleteSingleProductAction),
+      switchMap((action) =>  this.products_service.deleteProduct(action.product_id).pipe(
+        map((product) => DeleteSingleProductActionSuccess({products : product}))       
+      )
+    ),catchError((errorResp) =>{
+      return of(GetSingleProductActionFail({message : errorResp.error.message}))
+    })
+  )   
+}); 
+
 
 } 
     

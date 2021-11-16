@@ -26,4 +26,6 @@ export enum ProductActionsType {
  export const GetSingleProductActionSuccess = createAction('GET_SINGLE_PRODUCT_SUCCESS', props<{products: Products}>());
  export const GetSingleProductActionFail = createAction('GET_SINGLE_PRODUCT_FAIL', props<{message: string}>());
 
-
+ export const DeleteSingleProductAction = createAction('DELETE_SINGLE_PRODUCT', props<{product_id: number}>());
+ export const DeleteSingleProductActionSuccess = createAction('DELETE_SINGLE_PRODUCT_SUCCESS', props<{products: Products}>());
+ export const DeleteSingleProductActionFail = createAction('DELETE_SINGLE_PRODUCT_FAIL', props<{message: string}>());

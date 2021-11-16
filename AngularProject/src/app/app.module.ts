@@ -24,7 +24,6 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import {RouterModule} from '@angular/router';
 
 
-
 export function tokenGetter() {
   return localStorage.getItem("token");
 }

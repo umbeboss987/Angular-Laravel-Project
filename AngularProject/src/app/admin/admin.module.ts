@@ -7,13 +7,14 @@ import { AdminListProductsComponent } from './AdminComponents/admin-list-product
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 
 
+
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
   declarations: [
     AdminHomeComponent,
     AdminListProductsComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
   ],
   imports: [
     CommonModule,
