@@ -1,4 +1,4 @@
-import {DeleteSingleProductAction, DeleteSingleProductActionSuccess, GetProductsAction, GetProductsActionSuccess, GetSingleProductAction, GetSingleProductActionFail, GetSingleProductActionSuccess, ProductsTypeAction, ProductsTypeActionFail, ProductsTypeActionSuccess} from '../actions/products.actions'; 
+import {DeleteSingleProductAction, DeleteSingleProductActionSuccess, GetProductsAction, GetProductsActionSuccess, GetSingleProductAction, GetSingleProductActionFail, GetSingleProductActionSuccess, ProductsTypeAction, ProductsTypeActionFail, ProductsTypeActionSuccess, UpdateSingleProductActionSuccess} from '../actions/products.actions'; 
 import { ProductActionsType } from '../actions/products.actions';
 import {initialProductsState, ProductsState } from '../state/app.state';
 import {createReducer, on } from '@ngrx/store';
@@ -65,7 +65,6 @@ const _productsReducer = createReducer(
         }
     }),
     on(DeleteSingleProductActionSuccess, (state, action :any) => {
-        console.log(action);
         let updateProducts = state.products.filter((single_item : Products) => {
             return single_item.id !== action.products.product.id
         });
@@ -74,6 +73,20 @@ const _productsReducer = createReducer(
             products: updateProducts
         }
     }),
+    on(UpdateSingleProductActionSuccess, (state : any, action :any) => {
+        let updateProduct = state.products.map((product : any) => {
+            return action.product_id === product.id ? action.products : product;
+        });
+        
+        return {
+            ...state,
+            singleProduct: action.products,
+            products: updateProduct
+        }
+    }),
+
+
+
 
 )
 

@@ -31,5 +31,9 @@ export class ProductsService {
     return this.http.delete<Products>(`${AppConstants.SERVICES_BASE_URL}/product/${product_id}`);
   }
 
+  updateProduct (product: Products, product_id : number): Observable<Products>{
+    return this.http.put<Products>(`${AppConstants.SERVICES_BASE_URL}/updateProduct/${product_id}`, product);
+  }
+
   
 }

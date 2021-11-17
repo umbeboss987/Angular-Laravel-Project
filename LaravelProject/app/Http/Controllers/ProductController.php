@@ -54,4 +54,15 @@ class ProductController extends Controller
         $data = Product::find($product_id)->delete();
         return response()->json(['message' => 'product deleted', 'product' => $product], 200);
     }
+
+    function updateProduct ($product_id, Request $req){
+        $data = Product::where('id', $product_id)->update(array(
+            'name' => $req->name,
+            'price' => $req->price,
+            'description' => $req->description,
+            'type' => $req->type
+        ));
+
+        return response()->json($data);
+    }
 }

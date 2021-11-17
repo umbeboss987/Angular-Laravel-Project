@@ -22,8 +22,43 @@
             </a>
           </td>
           <td>
-            <a href="#" class="text-muted">
-                <i class="fa fa-edit" style="font-size:14px"></i>
+            <a class="text-muted">
+              <input type="checkbox" id="modal">
+              <label for="modal" (click)="setValueForm(product.name, product.price, product.description, product.type)" style="font-size:14px"  class="fa fa-edit" ></label>
+              <label for="modal"  class="modal-background"></label>
+              <div class="modal" style="width: 40%;height: 70%;overflow-y:scroll;">
+                <div class="modal-header" >
+                  <h3>Update Product </h3>
+                      <label for="modal">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAdVBMVEUAAABNTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0N3NIOAAAAJnRSTlMAAQIDBAUGBwgRFRYZGiEjQ3l7hYaqtLm8vsDFx87a4uvv8fP1+bbY9ZEAAAB8SURBVBhXXY5LFoJAAMOCIP4VBRXEv5j7H9HFDOizu2TRFljedgCQHeocWHVaAWStXnKyl2oVWI+kd1XLvFV1D7Ng3qrWKYMZ+MdEhk3gbhw59KvlH0eTnf2mgiRwvQ7NW6aqNmncukKhnvo/zzlQ2PR/HgsAJkncH6XwAcr0FUY5BVeFAAAAAElFTkSuQmCC" width="16" height="16" alt="">
+                      </label>
+                  </div>
+              <div style="display:flex">
+                <div class="text-center">
+                  <div class="container">
+                    <div class="row">
+                      <form action="" [formGroup]="updateProductForm" class="" (ngSubmit)="updateProduct(product.id)">
+                        <div class="col-lg-12" style="margin-top: 10%;">
+                          <input type="text" style="width:60%;" formControlName="name">
+                        </div>
+                        <div class="col-lg-12" style="margin-top: 10%;">
+                          <input type="text" style="width:60%;"  formControlName="price">
+                        </div>  
+                        <div class="col-lg-12" style="margin-top: 10%;">
+                          <input type="text" style="width:60%;"  formControlName="type">
+                        </div>                      
+                        <div class="col-lg-12" style="margin-top: 10%;">
+                          <textarea  style="width:60%;" formControlName="description"></textarea>
+                        </div>  
+                        <div class="col-lg-12" style="margin-top: 5%;margin-bottom:5%;">
+                          <button class="btn btn-primary" style="width:30%;">Update</button>
+                        </div>
+                    </form>                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             </a>
           </td>
         </tr>
@@ -31,3 +66,5 @@
       </table>
     </div>
   </div>
+
+  
