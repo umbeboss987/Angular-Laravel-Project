@@ -1,0 +1,11 @@
+@import url('~admin-lte/dist/css/adminlte.css');
+@import url('~admin-lte/plugins/fontawesome-free/css/all.min.css');
+@import url("~bootstrap/dist/css/bootstrap.css");
+@import url("~admin-lte/dist/css/adminlte.min.css");
+
+
+.form{
+    background-color:white;
+    padding:30px;
+    height:100%;
+}

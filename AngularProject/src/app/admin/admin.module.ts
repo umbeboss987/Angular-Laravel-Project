@@ -6,6 +6,8 @@ import { AdminHomeComponent } from './AdminComponents/admin-home/admin-home.comp
 import { AdminListProductsComponent } from './AdminComponents/admin-list-products/admin-list-products.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OrdersAdminComponent } from './AdminComponents/orders-admin/orders-admin.component';
+import { AddProductComponent } from './AdminComponents/add-product/add-product.component';
 
 
 @NgModule({
@@ -15,6 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AdminHomeComponent,
     AdminListProductsComponent,
     AdminLayoutComponent,
+    OrdersAdminComponent,
+    AddProductComponent
   ],
   imports: [
     CommonModule,

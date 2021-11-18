@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use App\Models\Product;
+use App\Models\Photo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Url;
 use Illuminate\Support\Facades\DB;
@@ -56,13 +57,19 @@ class ProductController extends Controller
     }
 
     function updateProduct ($product_id, Request $req){
-        $data = Product::where('id', $product_id)->update(array(
+          Product::where('id', $product_id)->update([
             'name' => $req->name,
             'price' => $req->price,
             'description' => $req->description,
-            'type' => $req->type
-        ));
+            'type' => $req->type,
+            'photo' => $req->photo,
+          ]);
+        return response()->json($product_id);
 
-        return response()->json($data);
+    }
+
+    function getPhoto(){
+      $product = Photo::select()->product_id()->name;
+        return ['product' => $product];
     }
 }

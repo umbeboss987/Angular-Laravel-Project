@@ -12,7 +12,7 @@ export class TokenInterceptorService implements HttpInterceptor{
   intercept(req : HttpRequest<unknown>, next : HttpHandler) {
     let token = localStorage.getItem('token')?.replace(/\"/g, "");
     let tokenRequest = req.clone({
-      headers: req.headers.set('Authorization',`Bearer ${token}`)   
+      headers: req.headers.set('Authorization',`Bearer ${token}`),
     })
     return next.handle(tokenRequest);
   }

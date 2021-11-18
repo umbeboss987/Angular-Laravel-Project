@@ -6,6 +6,7 @@ import { Products } from 'src/app/model/products';
 import { Observable } from 'rxjs';
 import { selectProductList } from 'src/app/store/selectors/products.selector';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ProductsService } from 'src/app/services/products.service';
 
 
 @Component({
@@ -18,13 +19,14 @@ export class AdminListProductsComponent implements OnInit {
   closeResult = '';
   updateProductForm : FormGroup;
 
-  constructor(private store : Store<IAppState>, private fb : FormBuilder) { 
+  constructor(private store : Store<IAppState>, private fb : FormBuilder, private product_srvice : ProductsService) { 
     this.products = this.store.select(selectProductList);
     this.updateProductForm = this.fb.group({
-      name: '',
-      price: '',
-      type: '',
-      description : ''
+      name: [''],
+      price: [''],
+      type: [''],
+      description : [''],
+      photo :  [null]
     })
 
    
@@ -43,16 +45,22 @@ export class AdminListProductsComponent implements OnInit {
       name: product_name,
       price: product_price,
       type: type,
-      description: product_description
+      description: product_description,
+      photo : null
     })
   }
 
   updateProduct(id : number){
-    let product = this.updateProductForm.value;
-    this.store.dispatch(UpdateSingleProductAction({ product_id: id, product: product }));
+  const formData = new FormData();
+  formData.append('photo', this.updateProductForm.get('photo')?.value); 
+  formData.append('price', this.updateProductForm.get('price')?.value);
+  formData.append('description', this.updateProductForm.get('description')?.value);
+  formData.append('type', this.updateProductForm.get('type')?.value);
+  formData.append('name', this.updateProductForm.get('name')?.value);
+  this.store.dispatch(UpdateSingleProductAction({ product_id: id, product: formData})); 
   }
 
-
+  
 
 
 }

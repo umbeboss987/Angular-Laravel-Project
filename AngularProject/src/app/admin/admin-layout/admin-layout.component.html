@@ -40,23 +40,24 @@
               <!-- Add icons to the links using the .nav-icon class
                    with font-awesome or any other icon font library -->
               <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
+                <a [routerLink]="['/admin']" class="nav-link active">
                   
                    <h5 class=""> Dashboard</h5>
                 
                 </a>
               </li>
-              <li class="nav-header">EXAMPLES</li>
+              <li class="nav-header">Administration Pages</li>
               <li class="nav-item">
-                <a href="pages/calendar.html" class="nav-link">
-                 <h5 class="">Calendar</h5>
+                <a [routerLink]="['products']" class="nav-link">
+                 <h5 class="">Products</h5>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/gallery.html" class="nav-link">
-                  <h5 class="">Gallery</h5>
+                <a [routerLink]="['orders']" class="nav-link">
+                  <h5 class="">Orders</h5>
                 </a>
               </li>
+              <li class="nav-header">Financial Pages</li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <h5 class="">Pages</h5>
@@ -93,7 +94,6 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1 class="m-0">Dashboard v3</h1>
               </div><!-- /.col -->
             </div><!-- /.row -->
           </div><!-- /.container-fluid -->
@@ -101,22 +101,15 @@
         <!-- /.content-header -->
     
         <!-- Main content -->
-        <div class="content">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col">
+        
+            
                 <!-- /.card -->
                 <router-outlet></router-outlet>
                 
                 <!-- /.card -->
-              </div>
-              <!-- /.col-md-6 -->
-              <!-- /.col-md-6 -->
-            </div>
+             
             <!-- /.row -->
-          </div>
-          <!-- /.container-fluid -->
-        </div>
+     
         <!-- /.content -->
       </div>
       <!-- /.content-wrapper -->

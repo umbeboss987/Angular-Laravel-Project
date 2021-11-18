@@ -16,7 +16,8 @@ class CreatePhotoTable extends Migration
         
         Schema::create('photo', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
+            $table->foreignId('product_id');
+            $table->foreign('product_id')->on('product')->references('id');
             $table->string('left_photo');
             $table->string('right_photo');
             $table->string('top_photo');
