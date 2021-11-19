@@ -27,4 +27,7 @@ export const UserLoginActionFail = createAction('LOGIN_ACTION_FAIL', props<{resp
 export const UpdateUserAction = createAction('UPDATE_USER_ACTION', props<{user: User}>());
 export const UpdateUserActionSuccess = createAction('UPDATE_USER_ACTION_SUCCESS', props<{user: User}>());
 
+export const GetAllUserAction = createAction('GET_ALL_USERS_ACTION');
+export const GetAllUserActionSuccess = createAction('GET_ALL_USERS_ACTION_SUCCESS', props<{ user:User[]}>());
+export const GetAllUserActionFail = createAction('GET_ALL_USERS_ACTION_FAIL', props<{message: string}>());
 

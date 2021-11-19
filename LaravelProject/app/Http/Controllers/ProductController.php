@@ -72,4 +72,15 @@ class ProductController extends Controller
       $product = Photo::select()->product_id()->name;
         return ['product' => $product];
     }
+
+    function addProduct(Request $req){
+        $product = new Product();
+        $product->name = $req->name;
+        $product->price = $req->price;
+        $product->description = $req->description;
+        $product->type = $req->type;
+        $product->photo = $req->photo;
+        $product->save();
+        return response()->json(['message' =>'Product added successfully','data' => $product], 200);
+    }
 }

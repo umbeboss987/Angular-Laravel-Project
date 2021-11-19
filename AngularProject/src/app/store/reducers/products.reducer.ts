@@ -1,4 +1,4 @@
-import {DeleteSingleProductAction, DeleteSingleProductActionSuccess, GetProductsAction, GetProductsActionSuccess, GetSingleProductAction, GetSingleProductActionFail, GetSingleProductActionSuccess, ProductsTypeAction, ProductsTypeActionFail, ProductsTypeActionSuccess, UpdateSingleProductActionSuccess} from '../actions/products.actions'; 
+import {AddSingleProductActionSuccess, DeleteSingleProductAction, DeleteSingleProductActionSuccess, GetProductsAction, GetProductsActionSuccess, GetSingleProductAction, GetSingleProductActionFail, GetSingleProductActionSuccess, ProductsTypeAction, ProductsTypeActionFail, ProductsTypeActionSuccess, UpdateSingleProductActionSuccess} from '../actions/products.actions'; 
 import { ProductActionsType } from '../actions/products.actions';
 import {initialProductsState, ProductsState } from '../state/app.state';
 import {createReducer, on } from '@ngrx/store';
@@ -82,6 +82,14 @@ const _productsReducer = createReducer(
             ...state,
             singleProduct: action.products,
             products: updateProduct
+        }
+    }),
+
+    on(AddSingleProductActionSuccess, (state : any, action :any) => {
+       console.log(action.product);
+        return {
+            ...state,
+            singleProduct: action.products,
         }
     }),
 

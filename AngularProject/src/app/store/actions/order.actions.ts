@@ -10,3 +10,8 @@ export const AddOrderActionFail = createAction('ADD_ORDER_ITEM_SUCCESS', props<{
 export const GetOrdersList = createAction('GET_ORDER_LIST')
 export const GetOrdersListSuccess = createAction('GET_ORDER_LIST_SUCCESS', props<{orderAccount : OrderAccount[]}>())
 export const GetOrdersListFail = createAction('GET_ORDER_LIST_FAIL', props<{message: string}>())
+
+
+export const GetAllOrders = createAction('GET_ALL_ORDERS')
+export const GetAllOrdersSuccess = createAction('GET_ALL_ORDERS_SUCCESS', props<{order : Order[]}>())
+export const GetAllOrdersFail = createAction('GET_ALL_ORDERS_FAIL', props<{message: string}>())

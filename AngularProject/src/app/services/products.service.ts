@@ -40,5 +40,8 @@ export class ProductsService {
     return this.http.post<any>(`${AppConstants.SERVICES_BASE_URL}/updateProduct/${product_id}`, product);
   }
 
+  addProduct(product: Products) : Observable <Products>{
+    return this.http.post<Products>(`${AppConstants.SERVICES_BASE_URL}/products/addProduct`, product);
+  }
   
 }

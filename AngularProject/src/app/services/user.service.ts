@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { User } from '../model/user';
 import { Observable } from 'rxjs';
+import { AppConstants } from '../app.constants';
 
 const Url = 'http://127.0.0.1:8000/api/signUp';
 const signIn_Url = 'http://127.0.0.1:8000/api/auth/login';
@@ -35,5 +36,10 @@ export class UserService {
   getUser(){
     return this.http.get<User>('http://127.0.0.1:8000/api/auth/getId');
   }
+
+  getAllUsers(){
+    return this.http.get<User[]>(`${AppConstants.SERVICES_BASE_URL}/users`);
+  }
+
 
 }

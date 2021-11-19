@@ -29,6 +29,7 @@ class UserController extends Controller
         $user->name = $req->input('name');
         $user->email = $req->input('email');
         $user->password = bcrypt($req->input('password'));
+        $user->role = $req->role;
         $user->save();
         return response()->json(["message" => "user registered"], 200);
        }
@@ -63,7 +64,7 @@ class UserController extends Controller
         $user_id = JWTAuth::user()->id;
         $user = User::find($user_id);
         $user->email = $req->input('email');
-        $user->name = $req->input('username');
+        $user->name = $req->input('name');
         $user->save();
     }
 
@@ -71,6 +72,11 @@ class UserController extends Controller
        $token = $request->bearerToken();
        $payload = $user = auth()->user();
        return response()->json($payload);
+    }
+
+    function getAllUsers(){
+       $users = User::all();
+       return response()->json($users);
     }
 
  

@@ -22,6 +22,7 @@ export class AdminListProductsComponent implements OnInit {
   constructor(private store : Store<IAppState>, private fb : FormBuilder, private product_srvice : ProductsService) { 
     this.products = this.store.select(selectProductList);
     this.updateProductForm = this.fb.group({
+      id: [''],
       name: [''],
       price: [''],
       type: [''],
@@ -40,8 +41,9 @@ export class AdminListProductsComponent implements OnInit {
     this.store.dispatch(DeleteSingleProductAction({ product_id: id }))
   }
 
-  setValueForm(product_name: string, product_price: number, product_description: string, type : string) {
+  setValueForm(product_name: string, product_price: number, product_description: string, type : string, id: number) {
     return this.updateProductForm.patchValue({
+      id: id,
       name: product_name,
       price: product_price,
       type: type,
@@ -50,14 +52,10 @@ export class AdminListProductsComponent implements OnInit {
     })
   }
 
-  updateProduct(id : number){
-  const formData = new FormData();
-  formData.append('photo', this.updateProductForm.get('photo')?.value); 
-  formData.append('price', this.updateProductForm.get('price')?.value);
-  formData.append('description', this.updateProductForm.get('description')?.value);
-  formData.append('type', this.updateProductForm.get('type')?.value);
-  formData.append('name', this.updateProductForm.get('name')?.value);
-  this.store.dispatch(UpdateSingleProductAction({ product_id: id, product: formData})); 
+  updateProduct(){
+  let product_id = this.updateProductForm.get('id')?.value;
+  let formUpdateProduct = this.updateProductForm.value;
+  this.store.dispatch(UpdateSingleProductAction({ product_id: product_id, product: formUpdateProduct})); 
   }
 
   

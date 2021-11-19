@@ -12,7 +12,7 @@ import {
 } from '@ngrx/router-store';
 import { Router } from '@angular/router';
 import { Order } from 'src/app/model/order';
-import { AddOrderAction, AddOrderActionFail, AddOrderActionSuccess, GetOrdersList, GetOrdersListFail, GetOrdersListSuccess,  } from 'src/app/store/actions/order.actions';
+import { AddOrderAction, AddOrderActionFail, AddOrderActionSuccess, GetAllOrders, GetAllOrdersSuccess, GetOrdersList, GetOrdersListFail, GetOrdersListSuccess,  } from 'src/app/store/actions/order.actions';
 
 @Injectable ()
 
@@ -20,7 +20,7 @@ export class OrderEffects{
 
   constructor(private order_service: OrderService, private actions$ : Actions, private toastr: ToastrService, private router: Router){}
 
-  AddOrder$: Observable<Action> = createEffect(() => {
+  addOrder$: Observable<Action> = createEffect(() => {
     return this.actions$.pipe(
       ofType(AddOrderAction),
       switchMap((action) => {
@@ -43,13 +43,32 @@ export class OrderEffects{
     );
   });
 
-  GetOrdersList$: Observable<Action> = createEffect(() => {
+  getOrdersList$: Observable<Action> = createEffect(() => {
     return this.actions$.pipe(
       ofType(GetOrdersList),
       switchMap(() => {
         return this.order_service.getOrdersList().pipe(
           map((data) => {
             return GetOrdersListSuccess({orderAccount: data});
+          }), catchError(errorResp => {
+            return of(GetOrdersListFail({message : errorResp.error.message})).pipe(
+              tap(() =>{
+                this.toastr.error(errorResp.error.message);
+              })
+            )
+          })
+        );
+      })
+    );
+  });
+
+  getAllOrders$: Observable<Action> = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GetAllOrders),
+      switchMap(() => {
+        return this.order_service.getAllOrders().pipe(
+          map((data) => {
+            return GetAllOrdersSuccess({order: data});
           }), catchError(errorResp => {
             return of(GetOrdersListFail({message : errorResp.error.message})).pipe(
               tap(() =>{

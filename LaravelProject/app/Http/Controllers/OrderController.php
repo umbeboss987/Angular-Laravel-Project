@@ -31,6 +31,10 @@ class OrderController extends Controller
      } return;       
    }
 
+   function getAllOrders (){
+      $orders = Order::select('order.total','order.quantity', 'product.name', 'user.name')->join('product','product.id','=','order.product_id')->join('user','user.id','=','order.user_id')->get();
+      return response()->json($orders);
+   }
 
    function orderList( ){
        $user_id = JWTAuth::user()->id;

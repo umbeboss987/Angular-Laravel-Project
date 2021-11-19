@@ -24,7 +24,7 @@
           <td>
             <a class="text-muted">
               <input type="checkbox" id="modal">
-              <label for="modal" (click)="setValueForm(product.name, product.price, product.description, product.type)" style="font-size:14px"  class="fa fa-edit" ></label>
+              <label for="modal" (click)="setValueForm(product.name, product.price, product.description, product.type, product.id)" style="font-size:14px"  class="fa fa-edit" ></label>
               <label for="modal"  class="modal-background"></label>
               <div class="modal" style="width: 40%;height: 70%;overflow-y:scroll;">
                 <div class="modal-header" >
@@ -35,7 +35,7 @@
                   </div>
                 <div class="text-center">
                   <div class="container" style="margin-top:7%;">
-                      <form [formGroup]="updateProductForm" method="Post"class="" (ngSubmit)="updateProduct(product.id)">
+                      <form [formGroup]="updateProductForm" method="Post"class="" (ngSubmit)="updateProduct()">
                         <div class="form-group">
                           <label for="exampleInputEmail1" style=" font-size:14px;">Name</label>
                           <input type="text" style="text-align:center; font-size:12px;" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="name">

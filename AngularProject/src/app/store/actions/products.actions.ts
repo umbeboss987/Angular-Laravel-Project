@@ -33,3 +33,7 @@ export enum ProductActionsType {
  export const UpdateSingleProductAction = createAction('UPDATE_SINGLE_PRODUCT', props<{product_id: number, product : any}>());
  export const UpdateSingleProductActionSuccess = createAction('UPDATE_SINGLE_PRODUCT_SUCCESS', props<{products: any, product_id : number}>());
  export const UpdateSingleProductActionFail = createAction('UPDATE_SINGLE_PRODUCT_FAIL', props<{message: string}>());
+
+ export const AddSingleProductAction = createAction('ADD_SINGLE_PRODUCT', props<{ product : Products}>());
+ export const AddSingleProductActionSuccess = createAction('ADD_SINGLE_PRODUCT_SUCCESS', props<{products: Products}>());
+ export const AddSingleProductActionFail = createAction('ADD_SINGLE_PRODUCT_FAIL', props<{message: string}>());

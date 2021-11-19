@@ -41,8 +41,11 @@ Route::get('getId', [UserController::class, 'getId']);
 Route::delete('product/{product_id}', [ProductController::class, 'deleteProduct']);
 Route::post('updateProduct/{product_id}',[ProductController::class, 'updateProduct']);
 Route::get('getphoto', [ProductController::class, 'getPhoto']);
+Route::post('products/addProduct', [ProductController::class, 'addProduct']);
+Route::post('login', ['middleware' => 'auth.role:admin,user', AuthController::class, 'login'])->name('login');
+Route::get('orders', [OrderController::class, 'getAllOrders']);
+Route::get('users', [UserController::class, 'getAllUsers']);
 
- Route::post('login', ['middleware' => 'auth.role:admin,user', AuthController::class, 'login'])->name('login');
 
 Route::group([
 

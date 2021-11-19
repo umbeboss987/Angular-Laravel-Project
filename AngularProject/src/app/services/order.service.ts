@@ -19,4 +19,8 @@ export class OrderService {
   getOrdersList(): Observable<OrderAccount[]>{
     return this.http.get<OrderAccount[]>(`${AppConstants.SERVICES_BASE_URL}/getOrdersAccount`);
   }
+
+  getAllOrders (): Observable<Order[]>{
+    return this.http.get<Order[]>(`${AppConstants.SERVICES_BASE_URL}/orders`);
+  }
 }

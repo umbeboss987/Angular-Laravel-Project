@@ -25,7 +25,9 @@ import {
         DeleteSingleProductActionSuccess,
         UpdateSingleProductAction,
         UpdateSingleProductActionSuccess,
-        UpdateSingleProductActionFail} from '../actions/products.actions'
+        UpdateSingleProductActionFail,
+        AddSingleProductAction,
+        AddSingleProductActionSuccess} from '../actions/products.actions'
 import { IAppState } from '../state/app.state';
 import { Router } from '@angular/router';
 
@@ -68,8 +70,7 @@ loadSingleProducts$ : Observable<Action> = createEffect(() => {
             })
           )
         } else {
-          return this.products_service.getProductsType(action.type_item).pipe(
-           
+          return this.products_service.getProductsType(action.type_item).pipe(           
             map((data) => {
               return ProductsTypeActionSuccess({ products: data });
             })
@@ -97,11 +98,21 @@ loadSingleProducts$ : Observable<Action> = createEffect(() => {
  updateSingleProduct$ : Observable<Action> = createEffect(() => {
   return  this.actions$.pipe(
       ofType(UpdateSingleProductAction),
-      switchMap((action) =>  this.products_service.updateProduct(action.product, action.product_id).pipe(
-        
-        map((product, id) => UpdateSingleProductActionSuccess({products : action.product, product_id : action.product_id})) 
-              
+      switchMap((action) =>  this.products_service.updateProduct(action.product, action.product_id).pipe(      
+        map((product, id) => UpdateSingleProductActionSuccess({products : action.product, product_id : action.product_id}))              
       )
+    ),catchError((errorResp) =>{
+      return of(UpdateSingleProductActionFail({message : errorResp.error.message}))
+    })
+  )   
+ });
+ 
+ addSingleProduct$ : Observable<Action> = createEffect(() => {
+  return  this.actions$.pipe(
+      ofType(AddSingleProductAction),
+      switchMap((action) =>  this.products_service.addProduct(action.product).pipe(      
+        map((product) => AddSingleProductActionSuccess({products : product})),
+      )             
     ),catchError((errorResp) =>{
       return of(UpdateSingleProductActionFail({message : errorResp.error.message}))
     })

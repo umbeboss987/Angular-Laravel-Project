@@ -33,6 +33,7 @@ export class SignInComponent implements OnInit {
       name: ["",[Validators.required, Validators.minLength(4)]],
       email: ["",[Validators.required, Validators.email ,Validators.minLength(4)]],
       password: ["",[Validators.required]],
+      role: 'user'
     }) 
     
     this.formUserSignIn = this.fb.group({
@@ -50,7 +51,9 @@ export class SignInComponent implements OnInit {
       'name': this.formGroup.value.name,
       'email': this.formGroup.value.email,
       'password': this.formGroup.value.password,
+      'role': this.formGroup.value.role
     }
+    console.log(formUser);
     this.store.dispatch(UserSignUpAction({ user: formUser }));
   }
 

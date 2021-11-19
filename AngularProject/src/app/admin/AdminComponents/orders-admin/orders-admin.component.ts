@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { IAppState } from 'src/app/store/state/app.state';
+import {select, Store} from '@ngrx/store'
+import { GetAllOrders } from 'src/app/store/actions/order.actions';
 @Component({
   selector: 'app-orders-admin',
   templateUrl: './orders-admin.component.html',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrdersAdminComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store : Store<IAppState>) { 
+    this.store.dispatch(GetAllOrders());
+  }
 
   ngOnInit(): void {
   }
