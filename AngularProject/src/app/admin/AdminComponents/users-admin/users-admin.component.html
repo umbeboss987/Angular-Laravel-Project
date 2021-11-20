@@ -12,22 +12,36 @@
                                 <table id="table" class="table table-striped table-bordered" style="width:100%;">
                                     <thead>
                                         <tr>
-                                            <th>Code</th>
-                                            <th>Name</th>
-                                            <th>Type</th>
-                                            <th>Specialization</th>
-                                            <th></th>
-                                            <th></th>
+                                            <th>
+                                                <h4 class="">id</h4>
+                                            </th>
+                                            <th>
+                                                <h4 class="">Name</h4>
+                                            </th>
+                                            <th>
+                                                <h4 class="">Email</h4>
+                                            </th>
+                                            <th>
+                                                <h4 class="">Role</h4>
+                                            </th>
+                                          
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr >
-                                            <td ></td>
-                                            <td ></td>
-                                            <td ></td>
-                                            <td ></td>
-                                            <td class="text-center"><a  ><i class='fa fa-trash'></i></a></td>
-                                            <td class="text-center"><a  ><i class='fa fa-edit'></i></a></td>
+                                    <tbody >
+                                        <tr *ngFor="for let user of users | async">
+                                            <th>
+                                                <h5 class="">{{user.id}}</h5>
+                                            </th>
+                                            <th>
+                                                <h5 class="">{{user.name}}</h5>
+                                            </th>
+                                            <th>
+                                                <h5 class="">{{user.email}}</h5>
+                                            </th>
+                                            <th>
+                                                <h5 class="">{{user.role}}</h5>
+                                            </th>
+                                            <td class="text-center"><a  ><button (click)="deleteUser(user.id)" class="btn btn-"style="font-size:14px;"class='fa fa-trash'></button></a></td>
                                         </tr>
                                 </table>
                             </div>

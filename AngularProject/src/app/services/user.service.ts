@@ -41,5 +41,9 @@ export class UserService {
     return this.http.get<User[]>(`${AppConstants.SERVICES_BASE_URL}/users`);
   }
 
+  deleteUser (user_id: number){
+    return this.http.delete<User>(`${AppConstants.SERVICES_BASE_URL}/users/${user_id}`);
+  }
+
 
 }

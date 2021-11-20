@@ -45,6 +45,7 @@ Route::post('products/addProduct', [ProductController::class, 'addProduct']);
 Route::post('login', ['middleware' => 'auth.role:admin,user', AuthController::class, 'login'])->name('login');
 Route::get('orders', [OrderController::class, 'getAllOrders']);
 Route::get('users', [UserController::class, 'getAllUsers']);
+Route::delete('users/{user_id}', [UserController::class, 'deleteUser']);
 
 
 Route::group([

@@ -55,7 +55,6 @@ class UserController extends Controller
        } catch (JWTException $e) {
            return response()->json(['message' => 'Could not create token'], 500);
        }
-
      
     }
 
@@ -78,6 +77,11 @@ class UserController extends Controller
        $users = User::all();
        return response()->json($users);
     }
+
+    function deleteUser ($user_id){
+       $user = DB::table('user')->delete($user_id); 
+       return response()->json($user);       
+    } 
 
  
    

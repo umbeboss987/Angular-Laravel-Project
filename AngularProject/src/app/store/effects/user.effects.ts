@@ -13,7 +13,7 @@ import {
   routerNavigationAction,
   ROUTER_NAVIGATION,
 } from '@ngrx/router-store';
-import { GetAllUserAction, GetAllUserActionFail, GetAllUserActionSuccess, GetUserAction, GetUserActionSuccess, UpdateUserAction, 
+import { DeleteUserAction, DeleteUserActionSuccess, GetAllUserAction, GetAllUserActionFail, GetAllUserActionSuccess, GetUserAction, GetUserActionSuccess, UpdateUserAction, 
          UpdateUserActionSuccess, 
          UserLoginAction, 
          UserLoginActionFail, 
@@ -119,6 +119,23 @@ export class UserEffects {
           pipe(
             map((user :any) => {
               return GetAllUserActionSuccess({ user: user });
+            }),
+            catchError((errorResp) => {
+              return of(GetAllUserActionFail({message : errorResp.error.message}))
+            })
+          );
+      })
+    );
+  });
+
+  deleteUser$: Observable<Action> = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DeleteUserAction),
+      mergeMap((action) => {
+        return this.user_service.deleteUser(action.user_id).
+          pipe(
+            map((user :any) => {
+              return DeleteUserActionSuccess({ id: action.user_id });
             }),
             catchError((errorResp) => {
               return of(GetAllUserActionFail({message : errorResp.error.message}))

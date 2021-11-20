@@ -1,5 +1,5 @@
 import { state } from "@angular/animations";
-import { GetAllUserActionSuccess, GetUserAction, GetUserActionSuccess, UpdateUserActionSuccess, UserActionsType, UserLoginAction, UserLoginActionFail, UserLoginActionSuccess, UserSignUpActionFail, UserSignUpActionSuccess } from "src/app/store/actions/user.actions";
+import { DeleteUserActionSuccess, GetAllUserActionSuccess, GetUserAction, GetUserActionSuccess, UpdateUserActionSuccess, UserActionsType, UserLoginAction, UserLoginActionFail, UserLoginActionSuccess, UserSignUpActionFail, UserSignUpActionSuccess } from "src/app/store/actions/user.actions";
 import { UserState } from "src/app/store/state/app.state";
 import {initialUserState} from '../state/app.state';
 import {createReducer, on } from '@ngrx/store';
@@ -78,6 +78,16 @@ const _userReducer = createReducer(
         return {
             ...state,
             user: action.user,
+            loading: false
+        }
+    }),
+    on(DeleteUserActionSuccess, (state, action) => {
+        let updateUsers = state.user.filter(user => {
+          return  user.id != action.id;
+        })
+        return {
+            ...state,
+            user: updateUsers,
             loading: false
         }
     })

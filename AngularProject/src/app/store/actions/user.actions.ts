@@ -31,3 +31,6 @@ export const GetAllUserAction = createAction('GET_ALL_USERS_ACTION');
 export const GetAllUserActionSuccess = createAction('GET_ALL_USERS_ACTION_SUCCESS', props<{ user:User[]}>());
 export const GetAllUserActionFail = createAction('GET_ALL_USERS_ACTION_FAIL', props<{message: string}>());
 
+export const DeleteUserAction = createAction('DELETE_USER_ACTION', props<{user_id: number}>());
+export const DeleteUserActionSuccess = createAction('DELETE_USER_ACTION_SUCCESS', props<{ id: number}>());
+export const DeleteUserActionFail = createAction('DELETE_USER_ACTION_FAIL', props<{message: string}>());
