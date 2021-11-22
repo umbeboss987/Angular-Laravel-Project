@@ -22,21 +22,24 @@ class ProductController extends Controller
         }
     }
 
-    function singleProduct($id)
+    function getProductById($product_id)
     {
-        try {
-            $data = Product::find($id);
-            if (empty($data) || is_null($data)) {
-                return response()->json(['message' => 'data not found'], 404);
-            } else {
-                return response()->json($data, 200);
-            }
-        } catch (Exception $e) {
-            return response()->json(['message' => $e->getMessage()], 400);
-        }
+        // try {
+        //     if (!Product::where('id', $product_id)->exists()) {
+        //         return response()->json(['message' => 'product not found'], 404);
+        //     } else {
+        //         $product = Product::where('id', $product_id)->get();
+        //         return response()->json($product, 200);
+        //     }
+        // } catch (Exception $e) {
+        //     return response()->json(['message' => $e->getMessage()], 500);
+        // }
+        $product = Product::where('id', $product_id)->get();
+        return response()->json($product, 200);
+
     }
 
-    function getProductsType($product_type)
+    function getProductsByType($product_type)
     {
         try {
             $data = Product::where('type', $product_type)->get();
@@ -50,22 +53,38 @@ class ProductController extends Controller
         }   
     }
 
-    function deleteProduct ($product_id){
-        $product =Product::find($product_id);
-        $data = Product::find($product_id)->delete();
-        return response()->json(['message' => 'product deleted', 'product' => $product], 200);
+    function deleteProductById($product_id)
+    {
+        try {
+            if (empty($product_id) || is_null($product_id)) {
+                return response()->json([], 404);
+            } else {
+                $data = Product::find($product_id)->delete();
+                return response(null, 204);
+            }
+        } catch (Exception $e) {
+            return response()->json(500);
+        }
     }
 
-    function updateProduct ($product_id, Request $req){
-          Product::where('id', $product_id)->update([
-            'name' => $req->name,
-            'price' => $req->price,
-            'description' => $req->description,
-            'type' => $req->type,
-            'photo' => $req->photo,
-          ]);
-        return response()->json($product_id);
-
+    function updateProduct($product_id, Request $req)
+    {
+        try {
+            if (empty($product_id) || is_null($product_id)) {
+                return response()->json(404);
+            } else {
+                Product::where('id', $product_id)->update([
+                    'name' => $req->name,
+                    'price' => $req->price,
+                    'description' => $req->description,
+                    'type' => $req->type,
+                    'photo' => $req->photo,
+                ]);
+                return response()->json($product_id);
+            }
+        } catch (Exception $e) {
+            return response(null,500);
+        }
     }
 
     function getPhoto(){
@@ -81,6 +100,6 @@ class ProductController extends Controller
         $product->type = $req->type;
         $product->photo = $req->photo;
         $product->save();
-        return response()->json(['message' =>'Product added successfully','data' => $product], 200);
+        return response(null, 201)->header('location', 'http://localhost:8000/api/products/' . $product->id);
     }
 }

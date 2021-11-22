@@ -4,4 +4,5 @@ export interface OrderAccount{
     photo?: string;
     total?: number;
     quantity?:number;
+    order_id? : number;
 }

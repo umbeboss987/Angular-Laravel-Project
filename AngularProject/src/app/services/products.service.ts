@@ -25,7 +25,7 @@ export class ProductsService {
   }
 
   getSingleProduct (id: number): Observable<Products>{
-    return this.http.get<Products>(`${AppConstants.SERVICES_BASE_URL}/products/product/${id}`);
+    return this.http.get<Products>(`${AppConstants.SERVICES_BASE_URL}/products/${id}`);
   }
 
   getProductsType(type: String): Observable<Products[]>{
@@ -33,7 +33,7 @@ export class ProductsService {
   }
 
   deleteProduct(product_id: number): Observable<Products>{
-    return this.http.delete<Products>(`${AppConstants.SERVICES_BASE_URL}/product/${product_id}`);
+    return this.http.delete<Products>(`${AppConstants.SERVICES_BASE_URL}/products/${product_id}`);
   }
 
   updateProduct (product: any, product_id : number): Observable<any>{
@@ -41,7 +41,7 @@ export class ProductsService {
   }
 
   addProduct(product: Products) : Observable <Products>{
-    return this.http.post<Products>(`${AppConstants.SERVICES_BASE_URL}/products/addProduct`, product);
+    return this.http.post<Products>(`${AppConstants.SERVICES_BASE_URL}/products`, product);
   }
   
 }

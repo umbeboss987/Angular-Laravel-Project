@@ -68,7 +68,7 @@ export class OrderEffects{
       switchMap(() => {
         return this.order_service.getAllOrders().pipe(
           map((data) => {
-            return GetAllOrdersSuccess({order: data});
+            return GetAllOrdersSuccess({orderAccounts: data});
           }), catchError(errorResp => {
             return of(GetOrdersListFail({message : errorResp.error.message})).pipe(
               tap(() =>{

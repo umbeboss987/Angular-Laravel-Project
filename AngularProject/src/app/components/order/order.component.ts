@@ -49,6 +49,7 @@ export class OrderComponent implements OnInit {
 
   addOrder(){
    let order = this.OrderForm.value;
+   console.log(order);
    this.store.dispatch(AddOrderAction({item: order}));
   }
 

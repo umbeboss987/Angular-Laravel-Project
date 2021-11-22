@@ -27,7 +27,7 @@ Route::get('getId', [UserController::class, 'getId']);
 
 
  Route::post('signUp', [UserController::class, 'signUp']);
- Route::get('products/{product_type}',[ProductController::class, 'getProductsType']);
+ Route::get('products/{product_type}',[ProductController::class, 'getProductsByType']);
  Route::get('cart',[CartController::class, 'cartOrders']);
  Route::get('sumPriceProducts',[CartController::class, 'sumPriceProducts']);
  Route::delete('deleteItem/{id}',[CartController::class, 'deleteItem']);
@@ -36,12 +36,12 @@ Route::get('getId', [UserController::class, 'getId']);
  Route::get('getOrdersAccount', [OrderController::class, 'orderList']);
  Route::get('products',[ProductController::class ,'getProducts']);
  Route::put('updateUser', ['middleware' => 'auth.role:user', UserController::class, 'updateUser']);
- Route::get('products/product/{id}',[ProductController::class ,'singleProduct']);
+ Route::get('products/{product_id}',[ProductController::class ,'getProductById'])->name('getProductById');
  Route::put('updateAccount',['middleware' => 'auth.role:user',AccountController::class, 'updateAccount']);
-Route::delete('product/{product_id}', [ProductController::class, 'deleteProduct']);
+Route::delete('products/{product_id}', [ProductController::class, 'deleteProductById'])->name('deleteProductById');
 Route::post('updateProduct/{product_id}',[ProductController::class, 'updateProduct']);
 Route::get('getphoto', [ProductController::class, 'getPhoto']);
-Route::post('products/addProduct', [ProductController::class, 'addProduct']);
+Route::post('products', [ProductController::class, 'addProduct'])->name('addProduct');
 Route::post('login', ['middleware' => 'auth.role:admin,user', AuthController::class, 'login'])->name('login');
 Route::get('orders', [OrderController::class, 'getAllOrders']);
 Route::get('users', [UserController::class, 'getAllUsers']);

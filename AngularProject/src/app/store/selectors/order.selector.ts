@@ -21,3 +21,10 @@ export const _selectOrderLoading  = createSelector(
     return state.loading;
   }
 );
+
+export const selectAllOrdersAccount  = createSelector(
+  selectOrderAccount,
+  (state: OrderState) => {
+    return state.orderAllAccounts;
+  }
+);

@@ -66,7 +66,7 @@ const _productsReducer = createReducer(
     }),
     on(DeleteSingleProductActionSuccess, (state, action :any) => {
         let updateProducts = state.products.filter((single_item : Products) => {
-            return single_item.id !== action.products.product.id
+            return single_item.id !== action.product_id
         });
         return {
             ...state,

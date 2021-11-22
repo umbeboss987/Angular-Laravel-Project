@@ -26,7 +26,7 @@ const _orderReducer = createReducer(
     on(GetAllOrdersSuccess, (state, action :any) => {
         return {
             ...state,
-            orders: action.order,
+            orderAllAccounts: action.orderAccounts,
             loading: false
         }
     }),
