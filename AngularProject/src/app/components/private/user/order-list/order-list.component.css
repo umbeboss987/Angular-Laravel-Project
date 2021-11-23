@@ -8,3 +8,33 @@
 .product-span{
     right:20px;
 }
+
+
+
+
+
+
+.order:hover{
+    background-color: #ffca28!important;
+    color:white!important;
+}
+
+.center{
+    margin-left:50px;
+}
+
+.link{
+    border:none!important;
+    border: 0;
+    outline: none!important;
+
+}
+.order{
+    color:black;
+    font-size:15px;
+    border:none;
+}
+
+.nav{
+    height:44px;
+}
