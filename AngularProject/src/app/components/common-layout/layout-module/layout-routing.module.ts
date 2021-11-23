@@ -8,6 +8,7 @@ import { UpdateAddressComponent } from '../../private/user/update-address/update
 import { UpdateProfileComponent } from '../../private/user/update-profile/update-profile.component';
 import { SignInComponent } from '../../sign-in/sign-in.component';
 import{AuthGuardService} from '../../../auth/auth-guard.service';
+import { OrderListComponent } from '../../private/user/order-list/order-list.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'account', component: ProfileComponent, canActivate :[AuthGuardService]},
   { path: 'account/updateProfile', component: UpdateProfileComponent, canActivate :[AuthGuardService] },
   { path: 'account/updateAddress', component: UpdateAddressComponent, canActivate :[AuthGuardService] },
+  { path: 'account/orders', component: OrderListComponent, canActivate :[AuthGuardService] },
 ];
 
 @NgModule({

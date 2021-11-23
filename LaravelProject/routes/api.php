@@ -25,23 +25,26 @@ use Illuminate\Foundation\Auth\User;
 
 Route::get('getId', [UserController::class, 'getId']);
 
+Route::prefix('products')->group(function () {
+    Route::get('',[ProductController::class ,'getProducts']);
+    Route::get('/{product_id}',[ProductController::class ,'getProductById'])->name('getProductById');
+    Route::delete('/{product_id}', [ProductController::class, 'deleteProductById'])->name('deleteProductById');
+    Route::post('', [ProductController::class, 'addProduct'])->name('addProduct');
+ //Route::get('/{product_type}',[ProductController::class, 'getProductsByType'])->name('getProductsByType');
+
+});
 
  Route::post('signUp', [UserController::class, 'signUp']);
- Route::get('products/{product_type}',[ProductController::class, 'getProductsByType']);
  Route::get('cart',[CartController::class, 'cartOrders']);
  Route::get('sumPriceProducts',[CartController::class, 'sumPriceProducts']);
  Route::delete('deleteItem/{id}',[CartController::class, 'deleteItem']);
  Route::post('account', [AccountController::class, 'addAccount']);
  Route::get('getAccountDetails', [AccountController::class, 'getAccountDetails']);
  Route::get('getOrdersAccount', [OrderController::class, 'orderList']);
- Route::get('products',[ProductController::class ,'getProducts']);
  Route::put('updateUser', ['middleware' => 'auth.role:user', UserController::class, 'updateUser']);
- Route::get('products/{product_id}',[ProductController::class ,'getProductById'])->name('getProductById');
  Route::put('updateAccount',['middleware' => 'auth.role:user',AccountController::class, 'updateAccount']);
-Route::delete('products/{product_id}', [ProductController::class, 'deleteProductById'])->name('deleteProductById');
 Route::post('updateProduct/{product_id}',[ProductController::class, 'updateProduct']);
 Route::get('getphoto', [ProductController::class, 'getPhoto']);
-Route::post('products', [ProductController::class, 'addProduct'])->name('addProduct');
 Route::post('login', ['middleware' => 'auth.role:admin,user', AuthController::class, 'login'])->name('login');
 Route::get('orders', [OrderController::class, 'getAllOrders']);
 Route::get('users', [UserController::class, 'getAllUsers']);

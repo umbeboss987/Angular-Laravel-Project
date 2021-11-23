@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\OrderProduct;
 
 
 class Product extends Model
@@ -12,8 +13,13 @@ class Product extends Model
     protected $table = 'product';
     use HasFactory;
 
-    function productsType ($type){  
-        $data = $this->select('*')->where('type',$type)->get();
-        return $data;
+
+    public function orderProducts (){
+        return $this->hasMany(OrderProduct::class);
+    }
+
+
+    public function order (){
+        return $this->belongsToMany(Order::class);
     }
 }

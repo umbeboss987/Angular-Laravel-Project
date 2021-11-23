@@ -6,7 +6,6 @@ import { User } from 'src/app/model/user';
 import { Account } from 'src/app/model/account';
 import { UserAuth } from 'src/app/model/userAuth';
 import { CartWithProducts } from 'src/app/model/CartWithProducts';
-import { OrderAccount } from 'src/app/model/orderAccount';
 import { OrderAllAccounts } from 'src/app/model/OrderAllAccounts';
 
 
@@ -83,7 +82,7 @@ export const initialUserState :UserState = {
 
 export interface OrderState {
     orders: Order[];
-    orderAccount: OrderAccount[];
+    orderAccount: any[];
     orderAllAccounts: OrderAllAccounts[]
     loading: boolean;
 }

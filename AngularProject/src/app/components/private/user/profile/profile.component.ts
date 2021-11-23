@@ -8,7 +8,6 @@ import { Account } from 'src/app/model/account';
 import { GetOrdersList } from 'src/app/store/actions/order.actions';
 import { Order } from 'src/app/model/order';
 import { _selectOrderAccount, _selectOrderLoading } from 'src/app/store/selectors/order.selector';
-import { OrderAccount } from 'src/app/model/orderAccount';
 import { GetUserAction, UpdateUserAction } from 'src/app/store/actions/user.actions';
 import { User } from 'src/app/model/user';
 import { selectAccountList, selectAccountLoading } from 'src/app/store/selectors/account.selector';
@@ -27,7 +26,6 @@ export class ProfileComponent implements OnInit {
 
   account? : Account[];
 
-  order? : OrderAccount[];
 
   totalLength?: number;
 
@@ -48,15 +46,9 @@ export class ProfileComponent implements OnInit {
    
     this.getUser();
     this.getDetailsAccount();
-    this.getOrdersList();    
   }
 
   ngOnInit(): void {
-
-    this.store.select(_selectOrderAccount).subscribe(res =>{
-      this.order = res; 
-      this.totalLength = res.length;
-    });
 
     this.store.select(selectSingleUser).subscribe(res =>{
       this.user = res; 
@@ -88,9 +80,6 @@ export class ProfileComponent implements OnInit {
     this.store.dispatch(getDetailsAccountAction());
   }
 
-  getOrdersList(){
-    this.store.dispatch(GetOrdersList());
-  }
 
   getUser(){
     this.store.dispatch(GetUserAction());

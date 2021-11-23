@@ -13,13 +13,20 @@ class OrderProduct extends Migration
      */
     public function up()
     {
-        Schema::create('orderProduct', function (Blueprint $table) {
-            $table->id();
-            $table->integer('order_id');
-            $table->integer('product_id');
+        Schema::create('order_product', function (Blueprint $table) {
+            $table->integer('order_id')->unsigned();
+            $table->integer('product_id')->unsigned();
             $table->integer('quantity');
             $table->timestamps();
-        });    }
+        });  
+        
+        Schema::table('order_product', function($table) {
+            $table->foreign('order_id')->references('id')->on('order');
+            $table->foreign('product_id')->references('id')->on('product');
+        });
+    }
+
+   
 
     /**
      * Reverse the migrations.

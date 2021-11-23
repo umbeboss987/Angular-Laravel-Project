@@ -24,19 +24,16 @@ class ProductController extends Controller
 
     function getProductById($product_id)
     {
-        // try {
-        //     if (!Product::where('id', $product_id)->exists()) {
-        //         return response()->json(['message' => 'product not found'], 404);
-        //     } else {
-        //         $product = Product::where('id', $product_id)->get();
-        //         return response()->json($product, 200);
-        //     }
-        // } catch (Exception $e) {
-        //     return response()->json(['message' => $e->getMessage()], 500);
-        // }
-        $product = Product::where('id', $product_id)->get();
-        return response()->json($product, 200);
-
+        try {
+            if (!Product::where('id', $product_id)->exists()) {
+                return response()->json(['message' => 'product not found'], 404);
+            } else {
+                $product = Product::where('id', $product_id)->first();
+                return response($product, 200);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
     }
 
     function getProductsByType($product_type)
@@ -71,8 +68,12 @@ class ProductController extends Controller
     {
         try {
             if (empty($product_id) || is_null($product_id)) {
-                return response()->json(404);
-            } else {
+                return response(null,500);
+            } 
+            if(!Product::where('id', $product_id)->exists()) {
+                return response('Product not found', 404);
+            }
+            else {
                 Product::where('id', $product_id)->update([
                     'name' => $req->name,
                     'price' => $req->price,
@@ -80,7 +81,7 @@ class ProductController extends Controller
                     'type' => $req->type,
                     'photo' => $req->photo,
                 ]);
-                return response()->json($product_id);
+                return response()->noContent();
             }
         } catch (Exception $e) {
             return response(null,500);

@@ -5,6 +5,9 @@ namespace App\Models;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Order;
+use App\Models\Account;
+
 
 class User extends Authenticatable implements JWTSubject
 {   
@@ -33,5 +36,17 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function orders (){
+        return $this->hasMany(Order::class);
+    }
+
+    public function account (){
+        return $this->belongsTo(Account::class);
+    }
+
+    public function orderProducts (){
+        return $this->hasManyThrough(Product::class,Order::class);
     }
 }

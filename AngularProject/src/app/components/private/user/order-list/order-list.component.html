@@ -1,78 +1,50 @@
-
- <div class="tab-pane" id="r3">
-    <h3 class="orderList">My Order List</h3>
-    <div class="row" >
-      <div class="col-xs-12 mb_xs-30">
-        <div class="cart-item-table commun-table">
-          <div class="table-responsive-sm">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th colspan="4">
-                  
-                  </th>
-                </tr>
-              </thead>
-              <tbody *ngIf="order != null && order != undefined">
-                <tr *ngFor="let singleOrder of order | paginate: {
-                    itemsPerPage: 3,
-                    currentPage: page,
-                    totalItems: totalLength 
-                  }" >
-                  <td>
-                      <label>Order: Cod</label>
-                      <span class="info-deta">{{singleOrder.order_id}}</span>
-                  </td>
-                  <td>
-                    <a href="category_page.html">
-                      <div class="product-image"><img style="width:120px;" alt="Streetwear" src="{{singleOrder.photo}}"></div>
-                    </a>
-                  </td>
-                  <td>
-                    <div class="product-title">
-                      <a href="category_page.html">{{singleOrder.name}}</a>
-                    </div>
-                    <div class="product-info-stock-sku ">
-                      <div>
-                        <label>Quantity: </label>
-                        <span class="info-deta">{{singleOrder.quantity}}</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="product-info-stock-sku">
-                      <label>Price </label>
-                      <br class="">
-                      <span class="price">${{singleOrder.price}}</span>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-              <div class=" text-center mt_50" id="navProduct">
-                <pagination-controls class=""  (pageChange)="page = $event"></pagination-controls>
-               </div>
-            </table>
+<div class="tab-pane" id="r3">
+  <h3 class="orderList">My Order List</h3>
+  <div class="row">
+    <div class="col-lg-2">
+     
+    </div>
+    <div class="col-lg-8">
+      <div class="card" *ngFor="let order of orders | async" style="margin-bottom:40px;">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-lg-2">
+              Order made: 
+            </div>
+            <div class="col-lg-8">
+              Total: 
+            </div>
+            <div class="col-lg-2">
+              Order:
+            </div>
+          </div>         
+        </div>
+        <div class="card-body" *ngFor="let product of order.products">
+          <div class="row">
+            <div class="col-lg-2">
+              <div class="">
+                <img src="{{product.photo}}"style="width:50%;">
+              </div>
+            </div>
+            <div class="col-lg-5">
+              <div class="">
+                <h4 class="card-title">{{product.name}}</h4>
+                <button type="button" style="width:150px;"class="btn btn-warning">Go to Product</button>              
+              </div>
+            </div>
+            <div class="col-lg-5">
+              <div class="">
+               <label for="">Quantity:</label>
+              </div>
+            </div>
           </div>
+        
+          <hr>
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal fade bg-dark" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
+    <div class="col-lg-2">
+     
     </div>
   </div>
+</div>

@@ -45,6 +45,7 @@ export class ProductComponent implements OnInit {
   addCartItem() {
     let CartItem: Cart = this.formGroup?.value
     let id = this.router.snapshot.params['id'];
+    console.log(id);
     this.store.dispatch(AddCartItemAction({ item: CartItem, id: id }));
   }
 
