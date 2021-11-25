@@ -22,32 +22,37 @@ export class OrderComponent implements OnInit {
   constructor(private store : Store<IAppState>, private fb: FormBuilder) { 
     this.OrderForm = this.fb.group({
       address: "",
-      payment_method: ""
+      payment_method: "",
+      total: ""
     })
-
+    this.getSumPriceCart();
     this.store.dispatch(GetCartItemAction());
     this.store.dispatch(GetCartTotalAction());
   }
 
   ngOnInit(): void {
     this.getCartList();
-    this.getSumPriceCart();
   }
 
   getCartList (){
     this.store.select(selectCartList).subscribe(res => {
       this.items = res;
     });
+
   }
 
   getSumPriceCart (){
-    this.store.dispatch(GetCartTotalAction());
     this.store.select(selectCartTotal).subscribe(res =>{
       this.total = res;
     });
+
+   
   }
 
   addOrder(){
+  this.OrderForm.patchValue({
+      total : this.total
+    })
    let order = this.OrderForm.value;
    console.log(order);
    this.store.dispatch(AddOrderAction({item: order}));

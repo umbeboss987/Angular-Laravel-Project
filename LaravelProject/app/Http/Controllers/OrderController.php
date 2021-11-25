@@ -18,6 +18,7 @@ class OrderController extends Controller
        $order->user_id = $user;
        $order->address = $req->input('address');
        $order->payment_method = $req->input('payment_method');
+       $order->code = rand(1000,1999);
        $order->total = $req->input('total');
        $order->save();
 

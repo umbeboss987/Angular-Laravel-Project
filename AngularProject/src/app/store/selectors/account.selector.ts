@@ -10,10 +10,10 @@ const selectAccount = (state: IAppState) => {
 };
 
 
-export const selectAccountList  = createSelector(
+export const selectSingleAccountAuth = createSelector(
     selectAccount,
     (state: AccountState) => {
-      return state.account;
+      return state.singleAccount;
     }
 );
 

@@ -8,7 +8,7 @@ const _accountReducer = createReducer(
         let account = {...action.account};
         return {
             ...state,
-            account: [...state.account,account]
+            singleAccount: account
         }
     }),
     on(getDetailsAccountAction, (state, action :any) => {
@@ -20,7 +20,7 @@ const _accountReducer = createReducer(
     on(getDetailsAccountActionSuccess, (state, action :any) => {
         return {
             ...state,
-            account: action.account,
+            //account: action.account,
             loading: false,
             singleAccount: action.account
         }

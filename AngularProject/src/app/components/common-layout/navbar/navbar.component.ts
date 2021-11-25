@@ -4,7 +4,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { IAppState } from 'src/app/store/state/app.state';
 import {select, Store} from '@ngrx/store';
-import { ProductsTypeAction } from 'src/app/store/actions/products.actions';
+import { GetProductsAction, ProductsTypeAction } from 'src/app/store/actions/products.actions';
 
 
 
@@ -30,9 +30,5 @@ export class NavbarComponent implements OnInit {
     this.authService.logout();
   }
 
-  getAll(type : string)  {
-    this.store.dispatch(ProductsTypeAction({type_item : type}));
-  }
-  
 
 }

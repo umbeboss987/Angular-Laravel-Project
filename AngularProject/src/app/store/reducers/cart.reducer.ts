@@ -9,7 +9,6 @@ const _cartReducer = createReducer(
     initialCartState,
     on(AddCartItemActionSuccess, (state : any, action :any) => {
         let newtotal = action.item
-        console.log(newtotal.data.sub_total);
         return {
             ...state,
             cart: action.products,
@@ -20,6 +19,13 @@ const _cartReducer = createReducer(
         return {
             ...state,
             cartWithProducts: action.item,
+        }
+    }),
+
+    on(GetCartTotalActionSuccess, (state : any, action :any) => {
+        return {
+            ...state,
+            total: action.total,
         }
     }),
 

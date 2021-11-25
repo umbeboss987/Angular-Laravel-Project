@@ -3,16 +3,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { IAppState } from 'src/app/store/state/app.state';
 import {select, Store} from '@ngrx/store';
 import { createAccountAction, getDetailsAccountAction } from 'src/app/store/actions/account.actions';
-import { AuthService } from 'src/app/auth/auth.service';
 import { Account } from 'src/app/model/account';
-import { GetOrdersList } from 'src/app/store/actions/order.actions';
-import { Order } from 'src/app/model/order';
 import { _selectOrderAccount, _selectOrderLoading } from 'src/app/store/selectors/order.selector';
-import { GetUserAction, UpdateUserAction } from 'src/app/store/actions/user.actions';
+import { GetUserAction } from 'src/app/store/actions/user.actions';
 import { User } from 'src/app/model/user';
-import { selectAccountList, selectAccountLoading } from 'src/app/store/selectors/account.selector';
-import { selectSingleUser, selectUserAuth, selectUserLoading } from 'src/app/store/selectors/user.selector';
-
+import { selectAccountLoading, selectSingleAccountAuth } from 'src/app/store/selectors/account.selector';
+import { selectSingleUser, selectUserLoading } from 'src/app/store/selectors/user.selector';
+import {Observable} from 'rxjs';
 
 
 @Component({
@@ -24,18 +21,14 @@ export class ProfileComponent implements OnInit {
 
   formAccount : FormGroup;
 
-  account? : Account[];
+  account : Observable<Account>;
 
+  user: Observable<User>;
 
-  totalLength?: number;
+  loadingUser: Observable<boolean>;
 
-  user?: User;
+  loadingAccount: Observable<boolean>;
 
-  loadingUser?: boolean;
-
-  loadingAccount?: boolean;
-
-  loadingOrder?: boolean;
 
   constructor(private fb : FormBuilder, private store: Store<IAppState>) { 
    this.formAccount = this.fb.group({
@@ -46,29 +39,18 @@ export class ProfileComponent implements OnInit {
    
     this.getUser();
     this.getDetailsAccount();
+
+    this.user = this.store.select(selectSingleUser);
+
+    this.loadingUser= this.store.select(selectUserLoading);
+    
+    this.loadingAccount =  this.store.select(selectAccountLoading);
+   
+    this.account = this.store.select(selectSingleAccountAuth);
   }
 
   ngOnInit(): void {
-
-    this.store.select(selectSingleUser).subscribe(res =>{
-      this.user = res; 
-    });;
-
-    this.store.select(selectUserLoading).subscribe(res =>{
-      this.loadingUser = res;
-     });
-
-     this.store.select(_selectOrderLoading).subscribe(res =>{
-      this.loadingOrder = res;
-     });
-
-     this.store.select(selectAccountLoading).subscribe(res =>{
-      this.loadingAccount = res;
-     });
-
-     this.store.select(selectAccountList).subscribe(res=>{
-      this.account = res;
-    })
+    
   }
   
   createAccount (){

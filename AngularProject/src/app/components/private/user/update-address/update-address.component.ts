@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { IAppState } from 'src/app/store/state/app.state';
 import {select, Store} from '@ngrx/store';
-import { selectAccountList } from 'src/app/store/selectors/account.selector';
+import { selectSingleAccountAuth } from 'src/app/store/selectors/account.selector';
 import { Account } from 'src/app/model/account';
 import { getDetailsAccountAction, updateAccountAction } from 'src/app/store/actions/account.actions';
 import{Observable} from 'rxjs';
@@ -16,7 +16,7 @@ export class UpdateAddressComponent implements OnInit {
 
   formUpdateAddres : FormGroup;
 
-  account? : Account[];
+  account? : Account;
 
   constructor(private fb : FormBuilder, private store: Store<IAppState>) { 
    this.formUpdateAddres = this.fb.group({
@@ -26,15 +26,15 @@ export class UpdateAddressComponent implements OnInit {
     })
 
     this.store.dispatch(getDetailsAccountAction());
-    this.store.select(selectAccountList).subscribe(res =>{
+    this.store.select(selectSingleAccountAuth).subscribe(res =>{
       this.account = res;
     })
 
     if(this.account){
       this.formUpdateAddres.setValue({
-        full_name: this.account[0].full_name,
-        telephone_number: this.account[0].telephone_number,
-        address: this.account[0].address,
+        full_name: this.account.full_name,
+        telephone_number: this.account.telephone_number,
+        address: this.account.address,
       })
     }
 
@@ -47,7 +47,6 @@ export class UpdateAddressComponent implements OnInit {
 
   updateAddress(){
   let updateAddress = this.formUpdateAddres.value;
-  console.log(updateAddress);
   this.store.dispatch(updateAccountAction({account : updateAddress}));
   }
 }

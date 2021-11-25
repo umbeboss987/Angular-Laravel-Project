@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Account;
+use App\Models\Address;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class AccountController extends Controller
+class AddressController extends Controller
 {
     function addAccount (Request $req ){
         $user_id = JWTAuth::user()->id;
-        $account = new Account();
+        $account = new Address();
         $account->user_id = $user_id;
         $account->address = $req->input('address');
         $account->telephone_number = $req->input('telephone_number');
@@ -21,7 +21,7 @@ class AccountController extends Controller
 
     function getAccountDetails (){
       $user_id = JWTAuth::user()->id;
-      $accountDetails = Account::select()->where('user_id', $user_id)->get();
+      $accountDetails = Address::select()->where('user_id', $user_id)->first();
       return response()->json($accountDetails);
     }
 

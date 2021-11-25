@@ -29,7 +29,8 @@ import {
         AddSingleProductAction,
         AddSingleProductActionSuccess,
         AddSingleProductActionFail,
-        DeleteSingleProductActionFail} from '../actions/products.actions'
+        DeleteSingleProductActionFail,
+        GetProductsActionFail} from '../actions/products.actions'
 import { IAppState } from '../state/app.state';
 import { Router } from '@angular/router';
 
@@ -37,16 +38,6 @@ import { Router } from '@angular/router';
 
 export class ProductsEffect {
     constructor(private actions$ : Actions, private products_service: ProductsService, private store : Store<IAppState>, private router: Router){}
-
-    loadAllProducts$ : Observable<Action> = createEffect(() => {
-        return  this.actions$.pipe(
-            ofType(GetProductsAction),
-            switchMap(() => this.products_service.getAll()),
-            map((productsResp: Products[]) =>
-               GetProductsActionSuccess({products : productsResp})
-            ) 
-         );
-   });
     
 loadSingleProducts$ : Observable<Action> = createEffect(() => {
   return  this.actions$.pipe(
@@ -65,21 +56,29 @@ loadSingleProducts$ : Observable<Action> = createEffect(() => {
     return this.actions$.pipe(
       ofType(ProductsTypeAction),
       switchMap((action) => {
-        if (action.type_item == undefined || action.type_item ==  null) {
-          return this.products_service.getAll().pipe(
-            map((data) => {              
-              return GetProductsActionSuccess({ products: data });
-            })
-          )
-        } else {
           return this.products_service.getProductsType(action.type_item).pipe(           
             map((data) => {
               return ProductsTypeActionSuccess({ products: data });
             })
           );
-        }
       }),catchError((errorResp) =>{
         return of(ProductsTypeActionFail({message : errorResp.error.message}))
+      })
+    )
+  });
+
+
+  loadProducts$: Observable<Action> = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GetProductsAction),
+      switchMap((action) => {
+          return this.products_service.getProducts().pipe(           
+            map((data) => {
+              return GetProductsActionSuccess({ products: data });
+            })
+          );
+      }),catchError((errorResp) =>{
+        return of(GetProductsActionFail({message : errorResp.error.message}))
       })
     )
   });

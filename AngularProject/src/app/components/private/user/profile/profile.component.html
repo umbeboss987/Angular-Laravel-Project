@@ -5,13 +5,13 @@
         <a class="nav-link active" [routerLink]="['/account']">Account Information</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" [routerLink]="['/account/orders']">Orders</a>
+        <a class="nav-link active" [routerLink]="['/account/orders']">Orders </a>
       </li>
     </ul>
   </div>
 </div>
   <!-- =====  BANNER STRAT  ===== -->
-  <div class="text-center" *ngIf="loadingUser || loadingAccount || loadingOrder">
+  <div class="text-center" *ngIf="(loadingUser | async ) === true || (loadingAccount | async) === true">
     <div class="lds-roller">
       <div></div>
       <div></div>
@@ -24,15 +24,15 @@
     </div>
   </div>
 
-<div class="text-center all"  *ngIf="!loadingUser || !loadingAccount || !loadingOrder">
+<div class="text-center all"  *ngIf="(loadingUser | async ) === false || (loadingAccount | async) === false">
   <h2 class=" account">Information</h2>
     <div class="row" >
       <div class="col-md-12">
         <div class="tab-content ">
-          <div class="tab-pane active" id="r1" *ngIf="account !== undefined && account.length > 0">
+          <div class="tab-pane active" id="r1" *ngIf="(account | async) as account">
             <div class="heading-part">
             </div>
-            <div class="row">
+            <div class="row" *ngIf="(account | json) != ({} | json)">
               <div class="col-sm-6" >
                 <div class="cart-total-table address-box commun-table">
                   <div class="table-responsive">
@@ -50,15 +50,15 @@
                                 <b>Name</b>
                               </li>
                               <li>
-                                <p>{{account[0].full_name}}</p>
+                                <p>{{account.full_name}}</p>
                               </li>
                               <li>
                                 <b>Telephone</b>
-                                <p>{{account[0].telephone_number}}</p>
+                                <p>{{account.telephone_number}}</p>
                               </li>
                               <li>
                                 <b>Address</b>
-                                <p>{{account[0].address}}</p>
+                                <p>{{account.address}}</p>
                               </li>
                               <li>
                                 <button class="btn btn-primary bottoni" [routerLink]="['/account/updateAddress']">Update Address</button>
@@ -74,7 +74,7 @@
               <div class="col-sm-6">
                 <div class="cart-total-table address-box commun-table">
                   <div class="table-responsive">
-                    <table class="table account-table" *ngIf="user">
+                    <table class="table account-table" *ngIf="(user | async) as user">
                       <thead>
                         <tr>
                           <th>Account</th>
@@ -109,7 +109,8 @@
               </div>
             </div>
           </div>    
-          <div class="row" *ngIf="account == undefined || account.length <= 0">
+          <div class="row" *ngIf="(account | async) as account">
+          <div class="" *ngIf="(account | json) === ({} | json)">
             <div class="col-sm-6" >
               <div class="cart-total-table address-box commun-table">
                 <div class="table-responsive">
@@ -132,7 +133,7 @@
                                   <div class="text-center">
                                     <div class="section">
                                       <input class="modal-btn" type="checkbox" id="modal-btn" name="modal-btn"/>
-                                      <label *ngIf="!loadingAccount" for="modal-btn">Add a Shipping Address <i class="uil uil-expand-arrows"></i></label> 		
+                                      <label *ngIf="(loadingAccount | async ) === false" for="modal-btn">Add a Shipping Address <i class="uil uil-expand-arrows"></i></label> 		
                                       <div class="modal">		
                                           <div class="modal-wrap">
                                             <h2 class="title">Insert Address</h2>
@@ -173,7 +174,7 @@
             <div class="col-sm-6">
               <div class="cart-total-table address-box commun-table">
                 <div class="table-responsive">
-                  <table class="table account-table" *ngIf="user ">
+                  <table class="table account-table" *ngIf="(user | async) as user">
                     <thead>
                       <tr>
                         <th> 
@@ -210,6 +211,7 @@
             </div>
             <div class="col-sm-6">
             </div>
+          </div>
           </div>    
         </div>
       </div>

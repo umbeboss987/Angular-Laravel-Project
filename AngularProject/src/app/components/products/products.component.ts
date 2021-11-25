@@ -18,17 +18,25 @@ export class ProductsComponent implements OnInit {
 
   page: number = 1;
 
-  constructor( private  router: ActivatedRoute, private store : Store<IAppState>) { 
+  constructor( private  activate_router: ActivatedRoute,private router: Router, private store : Store<IAppState>) { 
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      return false;
+    }
+
+    if(this.activate_router.snapshot.data.kind == ''){
+       this.store.dispatch(GetProductsAction());
+    }else{
+     let type =  this.activate_router.snapshot.params.type;
+       this.store.dispatch(ProductsTypeAction({type_item : type}))
+    }  
   }
 
   ngOnInit(): void {
     this.getAll();
   }
 
-  getAll()  {
-    let endpoint : String = this.router.snapshot.params['type'];
-    this.store.dispatch(ProductsTypeAction({type_item : endpoint}));
-    return this.store.select(selectProductList).subscribe(res =>{
+   getAll()  {
+     this.store.select(selectProductList).subscribe(res =>{
       this.products = res;
       this.totalLength = res.length;
     })

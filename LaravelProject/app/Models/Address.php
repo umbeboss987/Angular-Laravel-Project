@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 
-class Account extends Model
+class Address extends Model
 {
-    protected $table = 'account';
+    protected $table = 'address';
 
     use HasFactory;
 

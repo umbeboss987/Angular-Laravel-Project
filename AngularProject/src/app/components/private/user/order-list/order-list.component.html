@@ -26,13 +26,13 @@
         <div class="card-header">
           <div class="row">
             <div class="col-lg-2">
-              Order made: 
+              Order made:{{order.created_at | date}} 
             </div>
             <div class="col-lg-8">
-              Total: 
+              Total: {{order.total}}$
             </div>
             <div class="col-lg-2">
-              Order:
+              Order:ORD{{order.code}}
             </div>
           </div>         
         </div>
@@ -46,12 +46,12 @@
             <div class="col-lg-5">
               <div class="">
                 <h4 class="card-title">{{product.name}}</h4>
-                <button type="button" style="width:150px;"class="btn btn-warning">Go to Product</button>              
+                <button type="button" [routerLink]="['/products/' + product.id]" style="width:150px;"class="btn btn-warning">Go to Product</button>              
               </div>
             </div>
             <div class="col-lg-5">
               <div class="">
-               <label for="">Quantity:</label>
+               <label for="">Address:{{order.address}}</label>
               </div>
             </div>
           </div>

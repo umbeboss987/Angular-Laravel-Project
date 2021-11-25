@@ -4,9 +4,9 @@
  import { ProductsComponent } from '../products.component';
 
  const routes: Routes = [
-   { path: ':type', component:ProductsComponent},
-   { path: 'product/:id', component:ProductComponent},
-   { path: '', component:ProductsComponent},
+   { path: 'type/:type', component:ProductsComponent, data:{kind: 'type'}},
+   { path: ':id', component:ProductComponent},
+   { path: '', component:ProductsComponent, data:{kind: ''} },
 
  ];
 

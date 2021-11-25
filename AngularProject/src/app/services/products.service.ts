@@ -20,7 +20,7 @@ export class ProductsService {
   constructor(private http : HttpClient) { }
 
 
-  getAll (): Observable<Products[]> {
+  getProducts(): Observable<Products[]> {
     return this.http.get<Products[]>(`${AppConstants.SERVICES_BASE_URL}/products`);
   }
 
