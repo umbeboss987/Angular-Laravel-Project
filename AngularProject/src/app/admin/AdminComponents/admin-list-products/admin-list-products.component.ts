@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { IAppState } from 'src/app/store/state/app.state';
 import {Store} from '@ngrx/store';
-import { DeleteSingleProductAction, GetProductsAction, UpdateSingleProductAction } from 'src/app/store/actions/products.actions';
-import { Products } from 'src/app/model/products';
+import { DeleteSingleProductAction, GetProductsAction, UpdateSingleProductAction } from 'src/app/store/actions/product.actions';
+import { Product } from 'src/app/model/Product';
 import { Observable } from 'rxjs';
-import { selectProductList } from 'src/app/store/selectors/products.selector';
+import { selectProductList } from 'src/app/store/selectors/product.selector';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ProductsService } from 'src/app/services/products.service';
+import { ProductsService } from 'src/app/services/product.service';
 
 
 @Component({
@@ -15,7 +15,7 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./admin-list-products.component.css']
 })
 export class AdminListProductsComponent implements OnInit {
-  products? : Observable<Products[]>;
+  products? : Observable<Product[]>;
   closeResult = '';
   updateProductForm : FormGroup;
 

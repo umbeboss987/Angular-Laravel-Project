@@ -11,7 +11,6 @@ import {
   ROUTER_NAVIGATION,
 } from '@ngrx/router-store';
 import { Router } from '@angular/router';
-import { Order } from 'src/app/model/order';
 import { AddOrderAction, AddOrderActionFail, AddOrderActionSuccess, GetAllOrders, GetAllOrdersSuccess, GetOrdersList, GetOrdersListFail, GetOrdersListSuccess,  } from 'src/app/store/actions/order.actions';
 
 @Injectable ()

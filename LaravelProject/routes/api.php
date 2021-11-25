@@ -31,24 +31,30 @@ Route::prefix('products')->group(function () {
     Route::delete('/{product_id}', [ProductController::class, 'deleteProductById'])->name('deleteProductById');
     Route::post('', [ProductController::class, 'addProduct'])->name('addProduct');
     Route::get('/{products_type}',[ProductController::class, 'getProductsByType'])->name('getProductsByType')->where(['products_type' => '[a-z]+']);
+    Route::post('/{product_id}',[ProductController::class, 'updateProduct'])->name('updateProduct');
 
 });
 
+Route::prefix('users')->group(function () {
+    Route::get('', [UserController::class, 'getAllUsers']);
+    Route::put('', ['middleware' => 'auth.role:user', UserController::class, 'updateUser']);
+    Route::delete('/{user_id}', [UserController::class, 'deleteUser']);
+});
+
+Route::prefix('carts')->group(function () {
+    Route::delete('/{id}',[CartController::class, 'deleteItem']);
+});
+
  Route::post('signUp', [UserController::class, 'signUp']);
- Route::get('cart',[CartController::class, 'cartOrders']);
+ Route::get('cart',[CartController::class, 'getUserCart']);
  Route::get('sumPriceProducts',[CartController::class, 'sumPriceProducts']);
- Route::delete('deleteItem/{id}',[CartController::class, 'deleteItem']);
- Route::post('account', [AddressController::class, 'addAccount']);
+ Route::post('address', [AddressController::class, 'addAddress']);
  Route::get('getAccountDetails', [AddressController::class, 'getAccountDetails']);
  Route::get('getOrdersAccount', [OrderController::class, 'orderList']);
- Route::put('updateUser', ['middleware' => 'auth.role:user', UserController::class, 'updateUser']);
  Route::put('updateAccount',['middleware' => 'auth.role:user',AddressController::class, 'updateAccount']);
-Route::post('updateProduct/{product_id}',[ProductController::class, 'updateProduct']);
 Route::get('getphoto', [ProductController::class, 'getPhoto']);
 Route::post('login', ['middleware' => 'auth.role:admin,user', AuthController::class, 'login'])->name('login');
 Route::get('orders', [OrderController::class, 'getAllOrders']);
-Route::get('users', [UserController::class, 'getAllUsers']);
-Route::delete('users/{user_id}', [UserController::class, 'deleteUser']);
 
 
 Route::group([
@@ -58,7 +64,7 @@ Route::group([
 
 ], function ($router) {
     Route::post('addOrder',[OrderController::class, 'order']);
-    Route::post('addCartItem/{product_id}',['middleware' => 'auth.role:user',CartController::class, 'addCartItem']);
+    Route::post('carts/{product_id}',['middleware' => 'auth.role:user',CartController::class, 'addCartItem']);
     Route::get('logout', 'AuthController@logout');
     Route::post('me', [AuthController::class, 'me'])->name('me');
     Route::get('getId', [AuthController::class, 'getAuthUser']);

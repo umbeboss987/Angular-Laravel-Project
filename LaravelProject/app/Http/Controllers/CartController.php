@@ -52,14 +52,14 @@ class CartController extends Controller
     }
 
 
-    function cartOrders (){
+    function getUserCart (){
         $user = JWTAuth::user();
         $products = new Product();
         $data = $products->select('cart.sub_total','cart.id', 'cart.quantity','name', 'price','photo')->join('cart', 'product.id', '=' , 'cart.product_id')->where('user_id', '=', $user->id)->get();
         return response()->json($data);
     }
 
-    function deleteItem ($id){
+    function deleteCart($id){
         $data = DB::table('cart')->where('id', $id)->delete();
         return response()->json($data);
     }

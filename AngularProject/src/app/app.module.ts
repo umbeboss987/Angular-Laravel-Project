@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
-import { ProductsEffect } from 'src/app/store/effects/products.effects';
+import { ProductsEffect } from 'src/app/store/effects/product.effects';
 import { StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { appReducers } from 'src/app/store/reducers/app.reducer';
 import { CartEffects } from 'src/app/store/effects/cart.effects';
@@ -19,7 +19,7 @@ import { UserEffects } from 'src/app/store/effects/user.effects';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { JwtModule } from "@auth0/angular-jwt";
 import { OrderEffects } from 'src/app/store/effects/order.effects';
-import { AccountEffects } from './store/effects/account.effects';
+import { AccountEffects } from './store/effects/address.effects';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {RouterModule} from '@angular/router';
 

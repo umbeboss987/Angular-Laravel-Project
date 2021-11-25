@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { IAppState } from 'src/app/store/state/app.state';
 import {select, Store} from '@ngrx/store';
-import { createAccountAction, getDetailsAccountAction } from 'src/app/store/actions/account.actions';
-import { Account } from 'src/app/model/account';
+import { CreateAddressAction, GetDetailsAddressAction } from 'src/app/store/actions/address.actions';
+import { Address } from 'src/app/model/Address';
 import { _selectOrderAccount, _selectOrderLoading } from 'src/app/store/selectors/order.selector';
 import { GetUserAction } from 'src/app/store/actions/user.actions';
 import { User } from 'src/app/model/user';
@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
 
   formAccount : FormGroup;
 
-  account : Observable<Account>;
+  account : Observable<Address>;
 
   user: Observable<User>;
 
@@ -55,11 +55,11 @@ export class ProfileComponent implements OnInit {
   
   createAccount (){
     let account = this.formAccount.value;
-    this.store.dispatch(createAccountAction({account : account}));
+    this.store.dispatch(CreateAddressAction({account : account}));
   }
 
   getDetailsAccount(){
-    this.store.dispatch(getDetailsAccountAction());
+    this.store.dispatch(GetDetailsAddressAction());
   }
 
 

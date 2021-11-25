@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {Store} from '@ngrx/store';
-import { AddSingleProductAction } from 'src/app/store/actions/products.actions';
+import { AddSingleProductAction } from 'src/app/store/actions/product.actions';
 import{IAppState} from 'src/app/store/state/app.state';
 
 @Component({

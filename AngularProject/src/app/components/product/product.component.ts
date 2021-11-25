@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Products } from 'src/app/model/products';
-import { ProductsService } from 'src/app/services/products.service';
+import { Product } from 'src/app/model/Product';
+import { ProductsService } from 'src/app/services/product.service';
 import {select, Store} from '@ngrx/store';
-import { selectProductList, selectProductLoading, selectSingleProduct} from 'src/app/store/selectors/products.selector';
-import { GetProductsAction, GetSingleProductAction } from 'src/app/store/actions/products.actions';
+import { selectProductList, selectProductLoading, selectSingleProduct} from 'src/app/store/selectors/product.selector';
+import { GetProductsAction, GetSingleProductAction } from 'src/app/store/actions/product.actions';
 import { IAppState } from 'src/app/store/state/app.state';
 import { Observable, Subscription } from 'rxjs';
 import { FormBuilder , Validators, FormGroup} from '@angular/forms';
@@ -17,7 +17,7 @@ import { Cart } from 'src/app/model/cart';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  product$? : Products;
+  product$? : Product;
   formGroup : FormGroup;
   subscription?: Subscription;
   loading$? : Boolean

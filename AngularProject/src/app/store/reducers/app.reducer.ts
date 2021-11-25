@@ -1,11 +1,11 @@
 import { ActionReducerMap } from '@ngrx/store';
-import { productsReducer } from './products.reducer';
+import { productsReducer } from './product.reducer';
 import { cartReducer } from './cart.reducer';
 import { userReducer } from './user.reducer';
 import { IAppState} from '../state/app.state';
 import {  RouterReducerState , routerReducer} from '@ngrx/router-store';
 import { orderReducer } from './order.reducer';
-import { accountReducer } from './account.reducer';
+import { addressReducer } from './address.reducer';
 import { responseReducer } from './response.reducer';
 
 
@@ -16,7 +16,7 @@ export const appReducers: ActionReducerMap<IAppState, any> = {
     cartState: cartReducer,
     userState: userReducer,
     orderState: orderReducer,
-    accountState: accountReducer,
+    addressState: addressReducer,
     responseState : responseReducer,
 };
 

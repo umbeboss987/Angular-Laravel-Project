@@ -1,9 +1,9 @@
 import { RouterReducerState } from '@ngrx/router-store';
-import {Products} from 'src/app/model/products';
+import {Product} from 'src/app/model/Product';
 import {Order} from 'src/app/model/order';
 import {Cart} from 'src/app/model/cart';
 import { User } from 'src/app/model/user';
-import { Account } from 'src/app/model/account';
+import { Address } from 'src/app/model/Address';
 import { UserAuth } from 'src/app/model/userAuth';
 import { CartWithProducts } from 'src/app/model/CartWithProducts';
 import { OrderAllAccounts } from 'src/app/model/OrderAllAccounts';
@@ -15,15 +15,15 @@ export interface IAppState{
     routerReducer: RouterReducerState;
     userState: UserState
     orderState: OrderState;
-    accountState: AccountState;
+    addressState: AddressState;
     responseState : ResponseState;
 }
 
 export interface ProductsState {
-    products: Products[];
+    products: Product[];
     message: string;
     loading : boolean;
-    singleProduct : Products;
+    singleProduct : Product;
 }
 
 export const initialProductsState :ProductsState = {
@@ -94,16 +94,16 @@ export const initialOrderState :OrderState = {
     orderAllAccounts: []
 }
 
-export interface AccountState{
-    account: Account[];
+export interface AddressState{
+    address: Address[];
     loading: boolean;
-    singleAccount: Account;
+    singleAddress: Address;
 }
 
-export const initialAccountState :AccountState = {
-    account: [],
+export const initialAccountState :AddressState = {
+    address: [],
     loading: false,
-    singleAccount :{
+    singleAddress :{
         user_id: 0,
         full_name: "",
         address: '',

@@ -30,7 +30,7 @@ export class UserService {
   }
 
   updateUser(user: User){
-    return this.http.put<User>('http://127.0.0.1:8000/api/updateUser', user);
+    return this.http.put<User>(`${AppConstants.SERVICES_BASE_URL}/users`, user);
   }
 
   getUser(){

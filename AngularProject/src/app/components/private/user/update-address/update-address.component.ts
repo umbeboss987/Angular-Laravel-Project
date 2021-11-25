@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { IAppState } from 'src/app/store/state/app.state';
 import {select, Store} from '@ngrx/store';
 import { selectSingleAccountAuth } from 'src/app/store/selectors/account.selector';
-import { Account } from 'src/app/model/account';
-import { getDetailsAccountAction, updateAccountAction } from 'src/app/store/actions/account.actions';
+import { Address } from 'src/app/model/Address';
+import { GetDetailsAddressAction, UpdateAddressAction } from 'src/app/store/actions/address.actions';
 import{Observable} from 'rxjs';
 
 @Component({
@@ -16,7 +16,7 @@ export class UpdateAddressComponent implements OnInit {
 
   formUpdateAddres : FormGroup;
 
-  account? : Account;
+  account? : Address;
 
   constructor(private fb : FormBuilder, private store: Store<IAppState>) { 
    this.formUpdateAddres = this.fb.group({
@@ -25,7 +25,7 @@ export class UpdateAddressComponent implements OnInit {
       telephone_number: '',
     })
 
-    this.store.dispatch(getDetailsAccountAction());
+    this.store.dispatch(GetDetailsAddressAction());
     this.store.select(selectSingleAccountAuth).subscribe(res =>{
       this.account = res;
     })
@@ -47,6 +47,6 @@ export class UpdateAddressComponent implements OnInit {
 
   updateAddress(){
   let updateAddress = this.formUpdateAddres.value;
-  this.store.dispatch(updateAccountAction({account : updateAddress}));
+  this.store.dispatch(UpdateAddressAction({account : updateAddress}));
   }
 }

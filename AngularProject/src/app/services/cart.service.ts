@@ -28,7 +28,7 @@ export class CartService {
     }
 
     addCartItem( item : Cart, id : number): Observable<Cart>{      
-        return this.http.post<Cart>(`${AppConstants.SERVICES_BASE_URL}/auth/addCartItem/${id}`, item);
+        return this.http.post<Cart>(`${AppConstants.SERVICES_BASE_URL}/auth/carts/${id}`, item);
     }
 
     getAllCartItems(): Observable<[]>{
@@ -36,7 +36,7 @@ export class CartService {
     }
 
     DeleteCartItem(id : number): Observable<Cart>{
-        return this.http.delete<Cart>(`${AppConstants.SERVICES_BASE_URL}/deleteItem/${id}`).pipe(tap(() =>{
+        return this.http.delete<Cart>(`${AppConstants.SERVICES_BASE_URL}/carts/${id}`).pipe(tap(() =>{
             this.refreshCart.next();
         })
       )

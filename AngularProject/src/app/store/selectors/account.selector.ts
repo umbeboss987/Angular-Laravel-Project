@@ -1,26 +1,26 @@
 import { ActivatedRoute } from '@angular/router';
 import {createSelector} from '@ngrx/store';
-import {AccountState, IAppState} from '../state/app.state';
+import {AddressState, IAppState} from '../state/app.state';
 import { RouterStateUrl } from './custom-serializer';
 import { selectCurrentRoute, selectRouteParam, selectRouteParams } from './router.selector';
 
 
 const selectAccount = (state: IAppState) => {
-    return state.accountState;
+    return state.addressState;
 };
 
 
 export const selectSingleAccountAuth = createSelector(
     selectAccount,
-    (state: AccountState) => {
-      return state.singleAccount;
+    (state: AddressState) => {
+      return state.singleAddress;
     }
 );
 
 
 export const selectAccountLoading  = createSelector(
   selectAccount,
-  (state: AccountState) => {
+  (state: AddressState) => {
     return state.loading;
   }
 );
@@ -29,7 +29,7 @@ export const selectAccountLoading  = createSelector(
 
 export const selectSingleAccount  = createSelector(
   selectAccount,
-  (state: AccountState) => {
-    return state.singleAccount;
+  (state: AddressState) => {
+    return state.singleAddress;
   }
 );
