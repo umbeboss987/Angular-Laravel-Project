@@ -8,19 +8,23 @@ import { Address } from '../model/Address';
 @Injectable({
   providedIn: 'root'
 })
-export class AccountService {
+export class AddressService {
 
   constructor(private http: HttpClient) {}
 
-  addAccount(account : Address) : Observable<Address> {
-    return this.http.post<Address>(`${AppConstants.SERVICES_BASE_URL}/account`, account);
+  addAddress(address : Address) : Observable<Address> {
+    return this.http.post<Address>(`${AppConstants.SERVICES_BASE_URL}/user/address`, address);
   }
 
-  getDetailsAccount (){
-    return this.http.get<Address>(`${AppConstants.SERVICES_BASE_URL}/getAccountDetails`)
+  getUserAddress (){
+    return this.http.get<Address[]>(`${AppConstants.SERVICES_BASE_URL}/user/address`)
   }
 
-  updateAccount(account : Address){
-    return this.http.put<Address>(`${AppConstants.SERVICES_BASE_URL}/updateAccount`, account)
+  updateAddress(address : Address){
+    return this.http.put<Address>(`${AppConstants.SERVICES_BASE_URL}user/address`, address)
+  }
+
+  getAddressById (address_id : number){
+    return this.http.get<Address>(`${AppConstants.SERVICES_BASE_URL}/user/address/${address_id}`)
   }
 }

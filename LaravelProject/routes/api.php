@@ -30,6 +30,7 @@ Route::prefix('products')->group(function () {
     Route::get('/{product_id}',[ProductController::class ,'getProductById'])->name('getProductById')->where(['product_id' => '[0-9]+']);
     Route::delete('/{product_id}', [ProductController::class, 'deleteProductById'])->name('deleteProductById');
     Route::post('', [ProductController::class, 'addProduct'])->name('addProduct');
+    //search?productType={};
     Route::get('/{products_type}',[ProductController::class, 'getProductsByType'])->name('getProductsByType')->where(['products_type' => '[a-z]+']);
     Route::post('/{product_id}',[ProductController::class, 'updateProduct'])->name('updateProduct');
 
@@ -37,24 +38,34 @@ Route::prefix('products')->group(function () {
 
 Route::prefix('users')->group(function () {
     Route::get('', [UserController::class, 'getAllUsers']);
-    Route::put('', ['middleware' => 'auth.role:user', UserController::class, 'updateUser']);
     Route::delete('/{user_id}', [UserController::class, 'deleteUser']);
 });
 
-Route::prefix('carts')->group(function () {
-    Route::delete('/{id}',[CartController::class, 'deleteItem']);
+Route::prefix('user')->group(function () {
+    Route::put('', [UserController::class, 'updateUser'])->name('updateUser');
+    Route::get('/carts',[CartController::class, 'getUserCart']);
+    Route::delete('carts/{id}',[CartController::class, 'deleteCart'])->name('deleteCart');
+    Route::post('carts',['middleware' => 'auth.role:user',CartController::class, 'addCartItem'])->name('addCartItem');
+    Route::put('/address/{address_id}',['middleware' => 'auth.role:user',AddressController::class, 'updateAddress']);
+    Route::post('/address', [AddressController::class, 'addAddress']);
+    Route::get('/address', [AddressController::class, 'getUserAddress'])->name('getUserAddress');
+    Route::get('/orders', [OrderController::class, 'orderList']);
+    Route::post('/orders',[OrderController::class, 'addOrder']);
+    Route::get ('/address/{address_id}', [AddressController::class, 'getAddressById'])->name('getAddressById');
+});
+
+
+Route::prefix('addresses')->group(function () {
+});
+
+Route::prefix('orders')->group(function () {
+    Route::get('', [OrderController::class, 'getOrders']);
 });
 
  Route::post('signUp', [UserController::class, 'signUp']);
- Route::get('cart',[CartController::class, 'getUserCart']);
  Route::get('sumPriceProducts',[CartController::class, 'sumPriceProducts']);
- Route::post('address', [AddressController::class, 'addAddress']);
- Route::get('getAccountDetails', [AddressController::class, 'getAccountDetails']);
- Route::get('getOrdersAccount', [OrderController::class, 'orderList']);
- Route::put('updateAccount',['middleware' => 'auth.role:user',AddressController::class, 'updateAccount']);
 Route::get('getphoto', [ProductController::class, 'getPhoto']);
 Route::post('login', ['middleware' => 'auth.role:admin,user', AuthController::class, 'login'])->name('login');
-Route::get('orders', [OrderController::class, 'getAllOrders']);
 
 
 Route::group([
@@ -63,8 +74,7 @@ Route::group([
     'prefix' => 'auth'
 
 ], function ($router) {
-    Route::post('addOrder',[OrderController::class, 'order']);
-    Route::post('carts/{product_id}',['middleware' => 'auth.role:user',CartController::class, 'addCartItem']);
+   
     Route::get('logout', 'AuthController@logout');
     Route::post('me', [AuthController::class, 'me'])->name('me');
     Route::get('getId', [AuthController::class, 'getAuthUser']);

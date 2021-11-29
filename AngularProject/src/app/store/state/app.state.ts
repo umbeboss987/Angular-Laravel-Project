@@ -104,10 +104,11 @@ export const initialAccountState :AddressState = {
     address: [],
     loading: false,
     singleAddress :{
+        id: 0,
         user_id: 0,
-        full_name: "",
+        name: "",
         address: '',
-        email: '',
+        surname: '',
         telephone_number: ''
     }
 }

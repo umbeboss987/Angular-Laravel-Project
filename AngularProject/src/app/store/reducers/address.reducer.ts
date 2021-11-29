@@ -1,36 +1,43 @@
 import {createReducer, on } from '@ngrx/store';
-import { CreateAddressActionSuccess, GetDetailsAddressAction, GetDetailsAddressActionSuccess, UpdateAddressActionSuccess } from '../actions/address.actions';
+import { CreateAddressActionSuccess, GetAddressAction, GetAddressActionSuccess, GetAddressByIdActionSuccess, UpdateAddressActionSuccess } from '../actions/address.actions';
 import { initialAccountState } from '../state/app.state';
 
 const _accountReducer = createReducer(
     initialAccountState,
     on(CreateAddressActionSuccess, (state, action :any) => {
-        let account = {...action.account};
+        let account = {...action.address};
         return {
             ...state,
-            singleAccount: account
+            singleAddress: account
         }
     }),
-    on(GetDetailsAddressAction, (state, action :any) => {
+    on(GetAddressAction, (state, action :any) => {
         return {
             ...state,
             loading: true
         }
     }),
-    on(GetDetailsAddressActionSuccess, (state, action :any) => {
+    on(GetAddressActionSuccess, (state, action :any) => {
         return {
             ...state,
             //account: action.account,
             loading: false,
-            singleAccount: action.account
+            address: action.address
         }
     }),
     on(UpdateAddressActionSuccess, (state, action :any) => {
         return {
             ...state,
-            account: action.account,
+            address: action.address,
             loading: false,
-            singleAccount: action.account
+            singleAddress: action.address
+        }
+    }),
+    on(GetAddressByIdActionSuccess, (state, action :any) => {
+        return {
+            ...state,
+            loading: false,
+            singleAddress: action.address
         }
     }),
 )

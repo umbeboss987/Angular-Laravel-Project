@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { IAppState } from 'src/app/store/state/app.state';
 import {select, Store} from '@ngrx/store';
-import { selectSingleAccountAuth } from 'src/app/store/selectors/account.selector';
+import { selectSingleAddress, selectSingleAddressAuth } from 'src/app/store/selectors/address.selector';
 import { Address } from 'src/app/model/Address';
-import { GetDetailsAddressAction, UpdateAddressAction } from 'src/app/store/actions/address.actions';
+import { GetAddressAction, GetAddressByIdAction, UpdateAddressAction } from 'src/app/store/actions/address.actions';
 import{Observable} from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-update-address',
@@ -16,25 +17,27 @@ export class UpdateAddressComponent implements OnInit {
 
   formUpdateAddres : FormGroup;
 
-  account? : Address;
+  address? : Address;
 
-  constructor(private fb : FormBuilder, private store: Store<IAppState>) { 
+  constructor(private fb : FormBuilder, private store: Store<IAppState>, private router: ActivatedRoute) { 
    this.formUpdateAddres = this.fb.group({
       address: '',
-      full_name: '',
+      name: '',
+      surname:'',
       telephone_number: '',
     })
-
-    this.store.dispatch(GetDetailsAddressAction());
-    this.store.select(selectSingleAccountAuth).subscribe(res =>{
-      this.account = res;
+      let id = this.router.snapshot.params['id']
+      this.store.dispatch(GetAddressByIdAction({id : id}));
+      this.store.select(selectSingleAddress).subscribe(res =>{
+      this.address = res;
     })
 
-    if(this.account){
+    if(this.address){
       this.formUpdateAddres.setValue({
-        full_name: this.account.full_name,
-        telephone_number: this.account.telephone_number,
-        address: this.account.address,
+        name: this.address.name,
+        surname: this.address.surname,
+        telephone_number: this.address.telephone_number,
+        address: this.address.address,
       })
     }
 
@@ -47,6 +50,6 @@ export class UpdateAddressComponent implements OnInit {
 
   updateAddress(){
   let updateAddress = this.formUpdateAddres.value;
-  this.store.dispatch(UpdateAddressAction({account : updateAddress}));
+  this.store.dispatch(UpdateAddressAction({address : updateAddress}));
   }
 }

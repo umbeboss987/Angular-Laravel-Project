@@ -27,16 +27,16 @@ export class CartService {
         return this.refreshCart;
     }
 
-    addCartItem( item : Cart, id : number): Observable<Cart>{      
-        return this.http.post<Cart>(`${AppConstants.SERVICES_BASE_URL}/auth/carts/${id}`, item);
+    addCartItem( item : Cart): Observable<Cart>{ 
+        return this.http.post<Cart>(`${AppConstants.SERVICES_BASE_URL}/user/carts`, item);
     }
 
     getAllCartItems(): Observable<[]>{
-        return this.http.get<[]>(`${AppConstants.SERVICES_BASE_URL}/cart`);
+        return this.http.get<[]>(`${AppConstants.SERVICES_BASE_URL}/user/carts`);
     }
 
-    DeleteCartItem(id : number): Observable<Cart>{
-        return this.http.delete<Cart>(`${AppConstants.SERVICES_BASE_URL}/carts/${id}`).pipe(tap(() =>{
+    deleteCartItem(id : number): Observable<Cart>{
+        return this.http.delete<Cart>(`${AppConstants.SERVICES_BASE_URL}/user/carts/${id}`).pipe(tap(() =>{
             this.refreshCart.next();
         })
       )

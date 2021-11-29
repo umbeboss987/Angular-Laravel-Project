@@ -4,23 +4,23 @@ import { Action } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import {map , mergeMap} from 'rxjs/operators';
-import { AccountService } from 'src/app/services/address.service';
-import { CreateAddressAction, CreateAddressActionSuccess, GetDetailsAddressAction, GetDetailsAddressActionSuccess, UpdateAddressAction, UpdateAddressActionSuccess } from '../actions/address.actions';
+import { AddressService } from 'src/app/services/address.service';
+import { CreateAddressAction, CreateAddressActionSuccess, GetAddressAction, GetAddressActionSuccess, GetAddressByIdAction, GetAddressByIdActionSuccess, UpdateAddressAction, UpdateAddressActionSuccess } from '../actions/address.actions';
 
 @Injectable ()
 
 
 export class AccountEffects{
 
-    constructor(private actions$ : Actions, private account_service : AccountService){}
+    constructor(private actions$ : Actions, private account_service : AddressService){}
 
-    AddAddress$: Observable<Action> = createEffect(() => {
+    addAddress$: Observable<Action> = createEffect(() => {
         return this.actions$.pipe(
             ofType(CreateAddressAction),
             mergeMap((action) => {
-                return this.account_service.addAccount(action.account).pipe(
+                return this.account_service.addAddress(action.address).pipe(
                     map((data) => {
-                        return CreateAddressActionSuccess({ account: action.account});
+                        return CreateAddressActionSuccess({ address: action.address});
                     })
                 );
             })
@@ -29,11 +29,11 @@ export class AccountEffects{
 
     getDetailsAddress$: Observable<Action> = createEffect(() => {
         return this.actions$.pipe(
-            ofType(GetDetailsAddressAction),
+            ofType(GetAddressAction),
             mergeMap(() => {
-                return this.account_service.getDetailsAccount().pipe(
+                return this.account_service.getUserAddress().pipe(
                     map((data) => {
-                        return GetDetailsAddressActionSuccess({ account: data});
+                        return GetAddressActionSuccess({ address: data});
                     })
                 );
             })
@@ -44,13 +44,27 @@ export class AccountEffects{
         return this.actions$.pipe(
             ofType(UpdateAddressAction),
             mergeMap((data) => {
-                console.log(data.account);
-                return this.account_service.updateAccount(data.account).pipe(
+                return this.account_service.updateAddress(data.address).pipe(
                     map((data) => {
-                        return UpdateAddressActionSuccess({ account: data});
+                        return UpdateAddressActionSuccess({ address: data});
                     })
                 );
             })
         );
     });
+
+    getAddressById$: Observable<Action> = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(GetAddressByIdAction),
+            mergeMap((data) => {
+                return this.account_service.getAddressById(data.id).pipe(
+                    map((data) => {
+                        return GetAddressByIdActionSuccess({ address: data});
+                    })
+                );
+            })
+        );
+    });
+
+
 }

@@ -11,7 +11,7 @@ import {
   ROUTER_NAVIGATION,
 } from '@ngrx/router-store';
 import { Router } from '@angular/router';
-import { AddOrderAction, AddOrderActionFail, AddOrderActionSuccess, GetAllOrders, GetAllOrdersSuccess, GetOrdersList, GetOrdersListFail, GetOrdersListSuccess,  } from 'src/app/store/actions/order.actions';
+import { AddOrderAction, AddOrderActionFail, AddOrderActionSuccess, GetOrders, GetOrdersSuccess, GetOrdersList, GetOrdersListFail, GetOrdersListSuccess,  } from 'src/app/store/actions/order.actions';
 
 @Injectable ()
 
@@ -63,11 +63,11 @@ export class OrderEffects{
 
   getAllOrders$: Observable<Action> = createEffect(() => {
     return this.actions$.pipe(
-      ofType(GetAllOrders),
+      ofType(GetOrders),
       switchMap(() => {
         return this.order_service.getAllOrders().pipe(
           map((data) => {
-            return GetAllOrdersSuccess({orderAccounts: data});
+            return GetOrdersSuccess({orderAccounts: data});
           }), catchError(errorResp => {
             return of(GetOrdersListFail({message : errorResp.error.message})).pipe(
               tap(() =>{

@@ -4,7 +4,7 @@ import { IAppState } from 'src/app/store/state/app.state';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { selectCartList, selectCartTotal} from 'src/app/store/selectors/cart.selector';
 import { Cart } from 'src/app/model/cart';
-import { DeleteCartItem, GetCartItemAction, GetCartTotalAction } from 'src/app/store/actions/cart.actions';
+import { DeleteCartItemAction, GetCartItemAction, GetCartTotalAction } from 'src/app/store/actions/cart.actions';
 import { CartWithProducts } from 'src/app/model/CartWithProducts';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
@@ -22,13 +22,15 @@ export class CartComponent implements OnInit {
   subTotals?: Array<string>;
   subscription? : Subscription;
 
-  constructor(private store: Store<IAppState>, private cart_service: CartService) {
+  constructor(private store: Store<IAppState>, private router: Router) {
    this.store.select(selectCartTotal).subscribe((res) =>{
     this.total = res;
    });
    this.store.dispatch(GetCartItemAction());
    this.getCartList();
   }
+
+  
 
   ngOnInit(): void {  
   }
@@ -40,7 +42,7 @@ export class CartComponent implements OnInit {
     });
   }
   deleteItem(id : number){
-    this.store.dispatch(DeleteCartItem({id : id }));
+    this.store.dispatch(DeleteCartItemAction({id : id }));
   }
 
  

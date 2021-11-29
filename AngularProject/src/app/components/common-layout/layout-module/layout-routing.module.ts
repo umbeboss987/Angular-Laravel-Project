@@ -9,6 +9,7 @@ import { UpdateProfileComponent } from '../../private/user/update-profile/update
 import { SignInComponent } from '../../sign-in/sign-in.component';
 import{AuthGuardService} from '../../../auth/auth-guard.service';
 import { OrderListComponent } from '../../private/user/order-list/order-list.component';
+import { UserAddressComponent } from '../../private/user/user-address/user-address.component';
 
 
 const routes: Routes = [
@@ -21,8 +22,9 @@ const routes: Routes = [
   {path: 'checkOut', component: OrderComponent, canActivate :[AuthGuardService]},
   {path: 'account', component: ProfileComponent, canActivate :[AuthGuardService]},
   { path: 'account/updateProfile', component: UpdateProfileComponent, canActivate :[AuthGuardService] },
-  { path: 'account/updateAddress', component: UpdateAddressComponent, canActivate :[AuthGuardService] },
+  { path: 'account/address/:id', component: UpdateAddressComponent, canActivate :[AuthGuardService] },
   { path: 'account/orders', component: OrderListComponent, canActivate :[AuthGuardService] },
+  { path: 'account/address', component: UserAddressComponent, canActivate :[AuthGuardService] },
 ];
 
 @NgModule({

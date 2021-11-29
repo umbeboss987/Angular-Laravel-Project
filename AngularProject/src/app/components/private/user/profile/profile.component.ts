@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { IAppState } from 'src/app/store/state/app.state';
 import {select, Store} from '@ngrx/store';
-import { CreateAddressAction, GetDetailsAddressAction } from 'src/app/store/actions/address.actions';
+import { CreateAddressAction, GetAddressAction } from 'src/app/store/actions/address.actions';
 import { Address } from 'src/app/model/Address';
 import { _selectOrderAccount, _selectOrderLoading } from 'src/app/store/selectors/order.selector';
 import { GetUserAction } from 'src/app/store/actions/user.actions';
 import { User } from 'src/app/model/user';
-import { selectAccountLoading, selectSingleAccountAuth } from 'src/app/store/selectors/account.selector';
+import { selectAddressLoading, selectSingleAddressAuth } from 'src/app/store/selectors/address.selector';
 import { selectSingleUser, selectUserLoading } from 'src/app/store/selectors/user.selector';
 import {Observable} from 'rxjs';
 
@@ -19,47 +19,38 @@ import {Observable} from 'rxjs';
 })
 export class ProfileComponent implements OnInit {
 
-  formAccount : FormGroup;
 
-  account : Observable<Address>;
+  address : Observable<Address>;
 
   user: Observable<User>;
 
   loadingUser: Observable<boolean>;
 
-  loadingAccount: Observable<boolean>;
+  loadingAddress: Observable<boolean>;
 
 
-  constructor(private fb : FormBuilder, private store: Store<IAppState>) { 
-   this.formAccount = this.fb.group({
-      full_name : "",
-      address: "",
-      telephone_number: "",      
-    })
+  constructor( private store: Store<IAppState>) { 
+ 
    
     this.getUser();
-    this.getDetailsAccount();
+    this.getAddress();
 
     this.user = this.store.select(selectSingleUser);
 
     this.loadingUser= this.store.select(selectUserLoading);
     
-    this.loadingAccount =  this.store.select(selectAccountLoading);
+    this.loadingAddress =  this.store.select(selectAddressLoading);
    
-    this.account = this.store.select(selectSingleAccountAuth);
+    this.address = this.store.select(selectSingleAddressAuth);
   }
 
   ngOnInit(): void {
     
   }
   
-  createAccount (){
-    let account = this.formAccount.value;
-    this.store.dispatch(CreateAddressAction({account : account}));
-  }
 
-  getDetailsAccount(){
-    this.store.dispatch(GetDetailsAddressAction());
+  getAddress(){
+    this.store.dispatch(GetAddressAction());
   }
 
 

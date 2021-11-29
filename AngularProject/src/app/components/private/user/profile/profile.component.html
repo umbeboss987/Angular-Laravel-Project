@@ -7,11 +7,14 @@
       <li class="nav-item">
         <a class="nav-link active" [routerLink]="['/account/orders']">Orders </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link active" [routerLink]="['/account/address']">Address </a>
+      </li>
     </ul>
   </div>
 </div>
   <!-- =====  BANNER STRAT  ===== -->
-  <div class="text-center" *ngIf="(loadingUser | async ) === true || (loadingAccount | async) === true">
+  <div class="text-center" *ngIf="(loadingUser | async ) === true || (loadingAddress | async) === true">
     <div class="lds-roller">
       <div></div>
       <div></div>
@@ -24,53 +27,15 @@
     </div>
   </div>
 
-<div class="text-center all"  *ngIf="(loadingUser | async ) === false || (loadingAccount | async) === false">
+<div class="text-center all"  *ngIf="(loadingUser | async ) === false || (loadingAddress | async) === false">
   <h2 class=" account">Information</h2>
     <div class="row" >
       <div class="col-md-12">
         <div class="tab-content ">
-          <div class="tab-pane active" id="r1" *ngIf="(account | async) as account">
+          <div class="tab-pane active" id="r1" >
             <div class="heading-part">
             </div>
-            <div class="row" *ngIf="(account | json) != ({} | json)">
-              <div class="col-sm-6" >
-                <div class="cart-total-table address-box commun-table">
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>Shipping Address</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <ul>
-                              <li class="inner-heading">
-                                <b>Name</b>
-                              </li>
-                              <li>
-                                <p>{{account.full_name}}</p>
-                              </li>
-                              <li>
-                                <b>Telephone</b>
-                                <p>{{account.telephone_number}}</p>
-                              </li>
-                              <li>
-                                <b>Address</b>
-                                <p>{{account.address}}</p>
-                              </li>
-                              <li>
-                                <button class="btn btn-primary bottoni" [routerLink]="['/account/updateAddress']">Update Address</button>
-                              </li>
-                            </ul>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
+            <div class="row" >
               <div class="col-sm-6">
                 <div class="cart-total-table address-box commun-table">
                   <div class="table-responsive">
@@ -109,110 +74,7 @@
               </div>
             </div>
           </div>    
-          <div class="row" *ngIf="(account | async) as account">
-          <div class="" *ngIf="(account | json) === ({} | json)">
-            <div class="col-sm-6" >
-              <div class="cart-total-table address-box commun-table">
-                <div class="table-responsive">
-                  <table class="table account-table">
-                    <thead>
-                      <tr>
-                        <th>
-                          <div class="text-center">
-                            <h5 class=""><b class="">Shipping Address</b></h5>
-                           
-                          </div>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <ul>
-                            <li class="inner-heading">
-                                  <div class="text-center">
-                                    <div class="section">
-                                      <input class="modal-btn" type="checkbox" id="modal-btn" name="modal-btn"/>
-                                      <label *ngIf="(loadingAccount | async ) === false" for="modal-btn">Add a Shipping Address <i class="uil uil-expand-arrows"></i></label> 		
-                                      <div class="modal">		
-                                          <div class="modal-wrap">
-                                            <h2 class="title">Insert Address</h2>
-                                        <div class="text-center">	
-                                          <form action="" class="" [formGroup]="formAccount" class="main-form full" method="POST" (ngSubmit)="createAccount()">
-                                            <label for="" class="input"> Name
-                                              <input class="modal-input" type="text" placeholder="Name"  formControlName= "full_name" >
-                                            </label>
-                                            <label for="" class="input"> Telephone
-                                              <input class="modal-input" type="text" placeholder="Telephone number"  formControlName= "telephone_number">
-                                            </label>
-                                            <label for="" class="input"> Address
-                                              <input class="modal-input" type="text" placeholder="Address" formControlName= "address" >
-                                            </label>
-                                            <br>
-                                            <label for="" class="">
-                                            <button class="btn">Subscribe</button>
-                                            </label>
-                                          </form>
-                                        </div>
-                                          </div>			          		
-                                      </div>	
-                                      <a href="https://front.codes/" class="logo" target="_blank"></a>	
-                                  </div>
-                                </div>
-                            </li>
-                            <li>
-                              <p></p>
-                            </li>
-                          </ul>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="cart-total-table address-box commun-table">
-                <div class="table-responsive">
-                  <table class="table account-table" *ngIf="(user | async) as user">
-                    <thead>
-                      <tr>
-                        <th> 
-                        <div class="text-center">
-                          <h5 class=""><b class="">Account</b></h5>
-                        </div>
-                      </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <ul>
-                            <li class="inner-heading">
-                              <h5 class=""><b class="">Username</b></h5>
-                            </li>
-                            <li>
-                              <p>{{user.name}}</p>
-                            </li>
-                            <li>
-                              <h5 class=""><b class="">Email</b></h5>
-                              <p>{{user.email}}</p>
-                            </li>   
-                            <li class="button-update">
-                              <button class="btn btn-primary bottoni" [routerLink]="['/account/updateProfile']">update profile</button>
-                            </li>                 
-                          </ul>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-            </div>
-          </div>
-          </div>    
+         
         </div>
       </div>
     </div>

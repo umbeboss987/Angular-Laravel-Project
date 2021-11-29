@@ -27,10 +27,10 @@ class ProductController extends Controller
         try {
             if (!Product::where('id', $product_id)->exists()) {
                 return response()->json(['message' => 'product not found'], 404);
-            } else {
-                $product = Product::where('id', $product_id)->first();
-                return response($product, 200);
             }
+
+            $product = Product::where('id', $product_id)->first();
+            return response($product, 200);
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
@@ -38,7 +38,11 @@ class ProductController extends Controller
 
     function getProductsByType($products_type)
     {
+       
         try {
+            if ($products_type != 'phone' || $products_type != 'computer' || $products_type != 'tablet'){
+
+            }
             $data = Product::where('type', $products_type)->get();
             if (empty($data) || is_null($data)) {
                 return response()->json(['message' => 'data not found'], 404);

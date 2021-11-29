@@ -14,11 +14,11 @@ export class OrderService {
   constructor(private http: HttpClient) { }
 
   addOrder(order: Order): Observable<Order>{
-    return this.http.post<Order>(`${AppConstants.SERVICES_BASE_URL}/auth/addOrder`,order);
+    return this.http.post<Order>(`${AppConstants.SERVICES_BASE_URL}/user/orders`,order);
   }
 
   getOrdersList(): Observable<any[]>{
-    return this.http.get<any[]>(`${AppConstants.SERVICES_BASE_URL}/getOrdersAccount`);
+    return this.http.get<any[]>(`${AppConstants.SERVICES_BASE_URL}/user/orders`);
   }
 
   getAllOrders (): Observable<OrderAllAccounts[]>{

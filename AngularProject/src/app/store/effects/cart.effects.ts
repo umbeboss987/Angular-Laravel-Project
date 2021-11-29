@@ -17,9 +17,9 @@ import {AddCartItemAction,
   AddCartItemActionFail, 
   AddCartItemActionSuccess, 
   CartActionsType, 
-  DeleteCartItem, 
-  DeleteCartItemFail, 
-  DeleteCartItemSuccess, 
+  DeleteCartItemAction, 
+  DeleteCartItemActionFail, 
+  DeleteCartItemActionSuccess, 
   GetCartItemAction, 
   GetCartItemActionFail, 
   GetCartItemActionSuccess,  
@@ -34,20 +34,19 @@ export class CartEffects {
     constructor(private actions$ : Actions, private cart_service: CartService,  private toastr: ToastrService,private router: Router){}
     
    
-   AddCartItem$ = createEffect(() => {
+   addCartItem$ = createEffect(() => {
      return this.actions$.pipe(
        ofType(AddCartItemAction),
        switchMap((action) => {
-         return this.cart_service.addCartItem(action.item, action.id).pipe(
+         return this.cart_service.addCartItem(action.item).pipe(
            tap(action=>{
              this.toastr.info("item added to your cart")
              this.router.navigate(['/cart']);
            }),
-           map((data) => AddCartItemActionSuccess({ item: data })),           
+           map((data) => AddCartItemActionSuccess({ item: action.item })),           
            catchError((err) => { 
              return of(AddCartItemActionFail({item : err.error.message})).pipe(
               tap(action =>{
-                this.router.navigate(['/signIn']);
                 this.toastr.error(err.error.message);
               })
 
@@ -58,7 +57,7 @@ export class CartEffects {
      )
    });
 
-  GetCartItem$: Observable<Action> = createEffect(() => {
+  getCartItem$: Observable<Action> = createEffect(() => {
     return this.actions$.pipe(
       ofType(GetCartItemAction),
       switchMap(() => {
@@ -73,25 +72,29 @@ export class CartEffects {
     );
   });
 
-  DeleteCartItem$: Observable<Action> = createEffect(() => {
+  deleteCartItem$: Observable<Action> = createEffect(() => {
     return this.actions$.pipe(
-      ofType(DeleteCartItem),
+      ofType(DeleteCartItemAction),
       switchMap((action) => {
-        return this.cart_service.DeleteCartItem(action.id).pipe(
+        return this.cart_service.deleteCartItem(action.id).pipe(
           tap(action =>{
             this.toastr.info('item deleted');
           }),
           map((data) => {
-            return DeleteCartItemSuccess({ id: action.id});
+            return DeleteCartItemActionSuccess({ id: action.id});
           }), catchError(errorResp =>{
-            return of(DeleteCartItemFail({message: errorResp.error.message}))
+            return of(DeleteCartItemActionFail({message: errorResp.error.message})).pipe(
+              tap(action =>{
+                this.toastr.error(errorResp.error.message);
+              })
+            )
           })
         );
       })
     );
   });
 
-  GetSumAllProductsCart$: Observable<Action> = createEffect(() => {
+  getSumAllProductsCart$: Observable<Action> = createEffect(() => {
     return this.actions$.pipe(
       ofType(GetCartTotalAction),
       switchMap((action) => {

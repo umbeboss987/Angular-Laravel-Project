@@ -1,4 +1,4 @@
-import {AddCartItemActionSuccess, DeleteCartItemSuccess, GetCartItemActionSuccess, GetCartTotalActionSuccess} from '../actions/cart.actions';
+import {AddCartItemActionSuccess, DeleteCartItemActionSuccess, GetCartItemActionSuccess, GetCartTotalActionSuccess} from '../actions/cart.actions';
 import { initialCartState,  } from '../state/app.state';
 import {createReducer, on } from '@ngrx/store';
 import { CartWithProducts } from 'src/app/model/CartWithProducts';
@@ -8,11 +8,9 @@ import { CartWithProducts } from 'src/app/model/CartWithProducts';
 const _cartReducer = createReducer(
     initialCartState,
     on(AddCartItemActionSuccess, (state : any, action :any) => {
-        let newtotal = action.item
         return {
             ...state,
             cart: action.products,
-            total: (state.total + newtotal.data.sub_total),
         }
     }),
     on(GetCartItemActionSuccess, (state : any, action :any) => {
@@ -29,7 +27,7 @@ const _cartReducer = createReducer(
         }
     }),
 
-    on(DeleteCartItemSuccess, (state : any, {id} ) => {
+    on(DeleteCartItemActionSuccess, (state : any, {id} ) => {
         let items = state.cartWithProducts.filter((single_item : CartWithProducts) => {
             return single_item.id !== id
         });

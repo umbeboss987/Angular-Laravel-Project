@@ -13,7 +13,7 @@ import {
   routerNavigationAction,
   ROUTER_NAVIGATION,
 } from '@ngrx/router-store';
-import { DeleteUserAction, DeleteUserActionSuccess, GetAllUserAction, GetAllUserActionFail, GetAllUserActionSuccess, GetUserAction, GetUserActionSuccess, UpdateUserAction, 
+import { DeleteUserAction, DeleteUserActionSuccess, GetAllUserAction, GetAllUserActionFail, GetAllUserActionSuccess, GetUserAction, GetUserActionFail, GetUserActionSuccess, UpdateUserAction, 
          UpdateUserActionSuccess, 
          UserLoginAction, 
          UserLoginActionFail, 
@@ -102,8 +102,8 @@ export class UserEffects {
             map((user :any) => {
               return GetUserActionSuccess({ user: user });
             }),
-            catchError((err) => {
-              return of(GetUserActionFail())
+            catchError((errorResp) => {
+              return of(GetUserActionFail({message : errorResp.error.message}))
             })
           );
       })
@@ -146,6 +146,3 @@ export class UserEffects {
   });
 }
 
-function GetUserActionFail(): any {
-  throw new Error("Function not implemented.");
-}

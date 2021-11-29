@@ -10,27 +10,26 @@ export enum  UserActionsType {
 
 }
 
-export const GetUserAction = createAction('GET_USER');
-export const GetUserActionSuccess = createAction('GET_USER_SUCCESS', props<{user: User}>());
-export const GetUserActionfAIL = createAction('GET_USER_FAIL');
+export const GetUserAction = createAction('[USER] Get user');
+export const GetUserActionSuccess = createAction('[USER] Get user success', props<{user: User}>());
+export const GetUserActionFail = createAction('[USER] Get user fail', props<{message: string}>());
 
+export const UserSignUpAction = createAction('[USER] Sign up', props<{user: User}>());
+export const UserSignUpActionSuccess = createAction('[USER] Sign up success', props<{responseUser: [],user:User}>())
+export const UserSignUpActionFail = createAction('[USER] Sign up fail', props<{responseUser: []}>())
 
-export const UserSignUpAction = createAction('SIGN_UP_ACTION', props<{user: User}>());
-export const UserSignUpActionSuccess = createAction('SIGN_UP_ACTION_SUCCESS', props<{responseUser: [],user:User}>())
-export const UserSignUpActionFail = createAction('SIGN_UP_ACTION_FAIL', props<{responseUser: []}>())
+export const UserLoginAction = createAction('[USER] Login', props<{user: User}>());
+export const UserLoginActionSuccess = createAction('[USER] Login success', props<{responseUser: [],  user:User}>());
+export const UserLoginActionFail = createAction('[USER] Login fail', props<{responseUser: []}>());
 
+export const UpdateUserAction = createAction('[USER] Update user', props<{user: User}>());
+export const UpdateUserActionSuccess = createAction('[USER] Update user success', props<{user: User}>());
+export const UpdateUserActionFail = createAction('[USER] Update user fail', props<{message: string}>());
 
-export const UserLoginAction = createAction('LOGIN_ACTION', props<{user: User}>());
-export const UserLoginActionSuccess = createAction('LOGIN_ACTION_SUCCESS', props<{responseUser: [],  user:User}>());
-export const UserLoginActionFail = createAction('LOGIN_ACTION_FAIL', props<{responseUser: []}>());
+export const GetAllUserAction = createAction('[USER] Get users');
+export const GetAllUserActionSuccess = createAction('[USER] Get user success', props<{ user:User[]}>());
+export const GetAllUserActionFail = createAction('[USER] Get users fail', props<{message: string}>());
 
-export const UpdateUserAction = createAction('UPDATE_USER_ACTION', props<{user: User}>());
-export const UpdateUserActionSuccess = createAction('UPDATE_USER_ACTION_SUCCESS', props<{user: User}>());
-
-export const GetAllUserAction = createAction('GET_ALL_USERS_ACTION');
-export const GetAllUserActionSuccess = createAction('GET_ALL_USERS_ACTION_SUCCESS', props<{ user:User[]}>());
-export const GetAllUserActionFail = createAction('GET_ALL_USERS_ACTION_FAIL', props<{message: string}>());
-
-export const DeleteUserAction = createAction('DELETE_USER_ACTION', props<{user_id: number}>());
-export const DeleteUserActionSuccess = createAction('DELETE_USER_ACTION_SUCCESS', props<{ id: number}>());
-export const DeleteUserActionFail = createAction('DELETE_USER_ACTION_FAIL', props<{message: string}>());
+export const DeleteUserAction = createAction('[USER] Delete user', props<{user_id: number}>());
+export const DeleteUserActionSuccess = createAction('[USER] Delete user success', props<{ id: number}>());
+export const DeleteUserActionFail = createAction('[USER] Delete user fail', props<{message: string}>());

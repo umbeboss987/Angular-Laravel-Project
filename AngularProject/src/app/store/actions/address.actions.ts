@@ -3,17 +3,22 @@ import {Address} from 'src/app/model/Address';
 
 
 
-export const CreateAddressAction = createAction('CREATE_ACCOUNT_ACTION', props<{account: Address}>());
-export const CreateAddressActionSuccess = createAction('CREATE_ACCOUNT_ACTION_SUCCESS', props<{account: Address}>());
-export const CreateAddressActionFail = createAction('CREATE_ACCOUNT_ACTION', props<{message: string}>());
+export const CreateAddressAction = createAction('[ADDRESS] Create Address', props<{address: Address}>());
+export const CreateAddressActionSuccess = createAction('[ADDRESS] Create Address success', props<{address: Address}>());
+export const CreateAddressActionFail = createAction('[ADDRESS] Create Address fail', props<{message: string}>());
 
 
-export const GetDetailsAddressAction = createAction('GET_DETAILS_ACCOUNT_ACTION');
-export const GetDetailsAddressActionSuccess = createAction('GET_DETAILS_ACCOUNT_ACTION_SUCCESS', props<{account: Address}>());
-export const GetDetailsAddressActionFail = createAction('GET_DETAILS_ACCOUNT_ACTION');
+export const GetAddressAction = createAction('[ADDRESS] Get address ');
+export const GetAddressActionSuccess = createAction('[ADDRESS] Get address success', props<{address: Address[]}>());
+export const GetAddressActionFail = createAction('[ADDRESS] Get address fail');
 
-export const UpdateAddressAction = createAction('UPDATE_ACCOUNT', props<{account: Address}>());
-export const UpdateAddressActionSuccess = createAction('UPDATE_ACCOUNT_SUCCESS', props<{account: Address}>());
-export const UpdateAddressActionFail = createAction('UPDATE_ACCOUNT_FAIL', props<{message: string}>());
+export const GetAddressByIdAction = createAction('[ADDRESS] Get address by id ' , props<{id: number}>());
+export const GetAddressByIdActionSuccess = createAction('[ADDRESS] Get address by id success', props<{address: Address}>());
+export const GetAddressByIdActionFail = createAction('[ADDRESS] Get address by id fail', props<{message: string}>());
+
+export const UpdateAddressAction = createAction('[ADDRESS] Update address', props<{address: Address}>());
+export const UpdateAddressActionSuccess = createAction('[ADDRESS] Update address success', props<{address: Address}>());
+export const UpdateAddressActionFail = createAction('[ADDRESS] Update address fail', props<{message: string}>());
 
 
+ 

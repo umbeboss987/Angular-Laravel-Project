@@ -17,6 +17,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { LayoutComponent } from '../layout/layout.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { UserAddressComponent } from '../../private/user/user-address/user-address.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     UpdateProfileComponent,
     CartComponent,
     FooterComponent,
-    NavbarComponent 
+    NavbarComponent,
+    UserAddressComponent
   ],
   imports: [
     CommonModule,

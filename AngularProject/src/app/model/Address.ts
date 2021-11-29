@@ -1,7 +1,8 @@
 export interface Address{
+    id: number;
     user_id?: number;
     address?: string;
-    email?: string;
-    full_name?: string;
+    name: string;
+    surname: string;
     telephone_number?: string;
 }

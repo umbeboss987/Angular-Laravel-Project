@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/model/Product';
-import { ProductsService } from 'src/app/services/product.service';
 import {select, Store} from '@ngrx/store';
-import { selectProductList, selectProductLoading, selectSingleProduct} from 'src/app/store/selectors/product.selector';
-import { GetProductsAction, GetSingleProductAction } from 'src/app/store/actions/product.actions';
+import {  selectProductLoading, selectSingleProduct} from 'src/app/store/selectors/product.selector';
+import {  GetSingleProductAction } from 'src/app/store/actions/product.actions';
 import { IAppState } from 'src/app/store/state/app.state';
 import { Observable, Subscription } from 'rxjs';
 import { FormBuilder , Validators, FormGroup} from '@angular/forms';
@@ -17,36 +16,29 @@ import { Cart } from 'src/app/model/cart';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  product$? : Product;
+  product$? : Observable<Product>;
   formGroup : FormGroup;
-  subscription?: Subscription;
-  loading$? : Boolean
+  loading$? : Observable<Boolean>;
 
-  constructor( private fb: FormBuilder, private store : Store<IAppState> , private router: ActivatedRoute,private router_navigate: Router) { 
+  constructor( private fb: FormBuilder, private store : Store<IAppState> , private router: ActivatedRoute) { 
      //form group insert product in the cart
     this.formGroup = this.fb.group({
-      insertProduct: "",
-      quantity: ""
-    })
-
-     this.store.select<Boolean>(selectProductLoading).subscribe((res)=>{
-       this.loading$ = res;
-     });
+      product_id : null,
+      quantity: [" ",[Validators.required,Validators.min(1), Validators.max(5)]]    
+    });
 
     this.getSingleProduct();
-    this.subscription = this.store.select(selectSingleProduct).subscribe(res => {
-      this.product$ = res;
-    });
+    this.loading$ = this.store.select<Boolean>(selectProductLoading)    
+    this.product$ = this.store.select<Product>(selectSingleProduct);
   }
 
   ngOnInit(): void {
   }
 
-  addCartItem() {
+  addCartItem(product_id: number) {
+    this.formGroup.patchValue({product_id : product_id});
     let CartItem: Cart = this.formGroup?.value
-    let id = this.router.snapshot.params['id'];
-    console.log(id);
-    this.store.dispatch(AddCartItemAction({ item: CartItem, id: id }));
+    this.store.dispatch(AddCartItemAction({ item: CartItem}));
   }
 
 

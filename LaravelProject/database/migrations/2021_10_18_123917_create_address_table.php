@@ -17,8 +17,9 @@ class CreateAddressTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('address');
-            $table->string('full_name');
-            $table->string('telephone_number');
+            $table->string('name');
+            $table->string('surname');
+            $table->integer('telephone_number');
             $table->timestamps();
         });
     }
