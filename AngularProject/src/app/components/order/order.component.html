@@ -54,24 +54,29 @@
         <div class="text-center" style="margin-bottom: 40px;">
           <h3 class="">Billing Details</h3>
         </div>
-        <div class="" *ngIf="addresses != undefined">
-          <div class="radio" *ngIf="addresses.length > 0">
-            <label>
-              <input (click)="useAddres()" type="radio" checked="checked" value="existing" name="payment_address" data-id="payment-existing"> I want to use an existing address</label>
-          </div>
-      </div>
-        <div id="payment-existing" *ngFor="let address of addresses">
-          <select class="form-control" name="address_id">
-            <option selected="selected" value="4">{{address.address}}</option>
-          </select>
-        </div>
-        <div class="" *ngIf="addresses != undefined">
-          <div class="radio" style="margin-top:40px;"  *ngIf="addresses.length > 0">
-            <label>
+        <div class="">
+            <div class="" [hidden]="hideCheckExistingAddress">
+              <div class="radio" >
+                <label>
+                  <input (click)="useAddres()" type="radio" checked="checked" value="existing" name="payment_address" data-id="payment-existing"> I want to use an existing address</label>
+              </div>
+            </div>
+            <div id="payment-existing" [hidden]="hideExistingAddress">
+              <select class="form-control" name="address_id" >
+                <option selected="selected" value="4" *ngFor="let address of addresses">{{address.address}}, {{address.name}}, {{address.surname}}, {{address.telephone_number}}</option>
+              </select>
+            </div>
+       </div>
+        <div class="">
+          <div class="radio" style="margin-top:40px;" [hidden]="hideCheckNewAddress">
+            <label [hidden]="hideCheckNewAddress">
               <input type="radio" (click)="displayNewAddress()" value="new" name="payment_address" data-id="payment-new"> I want to use a new address</label>
           </div>
         </div>
-          <form [formGroup]="OrderForm" action="" method="post" (ngSubmit)="addAddress()" *ngIf="this.displayNewAddressForm == true">
+        <div class="text-center" [hidden]="hiddenButton">
+          <button (click)="addOrder()" class="btn btn-yellow" >Order</button>
+        </div>
+          <form [formGroup]="formAddress" action="" method="post" (ngSubmit)="addAddress()" [hidden]="hideNewAddressForm">
             <div class="container-fluid">
               <div class="row">
                 <div class="col-lg-6">
@@ -91,7 +96,7 @@
                 <div class="col-lg-6">
                   <div class="product">
                     <label for="">Telephone</label>
-                    <input type="text" class="input" formControlName="telephone">
+                    <input type="text" class="input" formControlName="telephone_number">
                   </div>
                 </div>
                 <div class="col-lg-6">

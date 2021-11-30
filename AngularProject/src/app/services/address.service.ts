@@ -20,8 +20,8 @@ export class AddressService {
     return this.http.get<Address[]>(`${AppConstants.SERVICES_BASE_URL}/user/address`)
   }
 
-  updateAddress(address : Address){
-    return this.http.put<Address>(`${AppConstants.SERVICES_BASE_URL}user/address`, address)
+  updateAddress(address : Address, address_id : number){
+    return this.http.put<Address>(`${AppConstants.SERVICES_BASE_URL}/user/address/${address_id}`, address)
   }
 
   getAddressById (address_id : number){

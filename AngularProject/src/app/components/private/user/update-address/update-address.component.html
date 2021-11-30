@@ -12,10 +12,14 @@
         <div class="col-md-4 col-md-offset-4" *ngIf="address != undefined">
             <div>
                 <h3 class="mt_30 mb_10 sub_title">Change Address</h3>
-                <form class="main-form full " [formGroup]="formUpdateAddres" method="PUT">
+                <form class="main-form full " [formGroup]="formUpdateAddres" method="Post">
                     <div class="input-box mb_20">
                         <label for="old-pass"> Name</label>
                         <input type="text" required="" id="old-pass" formControlName="name">
+                    </div>
+                    <div class="input-box mb_20">
+                        <label for="login-pass">Surname</label>
+                        <input type="text" required="" formControlName="surname">
                     </div>
                     <div class="input-box mb_20">
                         <label for="login-pass">Telephone</label>

@@ -1,5 +1,7 @@
 export interface Order{
+    id: number;
     user_id: number;
-    product_id: number;
-    quantity: number;
+    address_id : number;
+    code: number;
+    to : number;
 }

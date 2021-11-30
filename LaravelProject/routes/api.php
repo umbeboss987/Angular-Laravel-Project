@@ -46,7 +46,7 @@ Route::prefix('user')->group(function () {
     Route::get('/carts',[CartController::class, 'getUserCart']);
     Route::delete('carts/{id}',[CartController::class, 'deleteCart'])->name('deleteCart');
     Route::post('carts',['middleware' => 'auth.role:user',CartController::class, 'addCartItem'])->name('addCartItem');
-    Route::put('/address/{address_id}',['middleware' => 'auth.role:user',AddressController::class, 'updateAddress']);
+    Route::put('/address/{address_id}',['middleware' => 'auth.role:user',AddressController::class, 'updateAddress'])->name('updateAddress');
     Route::post('/address', [AddressController::class, 'addAddress']);
     Route::get('/address', [AddressController::class, 'getUserAddress'])->name('getUserAddress');
     Route::get('/orders', [OrderController::class, 'orderList']);

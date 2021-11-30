@@ -44,7 +44,7 @@ export class AccountEffects{
         return this.actions$.pipe(
             ofType(UpdateAddressAction),
             mergeMap((data) => {
-                return this.account_service.updateAddress(data.address).pipe(
+                return this.account_service.updateAddress(data.address, data.address_id).pipe(
                     map((data) => {
                         return UpdateAddressActionSuccess({ address: data});
                     })

@@ -16,7 +16,7 @@ export const GetAddressByIdAction = createAction('[ADDRESS] Get address by id ' 
 export const GetAddressByIdActionSuccess = createAction('[ADDRESS] Get address by id success', props<{address: Address}>());
 export const GetAddressByIdActionFail = createAction('[ADDRESS] Get address by id fail', props<{message: string}>());
 
-export const UpdateAddressAction = createAction('[ADDRESS] Update address', props<{address: Address}>());
+export const UpdateAddressAction = createAction('[ADDRESS] Update address', props<{address: Address, address_id : number}>());
 export const UpdateAddressActionSuccess = createAction('[ADDRESS] Update address success', props<{address: Address}>());
 export const UpdateAddressActionFail = createAction('[ADDRESS] Update address fail', props<{message: string}>());
 

@@ -8,8 +8,8 @@ import { AddOrderAction } from 'src/app/store/actions/order.actions';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {Address} from '../../model/Address';
 import{Observable} from 'rxjs';
-import { GetAddressAction } from 'src/app/store/actions/address.actions';
-import { selectAddress, selectSingleAddressAuth } from 'src/app/store/selectors/address.selector';
+import { CreateAddressAction, GetAddressAction } from 'src/app/store/actions/address.actions';
+import { selectAddress, selectAddressLoading, selectSingleAddressAuth } from 'src/app/store/selectors/address.selector';
 
 @Component({
   selector: 'app-order',
@@ -21,9 +21,14 @@ export class OrderComponent implements OnInit {
   items? : CartWithProducts[];
   total? : number;
   OrderForm: FormGroup;
-  displayNewAddressForm = false;
-  useExistingAddress= true;
+  formAddress : FormGroup;
+  loadingAddress?: boolean;
+  hideNewAddressForm = true;
+  hideExistingAddress= false;
+  hideCheckExistingAddress= false;
+  hideCheckNewAddress = false;
   addresses? : Address[];
+  hiddenButton : boolean = false;
 
   constructor(private store : Store<IAppState>, private fb: FormBuilder) { 
     this.OrderForm = this.fb.group({
@@ -32,24 +37,39 @@ export class OrderComponent implements OnInit {
       telephone:["",[]],
       address: "",
       total: ""
+    }),
+
+    this.formAddress = this.fb.group({
+      name : "",
+      surname : "",
+      address: "",
+      telephone_number: "",      
     })
+
     this.getSumPriceCart();
     this.store.dispatch(GetCartItemAction());
     this.store.dispatch(GetCartTotalAction());
     this.store.dispatch(GetAddressAction());
      this.store.select(selectAddress).subscribe(res => {
        this.addresses = res;
-       if(this.addresses.length <= 0){
-        this.displayNewAddressForm = true;
-       }
      });
 
-
-
+    this.store.select(selectAddressLoading).subscribe(res =>{
+      this.loadingAddress = res;
+      if(this.loadingAddress == false && this.addresses != undefined){
+        if(this.addresses.length <= 0){
+          this.hideNewAddressForm = false;
+          this.hideExistingAddress = true;
+          this.hiddenButton = true;
+          this.hideCheckExistingAddress = true;
+          this.hideCheckNewAddress = true;
+        }
+      }
+    });
   }
 
   ngOnInit(): void {
-    this.getCartList();
+    this.getCartList();  
   }
 
 
@@ -64,12 +84,10 @@ export class OrderComponent implements OnInit {
   getSumPriceCart (){
     this.store.select(selectCartTotal).subscribe(res =>{
       this.total = res;
-    });
-
-   
+    });   
   }
 
-  addAddress(){
+  addOrder(){
   this.OrderForm.patchValue({
       total : this.total
     })
@@ -79,12 +97,20 @@ export class OrderComponent implements OnInit {
 
 
   displayNewAddress(){
-    this.displayNewAddressForm = true;
-
+    this.hideNewAddressForm = false;
+    this.hideExistingAddress = true;
+    this.hiddenButton = true;
   }
 
   useAddres(){
-    this.displayNewAddressForm = false;
+    this.hideNewAddressForm = true;
+    this.hideExistingAddress = false;
+    this.hiddenButton = false;
+  }
+
+  addAddress(){
+    let newAddress = this.formAddress.value;
+    this.store.dispatch(CreateAddressAction({address: newAddress}));
   }
 
 

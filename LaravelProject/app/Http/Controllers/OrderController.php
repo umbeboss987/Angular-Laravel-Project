@@ -20,6 +20,7 @@ class OrderController extends Controller
        else{
             $order = new Order();
             $order->user_id = $user;
+            $order->address_id = $req->input('address_id');
             $order->code = rand(1000,1999);
             $order->total = $req->input('total');
             $order->save();

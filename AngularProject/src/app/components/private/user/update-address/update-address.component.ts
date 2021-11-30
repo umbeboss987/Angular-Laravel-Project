@@ -30,26 +30,26 @@ export class UpdateAddressComponent implements OnInit {
       this.store.dispatch(GetAddressByIdAction({id : id}));
       this.store.select(selectSingleAddress).subscribe(res =>{
       this.address = res;
+      if(this.address){
+        this.formUpdateAddres.patchValue({
+          name: this.address.name,
+          surname: this.address.surname,
+          telephone_number: this.address.telephone_number,
+          address: this.address.address,
+        })
+      }
+  
     })
-
-    if(this.address){
-      this.formUpdateAddres.setValue({
-        name: this.address.name,
-        surname: this.address.surname,
-        telephone_number: this.address.telephone_number,
-        address: this.address.address,
-      })
-    }
-
-   
     
   }
 
   ngOnInit(): void {
+   console.log(this.address?.name);
   }
 
   updateAddress(){
+  let id = this.router.snapshot.params['id']
   let updateAddress = this.formUpdateAddres.value;
-  this.store.dispatch(UpdateAddressAction({address : updateAddress}));
+  this.store.dispatch(UpdateAddressAction({address : updateAddress, address_id : id}));
   }
 }

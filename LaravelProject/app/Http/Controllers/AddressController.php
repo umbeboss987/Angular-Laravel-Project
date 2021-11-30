@@ -30,18 +30,19 @@ class AddressController extends Controller
 
     function updateAddress (Request $req, $address_id){
       $user_id = JWTAuth::user()->id;
-      $account = Address::where('user_id', $user_id)->update(array(
-        'full_name' => $req->input('full_name'),
+      $account = Address::where('user_id', $user_id)->where('id', $address_id)->update(array(
+        'name' => $req->input('name'),
+        'surname' => $req->input('surname'),
         'address' => $req->input('address'),
         'telephone_number' => $req->input('telephone_number')
       ));
-      return response()->json(['message' => 'account updated', 'account' => $account],200);
+      return response()->noContent();
     }
   
   
     function getAddressById ($address_id){
       $user_id = JWTAuth::user()->id;
-      $address = Address::where('user_id', $user_id)->where('address_id', $address_id)->get();
+      $address = Address::where('user_id', $user_id)->where('id', $address_id)->first();
       return response()->json($address, 200);
     }
 
