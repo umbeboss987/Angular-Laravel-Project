@@ -2,3 +2,7 @@
     width:300px;
     border-radius: 10px;
 }
+
+.select.ng-valid{
+    border: 1px solid green;
+}

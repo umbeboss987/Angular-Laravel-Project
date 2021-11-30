@@ -5,11 +5,12 @@ import { DeleteCartItemAction, GetCartItemAction, GetCartTotalAction } from 'src
 import { selectCartList, selectCartTotal} from 'src/app/store/selectors/cart.selector';
 import { CartWithProducts } from 'src/app/model/CartWithProducts';
 import { AddOrderAction } from 'src/app/store/actions/order.actions';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import {Address} from '../../model/Address';
 import{Observable} from 'rxjs';
+import { FormBuilder , Validators, FormGroup} from '@angular/forms';
 import { CreateAddressAction, GetAddressAction } from 'src/app/store/actions/address.actions';
 import { selectAddress, selectAddressLoading, selectSingleAddressAuth } from 'src/app/store/selectors/address.selector';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order',
@@ -20,7 +21,7 @@ export class OrderComponent implements OnInit {
 
   items? : CartWithProducts[];
   total? : number;
-  OrderForm: FormGroup;
+  orderForm: FormGroup;
   formAddress : FormGroup;
   loadingAddress?: boolean;
   hideNewAddressForm = true;
@@ -29,21 +30,22 @@ export class OrderComponent implements OnInit {
   hideCheckNewAddress = false;
   addresses? : Address[];
   hiddenButton : boolean = false;
+  defaultValue? : number;
 
-  constructor(private store : Store<IAppState>, private fb: FormBuilder) { 
-    this.OrderForm = this.fb.group({
-      name:["", []],
-      surname:["", []],
-      telephone:["",[]],
-      address: "",
-      total: ""
-    }),
-
+  constructor(private store : Store<IAppState>, private fb: FormBuilder,private router: Router) { 
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      return false;
+    }
+   
     this.formAddress = this.fb.group({
       name : "",
       surname : "",
       address: "",
       telephone_number: "",      
+    })
+
+    this.orderForm = this.fb.group({    
+      address_id: ["", Validators.required],
     })
 
     this.getSumPriceCart();
@@ -64,8 +66,12 @@ export class OrderComponent implements OnInit {
           this.hideCheckExistingAddress = true;
           this.hideCheckNewAddress = true;
         }
+        let firstAddress = this.addresses[this.addresses.length - 1];
+        this.orderForm.patchValue({
+          address_id : firstAddress.id
+        })
       }
-    });
+    })
   }
 
   ngOnInit(): void {
@@ -88,10 +94,7 @@ export class OrderComponent implements OnInit {
   }
 
   addOrder(){
-  this.OrderForm.patchValue({
-      total : this.total
-    })
-   let order = this.OrderForm.value;
+   let order = this.orderForm.value;
    this.store.dispatch(AddOrderAction({item: order}));
   }
 
@@ -111,6 +114,7 @@ export class OrderComponent implements OnInit {
   addAddress(){
     let newAddress = this.formAddress.value;
     this.store.dispatch(CreateAddressAction({address: newAddress}));
+    this.router.navigateByUrl('/checkOut');
   }
 
 

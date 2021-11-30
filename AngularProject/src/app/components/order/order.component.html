@@ -61,11 +61,17 @@
                   <input (click)="useAddres()" type="radio" checked="checked" value="existing" name="payment_address" data-id="payment-existing"> I want to use an existing address</label>
               </div>
             </div>
-            <div id="payment-existing" [hidden]="hideExistingAddress">
-              <select class="form-control" name="address_id" >
-                <option selected="selected" value="4" *ngFor="let address of addresses">{{address.address}}, {{address.name}}, {{address.surname}}, {{address.telephone_number}}</option>
-              </select>
-            </div>
+            <form action="" [formGroup]="orderForm" class="" (ngSubmit)="addOrder()">
+              <div id="payment-existing" [hidden]="hideExistingAddress">
+                <select class="form-control select" formControlName="address_id">
+                  <option  [value]="address.id" selected="selected" *ngFor="let address of addresses">{{address.address}}, {{address.name}}, {{address.surname}}, {{address.telephone_number}}</option>
+                </select>
+                <div class="alert alert-danger" role="alert" 
+                *ngIf="!orderForm.get('address_id')?.valid && orderForm.get('address_id')?.touched">
+                Field required.
+             </div>
+              </div>
+           </form>
        </div>
         <div class="">
           <div class="radio" style="margin-top:40px;" [hidden]="hideCheckNewAddress">
