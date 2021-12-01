@@ -26,10 +26,10 @@ class UserController extends Controller
 
        } else {
         $user = new User();
-        $user->name = $req->input('name');
+        $user->username = $req->input('username');
         $user->email = $req->input('email');
         $user->password = bcrypt($req->input('password'));
-        $user->role = $req->role;
+        $user->role_id = $req->role;
         $user->save();
         return response()->json(["message" => "user registered"], 200);
        }
@@ -50,7 +50,7 @@ class UserController extends Controller
                     'user_id' => $user->id,
                     'password' => $user->password
                 ])->attempt($credentials);
-                return response()->json([$data], 200);
+                return response()->json([$data->token], 200);
             }
        } catch (JWTException $e) {
            return response()->json(['message' => 'Could not create token'], 500);

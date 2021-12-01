@@ -11,14 +11,16 @@ class AddressController extends Controller
 {
     function addAddress (Request $req ){
         $user_id = JWTAuth::user()->id;
-        $account = new Address();
-        $account->user_id = $user_id;
-        $account->address = $req->input('address');
-        $account->telephone_number = $req->input('telephone_number');
-        $account->name = $req->input('name');
-        $account->surname = $req->input('surname');
-        $account->save();
-        return response()->noContent();
+        $address = new Address();
+        $address->user_id = $user_id;
+        $address->address = $req->input('address');
+        $address->telephone_number = $req->input('telephone_number');
+        $address->name = $req->input('name');
+        $address->surname = $req->input('surname');
+        $address->postal_code = $req->input('postal_code');
+        $address->city = $req->input('city');
+        $address->save();
+        return response(null, 201);
     }
 
 
@@ -34,6 +36,8 @@ class AddressController extends Controller
         'name' => $req->input('name'),
         'surname' => $req->input('surname'),
         'address' => $req->input('address'),
+        'city' => $req->input('city'),
+        'postal_code' => $req->input('postal_code'),
         'telephone_number' => $req->input('telephone_number')
       ));
       return response()->noContent();

@@ -61,8 +61,9 @@ export class UserEffects {
       switchMap((action) => {
         return this.auth_service.authenticate(action.user).pipe(
           tap(action => {
+            console.log(action);
             this.toastr.success("Logged succesfully");
-            localStorage.setItem('token',JSON.stringify(action.token.token));
+            localStorage.setItem('token',JSON.stringify(action.token));
             this.router.navigate(['/']);
           }),
             map((user:any) => UserLoginActionSuccess({ responseUser: user , user : action.user })),    

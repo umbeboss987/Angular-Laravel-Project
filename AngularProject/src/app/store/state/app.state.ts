@@ -74,7 +74,7 @@ export const initialUserState :UserState = {
     loading: false,
     singleUser : {
         id: 0,
-        name: '',
+        username: '',
         password: '',
         email: '',
     }
@@ -106,6 +106,8 @@ export const initialAccountState :AddressState = {
     singleAddress :{
         id: 0,
         user_id: 0,
+        city:"",
+        postal_code:"",
         name: "",
         address: '',
         surname: '',

@@ -16,10 +16,8 @@ class CreatePhotoTable extends Migration
         
         Schema::create('photo', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('left_photo');
-            $table->string('right_photo');
-            $table->string('top_photo');
-            $table->string('bottom_photo');
+            $table->string('url_photo');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

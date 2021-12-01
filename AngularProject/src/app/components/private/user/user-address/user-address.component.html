@@ -47,23 +47,37 @@
                                                         <div class="text-center">
                                                             <form action="" [formGroup]="formAddress" class="" class="main-form full" (ngSubmit)="createAddress()"
                                                                 method="POST">
-                                                                <label for="" class="input"> Name
-                                                                    <input class="modal-input" type="text" formControlName="name"
-                                                                        placeholder="Name">
-                                                                </label>
-                                                                <label for="" class="input"> Surname
-                                                                    <input class="modal-input" type="text" formControlName="surname"
-                                                                        placeholder="Name">
-                                                                </label>
-                                                                <label for="" class="input"> Telephone
-                                                                    <input class="modal-input" type="text" formControlName="telephone_number"
-                                                                        placeholder="Telephone number">
-                                                                </label>
-                                                                <label for="" class="input"> Address
-                                                                    <input class="modal-input" type="text" formControlName="address"
-                                                                        placeholder="Address">
-                                                                </label>
-                                                                <br>
+                                                                <label for="" class=""> Name</label> 
+                                                                <div class="div-modal">
+                                                                    <input class="modal-input" type="text" formControlName="name"placeholder="Name">
+                                                                    <p class="error-sentence" *ngIf="!formAddress.get('name')?.valid && formAddress.get('name')?.touched">Campo  Name non corretto</p>
+                                                                 </div>
+                                                                <label for="" class=""> Surname</label> 
+                                                                <div class="div-modal">
+                                                                    <input class="modal-input" type="text" formControlName="surname"placeholder="Surname">
+                                                                    <p class="error-sentence" *ngIf="!formAddress.get('surname')?.valid && formAddress.get('surname')?.touched">Campo  Name non corretto</p>
+                                                                </div>
+                                                                <label for="" class=""> Telephone Number</label> 
+                                                                <div class="div-modal">
+                                                                    <input class="modal-input" type="text" formControlName="telephone_number" placeholder="Telephone">
+                                                                    <p class="error-sentence" *ngIf="!formAddress.get('telephone_number')?.valid && formAddress.get('telephone_number')?.touched">Campo  Telephone non corretto</p>
+                                                                </div>
+                                                                <label for="" class=""> Address</label> 
+                                                                <div class="div-modal">
+                                                                    <input class="modal-input" type="text" formControlName="address"placeholder="Address">
+                                                                    <p class="error-sentence" *ngIf="!formAddress.get('address')?.valid && formAddress.get('address')?.touched">Campo  Address non corretto</p>
+                                                                </div>
+                                                                <label for="" class=""> City</label> 
+                                                                <div class="div-modal">
+                                                                    <input class="modal-input" type="text" formControlName="city"placeholder="City">
+                                                                    <p class="error-sentence" *ngIf="!formAddress.get('city')?.valid && formAddress.get('city')?.touched">Campo  City non corretto</p>
+                                                                </div>
+                                                                <label for="" class=""> Postal Code</label> 
+                                                                <div class="div-modal">
+                                                                    <input class="modal-input" type="text" formControlName="postal_code" placeholder="Postal Code">
+                                                                    <p class="error-sentence" *ngIf="!formAddress.get('postal_code')?.valid && formAddress.get('postal_code')?.touched">Campo Postal Code non corretto</p>
+                                                                </div>
+                                                                
                                                                 <label for="" class="">
                                                                     <button class="btn">Subscribe</button>
                                                                 </label>
@@ -117,6 +131,14 @@
                                     </li>
                                     <li>
                                         <h5 class="">Address: {{address.address}}</h5>
+                                        <p></p>
+                                    </li>
+                                    <li>
+                                        <h5 class="">City: {{address.city}}</h5>
+                                        <p></p>
+                                    </li>
+                                    <li>
+                                        <h5 class="">PostalCode: {{address.postal_code}}</h5>
                                         <p></p>
                                     </li>
                                 </ul>

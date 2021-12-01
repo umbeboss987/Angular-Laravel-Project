@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IAppState } from 'src/app/store/state/app.state';
 import {select, Store} from '@ngrx/store';
 import { selectSingleAddress, selectSingleAddressAuth } from 'src/app/store/selectors/address.selector';
@@ -20,11 +20,13 @@ export class UpdateAddressComponent implements OnInit {
   address? : Address;
 
   constructor(private fb : FormBuilder, private store: Store<IAppState>, private router: ActivatedRoute) { 
-   this.formUpdateAddres = this.fb.group({
-      address: '',
-      name: '',
-      surname:'',
-      telephone_number: '',
+   this.formUpdateAddres = this.fb.group({    
+      name : ["",[Validators.required, Validators.minLength(3), Validators.maxLength(14), Validators.pattern('^([A-Z][a-z]*((\\s[A-Za-z])?[a-z]*)*)$')]],
+      surname : ["",[Validators.required, Validators.minLength(3), Validators.maxLength(14), Validators.pattern(/^[a-z ,.'-]+$/i)]],
+      address: ["",[Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      telephone_number: ["",[Validators.required, Validators.minLength(3), Validators.maxLength(14), Validators.pattern("^[0-9]*$")]],
+      city: ["",[Validators.required, Validators.minLength(3), Validators.maxLength(9), Validators.pattern(/^[a-z ,.'-]+$/i)]],
+      postal_code: ["",[Validators.required, Validators.minLength(3), Validators.maxLength(6), Validators.pattern("^[0-9]*$")]]
     })
       let id = this.router.snapshot.params['id']
       this.store.dispatch(GetAddressByIdAction({id : id}));
@@ -36,6 +38,8 @@ export class UpdateAddressComponent implements OnInit {
           surname: this.address.surname,
           telephone_number: this.address.telephone_number,
           address: this.address.address,
+          city: this.address.city,
+          postal_code: this.address.postal_code,
         })
       }
   

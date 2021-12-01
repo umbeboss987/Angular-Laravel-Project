@@ -5,11 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 import {select, Store} from '@ngrx/store';
 import { UserLoginAction, UserSignUpAction} from 'src/app/store/actions/user.actions';
 import { IAppState } from 'src/app/store/state/app.state';
-import { selectUserResponse, selectUserResponseMessage } from 'src/app/store/selectors/user.selector';
-import { UserAuth } from 'src/app/model/userAuth';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { selectShareDataResponse } from 'src/app/store/selectors/shared.selector';
+import {checkPasswords} from '../../Validators/CustomValidators'
 
 @Component({
   selector: 'app-sign-in',
@@ -28,18 +26,27 @@ export class SignInComponent implements OnInit {
 
   showFormSignUp = true;
 
-  constructor(private toastr: ToastrService,  private fb: FormBuilder, private store: Store<IAppState>, private router: Router) {  
-    this.formGroup = this.fb.group({
-      name: ["",[Validators.required, Validators.minLength(4)]],
-      email: ["",[Validators.required, Validators.email ,Validators.minLength(4)]],
-      password: ["",[Validators.required]],
-      role: 'user'
-    }) 
+  constructor(private fb: FormBuilder, private store: Store<IAppState>, private router: Router) {
     
+    
+    
+    this.formGroup = this.fb.group({
+      username: ["",[Validators.required, Validators.minLength(4), Validators.maxLength(13)]],
+      email: ["",[Validators.required, Validators.email ,Validators.minLength(8), Validators.maxLength(20)]],
+      password: ["",[Validators.required, Validators.minLength(5), Validators.maxLength(17)]],
+      confirmPassword: ["",[Validators.required, ]],
+      role: 2
+    },
+    { 
+      validators: checkPasswords
+    }
+    ) 
+   
     this.formUserSignIn = this.fb.group({
-      name: ["",[Validators.required, Validators.minLength(4)]],
+      username: ["",[Validators.required]],
       password: ["",[Validators.required]],
     }) 
+
   }
 
   ngOnInit(): void {
@@ -48,13 +55,15 @@ export class SignInComponent implements OnInit {
 
   signUp() {
     let formUser: User = {
-      'name': this.formGroup.value.name,
+      'username': this.formGroup.value.username,
       'email': this.formGroup.value.email,
       'password': this.formGroup.value.password,
       'role': this.formGroup.value.role
     }
-    console.log(formUser);
-    this.store.dispatch(UserSignUpAction({ user: formUser }));
+    checkPasswords
+    if(this.formGroup.valid){
+       this.store.dispatch(UserSignUpAction({ user: formUser }));
+    }
   }
 
 

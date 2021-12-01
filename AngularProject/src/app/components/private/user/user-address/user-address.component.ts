@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IAppState } from 'src/app/store/state/app.state';
 import {select, Store} from '@ngrx/store';
 import { CreateAddressAction, GetAddressAction } from 'src/app/store/actions/address.actions';
@@ -20,10 +20,12 @@ export class UserAddressComponent implements OnInit {
 
   constructor(private fb : FormBuilder, private store: Store<IAppState>) {
     this.formAddress = this.fb.group({
-      name : "",
-      surname : "",
-      address: "",
-      telephone_number: "",      
+      name : ["",[Validators.required, Validators.minLength(3), Validators.maxLength(14), Validators.pattern(/^[a-z ,.'-]+$/i)]],
+      surname : ["",[Validators.required, Validators.minLength(3), Validators.maxLength(14), Validators.pattern(/^[a-z ,.'-]+$/i)]],
+      address: ["",[Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      telephone_number: ["",[Validators.required, Validators.minLength(8), Validators.maxLength(12), Validators.pattern("^[0-9]*$")]],
+      city: ["",[Validators.required, Validators.minLength(3), Validators.maxLength(9), Validators.pattern(/^[a-z ,.'-]+$/i)]],
+      postal_code: ["",[Validators.required, Validators.minLength(3), Validators.maxLength(6), Validators.pattern("^[0-9]*$")]]
     })
 
     this.store.dispatch(GetAddressAction());
@@ -35,8 +37,10 @@ export class UserAddressComponent implements OnInit {
   }
 
   createAddress (){
-    let address = this.formAddress.value;
-    this.store.dispatch(CreateAddressAction({address : address}));
+    if(this.formAddress.valid){
+      let address = this.formAddress.value;
+      this.store.dispatch(CreateAddressAction({address : address}));
+    }
   }
 
 }

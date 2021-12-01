@@ -5,10 +5,10 @@ import { initialAccountState } from '../state/app.state';
 const _accountReducer = createReducer(
     initialAccountState,
     on(CreateAddressActionSuccess, (state, action :any) => {
-        let account = {...action.address};
+        let newAddress = {...action.address};
         return {
             ...state,
-            singleAddress: account
+            address: [...state.address,newAddress]
         }
     }),
     on(GetAddressAction, (state, action :any) => {

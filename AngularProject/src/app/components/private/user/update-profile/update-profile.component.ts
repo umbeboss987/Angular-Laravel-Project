@@ -36,7 +36,7 @@ export class UpdateProfileComponent implements OnInit {
     if(this.user){
       this.formUpdateUser.setValue({
         email: this.user.email,
-        username : this.user.name
+        username : this.user.username
       })
     }
   }

@@ -19,7 +19,7 @@ export class AdminHomeComponent implements OnInit {
 
   constructor(private store: Store<IAppState>, private fb : FormBuilder) { 
     this.updateProfileForm = this.fb.group({
-      name: [''],
+      username: [''],
       email: [''],
     })
     this.store.dispatch(GetUserAction());
@@ -35,7 +35,7 @@ export class AdminHomeComponent implements OnInit {
 
   setValueForm(user_name: any, email: any){
     this.updateProfileForm.patchValue({
-      name: user_name,
+      username: user_name,
       email: email
     })
   }

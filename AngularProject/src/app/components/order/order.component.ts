@@ -30,18 +30,19 @@ export class OrderComponent implements OnInit {
   hideCheckNewAddress = false;
   addresses? : Address[];
   hiddenButton : boolean = false;
-  defaultValue? : number;
 
   constructor(private store : Store<IAppState>, private fb: FormBuilder,private router: Router) { 
     this.router.routeReuseStrategy.shouldReuseRoute = () => {
       return false;
     }
    
-    this.formAddress = this.fb.group({
-      name : "",
-      surname : "",
-      address: "",
-      telephone_number: "",      
+    this.formAddress = this.fb.group({  
+      name : ["",[Validators.required, Validators.minLength(3), Validators.maxLength(14), Validators.pattern(/^[a-z ,.'-]+$/i)]],
+      surname : ["",[Validators.required, Validators.minLength(3), Validators.maxLength(14), Validators.pattern(/^[a-z ,.'-]+$/i)]],
+      address: ["",[Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      telephone_number: ["",[Validators.required, Validators.minLength(8), Validators.maxLength(12), Validators.pattern("^[0-9]*$")]],
+      city: ["",[Validators.required, Validators.minLength(3), Validators.maxLength(9), Validators.pattern(/^[a-z ,.'-]+$/i)]],
+      postal_code: ["",[Validators.required, Validators.minLength(3), Validators.maxLength(6), Validators.pattern("^[0-9]*$")]]  
     })
 
     this.orderForm = this.fb.group({    
@@ -94,8 +95,8 @@ export class OrderComponent implements OnInit {
   }
 
   addOrder(){
-   let order = this.orderForm.value;
-   this.store.dispatch(AddOrderAction({item: order}));
+      let order = this.orderForm.value;
+      this.store.dispatch(AddOrderAction({item: order}));
   }
 
 

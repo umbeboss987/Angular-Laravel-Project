@@ -1,0 +1,13 @@
+.modal-input.ng-invalid.ng-touched{
+    border:1px solid red;
+}
+
+.modal-input.ng-valid.ng-touched{
+    border:1px solid green;
+}
+
+.error-sentence{
+    color:red;
+    font-size:10px;
+    padding-top:0px;
+}

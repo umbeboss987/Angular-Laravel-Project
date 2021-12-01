@@ -30,7 +30,7 @@
                   <div class="col-lg-12">
                     <form id="login-form" [formGroup]="formUserSignIn" method="POST"  (ngSubmit)="signIn()" *ngIf="this.showFormSignIn == true">
                       <div class="form-group">
-                        <input type="text"  name="name" id="name" tabindex="1" class="form-control" placeholder="Username" value="name" formControlName="name">
+                        <input type="text"  name="name" id="name" tabindex="1" class="form-control" placeholder="Username" value="name" formControlName="username">
                         <div class="alert alert-danger" role="alert" 
                          *ngIf="!formUserSignIn.get('name')?.valid && formUserSignIn.get('name')?.touched">
                          Field required.
@@ -59,7 +59,7 @@
                     </form>
                     <form  [formGroup]="formGroup" method="POST"  (ngSubmit)="signUp()" *ngIf="this.showFormSignUp == true">
                       <div class="form-group">
-                        <input type="text"  name="name" id="name" tabindex="1" class="form-control" placeholder="Username"  formControlName="name">
+                        <input type="text"  name="name" id="name" tabindex="1" class="form-control" placeholder="Username"  formControlName="username">
                         <div class="alert alert-danger" role="alert" 
                          *ngIf="!formGroup.get('name')?.valid && formGroup.get('name')?.touched">
                          Field required.
@@ -80,10 +80,13 @@
                       </div>
                       </div>
                       <div class="form-group">
-                        <input type="password"  name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+                        <input type="password"  name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" formControlName="confirmPassword">
                         <div class="alert alert-danger" role="alert" 
-                         *ngIf="!formGroup.get('confirm-passwor')?.valid && formGroup.get('password')?.touched">
+                         *ngIf="!formGroup.get('confirmPassword')?.valid && formGroup.get('confirmPassword')?.touched">
                          Field required.
+                      </div>
+                      <div class="alert alert-danger" role="alert" *ngIf="formGroup.errors?.notSame && formGroup.get('confirmPassword')?.touched">
+                        Password is not matching
                       </div>
                       </div>
                       <div class="form-group">
