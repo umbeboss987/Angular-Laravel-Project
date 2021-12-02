@@ -16,10 +16,10 @@ class UserSeeder extends Seeder
     {
         DB::table('user')->insert([
 
-            'name' => 'umberto', 
-            'password' => '$2y$10$j/sYsF1TLvf4eH/4VQQeQOhgwX6C4oqd5FysBT27mtSxNaeo/7m/C',
+            'username' => 'umberto', 
+            'password' => bcrypt('okok'),
             'email' => 'umberto.labarbera@student.univaq.it',
-            'role' => 'admin'
+            'role_id' => 1
             ]
         );
 

@@ -22,6 +22,9 @@ class OrderController extends Controller
             $order->user_id = $user;
             $order->address_id = $req->input('address_id');
             $order->code = rand(1000,1999);
+            foreach($carts as $cart){
+            $order->total += $cart->sub_total;
+            }
             $order->save();
         foreach ($carts as $cart){
             $orderProduct = new OrderProduct();
@@ -35,7 +38,7 @@ class OrderController extends Controller
    }
 
    function getOrders (){
-      $orders = Order::select('order.total','user.name', 'order.created_at', 'order.id' )->distinct()->join('orderProduct','order.id','=','orderProduct.order_id')->join('user','user.id','=','order.user_id')->get();
+      $orders = Order::with('user')->get();
       return response()->json($orders);
    }
 

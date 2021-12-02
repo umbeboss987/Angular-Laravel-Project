@@ -15,9 +15,8 @@ import { GetProductsAction, ProductsTypeAction } from 'src/app/store/actions/pro
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router : Router, private store : Store<IAppState>, private activatedRoute: ActivatedRoute) { 
+  constructor(private authService: AuthService){
   }
-
   ngOnInit(): void {
   }
 
@@ -28,6 +27,10 @@ export class NavbarComponent implements OnInit {
 
   logout(){
     this.authService.logout();
+  }
+
+  isAdmin(){
+    return this.authService.isAdmin();
   }
 
 

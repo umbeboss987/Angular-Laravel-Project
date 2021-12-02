@@ -50,32 +50,43 @@
                                                                 <label for="" class=""> Name</label> 
                                                                 <div class="div-modal">
                                                                     <input class="modal-input" type="text" formControlName="name"placeholder="Name">
-                                                                    <p class="error-sentence" *ngIf="!formAddress.get('name')?.valid && formAddress.get('name')?.touched">Campo  Name non corretto</p>
+                                                                    <p class="error-sentence" *ngIf="!formAddress.get('name')?.valid && formAddress.get('name')?.touched">Field not correct</p>
+                                                                    <p class="error-sentence" *ngIf="formAddress.get('name')?.errors?.required && formAddress.get('name')?.touched">This field is required</p>
                                                                  </div>
                                                                 <label for="" class=""> Surname</label> 
                                                                 <div class="div-modal">
                                                                     <input class="modal-input" type="text" formControlName="surname"placeholder="Surname">
-                                                                    <p class="error-sentence" *ngIf="!formAddress.get('surname')?.valid && formAddress.get('surname')?.touched">Campo  Name non corretto</p>
+                                                                    <p class="error-sentence" *ngIf="!formAddress.get('surname')?.valid && formAddress.get('surname')?.touched">Field not correct</p>
+                                                                    <p class="error-sentence" *ngIf="formAddress.get('surname')?.errors?.required && formAddress.get('surname')?.touched">This field is required</p>
+
                                                                 </div>
                                                                 <label for="" class=""> Telephone Number</label> 
                                                                 <div class="div-modal">
                                                                     <input class="modal-input" type="text" formControlName="telephone_number" placeholder="Telephone">
-                                                                    <p class="error-sentence" *ngIf="!formAddress.get('telephone_number')?.valid && formAddress.get('telephone_number')?.touched">Campo  Telephone non corretto</p>
+                                                                    <p class="error-sentence" *ngIf="!formAddress.get('telephone_number')?.valid && formAddress.get('telephone_number')?.touched">Field not correct</p>
+                                                                    <p class="error-sentence" *ngIf="formAddress.get('telephone_number')?.errors?.required && formAddress.get('telephone_number')?.touched">This field is required</p>
+
                                                                 </div>
                                                                 <label for="" class=""> Address</label> 
                                                                 <div class="div-modal">
                                                                     <input class="modal-input" type="text" formControlName="address"placeholder="Address">
-                                                                    <p class="error-sentence" *ngIf="!formAddress.get('address')?.valid && formAddress.get('address')?.touched">Campo  Address non corretto</p>
+                                                                    <p class="error-sentence" *ngIf="!formAddress.get('address')?.valid && formAddress.get('address')?.touched">Field not correct</p>
+                                                                    <p class="error-sentence" *ngIf="formAddress.get('address')?.errors?.required && formAddress.get('address')?.touched">This field is required</p>
+
                                                                 </div>
                                                                 <label for="" class=""> City</label> 
                                                                 <div class="div-modal">
                                                                     <input class="modal-input" type="text" formControlName="city"placeholder="City">
-                                                                    <p class="error-sentence" *ngIf="!formAddress.get('city')?.valid && formAddress.get('city')?.touched">Campo  City non corretto</p>
+                                                                    <p class="error-sentence" *ngIf="!formAddress.get('city')?.valid && formAddress.get('city')?.touched">Field not correct</p>
+                                                                    <p class="error-sentence" *ngIf="formAddress.get('city')?.errors?.required && formAddress.get('city')?.touched">This field is required</p>
+
                                                                 </div>
                                                                 <label for="" class=""> Postal Code</label> 
                                                                 <div class="div-modal">
                                                                     <input class="modal-input" type="text" formControlName="postal_code" placeholder="Postal Code">
-                                                                    <p class="error-sentence" *ngIf="!formAddress.get('postal_code')?.valid && formAddress.get('postal_code')?.touched">Campo Postal Code non corretto</p>
+                                                                    <p class="error-sentence" *ngIf="!formAddress.get('postal_code')?.valid && formAddress.get('postal_code')?.touched">Field not correct</p>
+                                                                    <p class="error-sentence" *ngIf="formAddress.get('postal_code')?.errors?.required && formAddress.get('postal_code')?.touched">This field is required</p>
+
                                                                 </div>
                                                                 
                                                                 <label for="" class="">

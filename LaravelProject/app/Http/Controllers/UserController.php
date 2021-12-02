@@ -20,7 +20,7 @@ class UserController extends Controller
     }
 
     function signUp(Request $req){
-        $user = User::where('email', $req->input('email'))->first();
+        $user = User::where('email', $req->input('email'))->where('username', $req->input('username'))->first();
      if ($user){
        return response()->json(["message" =>"user already exists"], 409);
 

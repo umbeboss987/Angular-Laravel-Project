@@ -20,7 +20,8 @@
             </div>
             <div class="col-sm-6">
               <ul class="header-top-right text-right">
-                <li class="account"><a [routerLink]="['/account']">My Account</a></li>
+                <li class="account" *ngIf="isAdmin()"><a [routerLink]="['/admin']">Administration</a></li>
+                <li class="account" *ngIf="!isAdmin()"><a [routerLink]="['/account']">My Account</a></li>
                 <li class="cart"><a [routerLink]="['/cart']" >My Cart</a></li>
               </ul>
             </div>

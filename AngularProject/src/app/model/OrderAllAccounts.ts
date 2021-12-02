@@ -1,6 +1,10 @@
 export interface OrderAllAccounts{
-    id : number;
     total : number;
-    name : string;
     created_at : Date;
+    code : string;
+    total_amount : number;
+    user: {
+        username : string;
+        email : string;
+    }
 }

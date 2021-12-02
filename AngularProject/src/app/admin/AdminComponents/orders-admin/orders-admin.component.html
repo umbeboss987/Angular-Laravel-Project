@@ -16,29 +16,39 @@
                                                 <h4 class="">Code</h4>
                                             </th>
                                             <th>
+                                                <h4 class="">Date</h4>
+                                            </th>
+                                            <th>
                                                 <h4 class="">UserName</h4>
                                             </th>
                                             <th>
-                                                <h4 class="">Date</h4>
+                                                <h4 class="">Email</h4>
+                                            </th>
+                                            <th >
+                                                <h4 class="">Total</h4>
                                             </th>
                                             <th style="text-align: center;">
                                                 <h4 class="">Delete</h4>
-                                            </th>
-                                          
+                                            </th>                                         
                                         </tr>
                                     </thead>
                                     <tbody >
                                         <tr *ngFor="for let order of ordersAllAccount | async">
                                             <th>
-                                                <h5 class="">{{order.id}}</h5>
-                                            </th>
-                                            <th>
-                                                <h5 class="">{{order.name}}</h5>
+                                                <h5 class="">{{order.code}}</h5>
                                             </th>
                                             <th>
                                                 <h5 class="">{{order.created_at | date}}</h5>
                                             </th>
-                        
+                                            <th>
+                                                <h5 class="">{{order.user.username}}</h5>
+                                            </th>
+                                            <th>
+                                                <h5 class="">{{order.user.email}}</h5>
+                                            </th>
+                                            <th>
+                                                <h5 class="">${{order.total}}</h5>
+                                            </th>                        
                                             <td class="text-center"><a  ><button  class="btn btn-"style="font-size:14px;"class='fa fa-trash'></button></a></td>
                                         </tr>
                                 </table>

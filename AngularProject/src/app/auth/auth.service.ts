@@ -70,12 +70,15 @@ export class AuthService {
      return throwError(error);
    }
 
- getTokenDetails(){
+ isAdmin(){
   let token = localStorage.getItem('token');
   if (token){
-    let token_final = this.getDecodedAccessToken(token);
-    return token_final;
+    let user_details = this.getDecodedAccessToken(token);
+    if(user_details.role == 'admin'){
+      return true;
     }
+  }
+  return false;
  }
 
  getDecodedAccessToken(token: string): any {

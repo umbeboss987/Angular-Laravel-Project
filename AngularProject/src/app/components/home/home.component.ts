@@ -1,12 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from 'src/app/model/Product';
-import {  ActivatedRoute, Router } from '@angular/router';
+import {  ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import {select, Store} from '@ngrx/store';
 import { IAppState } from 'src/app/store/state/app.state';
 import { Observable } from 'rxjs';
 import { selectProductList} from 'src/app/store/selectors/product.selector';
 import { GetProductsAction, ProductsTypeAction } from 'src/app/store/actions/product.actions';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import jwt_decode from 'jwt-decode';
+
 
 @Component({
   selector: 'app-home',
@@ -26,14 +28,6 @@ export class HomeComponent implements OnInit {
 
 
 
-  // getAll()  {
-  //   let endpoint : String = this.router.snapshot.params['type'];
-  //   this.store.dispatch(ProductsTypeAction({type_item : endpoint}));
-  //   return this.store.select(selectProductList).subscribe(res =>{
-  //     this.products = res;
-  //     this.totalLength = res.length;
-  //   })
-  // }
   
 
  

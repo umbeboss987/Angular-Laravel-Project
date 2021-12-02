@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Models\User;
+use App\Models\Role;
 
 class AuthController extends Controller
 {
@@ -33,11 +34,12 @@ class AuthController extends Controller
             }else{
 
                 $user = User::where('username', $req->input('username'))->first();
+                $user_role = Role::select('role')->where('id',$user->role_id)->first();
                 $login = auth()->login($user);
                 $data['token'] = auth()->claims([
                     'username' => $user->username,
                     'email' => $user->email,
-                    'role' => $user->role
+                    'role' => $user_role->role
                 ])->attempt($credentials);
                 return response()->json($data,200);
             }
