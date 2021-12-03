@@ -12,18 +12,17 @@ import { Observable } from 'rxjs';
 })
 export class UsersAdminComponent implements OnInit {
 
-  users? : Observable<User[]>;
+  users$? : Observable<User[]>;
 
   constructor(private store : Store<IAppState>) { 
     this.store.dispatch(GetAllUserAction());
   }
 
   ngOnInit(): void {
-    this.users = this.store.select(selectUserAuth);
+    this.users$ = this.store.select(selectUserAuth);
   }
 
   deleteUser(user_id: any){
-    console.log(user_id);
     this.store.dispatch(DeleteUserAction({user_id : user_id}));
   }
 

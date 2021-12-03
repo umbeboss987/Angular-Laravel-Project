@@ -13,11 +13,11 @@ import { selectAllOrdersAccount } from 'src/app/store/selectors/order.selector';
 })
 export class OrdersAdminComponent implements OnInit {
 
-  ordersAllAccount? : Observable<OrderAllAccounts[]>;
+  orders$? : Observable<OrderAllAccounts[]>;
 
   constructor(private store : Store<IAppState>) { 
     this.store.dispatch(GetOrders());
-   this.ordersAllAccount = this.store.select(selectAllOrdersAccount);
+   this.orders$ = this.store.select(selectAllOrdersAccount);
   }
 
   ngOnInit(): void {
