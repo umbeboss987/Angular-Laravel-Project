@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
+import { AuthGuardService } from './auth/auth-guard.service';
 import { LayoutComponent } from './components/common-layout/layout/layout.component';
 import { RoleGuard } from './RoleGuard/role.guard';
 
 const routes: Routes = [
   
-  {path: 'admin' ,component: AdminLayoutComponent, canActivate:[RoleGuard], data:{expectedRoles:'admin'},
+  {path: 'admin' ,component: AdminLayoutComponent, canActivate:[RoleGuard, AuthGuardService], data:{expectedRoles:'admin'},
   children: [
     { path: '', loadChildren:() =>import('./admin/admin.module').
     then(m => m.AdminModule)

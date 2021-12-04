@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { IAppState } from 'src/app/store/state/app.state';
 import {select, Store} from '@ngrx/store';
 import { _selectOrderAccount } from 'src/app/store/selectors/order.selector';
-import { GetOrdersList } from 'src/app/store/actions/order.actions';
+import { GetUserOrders } from 'src/app/store/actions/order.actions';
 import{Observable} from 'rxjs';
 
 @Component({
@@ -17,6 +17,8 @@ export class OrderListComponent implements OnInit {
   totalLength? : number;
 
   orders? : Observable<any[]>;
+
+  orderss : any;
 
 
   constructor(private store: Store<IAppState>) { 
@@ -32,7 +34,7 @@ export class OrderListComponent implements OnInit {
 
 
   getOrdersList(){
-    this.store.dispatch(GetOrdersList());
+    this.store.dispatch(GetUserOrders());
   }
 
   

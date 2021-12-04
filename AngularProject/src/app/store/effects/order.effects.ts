@@ -11,7 +11,7 @@ import {
   ROUTER_NAVIGATION,
 } from '@ngrx/router-store';
 import { Router } from '@angular/router';
-import { AddOrderAction, AddOrderActionFail, AddOrderActionSuccess, GetOrders, GetOrdersSuccess, GetOrdersList, GetOrdersListFail, GetOrdersListSuccess,  } from 'src/app/store/actions/order.actions';
+import { AddOrderAction, AddOrderActionFail, AddOrderActionSuccess, GetOrders, GetOrdersSuccess, GetUserOrdersSuccess, GetUserOrdersFail, GetUserOrders, GetOrdersFail,  } from 'src/app/store/actions/order.actions';
 
 @Injectable ()
 
@@ -42,15 +42,15 @@ export class OrderEffects{
     );
   });
 
-  getOrdersList$: Observable<Action> = createEffect(() => {
+  getUserOrders$: Observable<Action> = createEffect(() => {
     return this.actions$.pipe(
-      ofType(GetOrdersList),
+      ofType(GetUserOrders),
       switchMap(() => {
         return this.order_service.getOrdersList().pipe(
           map((data) => {
-            return GetOrdersListSuccess({orderAccount: data});
+            return GetUserOrdersSuccess({userOrders: data});
           }), catchError(errorResp => {
-            return of(GetOrdersListFail({message : errorResp.error.message})).pipe(
+            return of(GetUserOrdersFail({message : errorResp.error.message})).pipe(
               tap(() =>{
                 this.toastr.error(errorResp.error.message);
               })
@@ -69,7 +69,7 @@ export class OrderEffects{
           map((data) => {
             return GetOrdersSuccess({orderAccounts: data});
           }), catchError(errorResp => {
-            return of(GetOrdersListFail({message : errorResp.error.message})).pipe(
+            return of(GetOrdersFail({message : errorResp.error.message})).pipe(
               tap(() =>{
                 this.toastr.error(errorResp.error.message);
               })

@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { Order } from '../model/order';
 import { AppConstants } from '../app.constants';
 //import { OrderAccount } from '../model/orderAccount';
-import { OrderAllAccounts } from '../model/OrderAllAccounts';
+import { UsersOrders } from '../model/UsersOrders';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class OrderService {
     return this.http.get<any[]>(`${AppConstants.SERVICES_BASE_URL}/user/orders`);
   }
 
-  getAllOrders (): Observable<OrderAllAccounts[]>{
-    return this.http.get<OrderAllAccounts[]>(`${AppConstants.SERVICES_BASE_URL}/orders`);
+  getAllOrders (): Observable<UsersOrders[]>{
+    return this.http.get<UsersOrders[]>(`${AppConstants.SERVICES_BASE_URL}/orders`);
   }
 }

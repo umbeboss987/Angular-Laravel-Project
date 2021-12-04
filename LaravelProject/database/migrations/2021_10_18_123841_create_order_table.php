@@ -14,12 +14,18 @@ class CreateOrderTable extends Migration
     public function up()
     {
         Schema::create('order', function (Blueprint $table) {
-            $table->increments('id');        
-            $table->integer('user_id');
-            $table->string('address_id');          
+            $table->engine = 'InnoDB';	
+            $table->bigIncrements('id');
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('address_id')->unsigned();
             $table->integer('code');
             $table->integer('total');
             $table->timestamps();
+        });
+
+        Schema::table('order', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
+            $table->foreign('address_id')->references('id')->on('address');       
         });
     }
 

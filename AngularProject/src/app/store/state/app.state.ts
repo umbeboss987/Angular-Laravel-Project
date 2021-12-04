@@ -6,7 +6,7 @@ import { User } from 'src/app/model/user';
 import { Address } from 'src/app/model/Address';
 import { UserAuth } from 'src/app/model/userAuth';
 import { CartWithProducts } from 'src/app/model/CartWithProducts';
-import { OrderAllAccounts } from 'src/app/model/OrderAllAccounts';
+import { UsersOrders } from 'src/app/model/UsersOrders';
 
 
 export interface IAppState{
@@ -82,16 +82,17 @@ export const initialUserState :UserState = {
 
 export interface OrderState {
     orders: Order[];
-    orderAccount: any[];
-    orderAllAccounts: OrderAllAccounts[]
+    orderUsers: UsersOrders[]
     loading: boolean;
+    userOrders: any[];
+
 }
 
 export const initialOrderState :OrderState = {
     orders: [],
-    orderAccount: [],
     loading: false,
-    orderAllAccounts: []
+    orderUsers: [],
+    userOrders: [],
 }
 
 export interface AddressState{

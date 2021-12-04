@@ -59,7 +59,7 @@ Route::prefix('addresses')->group(function () {
 });
 
 Route::prefix('orders')->group(function () {
-    Route::get('', [OrderController::class, 'getOrders']);
+    Route::get('', [OrderController::class, 'getOrders'])->middleware('admin');
 });
 
  Route::post('signUp', [UserController::class, 'signUp']);

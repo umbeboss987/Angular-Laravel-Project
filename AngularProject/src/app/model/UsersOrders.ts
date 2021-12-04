@@ -1,4 +1,4 @@
-export interface OrderAllAccounts{
+export interface UsersOrders{
     total : number;
     created_at : Date;
     code : string;

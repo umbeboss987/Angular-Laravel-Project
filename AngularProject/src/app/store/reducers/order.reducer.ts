@@ -1,5 +1,5 @@
 import {createReducer, on } from '@ngrx/store';
-import { AddOrderActionSuccess, GetOrdersSuccess, GetOrdersList, GetOrdersListSuccess } from 'src/app/store/actions/order.actions';
+import { AddOrderActionSuccess, GetOrdersSuccess,GetUserOrders, GetUserOrdersSuccess } from 'src/app/store/actions/order.actions';
 import { initialOrderState } from 'src/app/store/state/app.state';
 
 const _orderReducer = createReducer(
@@ -10,23 +10,23 @@ const _orderReducer = createReducer(
             orders: [action.item, action.user_id]
         }
     }),
-    on(GetOrdersList, (state, action :any) => {
+    on(GetUserOrders, (state, action :any) => {
         return {
             ...state,
             loading: true
         }
     }),
-    on(GetOrdersListSuccess, (state, action :any) => {
+    on(GetUserOrdersSuccess, (state, action :any) => {
         return {
             ...state,
-            orderAccount: action.orderAccount,
+            userOrders: action.userOrders,
             loading: false
         }
     }),
     on(GetOrdersSuccess, (state, action :any) => {
         return {
             ...state,
-            orderAllAccounts: action.orderAccounts,
+            orderUsers: action.orderAccounts,
             loading: false
         }
     }),

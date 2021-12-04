@@ -14,15 +14,16 @@ class OrderProduct extends Migration
     public function up()
     {
         Schema::create('order_product', function (Blueprint $table) {
-            $table->integer('order_id')->unsigned();
-            $table->integer('product_id')->unsigned();
+            $table->engine = 'InnoDB';	
+            $table->bigInteger('order_id')->unsigned();
+            $table->bigInteger('product_id')->unsigned();
             $table->integer('quantity');
             $table->timestamps();
         });  
         
         Schema::table('order_product', function($table) {
-            $table->foreign('order_id')->references('id')->on('order');
-            $table->foreign('product_id')->references('id')->on('product');
+            $table->foreign('order_id')->references('id')->on('order')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('product')->onDelete('cascade');
         });
     }
 

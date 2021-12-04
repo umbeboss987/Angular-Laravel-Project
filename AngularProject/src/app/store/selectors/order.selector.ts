@@ -11,7 +11,7 @@ const selectOrderAccount = (state: IAppState) => {
 export const _selectOrderAccount  = createSelector(
     selectOrderAccount,
     (state: OrderState) => {
-      return state.orderAccount;
+      return state.userOrders;
     }
 );
 
@@ -22,9 +22,9 @@ export const _selectOrderLoading  = createSelector(
   }
 );
 
-export const selectAllOrdersAccount  = createSelector(
+export const selectUsersOrders  = createSelector(
   selectOrderAccount,
   (state: OrderState) => {
-    return state.orderAllAccounts;
+    return state.orderUsers;
   }
 );

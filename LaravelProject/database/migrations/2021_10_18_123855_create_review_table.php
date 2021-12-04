@@ -14,9 +14,12 @@ class CreateReviewTable extends Migration
     public function up()
     {
         Schema::create('review', function (Blueprint $table) {
+                $table->engine = 'InnoDB';	
                 $table->id();
-                $table->integer('user_id');
-                $table->integer('product_id');
+                $table->bigInteger('user_id')->unsigned();
+                $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
+                $table->bigInteger('product_id')->unsigned();
+                $table->foreign('product_id')->references('id')->on('product')->onDelete('cascade');
                 $table->text('review');
                 $table->timestamps();
             });
