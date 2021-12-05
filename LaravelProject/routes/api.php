@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ReviewController;
 
 use Illuminate\Foundation\Auth\User;
 
@@ -33,6 +34,7 @@ Route::prefix('products')->group(function () {
     //search?productType={};
     Route::get('/{products_type}',[ProductController::class, 'getProductsByType'])->name('getProductsByType')->where(['products_type' => '[a-z]+']);
     Route::post('/{product_id}',[ProductController::class, 'updateProduct'])->name('updateProduct');
+    Route::post('/{product_id}/reviews',[ReviewController::class, 'addReview'])->name('addReview');
 
 });
 

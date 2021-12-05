@@ -7,6 +7,7 @@ import { Address } from 'src/app/model/Address';
 import { UserAuth } from 'src/app/model/userAuth';
 import { CartWithProducts } from 'src/app/model/CartWithProducts';
 import { UsersOrders } from 'src/app/model/UsersOrders';
+import { Review } from 'src/app/model/Review';
 
 
 export interface IAppState{
@@ -17,6 +18,7 @@ export interface IAppState{
     orderState: OrderState;
     addressState: AddressState;
     responseState : ResponseState;
+    reviewState : ReviewState;
 }
 
 export interface ProductsState {
@@ -114,6 +116,14 @@ export const initialAccountState :AddressState = {
         surname: '',
         telephone_number: ''
     }
+}
+
+export interface ReviewState {
+    reviews : Review[];
+}
+
+export const initialReviewState : ReviewState = {
+    reviews : []
 }
 
 export interface ResponseState{
