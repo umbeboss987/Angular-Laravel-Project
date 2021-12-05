@@ -18,3 +18,10 @@ export const selectReviewsList = createSelector(
         return state.reviews;
     }
 );
+
+export const selectProductReviews = createSelector(
+    selectReviews,
+    (state: ReviewState) => {
+        return state.reviewsProduct;
+    }
+);

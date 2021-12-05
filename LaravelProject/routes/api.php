@@ -35,6 +35,8 @@ Route::prefix('products')->group(function () {
     Route::get('/{products_type}',[ProductController::class, 'getProductsByType'])->name('getProductsByType')->where(['products_type' => '[a-z]+']);
     Route::post('/{product_id}',[ProductController::class, 'updateProduct'])->name('updateProduct');
     Route::post('/{product_id}/reviews',[ReviewController::class, 'addReview'])->name('addReview');
+    Route::get('/{product_id}/reviews',[ProductController::class, 'getProductReviews'])->name('getProductReviews');
+    Route::delete('/{product_id}/reviews/{review_id}',[ProductController::class, 'deleteProductReview'])->name('deleteProductReview');
 
 });
 
@@ -42,6 +44,11 @@ Route::prefix('users')->group(function () {
     Route::get('', [UserController::class, 'getAllUsers']);
     Route::delete('/{user_id}', [UserController::class, 'deleteUser']);
 });
+
+
+Route::get('reviews', [ReviewController::class, 'getReviews']);
+
+
 
 Route::prefix('user')->group(function () {
     Route::put('', [UserController::class, 'updateUser'])->name('updateUser');

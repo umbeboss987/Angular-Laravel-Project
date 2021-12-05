@@ -1,7 +1,7 @@
 import {initialProductsState, initialReviewState, ProductsState } from '../state/app.state';
 import {createReducer, on } from '@ngrx/store';
 import { Review } from 'src/app/model/Review';
-import { AddReviewActionSuccess } from '../actions/review.actions';
+import { AddReviewActionSuccess, DeleteProductReviewAction, DeleteProductReviewActionSuccess, GetReviewsProductActionSuccess } from '../actions/review.actions';
 
 
 
@@ -12,6 +12,18 @@ const _reviewReducer = createReducer(initialReviewState,
              reviews : action.review
          }
      }),
+     on(GetReviewsProductActionSuccess, (state, action :any) => {
+        return {
+            ...state,
+            reviewsProduct: action.review
+        }
+    }),
+     on(DeleteProductReviewActionSuccess, (state, action :any) => {
+        return {
+            ...state,
+            reviewsProduct: action.review
+        }
+    }),
 )
 
 export function reviewReducer  (state : any, action : any) {

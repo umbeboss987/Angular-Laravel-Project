@@ -20,7 +20,7 @@ import { UsersAdminComponent } from './AdminComponents/users-admin/users-admin.c
     AdminLayoutComponent,
     OrdersAdminComponent,
     AddProductComponent,
-    UsersAdminComponent
+    UsersAdminComponent,
   ],
   imports: [
     CommonModule,

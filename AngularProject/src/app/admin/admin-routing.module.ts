@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RoleGuard } from '../RoleGuard/role.guard';
 import { AddProductComponent } from './AdminComponents/add-product/add-product.component';
 import { AdminHomeComponent } from './AdminComponents/admin-home/admin-home.component';
 import { AdminListProductsComponent } from './AdminComponents/admin-list-products/admin-list-products.component';

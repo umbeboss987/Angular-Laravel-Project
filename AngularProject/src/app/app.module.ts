@@ -22,6 +22,7 @@ import { OrderEffects } from 'src/app/store/effects/order.effects';
 import { AccountEffects } from './store/effects/address.effects';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {RouterModule} from '@angular/router';
+import { ReviewEffects } from './store/effects/review.effects';
 
 
 export function tokenGetter() {
@@ -53,7 +54,7 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     CommonModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([ProductsEffect, CartEffects, UserEffects, OrderEffects, AccountEffects]),
+    EffectsModule.forRoot([ProductsEffect, CartEffects, UserEffects, OrderEffects, AccountEffects, ReviewEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
      JwtModule.forRoot({
       config: { //aggiunge athorization header

@@ -8,6 +8,7 @@ import { UserAuth } from 'src/app/model/userAuth';
 import { CartWithProducts } from 'src/app/model/CartWithProducts';
 import { UsersOrders } from 'src/app/model/UsersOrders';
 import { Review } from 'src/app/model/Review';
+import { ProductReview } from 'src/app/model/ProductReview';
 
 
 export interface IAppState{
@@ -120,10 +121,12 @@ export const initialAccountState :AddressState = {
 
 export interface ReviewState {
     reviews : Review[];
+    reviewsProduct : ProductReview[];
 }
 
 export const initialReviewState : ReviewState = {
-    reviews : []
+    reviews : [],
+    reviewsProduct : []
 }
 
 export interface ResponseState{

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\OrderProduct;
+use App\Models\Review;
 
 
 class Product extends Model
@@ -21,5 +22,9 @@ class Product extends Model
 
     public function order (){
         return $this->belongsToMany(Order::class);
+    }
+
+    public function reviews (){
+        return $this->hasMany(Review::class);
     }
 }

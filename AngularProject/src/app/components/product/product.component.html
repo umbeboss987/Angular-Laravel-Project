@@ -74,10 +74,21 @@
               <ul class="nav nav-tabs">
                 <li><a href="#2c" data-toggle="tab">Reviews</a> </li>
               </ul>
-              <div class="tab-content ">
-                <div class="tab-pane active" id="1c">
-                  <p>Corem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis malesuada mi id tristique. Sed ipsum nisi, dapibus at faucibus non, dictum a diam. Nunc vitae interdum diam. Sed finibus, justo vel maximus facilisis, sapien turpis euismod tellus, vulputate semper diam ipsum vel tellus.</p>
-                </div>
+              <div class="tab-content" *ngFor="let review of reviews$ | async">
+                <div class="card">
+                  <div class="card-top">
+                      <div class="name">
+                          <div class="img one" alt="">NF</div>
+                          <p>{{review.username}}</p>
+                      </div>
+                  </div>
+      
+                  <div class="card-content">
+                      <p>{{review.review}}</p>
+                      <button class="delete-review btn btn-warning" (click)="deleteProductReview(review.id)">Delete review</button>
+                  </div>
+              </div>
+              <hr style="margin:0; border-color:rgb(194, 181, 181)">
             </div>
           </div>
         </div>

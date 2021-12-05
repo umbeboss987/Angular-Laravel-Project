@@ -107,4 +107,15 @@ class ProductController extends Controller
         $product->save();
         return response(null, 201)->header('location', 'http://localhost:8000/api/products/' . $product->id);
     }
+
+
+    function getProductReviews($product_id) {
+        $reviews = Review::select('user.username', 'review.review', 'review.id')->join('user', 'review.user_id', 'user.id')->where('product_id', $product_id)->get();
+        return response()->json($reviews, 200);
+    }
+
+    function deleteProductReview($product_id, $review_id) {
+        Review::where('id', $review_id)->delete();
+        return response(null, 204);
+    }
 }

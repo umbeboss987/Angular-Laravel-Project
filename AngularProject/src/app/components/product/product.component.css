@@ -88,4 +88,97 @@
   }
 
 
+
+
+  .card-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-action span {
+    font-size: .8rem;
+    color: RGB(101, 101, 114);
+}
+
+.card-action .btn {
+    padding: .3rem .7rem;
+    background: transparent;
+    border: 1px solid #000;
+    border-radius: 2px;
+    color: #8C8C9F;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+}
+
+
+.rate i {
+  color: yellow;
+}
+
+.card-content {
+  margin: 0;
+  padding-top: 0;
+  display: flex;
+}
+
+.card-content p {
+  font-size: 14px;
+  width: 60%;
+  color: rgb(152, 152, 165);
+}
+
+.img {
+  width: 50px;
+  height: 50px;
+  background: purple;
+  border-radius: 50%;
+  outline: none;
+}
+
+.name .one {
+  background: orange;
+}
+
+.name,
+.name .img {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.name .img {
+  justify-content: center;
+}
+
+.card>* {
+  padding: 1rem 1.2rem;
+}
+
+.card-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+
+
+
+.card {
+  width: 100%;
+  margin-bottom: .7rem;
+  background: white;
+  border-radius: 5px;
+  height: 150px;
+  box-shadow: 10px ,10px, 10px,rgb(24, 22, 22);
+  margin-top: 15px;
+}
+
+
+.delete-review{
+  height: 30px;
+  margin-top: 10px;
+}
  

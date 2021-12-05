@@ -2,14 +2,9 @@ import { Actions, ofType,createEffect } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { switchMap, map , mergeMap, filter, withLatestFrom, catchError, tap, } from 'rxjs/operators';
+import { switchMap, map ,  catchError, tap, } from 'rxjs/operators';
 import { OrderService } from "src/app/services/order.service";
 import { ToastrService } from 'ngx-toastr';
-
-import {
-  routerNavigationAction,
-  ROUTER_NAVIGATION,
-} from '@ngrx/router-store';
 import { Router } from '@angular/router';
 import { AddOrderAction, AddOrderActionFail, AddOrderActionSuccess, GetOrders, GetOrdersSuccess, GetUserOrdersSuccess, GetUserOrdersFail, GetUserOrders, GetOrdersFail,  } from 'src/app/store/actions/order.actions';
 

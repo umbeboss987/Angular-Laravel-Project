@@ -21,4 +21,11 @@ class ReviewController extends Controller
         return response(null,201);
       
     }
+
+
+    function getReviews (){
+        $reviews = Review::with('product')->get();
+        return response()->json($reviews, 200);
+    }
+
 }
