@@ -18,55 +18,28 @@
     <div class="row " *ngIf="(product$ | async) as product">
       <div class="col-sm-8 col-md-8 col-lg-9 mb_30">
         <div class="row mt_10 ">
-        <form  [formGroup]= "formGroup" method="POST" (ngSubmit)="addCartItem(product.id)"> 
-          <div class="col-md-6">
-           <div><a class="thumbnails"> <img data-name="product_image" src="{{product.photo}}" href="" alt="" /></a></div> 
-            <div id="product-thumbnail" class="owl-carousel">
-              <div class="item">
-                <div class="image-additional"><a class="thumbnail"  data-fancybox="group1"></a></div>
+          <div class="wrapper">
+            <div class="product-img">
+              <img src="{{product.photo}}" height="420" width="327">
+            </div>
+          <form action="" [formGroup]= "formGroup" method="POST" (ngSubmit)="addCartItem(product.id)">
+            <div class="product-info">
+              <div class="product-text">
+                <h1>{{product.name}}</h1>
+                <p>{{product.description}}</p>
+                <h3 style="margin-left:40px;margin-top:20px;"class="">Price</h3>
+                <h4  style="margin-left:43px;"class="">{{product.price}}$</h4>
+              </div>
+             
+              <div class="product-price-btn" style="margin-left:40px;">
+                <label for="" class="">Qty
+                  <input class="quantity-input" formControlName="quantity" name="product_quantity" min="1" max="5" value="1" type="number">
+                </label>
+                <button style="margin-right:20px;" type="submit">buy now</button>
               </div>
             </div>
-          </div>
-          <div class="col-md-6 prodetail caption product-thumb">
-            <h4 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">{{product.name}}</a></h4>
-            <div class="rating">
-              <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span>
-              <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span>
-              <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span>
-              <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span>
-              <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span>
-            </div>
-            <span class="price mb_20"><span class="amount"><span class="currencySymbol">$</span>{{product.price}}</span>
-            </span>
-            <hr>
-            <ul class="list-unstyled product_info mtb_20">
-              <li>
-                <label>Brand:</label>
-                <span> <a href="#">Apple</a></span></li>
-              <li>
-                <label>Product Code:</label>
-                <span> product 20</span></li>
-              <li>
-                <label>Availability:</label>
-                <span> In Stock</span></li>
-            </ul>
-            <hr>
-            <p class="product-desc mtb_30"> {{product.description}}</p>
-            <div id="product">
-              <div class="qty mt_30 form-group2">
-                <label>Qty</label>
-                <input formControlName="quantity" name="product_quantity" min="1" max="5" value="1" type="number">
-                <div class="alert alert-danger" role="alert" 
-                *ngIf="!formGroup.get('quantity')?.valid && formGroup.get('quantity')?.touched">
-                Insert a different quantity
-             </div>
-              </div>
-              <div class="button-group mt_30">
-                <button [disabled]="!formGroup.get('quantity')?.valid" type="submit" value="Add to cart" style="background-color: #ffca28; color: black; border: none;">Add to cart</button>
-              </div>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
         </div>
         <div class="row">
           <div class="col-md-12">
@@ -96,3 +69,6 @@
     </div>
   </div>
   </div>
+
+ 
+  
