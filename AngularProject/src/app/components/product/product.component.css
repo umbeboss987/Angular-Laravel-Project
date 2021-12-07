@@ -326,7 +326,7 @@ span {
 @media(min-width:321px){
   .product-text h2 {
     margin: 0 0 47px 38px;
-    font-size: 3px;
+    font-size: 7px;
     font-family: 'Raleway', sans-serif;
     font-weight: 200;
     text-transform: uppercase;
@@ -383,20 +383,21 @@ span {
 @media (min-width:481px)  {
   .wrapper{
     width:400px;
+    height:700px;
   }
     .product-img {
       float: left;
-      height: 220px;
+      height: 260px;
       width: 267px;
     }
   
     .product-text p {
-      height: 125px;
+      height: 165px;
       margin: 0 0 0 38px;
       font-family: 'Playfair Display', serif;
       color: #8d8d8d;
       line-height: 1.7em;
-      font-size: 14px;
+      font-size: 10px;
       font-weight: lighter;
       overflow: hidden;
     }
@@ -408,6 +409,8 @@ span {
   @media (min-width:641px)  {
     .wrapper{
       width:600px;
+      height:500px;
+
     }
       .product-img {
         float: left;
@@ -421,10 +424,32 @@ span {
         font-family: 'Playfair Display', serif;
         color: #8d8d8d;
         line-height: 1.7em;
-        font-size: 14px;
+        font-size: 10px;
         font-weight: lighter;
         overflow: hidden;
       }
+
+      .product-price-btn button {
+        float: right;
+        display: inline-block;
+        height: 30px;
+        width: 100px;
+        margin: 0 40px 0 16px;
+        box-sizing: border-box;
+        border: transparent;
+        border-radius: 60px;
+        font-family: 'Raleway', sans-serif;
+        font-size: 10px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: #ffffff;
+        background-color: rgb(255,193,8);
+        cursor: pointer;
+        outline: none;
+        margin-right:60px !important;
+      }
+
     
     }
 
@@ -434,6 +459,7 @@ span {
  
 .wrapper{
   width:700px;
+  height:500px;
 }
   .product-img {
     float: left;
@@ -442,15 +468,37 @@ span {
   }
 
   .product-text p {
-    height: 125px;
+    height: 165px;
     margin: 0 0 0 38px;
     font-family: 'Playfair Display', serif;
     color: #8d8d8d;
     line-height: 1.7em;
-    font-size: 14px;
+    font-size: 10px;
     font-weight: lighter;
     overflow: hidden;
   }
+
+  .product-price-btn button {
+    float: right;
+    display: inline-block;
+    height: 30px;
+    width: 100px;
+    margin: 0 40px 0 16px;
+    box-sizing: border-box;
+    border: transparent;
+    border-radius: 60px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #ffffff;
+    background-color: rgb(255,193,8);
+    cursor: pointer;
+    outline: none;
+    margin-right:0px !important;
+  }
+  
 
 }
 
@@ -458,6 +506,7 @@ span {
  
   .wrapper{
     width:1000px;
+    height:500px;
   }
     .product-img {
       float: left;
@@ -499,7 +548,7 @@ span {
       background-color: rgb(255,193,8);
       cursor: pointer;
       outline: none;
-    
+       margin-right:0;
     }
   
   
