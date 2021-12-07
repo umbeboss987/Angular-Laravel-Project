@@ -1,10 +1,10 @@
 {
    "navbar":{
-      "administration" : "administration",
-      "cart" : "cart",
-      "account" : "account",
-      "shop" : "shop",
-      "phone" : "phone"
+      "administration" : "Administration",
+      "cart" : "Cart",
+      "account" : "Account",
+      "shop" : "Shop",
+      "phone" : "Phone"
     },
 
     "homePage":{
@@ -73,8 +73,34 @@
         "addressProfileAddress" : "Address",
         "addressProfileCity" : "City",
         "addressProfilePostalCode" : "PostalCode",
-        "addressProfileUpdate" : "Update Address"
+        "addressProfileUpdate" : "Update Address",
+        "changeAccount" : "Change Account",
+        "changeAccountUsername" : "new Username",
+        "changeAccountEmail" : "Email",
+        "changeAccountButton" : "Change Account"
 
+
+    },
+    "insertAddressModal":{
+        "title" : "Insert Address",
+        "name" : "Name",
+        "surname" : "Surname",
+        "telephone" : "Telephone",
+        "address" : "Address",
+        "city" : "City",
+        "postalCode" : "PostalCode",
+        "button" : "Subscribe"
+    },
+    "updateAddress":{
+        "title" : "Update Address",
+        "name" : "Name",
+        "surname" : "Surname",
+        "telephone" : "Telephone",
+        "address" : "Address",
+        "city" : "City",
+        "postalCode" : "PostalCode",
+        "button" : "Subscribe"
     }
+    
     
 }

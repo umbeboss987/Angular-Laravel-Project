@@ -43,45 +43,45 @@
                                                         class="uil uil-expand-arrows"></i></label>
                                                 <div class="modal">
                                                     <div class="modal-wrap">
-                                                        <h2 class="title">Insert Address</h2>
+                                                        <h2 class="title">{{'insertAddressModal.title' | translate}}</h2>
                                                         <div class="text-center">
                                                             <form action="" [formGroup]="formAddress" class="" class="main-form full" (ngSubmit)="createAddress()"
                                                                 method="POST">
-                                                                <label for="" class=""> Name</label> 
+                                                                <label for="" class=""> {{'insertAddressModal.name' | translate}}</label> 
                                                                 <div class="div-modal">
                                                                     <input class="modal-input" type="text" formControlName="name"placeholder="Name">
                                                                     <p class="error-sentence" *ngIf="!formAddress.get('name')?.valid && formAddress.get('name')?.touched">Field not correct</p>
                                                                     <p class="error-sentence" *ngIf="formAddress.get('name')?.errors?.required && formAddress.get('name')?.touched">This field is required</p>
                                                                  </div>
-                                                                <label for="" class=""> Surname</label> 
+                                                                <label for="" class=""> {{'insertAddressModal.surname' | translate}}</label> 
                                                                 <div class="div-modal">
                                                                     <input class="modal-input" type="text" formControlName="surname"placeholder="Surname">
                                                                     <p class="error-sentence" *ngIf="!formAddress.get('surname')?.valid && formAddress.get('surname')?.touched">Field not correct</p>
                                                                     <p class="error-sentence" *ngIf="formAddress.get('surname')?.errors?.required && formAddress.get('surname')?.touched">This field is required</p>
 
                                                                 </div>
-                                                                <label for="" class=""> Telephone Number</label> 
+                                                                <label for="" class=""> {{'insertAddressModal.telephone' | translate}}</label> 
                                                                 <div class="div-modal">
                                                                     <input class="modal-input" type="text" formControlName="telephone_number" placeholder="Telephone">
                                                                     <p class="error-sentence" *ngIf="!formAddress.get('telephone_number')?.valid && formAddress.get('telephone_number')?.touched">Field not correct</p>
                                                                     <p class="error-sentence" *ngIf="formAddress.get('telephone_number')?.errors?.required && formAddress.get('telephone_number')?.touched">This field is required</p>
 
                                                                 </div>
-                                                                <label for="" class=""> Address</label> 
+                                                                <label for="" class=""> {{'insertAddressModal.address' | translate}}</label> 
                                                                 <div class="div-modal">
                                                                     <input class="modal-input" type="text" formControlName="address"placeholder="Address">
                                                                     <p class="error-sentence" *ngIf="!formAddress.get('address')?.valid && formAddress.get('address')?.touched">Field not correct</p>
                                                                     <p class="error-sentence" *ngIf="formAddress.get('address')?.errors?.required && formAddress.get('address')?.touched">This field is required</p>
 
                                                                 </div>
-                                                                <label for="" class=""> City</label> 
+                                                                <label for="" class=""> {{'insertAddressModal.city' | translate}}</label> 
                                                                 <div class="div-modal">
                                                                     <input class="modal-input" type="text" formControlName="city"placeholder="City">
                                                                     <p class="error-sentence" *ngIf="!formAddress.get('city')?.valid && formAddress.get('city')?.touched">Field not correct</p>
                                                                     <p class="error-sentence" *ngIf="formAddress.get('city')?.errors?.required && formAddress.get('city')?.touched">This field is required</p>
 
                                                                 </div>
-                                                                <label for="" class=""> Postal Code</label> 
+                                                                <label for="" class=""> {{'insertAddressModal.postalCode' | translate}}</label> 
                                                                 <div class="div-modal">
                                                                     <input class="modal-input" type="text" formControlName="postal_code" placeholder="Postal Code">
                                                                     <p class="error-sentence" *ngIf="!formAddress.get('postal_code')?.valid && formAddress.get('postal_code')?.touched">Field not correct</p>
@@ -90,7 +90,7 @@
                                                                 </div>
                                                                 
                                                                 <label for="" class="">
-                                                                    <button class="btn">Subscribe</button>
+                                                                    <button class="btn">{{'insertAddressModal.button' | translate}}</button>
                                                                 </label>
                                                             </form>
                                                         </div>

@@ -1,10 +1,10 @@
 {
     "navbar":{
-        "administration" : "amministrazione",
-        "cart" : "carrello",
-        "account" : "account",
-        "shop" : "prodotti",
-        "phone" : "telefoni"
+        "administration" : "Amministrazione",
+        "cart" : "Carrello",
+        "account" : "Account",
+        "shop" : "Prodotti",
+        "phone" : "Telefoni"
     },
 
     "homePage":{
@@ -62,17 +62,42 @@
         "orderMade": "Ordine Fatto",
         "goProducts" : "Vai al Prodotto",
         "buttonAddReview" : "Aggiungi recensione",
-        "modalReview" : "recensione",
+        "modalReview" : "Recensione",
         "addressTitle" : "I miei Indirizzi",
         "addAddress" : "Aggiungi indirizzo",
         "addAddressButton" : "Aggiungi indirrizo di spedizione",
         "addressProfile" : "Indirizzo",
         "addressProfileName" : "Nome",
-        "addressProfileSurame" : "Cognome",
+        "addressProfileSurname" : "Cognome",
         "addressProfileTelephone" : "Telefono",
         "addressProfileAddress" : "Indirizzo",
         "addressProfileCity" : "Città",
         "addressProfilePostalCode" : "Codice Postale",
-        "addressProfileUpdate" : "Aggiorna Indirizzo"
+        "addressProfileUpdate" : "Aggiorna Indirizzo",
+        "changeAccount" : "Aggiorna Account",
+        "changeAccountUsername" : "new Username",
+        "changeAccountEmail" : "Email",
+        "changeAccountButton" : "Aggiorna Account"
+    },
+
+    "insertAddressModal":{
+        "title" : "Aggiungi Indirizzo",
+        "name" : "Nome",
+        "surname" : "Cognome",
+        "telephone" : "Telefono",
+        "address" : "Indirizzo",
+        "city" : "Città",
+        "postalCode" : "Indirizzo postale",
+        "button" : "Inserisci"
+    },
+    "updateAddress":{
+        "title" : "Aggiorna Indirizzo",
+        "name" : "Nome",
+        "surname" : "Cognome",
+        "telephone" : "Telefono",
+        "address" : "Indirizzo",
+        "city" : "Città",
+        "postalCode" : "Indirizzo postale",
+        "button" : "Inserisci"
     }
 }

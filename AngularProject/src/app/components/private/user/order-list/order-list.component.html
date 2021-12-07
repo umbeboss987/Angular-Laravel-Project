@@ -59,7 +59,7 @@
                   <label for="modal"  class="modal-background"></label>
                   <div class="modal" style="overflow-y:scroll;">
                     <div class="modal-header" >
-                      <h3> Review </h3>
+                      <h3> {{'profile.modalReview' | translate}} </h3>
                           <label for="modal">
                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAdVBMVEUAAABNTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0N3NIOAAAAJnRSTlMAAQIDBAUGBwgRFRYZGiEjQ3l7hYaqtLm8vsDFx87a4uvv8fP1+bbY9ZEAAAB8SURBVBhXXY5LFoJAAMOCIP4VBRXEv5j7H9HFDOizu2TRFljedgCQHeocWHVaAWStXnKyl2oVWI+kd1XLvFV1D7Ng3qrWKYMZ+MdEhk3gbhw59KvlH0eTnf2mgiRwvQ7NW6aqNmncukKhnvo/zzlQ2PR/HgsAJkncH6XwAcr0FUY5BVeFAAAAAElFTkSuQmCC" width="16" height="16" alt="">
                           </label>
@@ -68,7 +68,7 @@
                       <div class="container" style="margin-top:7%;">
                           <form method="Post" [formGroup]="formReview"(ngSubmit)="addReview(product.id)">
                             <div class="form-group">
-                              <label for="exampleInputEmail1" style=" font-size:14px;">Review</label>
+                              <label for="exampleInputEmail1" style=" font-size:14px;">{{'profile.modalReview' | translate}}</label>
                               <textarea type="text" style="text-align:center; font-size:12px;" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="review"></textarea>
                             </div>
                             <button type="submit" class="btn btn-warning" style="margin-top:7%; width:50%;">Submit</button>

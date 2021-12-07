@@ -11,35 +11,35 @@
     <div class="row">
         <div class="col-md-4 col-md-offset-4" *ngIf="address != undefined">
             <div>
-                <h3 class="mt_30 mb_10 sub_title">Change Address</h3>
+                <h3 class="mt_30 mb_10 sub_title">{{'updateAddress.title' | translate}}</h3>
                 <form class="main-form full " [formGroup]="formUpdateAddres" method="Post">
                     <div class="input-box mb_20">
-                        <label for="old-pass"> Name</label>
+                        <label for="old-pass"> {{'updateAddress.name' | translate}}</label>
                         <input class="modal-input" type="text" required="" id="old-pass" formControlName="name">
                     </div>
                     <div class="input-box mb_20">
-                        <label for="login-pass">Surname</label>
+                        <label for="login-pass">{{'updateAddress.surname' | translate}}</label>
                         <input class="modal-input" type="text" required="" formControlName="surname">
                     </div>
                     <div class="input-box mb_20">
-                        <label for="login-pass">Telephone</label>
+                        <label for="login-pass">{{'updateAddress.telephone' | translate}}</label>
                         <input class="modal-input" type="text" required="" formControlName="telephone_number">
                     </div>
                     <div class="input-box mb_20">
-                        <label for="login-pass">Address</label>
+                        <label for="login-pass">{{'updateAddress.address' | translate}}</label>
                         <input class="modal-input" type="text" required=""  formControlName="address">
                     </div>
                     <div class="input-box mb_20">
-                        <label for="login-pass">City</label>
+                        <label for="login-pass">{{'updateAddress.city' | translate}}</label>
                         <input class="modal-input" type="text" required="" formControlName="city">
                     </div>
                     <div class="input-box mb_20">
-                        <label for="login-pass">Postal Code</label>
+                        <label for="login-pass">{{'updateAddress.postalCode' | translate}}</label>
                         <input class="modal-input" type="text" required=""  formControlName="postal_code">
                     </div>
                     <div class="text-center ">
                         <button type="submit" [routerLink]="['/account']"
-                            class="btn btn-black pull-left" (click)="updateAddress()">Change Address</button>
+                            class="btn btn-black pull-left" (click)="updateAddress()">{{'updateAddress.button' | translate}}</button>
                     </div>
                 </form>
             </div>
