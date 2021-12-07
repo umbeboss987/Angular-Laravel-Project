@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -23,11 +23,18 @@ import { AccountEffects } from './store/effects/address.effects';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {RouterModule} from '@angular/router';
 import { ReviewEffects } from './store/effects/review.effects';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
+
+export function httpTranslateLoader(http: HttpClient):any {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -56,12 +63,20 @@ export function tokenGetter() {
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([ProductsEffect, CartEffects, UserEffects, OrderEffects, AccountEffects, ReviewEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-     JwtModule.forRoot({
-      config: { //aggiunge athorization header
-        tokenGetter: tokenGetter,
-        allowedDomains: ["localhost:8000"],
-      },
-    }),
+      JwtModule.forRoot({
+       config: { //aggiunge athorization header
+         tokenGetter: tokenGetter,
+         allowedDomains: ["localhost:8000"],
+       },
+     }),  
+     TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    }), 
     ],    
   providers: [{
     provide: HTTP_INTERCEPTORS,

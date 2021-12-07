@@ -11,18 +11,17 @@
           <div class="row">
             <div class="col-sm-6">
               <ul class="header-top-left">
-                <li class="language dropdown"> <span class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"> <img src="/assets/images/English-icon.gif" alt="img"> English <span class="caret"></span> </span>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#"><img src="/assets/images/English-icon.gif" alt="img"> English</a></li>
-                  </ul>
-                </li>
+               <select (change)="selectLanguage($event)" name="" id="" class="language-picker">
+                 <option value="en">english</option>
+                 <option value="it">italian</option>
+               </select>
               </ul>
             </div>
             <div class="col-sm-6">
               <ul class="header-top-right text-right">
-                <li class="account" *ngIf="isAdmin()"><a [routerLink]="['/admin']">Administration</a></li>
-                <li class="account" *ngIf="!isAdmin()"><a [routerLink]="['/account']">My Account</a></li>
-                <li class="cart"><a [routerLink]="['/cart']" >My Cart</a></li>
+                <li class="account" *ngIf="isAdmin()"><a [routerLink]="['/admin']">{{'navbar.administration' | translate}}</a></li>
+                <li class="account" *ngIf="!isAdmin()"><a [routerLink]="['/account']">{{'navbar.account' | translate}}</a></li>
+                <li class="cart"><a [routerLink]="['/cart']" >{{'navbar.cart' | translate}}</a></li>
               </ul>
             </div>
           </div>
@@ -119,7 +118,7 @@
                 <li class="dropdown"> <a  [routerLink]="['/products/']" class="dropdown-toggle" data-toggle="dropdown">Shop </a>
                   <ul class="dropdown-menu">
                     <li> <a  [routerLink]="['/products/type/computer']" >PC</a></li>
-                    <li> <a   [routerLink]="['/products/type/phone']" >Telefoni</a></li>
+                    <li> <a   [routerLink]="['/products/type/phone']" >Phone</a></li>
                     <li> <a   [routerLink]="['/products/type/tablet']" >Tablet</a></li>
                   </ul>
                 </li>

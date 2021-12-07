@@ -1,0 +1,80 @@
+{
+   "navbar":{
+      "administration" : "administration",
+      "cart" : "cart",
+      "account" : "account",
+      "shop" : "shop",
+      "phone" : "phone"
+    },
+
+    "homePage":{
+        "mostViewd" : "Most viewed products",
+        "popular" : "popular"
+    },
+
+
+    "footer":{
+        "categories" : "Categories",
+        "information" : "Information",
+        "myAccount" : "My Account",
+        "contact" : "Contact Us"
+    },
+
+    "products" :{
+        "products" : "Products"
+    },
+
+    "singleProduct":{
+        "buyNow" : "Buy Now",
+        "reviews" : "Reviews",
+        "price" : "Price"
+    },
+
+    "cart":{
+        "product" : "Product",
+        "productName": "Product Name",
+        "price": "Price",
+        "quantity": "Quantity",
+        "delete" : "Delete",
+        "continueShopping": "Continue Shopping",
+        "checkOut" : "Proceed to Checkout"
+    },
+
+    "order":{
+        "purchaseOrder" : "Purchase Order",
+        "myProducts" : "My products",
+        "total" : "Total",
+        "billing" : "Billing Details",
+        "address" : "I want to use an existing address",
+        "newAddress" : "I want to use a new address ",
+        "order" : "Order"
+    },
+
+    "profile":{
+        "information" : "Account Information",
+        "orders" :"Orders",
+        "address" : "Address",
+        "bigInformation" : "Information",
+        "updateProfile" : "Update Profile",
+        "orderlist" : "My Order List",
+        "addReview" : "Add a review",
+        "total" : "Total",
+        "orderMade": "Order Made",
+        "goProducts" : "Go to Product",
+        "buttonAddReview" : "Add a review",
+        "modalReview" : "Review",
+        "addressTitle" : "My Address",
+        "addAddress" : "Add a new address",
+        "addAddressButton" : "Add a Shipping address",
+        "addressProfile" : "Address",
+        "addressProfileName" : "Name",
+        "addressProfileSurname" : "Surname",
+        "addressProfileTelephone" : "Telephone",
+        "addressProfileAddress" : "Address",
+        "addressProfileCity" : "City",
+        "addressProfilePostalCode" : "PostalCode",
+        "addressProfileUpdate" : "Update Address"
+
+    }
+    
+}

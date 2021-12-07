@@ -1,0 +1,78 @@
+{
+    "navbar":{
+        "administration" : "amministrazione",
+        "cart" : "carrello",
+        "account" : "account",
+        "shop" : "prodotti",
+        "phone" : "telefoni"
+    },
+
+    "homePage":{
+        "mostViewd" : "I prodotti più visti",
+        "popular" : "popolare"
+    },
+
+    "footer":{
+        "categories" : "Categorie",
+        "information" : "Informazioni",
+        "myAccount" : "Il mio account",
+        "contact" : "Contatti"
+    },
+
+    "products" :{
+        "products" : "Prodotti"
+    },
+
+    "singleProduct":{
+        "buyNow" : "Compra Adesso",
+        "reviews" : "Recensioni",
+        "price" : "Prezzo"
+    },
+
+    "cart":{
+        "product" : "Prodotto",
+        "productName": "Nome prodotto",
+        "price": "Prezzo",
+        "quantity": "Quantità",
+        "delete" : "Elimina",
+        "continueShopping": "Torna allo shop",
+        "checkOut" : "Procedi al Pagamento"
+
+    },
+
+    "order":{
+        "purchaseOrder" : "Processa Ordine",
+        "myProducts" : "I miei Prodotti",
+        "total" : "Totale",
+        "billing" : "Dettagli Pagamento",
+        "address" : "Voglio utilizzare un indirizzo esistente",
+        "newAddress" : "Voglio utilizzare un nuovo indirizzo ",
+        "order" : "Ordina"
+    },
+
+    "profile":{
+        "information" : "Informazioni Account",
+        "orders" :"Ordini",
+        "address" : "Indirizzi",
+        "bigInformation" : "Informazioni",
+        "updateProfile" : "Aggiorna Profilo",
+        "orderlist" : "I miei Ordini",
+        "addReview" : "Aggiungi recensione",
+        "total" : "totale",
+        "orderMade": "Ordine Fatto",
+        "goProducts" : "Vai al Prodotto",
+        "buttonAddReview" : "Aggiungi recensione",
+        "modalReview" : "recensione",
+        "addressTitle" : "I miei Indirizzi",
+        "addAddress" : "Aggiungi indirizzo",
+        "addAddressButton" : "Aggiungi indirrizo di spedizione",
+        "addressProfile" : "Indirizzo",
+        "addressProfileName" : "Nome",
+        "addressProfileSurame" : "Cognome",
+        "addressProfileTelephone" : "Telefono",
+        "addressProfileAddress" : "Indirizzo",
+        "addressProfileCity" : "Città",
+        "addressProfilePostalCode" : "Codice Postale",
+        "addressProfileUpdate" : "Aggiorna Indirizzo"
+    }
+}

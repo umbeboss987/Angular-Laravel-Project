@@ -2,19 +2,19 @@
     <div class="text-center center">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" [routerLink]="['/account']">Account Information</a>
+          <a class="nav-link active" [routerLink]="['/account']">{{'profile.information' | translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" [routerLink]="['/account/orders']">Orders </a>
+          <a class="nav-link active" [routerLink]="['/account/orders']">{{'profile.orders' | translate}} </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" [routerLink]="['/account/address']">Address </a>
+            <a class="nav-link active" [routerLink]="['/account/address']">{{'profile.address' | translate}} </a>
           </li>
       </ul>
     </div>
   </div>
 <div class="text-center">
-<h2 class="">My Address</h2>
+<h2 class="">{{'profile.addressTitle' | translate}}</h2>
 </div>    
     <div class="container" style="display:flex; flex-direction:row; flex-wrap: wrap; margin-top:50px;justify-content:center; justify-content:space-between;">
         <div class="cart-total-table address-box commun-table item">
@@ -24,7 +24,7 @@
                         <tr>
                             <th>
                                 <div class="text-center">
-                                    <h5 class=""><b class="">Add New Address</b></h5>
+                                    <h5 class=""><b class="">{{'profile.addAddress' | translate}}</b></h5>
 
                                 </div>
                             </th>
@@ -39,7 +39,7 @@
                                             <div class="section">
                                                 <input class="modal-btn" type="checkbox" id="modal-btn"
                                                     name="modal-btn" />
-                                                <label for="modal-btn">Add a Shipping Address <i
+                                                <label for="modal-btn">{{'profile.addAddressButton' | translate}}<i
                                                         class="uil uil-expand-arrows"></i></label>
                                                 <div class="modal">
                                                     <div class="modal-wrap">
@@ -127,35 +127,35 @@
                             <td style="border:none;">
                                 <ul>
                                     <li class="inner-heading">
-                                        <h5 class="">Name: {{address.name}}</h5>
+                                        <h5 class="">{{'profile.addressProfileName' | translate}}: {{address.name}}</h5>
                                     </li>
                                     <li>
                                         <p></p>
                                     </li>
                                     <li>
-                                        <h5 class="">Surname: {{address.surname}}</h5>
+                                        <h5 class="">{{'profile.addressProfileSurname' | translate}}: {{address.surname}}</h5>
                                         <p></p>
                                     </li>
                                     <li>
-                                        <h5 class="">Telephone: {{address.telephone_number}}</h5>
+                                        <h5 class="">{{'profile.addressProfileTelephone' | translate}}: {{address.telephone_number}}</h5>
                                         <p></p>
                                     </li>
                                     <li>
-                                        <h5 class="">Address: {{address.address}}</h5>
+                                        <h5 class="">{{'profile.addressProfileAddress' | translate}}: {{address.address}}</h5>
                                         <p></p>
                                     </li>
                                     <li>
-                                        <h5 class="">City: {{address.city}}</h5>
+                                        <h5 class="">{{'profile.addressProfileCity' | translate}}: {{address.city}}</h5>
                                         <p></p>
                                     </li>
                                     <li>
-                                        <h5 class="">PostalCode: {{address.postal_code}}</h5>
+                                        <h5 class="">{{'profile.addressProfilePostalCode' | translate}}: {{address.postal_code}}</h5>
                                         <p></p>
                                     </li>
                                 </ul>
                             </td>
                         </tr>
-                            <a [routerLink]="['/account/address/'+ address.id]"style="width:50%; font-size:12px;margin-left:20px;" >Update Address</a>
+                            <a [routerLink]="['/account/address/'+ address.id]"style="width:50%; font-size:12px;margin-left:20px;" >{{'profile.addressProfileUpdate' | translate}}</a>
                     </tbody>
                 </table>
             </div>

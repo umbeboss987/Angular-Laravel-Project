@@ -2,19 +2,19 @@
   <div class="text-center center">
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link active" [routerLink]="['/account']">Account Information</a>
+        <a class="nav-link active" [routerLink]="['/account']">{{'profile.information' | translate}}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" [routerLink]="['/account/orders']">Orders </a>
+        <a class="nav-link active" [routerLink]="['/account/orders']">{{'profile.orders' | translate}} </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" [routerLink]="['/account/address']">Address </a>
+        <a class="nav-link active" [routerLink]="['/account/address']">{{'profile.address' | translate}} </a>
       </li>
     </ul>
   </div>
 </div>
   <!-- =====  BANNER STRAT  ===== -->
-  <div class="text-center" *ngIf="(loadingUser | async ) === true || (loadingAddress | async) === true">
+  <div class="text-center" *ngIf="(loadingUser | async ) === true">
     <div class="lds-roller">
       <div></div>
       <div></div>
@@ -27,8 +27,8 @@
     </div>
   </div>
 
-<div class="text-center all"  *ngIf="(loadingUser | async ) === false || (loadingAddress | async) === false">
-  <h2 class=" account">Information</h2>
+<div class="text-center all"  *ngIf="(loadingUser | async ) === false">
+  <h2 class=" account">{{'profile.bigInformation' | translate}}</h2>
     <div class="row" >
       <div class="col-md-12">
         <div class="tab-content ">
@@ -60,7 +60,7 @@
                                 <p>{{user.email}}</p>
                               </li>   
                               <li class="button-update">
-                                <button class="btn btn-primary bottoni"  [routerLink]="['/account/updateProfile']">Update Profile</button>
+                                <button class="btn btn-primary bottoni"  [routerLink]="['/account/updateProfile']">{{'profile.updateProfile' | translate}}</button>
                               </li>                             
                             </ul>
                           </td>

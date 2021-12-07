@@ -15,10 +15,10 @@
     <div class="col-lg-2"></div>
     <div class="col-lg-8">
       <div class="purchase" style="border: 1px solid #cfcfcf; padding:20px; margin-top:20px;">
-        <h2 class="">Purchase Order</h2>
+        <h2 class="">{{'order.purchaseOrder' | translate}}</h2>
         <div class="row" style="margin-top:40px;">
           <div class="col-lg-10">
-            <h4 class="">My products</h4>
+            <h4 class="">{{'order.myProducts' | translate}}</h4>
           </div>
           <div class="">
           </div>
@@ -53,7 +53,7 @@
               </div>
               <div class="col-lg-1">
                 <div class="subtotal">
-                  <h5 class="">Total</h5>
+                  <h5 class="">{{'order.total' | translate}}</h5>
                   <h6 class="">{{total}}</h6>
                 </div>
               </div>
@@ -63,13 +63,13 @@
         </div>
         <div>
         <div class="text-center" style="margin-bottom: 40px;">
-          <h3 class="">Billing Details</h3>
+          <h3 class="">{{'order.billing' | translate}}</h3>
         </div>
         <div class="">
             <div class="" [hidden]="hideCheckExistingAddress">
               <div class="radio" >
                 <label>
-                  <input (click)="useAddres()" type="radio" checked="checked" value="existing" name="payment_address" data-id="payment-existing"> I want to use an existing address</label>
+                  <input (click)="useAddres()" type="radio" checked="checked" value="existing" name="payment_address" data-id="payment-existing"> {{'order.address' | translate}}</label>
               </div>
             </div>
             <form action="" [formGroup]="orderForm" class="" (ngSubmit)="addOrder()">
@@ -87,11 +87,11 @@
         <div class="">
           <div class="radio" style="margin-top:40px;" [hidden]="hideCheckNewAddress">
             <label [hidden]="hideCheckNewAddress">
-              <input type="radio" (click)="displayNewAddress()" value="new" name="payment_address" data-id="payment-new"> I want to use a new address</label>
+              <input type="radio" (click)="displayNewAddress()" value="new" name="payment_address" data-id="payment-new"> {{'order.newAddress' | translate}}</label>
           </div>
         </div>
         <div class="text-center" [hidden]="hiddenButton">
-          <button (click)="addOrder()" class="btn btn-yellow" >Order</button>
+          <button (click)="addOrder()" class="btn btn-yellow" >{{'order.order' | translate}}</button>
         </div>
           <form [formGroup]="formAddress" action="" method="post" (ngSubmit)="addAddress()" [hidden]="hideNewAddressForm">
             <div class="container-fluid">

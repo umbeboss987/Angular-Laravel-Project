@@ -19,41 +19,26 @@ import {Observable} from 'rxjs';
 })
 export class ProfileComponent implements OnInit {
 
-
-  address : Observable<Address>;
-
   user: Observable<User>;
 
   loadingUser: Observable<boolean>;
 
-  loadingAddress: Observable<boolean>;
 
 
   constructor( private store: Store<IAppState>) { 
  
    
     this.getUser();
-    this.getAddress();
 
     this.user = this.store.select(selectSingleUser);
 
-    this.loadingUser= this.store.select(selectUserLoading);
-    
-    this.loadingAddress =  this.store.select(selectAddressLoading);
-   
-    this.address = this.store.select(selectSingleAddressAuth);
+    this.loadingUser= this.store.select(selectUserLoading);  
   }
 
   ngOnInit(): void {
     
   }
   
-
-  getAddress(){
-    this.store.dispatch(GetAddressAction());
-  }
-
-
   getUser(){
     this.store.dispatch(GetUserAction());
   }

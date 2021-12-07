@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
-import { ProductsService } from 'src/app/services/product.service';
-import { IAppState } from 'src/app/store/state/app.state';
-import {select, Store} from '@ngrx/store';
-import { GetProductsAction, ProductsTypeAction } from 'src/app/store/actions/product.actions';
-
+import {TranslateService} from '@ngx-translate/core';
 
 
 @Component({
@@ -15,7 +10,7 @@ import { GetProductsAction, ProductsTypeAction } from 'src/app/store/actions/pro
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private authService: AuthService){
+  constructor(private authService: AuthService, private translate: TranslateService){
   }
   ngOnInit(): void {
   }
@@ -31,6 +26,10 @@ export class NavbarComponent implements OnInit {
 
   isAdmin(){
     return this.authService.isAdmin();
+  }
+
+  selectLanguage(event : any){
+    this.translate.use(event.target.value);
   }
 
 

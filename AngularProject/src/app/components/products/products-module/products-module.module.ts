@@ -7,8 +7,14 @@
  import { StoreRouterConnectingModule } from '@ngrx/router-store';
  import { ProductComponent } from '../../product/product.component';
  import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+ import { HttpClient } from '@angular/common/http';
 
 
+ export function httpTranslateLoader(http: HttpClient):any {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 
  @NgModule({
@@ -25,6 +31,14 @@
      StoreRouterConnectingModule.forRoot({
        // serializer: CustomSerializer
        }),
+       TranslateModule.forChild({
+        defaultLanguage: 'en',
+        loader: {
+          provide: TranslateLoader,
+          useFactory: httpTranslateLoader,
+          deps: [HttpClient]
+        }
+      }), 
    ]
  })
  export class ProductsModuleModule { }

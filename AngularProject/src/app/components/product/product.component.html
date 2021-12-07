@@ -27,7 +27,7 @@
               <div class="product-text">
                 <h1>{{product.name}}</h1>
                 <p>{{product.description}}</p>
-                <h3 style="margin-left:40px;margin-top:20px;"class="">Price</h3>
+                <h3 style="margin-left:40px;margin-top:20px;"class="">{{'singleProduct.price' | translate}}</h3>
                 <h4  style="margin-left:43px;"class="">{{product.price}}$</h4>
               </div>
              
@@ -35,7 +35,7 @@
                 <label for="" class="">Qty
                   <input class="quantity-input" formControlName="quantity" name="product_quantity" min="1" max="5" value="1" type="number">
                 </label>
-                <button style="margin-right:20px;" type="submit">buy now</button>
+                <button style="margin-right:20px;" type="submit">{{'singleProduct.buyNow' | translate}}</button>
               </div>
             </div>
           </form>
@@ -45,7 +45,7 @@
           <div class="col-md-12">
             <div id="exTab5" class="mtb_30">
               <ul class="nav nav-tabs">
-                <li><h3 style ="color:grey"href="#2c" data-toggle="tab">Reviews</h3> </li>
+                <li><h3 style ="color:grey"href="#2c" data-toggle="tab">{{'singleProduct.reviews' | translate}}</h3> </li>
               </ul>
               <div class="tab-content" *ngFor="let review of reviews$ | async">
                 <div class="card">
