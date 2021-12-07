@@ -16,7 +16,7 @@ import jwt_decode from 'jwt-decode';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  products$? : Observable<Product[]>;;
+  products$ : Observable<Product[]>;;
 
   constructor(private router: ActivatedRoute, private store: Store<IAppState>) {
     this.products$ = this.store.select<Product[]>(selectProductList);

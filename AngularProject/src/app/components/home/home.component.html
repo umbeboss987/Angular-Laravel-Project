@@ -1,97 +1,95 @@
-
 <div class="text-center m-0">
   <div class="banner">
     <owl-carousel-o [options]="customOptions">
       <ng-template carouselSlide>
-          <img src="/assets/images/pixel-6.jpeg" alt="" class="">    
-      </ng-template>  
-      <ng-template  carouselSlide>
-        <img src="/assets/images/macbook-pro-13.jpeg" alt="" class="">    
-      </ng-template>  
+        <img src="/assets/images/pixel-6.jpeg" alt="" class="">
+      </ng-template>
       <ng-template carouselSlide>
-        <img src="/assets/images/surface-laptop-4.jpeg" alt="" class="">    
-      </ng-template>  
+        <img src="/assets/images/macbook-pro-13.jpeg" alt="" class="">
+      </ng-template>
+      <ng-template carouselSlide>
+        <img src="/assets/images/surface-laptop-4.jpeg" alt="" class="">
+      </ng-template>
     </owl-carousel-o>
   </div>
 </div>
-  <!-- =====  BANNER END  ===== -->
-  <!-- =====  CMS_BANNER START  ===== -->
-  
-  <!-- =====  CMS_BANNER END  ===== -->
-  <!-- =====  CONTAINER START  ===== -->
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <!-- =====  PRODUCT TAB  ===== -->
-        <div id="product-tab">
-          <div class="heading-part text-center mt_80 mb_20 ">
-            <h2 class="main_title">Most Viewed Products</h2>
-          </div>
-          <ul class="nav text-right mb_30">
-            <li class="active"> <a  data-toggle="tab">Popular</a> </li>
-          </ul>
-          <div class="tab-content clearfix box">
-            <div class="tab-pane active" id="nArrivals">
-              <div  class="row" id="data">
-                <div *ngFor="let product of products$ | async; let i = index"  class="product-layout product product-grid  col-lg-3 col-md-4 col-xs-6">
-                  <div  class="item" >
-                    <div class="thumbnail" *ngIf="i <= 3">
-                      <div class="image product-imageblock"> <a > <img data-name="product_image" [src]="product.photo" alt="iPod Classic" title="iPod Classic"> </a> </div>
-                      <div class="caption product-detail text-center">
-                        <h6 data-name="product_name" class="product-name mt_20"><a [routerLink]= "['/products/', product.id]"  title="Casual Shirt With Ruffle Hem" >{{product.name}}</a></h6>
-                        <div class="rating">
-                          <h1 class=""></h1>
-                          <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span>
-                          <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span>
-                          <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span>
-                          <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span>
-                          <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span>
-                        </div>
-                        <span class="price"><span class="amount"><span class="currencySymbol">$</span>{{product.price}}</span>
-                        </span>
-                      </div>
+<!-- =====  BANNER END  ===== -->
+<!-- =====  CMS_BANNER START  ===== -->
+
+<!-- =====  CMS_BANNER END  ===== -->
+<!-- =====  CONTAINER START  ===== -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-11">
+      <!-- =====  PRODUCT TAB  ===== -->
+      <div id="product-tab">
+        <div class="heading-part text-center mt_80 mb_20 ">
+          <h2 class="main_title">Most Viewed Products</h2>
+        </div>
+        <ul class="nav text-right mb_30">
+          <li class="active"> <a data-toggle="tab">Popular</a> </li>
+        </ul>
+        <div class="tab-content clearfix box">
+          <div class="tab-pane active" id="nArrivals">
+            <div class="row" id="data">
+              <div class="product-layout product product-grid  col-lg-3 col-md-4 col-xs-6 "
+                *ngFor=" let  indexOfelement=index;  let product of products$ | async">
+                <div class="" *ngIf="indexOfelement <= 3">
+                  <div class="card card-shadow">
+                    <div class="imgBx">
+                      <img src="{{product.photo}}" style="cursor: pointer;" [routerLink]="['/products/' + product.id]">
                     </div>
+
+                    <div class="contentBx">
+
+                      <h2>{{product.name}}</h2>
+                      <a [routerLink]="['/products/' + product.id]" style="margin-top:40px;">Buy Now</a>
+                    </div>
+
                   </div>
-                </div>  
+
+                </div>
               </div>
-            </div>          
-        </div>
-        <!-- =====  PRODUCT TAB  END ===== -->
-      </div>
-    </div>
-  </div>
-  <!-- =====  CONTAINER END  ===== -->
-  <!-- =====  special START  ===== -->
-  <!-- =====  BLOG START===== -->
-  <!-- =====  BLOG END ===== -->
-  <!-- =====  CLIENT START  ===== -->
-  <div class="perellex-two mtb_80 ptb_100">
-    <div class="container">
-      <div class="col-md-12">
-        <div class="client owl-carousel text-center">
-          <div class="item client-detail">
-            <div class="client-avatar"> <img alt="" src="/assets/images/t1.png"> </div>
-            <div class="client-title  mt_30"><strong>Janet Wilson</strong></div>
-            <div class="client-designation mb_10">Web Developer</div>
-            <p><i class="fa fa-quote-left" aria-hidden="true"></i>Rem ipsum doLoremRem ipsum doLorem ipsum ipsum doLorem ipsum ut labore et dolore ma ipsum ut labore etdolore ipsum doLorem ipsum ut labore et dolore mamagna. Lorem ipsumut labore et dolore mamagna. Lorem ipsum doLorem ipsum dolor sit amet, consectetur adipisicing.</p>
-          </div>
-          <div class="item client-detail">
-            <div class="client-avatar"> <img alt="" src="/assets/images/t2.png"> </div>
-            <div class="client-title  mt_30"><strong>Linda Howard</strong></div>
-            <div class="client-designation mb_10">PHP Developer</div>
-            <p><i class="fa fa-quote-left" aria-hidden="true"></i>Rem ipsum doLoremRem ipsum doLorem ipsum ipsum doLorem ipsum ut labore et dolore ma ipsum ut labore etdolore ipsum doLorem ipsum ut labore et dolore mamagna. Lorem ipsumut labore et dolore mamagna. Lorem ipsum doLorem ipsum dolor sit amet, consectetur adipisicing.</p>
-          </div>
-          <div class="item client-detail">
-            <div class="client-avatar"> <img alt="" src="/assets/images/t3.png"> </div>
-            <div class="client-title  mt_30"><strong>joseph Lui</strong></div>
-            <div class="client-designation mb_10">Web Designer</div>
-            <p><i class="fa fa-quote-left" aria-hidden="true"></i>Rem ipsum doLoremRem ipsum doLorem ipsum ipsum doLorem ipsum ut labore et dolore ma ipsum ut labore etdolore ipsum doLorem ipsum ut labore et dolore mamagna. Lorem ipsumut labore et dolore mamagna. Lorem ipsum doLorem ipsum dolor sit amet, consectetur adipisicing.</p>
+              <div class=" text-center mt_50" id="navProduct">
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="col-lg-0"></div>
   </div>
-  <!-- =====  CLIENT END  ===== -->
-  <!-- =====  BRAND START  ===== -->
-  
-  
+</div>
+<div class="perellex-two mtb_80 ptb_100">
+  <div class="container">
+    <div class="col-md-12">
+      <div class="client owl-carousel text-center">
+        <div class="item client-detail">
+          <div class="client-avatar"> <img alt="" src="/assets/images/t1.png"> </div>
+          <div class="client-title  mt_30"><strong>Janet Wilson</strong></div>
+          <div class="client-designation mb_10">Web Developer</div>
+          <p><i class="fa fa-quote-left" aria-hidden="true"></i>Rem ipsum doLoremRem ipsum doLorem ipsum ipsum doLorem
+            ipsum ut labore et dolore ma ipsum ut labore etdolore ipsum doLorem ipsum ut labore et dolore mamagna. Lorem
+            ipsumut labore et dolore mamagna. Lorem ipsum doLorem ipsum dolor sit amet, consectetur adipisicing.</p>
+        </div>
+        <div class="item client-detail">
+          <div class="client-avatar"> <img alt="" src="/assets/images/t2.png"> </div>
+          <div class="client-title  mt_30"><strong>Linda Howard</strong></div>
+          <div class="client-designation mb_10">PHP Developer</div>
+          <p><i class="fa fa-quote-left" aria-hidden="true"></i>Rem ipsum doLoremRem ipsum doLorem ipsum ipsum doLorem
+            ipsum ut labore et dolore ma ipsum ut labore etdolore ipsum doLorem ipsum ut labore et dolore mamagna. Lorem
+            ipsumut labore et dolore mamagna. Lorem ipsum doLorem ipsum dolor sit amet, consectetur adipisicing.</p>
+        </div>
+        <div class="item client-detail">
+          <div class="client-avatar"> <img alt="" src="/assets/images/t3.png"> </div>
+          <div class="client-title  mt_30"><strong>joseph Lui</strong></div>
+          <div class="client-designation mb_10">Web Designer</div>
+          <p><i class="fa fa-quote-left" aria-hidden="true"></i>Rem ipsum doLoremRem ipsum doLorem ipsum ipsum doLorem
+            ipsum ut labore et dolore ma ipsum ut labore etdolore ipsum doLorem ipsum ut labore et dolore mamagna. Lorem
+            ipsumut labore et dolore mamagna. Lorem ipsum doLorem ipsum dolor sit amet, consectetur adipisicing.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
