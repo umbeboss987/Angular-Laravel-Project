@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from 'src/app/model/user';
+import { User } from 'src/app/model/User';
 import { ToastrService } from 'ngx-toastr';
 import {select, Store} from '@ngrx/store';
 import { UserLoginAction, UserSignUpAction} from 'src/app/store/actions/user.actions';

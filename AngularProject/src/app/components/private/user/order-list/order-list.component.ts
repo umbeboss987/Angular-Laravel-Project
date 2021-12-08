@@ -7,7 +7,7 @@ import { GetUserOrders } from 'src/app/store/actions/order.actions';
 import{Observable} from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddReviewAction } from 'src/app/store/actions/review.actions';
-import { Order } from 'src/app/model/order';
+import { Order } from 'src/app/model/Order';
 
 @Component({
   selector: 'app-order-list',

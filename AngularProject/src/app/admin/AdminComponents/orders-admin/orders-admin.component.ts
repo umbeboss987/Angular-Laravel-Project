@@ -4,8 +4,8 @@ import {select, Store} from '@ngrx/store'
 import { GetOrders } from 'src/app/store/actions/order.actions';
 import {Observable} from 'rxjs/'
 import { selectUsersOrders } from 'src/app/store/selectors/order.selector';
-import { User } from 'src/app/model/user';
-import { Order } from 'src/app/model/order';
+import { User } from 'src/app/model/User';
+import { Order } from 'src/app/model/Order';
 
 @Component({
   selector: 'app-orders-admin',

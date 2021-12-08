@@ -1,10 +1,10 @@
 import { RouterReducerState } from '@ngrx/router-store';
 import {Product} from 'src/app/model/Product';
-import {Order} from 'src/app/model/order';
-import {Cart} from 'src/app/model/cart';
-import { User } from 'src/app/model/user';
+import {Order} from 'src/app/model/Order';
+import {Cart} from 'src/app/model/Cart';
+import { User } from 'src/app/model/User';
 import { Address } from 'src/app/model/Address';
-import { UserAuth } from 'src/app/model/userAuth';
+import { UserAuth } from 'src/app/model/UserAuth';
 import { Review } from 'src/app/model/Review';
 
 

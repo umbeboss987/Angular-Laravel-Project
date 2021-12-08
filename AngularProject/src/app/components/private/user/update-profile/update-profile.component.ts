@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import{User} from '../../../../model/user';
+import{User} from '../../../../model/User';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { IAppState } from 'src/app/store/state/app.state';
 import {select, Store} from '@ngrx/store';

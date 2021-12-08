@@ -1,5 +1,5 @@
 import {Action, createAction, props} from '@ngrx/store';
-import {Order} from 'src/app/model/order';
+import {Order} from 'src/app/model/Order';
 
 export const AddOrderAction = createAction('[ORDER] Add order', props<{item: Order}>())
 export const AddOrderActionSuccess = createAction('[ORDER] Add order success', props<{item: Order}>())

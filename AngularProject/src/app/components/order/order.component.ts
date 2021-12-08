@@ -10,7 +10,7 @@ import { FormBuilder , Validators, FormGroup} from '@angular/forms';
 import { CreateAddressAction, GetAddressAction } from 'src/app/store/actions/address.actions';
 import { selectAddress, selectAddressLoading } from 'src/app/store/selectors/address.selector';
 import { Router } from '@angular/router';
-import { Cart } from 'src/app/model/cart';
+import { Cart } from 'src/app/model/Cart';
 
 @Component({
   selector: 'app-order',

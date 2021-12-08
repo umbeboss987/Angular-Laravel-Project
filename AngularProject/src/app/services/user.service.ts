@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { User } from '../model/user';
+import { User } from '../model/User';
 import { Observable } from 'rxjs';
 import { AppConstants } from '../app.constants';
 

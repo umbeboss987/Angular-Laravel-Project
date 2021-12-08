@@ -8,7 +8,7 @@ import { IAppState } from 'src/app/store/state/app.state';
 import { Observable, Subscription } from 'rxjs';
 import { FormBuilder , Validators, FormGroup} from '@angular/forms';
 import { AddCartItemAction } from 'src/app/store/actions/cart.actions';
-import { Cart } from 'src/app/model/cart';
+import { Cart } from 'src/app/model/Cart';
 import { DeleteProductReviewAction, GetReviewsProductAction } from 'src/app/store/actions/review.actions';
 import { selectReviewsList } from 'src/app/store/selectors/review.selectors';
 import { Review } from 'src/app/model/Review';

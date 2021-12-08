@@ -1,7 +1,7 @@
 import {AddCartItemActionSuccess, DeleteCartItemActionSuccess, GetCartItemActionSuccess, GetCartTotalActionSuccess} from '../actions/cart.actions';
 import { initialCartState,  } from '../state/app.state';
 import {createReducer, on } from '@ngrx/store';
-import { Cart } from 'src/app/model/cart';
+import { Cart } from 'src/app/model/Cart';
 
 
 

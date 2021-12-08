@@ -1,6 +1,6 @@
 import {Action, createAction, props} from '@ngrx/store';
-import { User } from 'src/app/model/user';
-import { UserAuth } from 'src/app/model/userAuth';
+import { User } from 'src/app/model/User';
+import { UserAuth } from 'src/app/model/UserAuth';
 
 export enum  UserActionsType {
     SIGN_UP_ACTION = '[User] sign up',

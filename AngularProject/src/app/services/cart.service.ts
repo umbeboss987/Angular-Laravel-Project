@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router , ActivatedRoute, Params} from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { Cart } from '../model/cart';
+import { Cart } from '../model/Cart';
 import { AppConstants } from '../app.constants';
 import { tap } from "rxjs/operators";
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';

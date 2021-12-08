@@ -3,7 +3,7 @@ import {select, Store} from '@ngrx/store';
 import { IAppState } from 'src/app/store/state/app.state';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { selectCartList, selectCartTotal} from 'src/app/store/selectors/cart.selector';
-import { Cart } from 'src/app/model/cart';
+import { Cart } from 'src/app/model/Cart';
 import { DeleteCartItemAction, GetCartItemAction, GetCartTotalAction } from 'src/app/store/actions/cart.actions';
 import { Router } from '@angular/router';
 

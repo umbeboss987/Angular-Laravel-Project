@@ -1,6 +1,6 @@
 import { Address } from "./Address";
 import { Product } from "./Product";
-import { User } from "./user";
+import { User } from "./User";
 
 export interface Order{
     id: number;

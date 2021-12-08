@@ -1,5 +1,5 @@
 import { Product } from "./Product";
-import { User } from "./user";
+import { User } from "./User";
 
 export interface Review {
     id:number;

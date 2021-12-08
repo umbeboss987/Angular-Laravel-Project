@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Store} from '@ngrx/store';
-import { User } from 'src/app/model/user';
+import { User } from 'src/app/model/User';
 import { DeleteUserAction, GetAllUserAction } from 'src/app/store/actions/user.actions';
 import { selectUserAuth } from 'src/app/store/selectors/user.selector';
 import { IAppState } from 'src/app/store/state/app.state';
