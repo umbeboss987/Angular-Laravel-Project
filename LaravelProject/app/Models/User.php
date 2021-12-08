@@ -7,6 +7,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Order;
 use App\Models\Account;
+use App\Models\Cart;
+
 
 
 class User extends Authenticatable implements JWTSubject
@@ -49,4 +51,9 @@ class User extends Authenticatable implements JWTSubject
     public function orderProducts (){
         return $this->hasManyThrough(Product::class,Order::class);
     }
+
+
+    public function carts (){
+        return  $this->hasMany(Cart::class);
+     }
 }

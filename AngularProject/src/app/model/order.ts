@@ -1,7 +1,13 @@
+import { Address } from "./Address";
+import { Product } from "./Product";
+import { User } from "./user";
+
 export interface Order{
     id: number;
-    user_id: number;
-    address_id : number;
+    user: User;
+    address : Address;
     code: number;
-    to : number;
+    created_at : Date;
+    total : number;
+    product : Product[];
 }

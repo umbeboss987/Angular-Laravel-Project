@@ -31,11 +31,13 @@ export class SignInComponent implements OnInit {
     
     
     this.formGroup = this.fb.group({
+      id: null,
       username: ["",[Validators.required, Validators.minLength(4), Validators.maxLength(13)]],
       email: ["",[Validators.required, Validators.email ,Validators.minLength(8), Validators.maxLength(20)]],
       password: ["",[Validators.required, Validators.minLength(5), Validators.maxLength(17)]],
       confirmPassword: ["",[Validators.required, ]],
-      role: 2
+      role: 2,
+      order: null
     },
     { 
       validators: checkPasswords
@@ -55,10 +57,12 @@ export class SignInComponent implements OnInit {
 
   signUp() {
     let formUser: User = {
+      'id' : this.formGroup.value.id,
       'username': this.formGroup.value.username,
       'email': this.formGroup.value.email,
       'password': this.formGroup.value.password,
-      'role': this.formGroup.value.role
+      'role': this.formGroup.value.role,
+      'order' : this.formGroup.value.order
     }
     checkPasswords
     if(this.formGroup.valid){

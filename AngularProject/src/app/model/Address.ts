@@ -1,6 +1,8 @@
+import { User } from "./user";
+
 export interface Address{
     id: number;
-    user_id: number;
+    user: User;
     city: string;
     postal_code: string;
     address: string;

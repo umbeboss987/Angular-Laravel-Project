@@ -1,6 +1,5 @@
 import {Action, createAction, props} from '@ngrx/store';
 import {Order} from 'src/app/model/order';
-import { UsersOrders } from 'src/app/model/UsersOrders';
 
 export const AddOrderAction = createAction('[ORDER] Add order', props<{item: Order}>())
 export const AddOrderActionSuccess = createAction('[ORDER] Add order success', props<{item: Order}>())
@@ -8,7 +7,7 @@ export const AddOrderActionFail = createAction('[ORDER] Add order fail', props<{
 
 
 export const GetUserOrders = createAction('[ORDER] Get user orders ')
-export const GetUserOrdersSuccess = createAction('[ORDER] Get user orders  success', props<{userOrders : any[]}>())
+export const GetUserOrdersSuccess = createAction('[ORDER] Get user orders  success', props<{userOrders : Order[]}>())
 export const GetUserOrdersFail = createAction('[ORDER] Get user orders  fail', props<{message: string}>())
 
 

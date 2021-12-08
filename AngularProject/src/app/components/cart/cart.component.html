@@ -17,19 +17,19 @@
               <tr *ngFor="let item of item$; let j=index">
                 <td>
                   <a href="product-page.html">
-                    <div class="product-image"><img alt="Streetwear" src="{{item.photo}}"></div>
+                    <div class="product-image"><img alt="Streetwear" src="{{item.product.photo}}"></div>
                   </a>
                 </td>
                 <td>
                   <div class="product-title">
-                    <a href="product-page.html">{{item.name}}</a>
+                    <a href="product-page.html">{{item.product.name}}</a>
                   </div>
                 </td>
                 <td>
                   <ul>
                     <li>
                       <div class="base-price price-box">
-                        <span class="price">${{item.price}}</span>
+                        <span class="price">${{item.product.price}}</span>
                       </div>
                     </li>
                   </ul>

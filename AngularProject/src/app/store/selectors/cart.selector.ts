@@ -11,7 +11,7 @@ const selectCart = (state: IAppState) => {
 export const selectCartList  = createSelector(
     selectCart,
     (state: CartState) => {
-      return state.cartWithProducts;
+      return state.cart;
     }
 );
 

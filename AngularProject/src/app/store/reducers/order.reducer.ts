@@ -19,14 +19,14 @@ const _orderReducer = createReducer(
     on(GetUserOrdersSuccess, (state, action :any) => {
         return {
             ...state,
-            userOrders: action.userOrders,
+            orders: action.userOrders,
             loading: false
         }
     }),
     on(GetOrdersSuccess, (state, action :any) => {
         return {
             ...state,
-            orderUsers: action.orderAccounts,
+            orders: action.orderAccounts,
             loading: false
         }
     }),

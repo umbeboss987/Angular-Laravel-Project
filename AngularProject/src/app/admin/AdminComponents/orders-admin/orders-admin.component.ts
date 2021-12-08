@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { IAppState } from 'src/app/store/state/app.state';
 import {select, Store} from '@ngrx/store'
 import { GetOrders } from 'src/app/store/actions/order.actions';
-import { UsersOrders } from 'src/app/model/UsersOrders';
 import {Observable} from 'rxjs/'
 import { selectUsersOrders } from 'src/app/store/selectors/order.selector';
+import { User } from 'src/app/model/user';
+import { Order } from 'src/app/model/order';
 
 @Component({
   selector: 'app-orders-admin',
@@ -13,7 +14,7 @@ import { selectUsersOrders } from 'src/app/store/selectors/order.selector';
 })
 export class OrdersAdminComponent implements OnInit {
 
-  orders$? : Observable<UsersOrders[]>;
+  orders$? : Observable<Order[]>;
 
   constructor(private store : Store<IAppState>) { 
     this.store.dispatch(GetOrders());

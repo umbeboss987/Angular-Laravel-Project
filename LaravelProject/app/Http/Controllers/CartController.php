@@ -7,7 +7,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Facades\JWTAuth;
-
+use App\Models\Review;
+use PhpParser\Node\Stmt\Catch_;
 
 class CartController extends Controller
 {
@@ -53,9 +54,8 @@ class CartController extends Controller
 
 
     function getUserCart (){
-        $user = JWTAuth::user();
-        $products = new Product();
-        $data = $products->select('cart.sub_total','cart.id', 'cart.quantity','name', 'price','photo')->join('cart', 'product.id', '=' , 'cart.product_id')->where('user_id', '=', $user->id)->get();
+        $user = JWTAuth::user()->id;
+        $data = Cart::with('product')->where('user_id', $user)->get();
         return response()->json($data);
     }
 

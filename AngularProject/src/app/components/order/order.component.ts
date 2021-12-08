@@ -3,14 +3,14 @@ import { IAppState } from 'src/app/store/state/app.state';
 import {select, Store} from '@ngrx/store';
 import { DeleteCartItemAction, GetCartItemAction, GetCartTotalAction } from 'src/app/store/actions/cart.actions';
 import { selectCartList, selectCartTotal} from 'src/app/store/selectors/cart.selector';
-import { CartWithProducts } from 'src/app/model/CartWithProducts';
 import { AddOrderAction } from 'src/app/store/actions/order.actions';
 import {Address} from '../../model/Address';
 import{Observable} from 'rxjs';
 import { FormBuilder , Validators, FormGroup} from '@angular/forms';
 import { CreateAddressAction, GetAddressAction } from 'src/app/store/actions/address.actions';
-import { selectAddress, selectAddressLoading, selectSingleAddressAuth } from 'src/app/store/selectors/address.selector';
+import { selectAddress, selectAddressLoading } from 'src/app/store/selectors/address.selector';
 import { Router } from '@angular/router';
+import { Cart } from 'src/app/model/cart';
 
 @Component({
   selector: 'app-order',
@@ -19,7 +19,7 @@ import { Router } from '@angular/router';
 })
 export class OrderComponent implements OnInit {
 
-  items? : CartWithProducts[];
+  items? : Cart[];
   total? : number;
   orderForm: FormGroup;
   formAddress : FormGroup;

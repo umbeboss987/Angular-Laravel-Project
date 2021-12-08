@@ -44,7 +44,7 @@ class OrderController extends Controller
 
    function orderList( ){
        $user_id = JWTAuth::user()->id;
-       $orders = Order::with('products')->where('user_id',  $user_id)->get();
+       $orders = Order::with('product')->where('user_id',  $user_id)->get();
        return response()->json($orders);
    }
 }

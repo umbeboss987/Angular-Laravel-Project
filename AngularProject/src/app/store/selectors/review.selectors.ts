@@ -19,9 +19,3 @@ export const selectReviewsList = createSelector(
     }
 );
 
-export const selectProductReviews = createSelector(
-    selectReviews,
-    (state: ReviewState) => {
-        return state.reviewsProduct;
-    }
-);

@@ -1,5 +1,10 @@
+import { Product } from "./Product";
+import { User } from "./user";
+
 export interface Review {
-    user_id: number;
-    product_id: number;
+    id:number;
+    username:string;
+    user: User;
+    product: Product;
     review: string;
 }

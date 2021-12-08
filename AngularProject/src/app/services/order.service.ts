@@ -3,8 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Order } from '../model/order';
 import { AppConstants } from '../app.constants';
-//import { OrderAccount } from '../model/orderAccount';
-import { UsersOrders } from '../model/UsersOrders';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +16,11 @@ export class OrderService {
     return this.http.post<Order>(`${AppConstants.SERVICES_BASE_URL}/user/orders`,order);
   }
 
-  getOrdersList(): Observable<any[]>{
-    return this.http.get<any[]>(`${AppConstants.SERVICES_BASE_URL}/user/orders`);
+  getOrdersList(): Observable<Order[]>{
+    return this.http.get<Order[]>(`${AppConstants.SERVICES_BASE_URL}/user/orders`);
   }
 
-  getAllOrders (): Observable<UsersOrders[]>{
-    return this.http.get<UsersOrders[]>(`${AppConstants.SERVICES_BASE_URL}/orders`);
+  getAllOrders (): Observable<Order[]>{
+    return this.http.get<Order[]>(`${AppConstants.SERVICES_BASE_URL}/orders`);
   }
 }

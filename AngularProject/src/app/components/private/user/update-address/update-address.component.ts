@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IAppState } from 'src/app/store/state/app.state';
 import {select, Store} from '@ngrx/store';
-import { selectSingleAddress, selectSingleAddressAuth } from 'src/app/store/selectors/address.selector';
+import { selectSingleAddress } from 'src/app/store/selectors/address.selector';
 import { Address } from 'src/app/model/Address';
 import { GetAddressAction, GetAddressByIdAction, UpdateAddressAction } from 'src/app/store/actions/address.actions';
 import{Observable} from 'rxjs';

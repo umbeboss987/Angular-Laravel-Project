@@ -5,10 +5,7 @@ import {Cart} from 'src/app/model/cart';
 import { User } from 'src/app/model/user';
 import { Address } from 'src/app/model/Address';
 import { UserAuth } from 'src/app/model/userAuth';
-import { CartWithProducts } from 'src/app/model/CartWithProducts';
-import { UsersOrders } from 'src/app/model/UsersOrders';
 import { Review } from 'src/app/model/Review';
-import { ProductReview } from 'src/app/model/ProductReview';
 
 
 export interface IAppState{
@@ -46,7 +43,6 @@ export const initialProductsState :ProductsState = {
 
 export interface CartState {
     cart: Cart[];
-    cartWithProducts : CartWithProducts[];
     message: any;
     total: number;
     loading: boolean;
@@ -55,7 +51,6 @@ export interface CartState {
 
 export const initialCartState :CartState = {
     cart: [],
-    cartWithProducts : [],
     message: null,
     total : 0,
     loading: false
@@ -67,7 +62,7 @@ export interface UserState{
     userAuth: UserAuth[];
     token: string
     loading: boolean;
-    singleUser : User;
+    singleUser: User;
 }
 
 export const initialUserState :UserState = {
@@ -76,16 +71,18 @@ export const initialUserState :UserState = {
     token: '',
     loading: false,
     singleUser : {
-        id: 0,
-        username: '',
-        password: '',
-        email: '',
+        'id': 0,
+        'username': '',
+        'password': '',
+        'email': '',
+        'role': 0,
+        'order' : []
     }
+   
 }
 
 export interface OrderState {
     orders: Order[];
-    orderUsers: UsersOrders[]
     loading: boolean;
     userOrders: any[];
 
@@ -94,39 +91,44 @@ export interface OrderState {
 export const initialOrderState :OrderState = {
     orders: [],
     loading: false,
-    orderUsers: [],
     userOrders: [],
 }
 
 export interface AddressState{
     address: Address[];
     loading: boolean;
-    singleAddress: Address;
+    singleAddress : Address;
 }
 
 export const initialAccountState :AddressState = {
     address: [],
     loading: false,
-    singleAddress :{
-        id: 0,
-        user_id: 0,
-        city:"",
-        postal_code:"",
-        name: "",
-        address: '',
-        surname: '',
-        telephone_number: ''
-    }
+    singleAddress:{
+        'id': 0,
+        'user':{
+            'id': 0,
+            'username': '',
+            'password': '',
+            'email': '',
+            'role': 0,
+            'order' : []
+        },
+        'city': '',
+        'postal_code': '',
+        'address': '',
+        'name': '',
+        'surname': '',
+        'telephone_number': ''
+    },
+
 }
 
 export interface ReviewState {
     reviews : Review[];
-    reviewsProduct : ProductReview[];
 }
 
 export const initialReviewState : ReviewState = {
     reviews : [],
-    reviewsProduct : []
 }
 
 export interface ResponseState{

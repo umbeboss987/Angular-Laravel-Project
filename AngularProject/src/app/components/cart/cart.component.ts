@@ -5,9 +5,7 @@ import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { selectCartList, selectCartTotal} from 'src/app/store/selectors/cart.selector';
 import { Cart } from 'src/app/model/cart';
 import { DeleteCartItemAction, GetCartItemAction, GetCartTotalAction } from 'src/app/store/actions/cart.actions';
-import { CartWithProducts } from 'src/app/model/CartWithProducts';
 import { Router } from '@angular/router';
-import { CartService } from 'src/app/services/cart.service';
 
 
 @Component({
@@ -17,7 +15,7 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  item$? : CartWithProducts[]
+  item$? : Cart[]
   total? : number;
   subTotals?: Array<string>;
   subscription? : Subscription;

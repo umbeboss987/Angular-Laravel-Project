@@ -7,7 +7,7 @@ import { Address } from 'src/app/model/Address';
 import { _selectOrderAccount, _selectOrderLoading } from 'src/app/store/selectors/order.selector';
 import { GetUserAction } from 'src/app/store/actions/user.actions';
 import { User } from 'src/app/model/user';
-import { selectAddressLoading, selectSingleAddressAuth } from 'src/app/store/selectors/address.selector';
+import { selectAddressLoading } from 'src/app/store/selectors/address.selector';
 import { selectSingleUser, selectUserLoading } from 'src/app/store/selectors/user.selector';
 import {Observable} from 'rxjs';
 

@@ -2,11 +2,12 @@ import { Component, OnInit, Input } from '@angular/core';
 //import { OrderAccount } from 'src/app/model/orderAccount';
 import { IAppState } from 'src/app/store/state/app.state';
 import {select, Store} from '@ngrx/store';
-import { _selectOrderAccount } from 'src/app/store/selectors/order.selector';
+import { selectUsersOrders, _selectOrderAccount } from 'src/app/store/selectors/order.selector';
 import { GetUserOrders } from 'src/app/store/actions/order.actions';
 import{Observable} from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddReviewAction } from 'src/app/store/actions/review.actions';
+import { Order } from 'src/app/model/order';
 
 @Component({
   selector: 'app-order-list',
@@ -18,7 +19,7 @@ export class OrderListComponent implements OnInit {
 
   totalLength? : number;
 
-  orders? : Observable<any[]>;
+  orders? : Observable<Order[]>;
 
   formReview : FormGroup;
 
@@ -32,9 +33,8 @@ export class OrderListComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    
-    this.orders = this.store.select(_selectOrderAccount);
+  ngOnInit(): void {    
+    this.orders = this.store.select(selectUsersOrders);
   }
 
 

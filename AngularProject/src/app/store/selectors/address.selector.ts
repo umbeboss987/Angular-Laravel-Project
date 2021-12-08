@@ -10,14 +10,6 @@ const selectAccount = (state: IAppState) => {
 };
 
 
-export const selectSingleAddressAuth = createSelector(
-    selectAccount,
-    (state: AddressState) => {
-      return state.singleAddress;
-    }
-);
-
-
 export const selectAddressLoading  = createSelector(
   selectAccount,
   (state: AddressState) => {

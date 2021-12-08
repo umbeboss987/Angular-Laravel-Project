@@ -1,6 +1,10 @@
+import { Product } from "./Product";
+import { User } from "./user";
+
 export interface Cart {
     id: number;
-    user_id: number;
-    product_id: number;
+    user: User;
+    product: Product;
     quantity: number;
+    sub_total: number;
 }

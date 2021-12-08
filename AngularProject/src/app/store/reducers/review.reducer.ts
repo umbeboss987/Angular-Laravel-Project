@@ -15,7 +15,7 @@ const _reviewReducer = createReducer(initialReviewState,
      on(GetReviewsProductActionSuccess, (state, action :any) => {
         return {
             ...state,
-            reviewsProduct: action.review
+            reviews: action.review
         }
     }),
      on(DeleteProductReviewActionSuccess, (state, action :any) => {
