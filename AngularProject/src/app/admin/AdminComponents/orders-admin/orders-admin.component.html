@@ -18,8 +18,8 @@
         <tr *ngFor="let order of orders$ | async">
             <td>{{order.code}}</td>
             <td>{{order.created_at | date}}</td>
-            <td>{{order.user.username}} </td>
-            <td>{{order.user.email}} </td>
+            <td>{{order.user.username | json}} </td>
+            <td>{{order.user.email | json}} </td>
             <td>${{order.total}} </td>
             <td><button class="fa fa-trash trash" aria-hidden="true"></button></td>
         </tr>

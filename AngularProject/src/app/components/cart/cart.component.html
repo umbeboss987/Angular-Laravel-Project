@@ -14,7 +14,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of item$; let j=index">
+              <tr *ngFor="let item of item$ | async; let j=index">
                 <td>
                   <a href="product-page.html">
                     <div class="product-image"><img alt="Streetwear" src="{{item.product.photo}}"></div>
@@ -82,8 +82,8 @@
                 <tr>
                   <td>Item(s) Subtotal</td>
                   <td>
-                    <div class="price-box">
-                      <span class="price">{{this.total}}</span>
+                    <div class="price-box" *ngIf="total$ | async as total">
+                      <span class="price">{{total}}</span>
                     </div>
                   </td>
                 </tr>
@@ -98,8 +98,8 @@
                 <tr>
                   <td><b>Amount Payable</b></td>
                   <td>
-                    <div class="price-box">
-                      <span class="price"><b>{{this.total}}</b></span>
+                    <div class="price-box" *ngIf="total$ | async as total">
+                      <span class="price"><b>{{total}}</b></span>
                     </div>
                   </td>
                 </tr>
@@ -114,8 +114,8 @@
   <div class="mt_30">
     <div class="row">
       <div class="col-xs-12">
-        <div class="pull-right">
-          <a [routerLink]="['/checkOut']" *ngIf="this.item$ != undefined && this.item$.length > 0" class="btn btn-black">{{'cart.checkOut' | translate}}</a>
+        <div class="pull-right" *ngIf="(item$ | async) as item">
+          <a [routerLink]="['/checkOut']" *ngIf="(item.length > 0)" class="btn btn-black">{{'cart.checkOut' | translate}}</a>
         </div>
       </div>
     </div>

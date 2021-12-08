@@ -15,29 +15,31 @@ import { Router } from '@angular/router';
 })
 export class CartComponent implements OnInit {
 
-  item$? : Cart[]
-  total? : number;
+  item$? : Observable<Cart[]>;
+  total$? : Observable<number>;
   subTotals?: Array<string>;
   subscription? : Subscription;
 
+
   constructor(private store: Store<IAppState>, private router: Router) {
-   this.store.select(selectCartTotal).subscribe((res) =>{
-    this.total = res;
-   });
-   this.store.dispatch(GetCartItemAction());
    this.getCartList();
+   this.getTotal();
   }
 
   
 
   ngOnInit(): void {  
+    this.total$ = this.store.select(selectCartTotal);
+    this.item$ = this.store.select(selectCartList);
   }
 
 
+  getTotal(){
+    this.store.dispatch(GetCartTotalAction())
+  }
+
   getCartList (){
-    this.store.select(selectCartList).subscribe(res => {
-      this.item$ = res;
-    });
+    this.store.dispatch(GetCartItemAction());
   }
   deleteItem(id : number){
     this.store.dispatch(DeleteCartItemAction({id : id }));
