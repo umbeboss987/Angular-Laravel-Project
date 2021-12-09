@@ -32,8 +32,8 @@ export class ProductsService {
     return this.http.get<Product[]>(`${AppConstants.SERVICES_BASE_URL}/products/${type}`);
   }
 
-  deleteProduct(product_id: number): Observable<Product>{
-    return this.http.delete<Product>(`${AppConstants.SERVICES_BASE_URL}/products/${product_id}`);
+  deleteProduct(product_id: number): Observable<unknown>{
+    return this.http.delete(`${AppConstants.SERVICES_BASE_URL}/products/${product_id}`);
   }
 
   updateProduct (product: any, product_id : number): Observable<any>{

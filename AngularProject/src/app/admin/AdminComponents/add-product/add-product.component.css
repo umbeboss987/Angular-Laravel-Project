@@ -9,3 +9,11 @@
     padding:30px;
     height:100%;
 }
+
+.form-control.ng-valid{
+    border:1px solid green;
+}
+
+.errors{
+    color:  red;
+}

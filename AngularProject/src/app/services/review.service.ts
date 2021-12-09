@@ -21,7 +21,7 @@ export class ReviewService {
     return this.http.get<Review>(`${AppConstants.SERVICES_BASE_URL}/products/${product_id}/reviews`)
    }
 
-   deleteProductReview( product_id : number, review_id: number) : Observable<Review> {
-    return this.http.delete<Review>(`${AppConstants.SERVICES_BASE_URL}/products/${product_id}/reviews/${review_id}`)
+   deleteProductReview( product_id : number, review_id: number) : Observable<unknown> {
+    return this.http.delete(`${AppConstants.SERVICES_BASE_URL}/products/${product_id}/reviews/${review_id}`)
    }
 }

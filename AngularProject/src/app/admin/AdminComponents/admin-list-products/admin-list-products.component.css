@@ -83,3 +83,15 @@ input[type="checkbox"]:checked ~ .modal-background {
 	background-color: #3c669f;
 }
 
+
+.errors{
+    color: red;
+}
+.form-control.ng-invalid{
+    border: 1px solid red;
+}
+
+.form-control.ng-valid{
+    border: 1px solid green;
+}
+

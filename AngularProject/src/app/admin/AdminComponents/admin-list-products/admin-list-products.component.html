@@ -29,7 +29,7 @@
           <td>
             <a class="text-muted">
               <input type="checkbox" id="modal">
-              <label for="modal" (click)="setValueForm(product.name, product.price, product.description, product.type, product.id)" style="font-size:14px"  class="fa fa-edit" ></label>
+              <label for="modal" (click)="setValueForm(product.name, product.price, product.description, product.type, product.id, product.photo)" style="font-size:14px"  class="fa fa-edit" ></label>
               <label for="modal"  class="modal-background"></label>
               <div class="modal" style="width: 40%;height: 70%;overflow-y:scroll;">
                 <div class="modal-header" >
@@ -44,22 +44,29 @@
                         <div class="form-group">
                           <label for="exampleInputEmail1" style=" font-size:14px;">Name</label>
                           <input type="text" style="text-align:center; font-size:12px;" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="name">
+                          <p class="errors" *ngIf="this.updateProductForm.get('name')?.errors?.required"> this field is required</p>
+                          <p class="errors" *ngIf="this.updateProductForm.get('name')?.errors?.minLenght">the word is too short</p>
                         </div>
                         <div class="form-group">
                           <label for="exampleInputPassword1" style=" font-size:14px;">Price</label>
                           <input type="text" style="text-align:center;font-size:12px;"class="form-control" id="exampleInputPassword1" formControlName="price">
+                          <p class="errors" *ngIf="this.updateProductForm.get('price')?.errors?.required"> this field is required</p>
+                          <p class="errors" *ngIf="this.updateProductForm.get('price')?.errors?.pattern"> this field has to be a number</p>
                         </div>
                         <div class="form-group">
                           <label for="exampleInputEmail1" style=" font-size:14px;">Type</label>
                           <input type="text" style="text-align:center;font-size:12px;" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="type">
+                          <p class="errors" *ngIf="this.updateProductForm.get('type')?.errors?.required"> this field is required</p>
                         </div>
                         <div class="form-group">
                           <label for="exampleInputPassword1" style=" font-size:14px;">Description</label>
                           <textarea  style="font-size:12px;"class="form-control" id="exampleInputPassword1" formControlName="description"></textarea>
+                          <p class="errors" *ngIf="this.updateProductForm.get('description')?.errors?.required"> this field is required</p>
                         </div>
                           <div class="form-group">
                             <label for="exampleFormControlFile1" style=" font-size:14px;">Image</label>
                             <input type="text" class="form-control-file" formControlName="photo" id="exampleFormControlFile1">
+                            <p class="errors" *ngIf="this.updateProductForm.get('photo')?.errors?.required"> this field is required</p>
                           </div>
                         <button type="submit" class="btn btn-primary" style="margin-top:7%; width:50%;">Submit</button>
                       </form>                     

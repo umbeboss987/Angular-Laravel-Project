@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Store} from '@ngrx/store';
 import { GetUserAction, UpdateUserAction } from 'src/app/store/actions/user.actions';
 import{IAppState} from '../../../store/state/app.state';
@@ -15,22 +15,20 @@ import { selectSingleUser } from 'src/app/store/selectors/user.selector';
 export class AdminHomeComponent implements OnInit {
 
   updateProfileForm : FormGroup;
-  admin? : User;
+  admin$? : Observable<User>;
 
   constructor(private store: Store<IAppState>, private fb : FormBuilder) { 
     this.updateProfileForm = this.fb.group({
-      username: [''],
-      email: [''],
+      username: ['',[Validators.required, Validators.minLength(4)]],
+      email: ['',[Validators.required, Validators.minLength(4), Validators.email]],
     })
-    this.store.dispatch(GetUserAction());
-    
-   
+
+    this.store.dispatch(GetUserAction());    
   }
 
   ngOnInit(): void {
-    this.store.select(selectSingleUser).subscribe( res =>{
-      this.admin = res;
-    });
+  this.admin$ = this.store.select(selectSingleUser);
+     
   }
 
   setValueForm(user_name: any, email: any){
@@ -42,7 +40,9 @@ export class AdminHomeComponent implements OnInit {
 
   updateProfile(){
     let valueForm = this.updateProfileForm.value;
-    this.store.dispatch(UpdateUserAction({user : valueForm}));
+    if(this.updateProfileForm.valid){
+     this.store.dispatch(UpdateUserAction({user : valueForm}));
+    }
   }
 
 }

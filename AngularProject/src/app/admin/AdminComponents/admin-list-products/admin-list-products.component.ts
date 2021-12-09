@@ -5,8 +5,7 @@ import { DeleteSingleProductAction, GetProductsAction, UpdateSingleProductAction
 import { Product } from 'src/app/model/Product';
 import { Observable } from 'rxjs';
 import { selectProductList } from 'src/app/store/selectors/product.selector';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { ProductsService } from 'src/app/services/product.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -19,43 +18,44 @@ export class AdminListProductsComponent implements OnInit {
   closeResult = '';
   updateProductForm : FormGroup;
 
-  constructor(private store : Store<IAppState>, private fb : FormBuilder, private product_srvice : ProductsService) { 
-    this.products = this.store.select(selectProductList);
+  constructor(private store : Store<IAppState>, private fb : FormBuilder) { 
     this.updateProductForm = this.fb.group({
       id: [''],
-      name: [''],
-      price: [''],
-      type: [''],
-      description : [''],
-      photo :  [null]
+      name: ['',[Validators.required, Validators.minLength(4)]],
+      price: ['',[Validators.required,Validators.pattern("^[0-9]+(.[0-9]{0,2})?$")]],
+      type: ['',[Validators.required]],
+      description : ['',[Validators.required, Validators.minLength(4)]],
+      photo :  ['',[Validators.required]]
     })
 
-   
+    this.store.dispatch(GetProductsAction())   
   }
 
   ngOnInit(): void {
-    this.store.dispatch(GetProductsAction())
+    this.products = this.store.select(selectProductList);
   }
 
   deleteProduct(id: number) {
     this.store.dispatch(DeleteSingleProductAction({ product_id: id }))
   }
 
-  setValueForm(product_name: string, product_price: number, product_description: string, type : string, id: number) {
+  setValueForm(product_name: string, product_price: number, product_description: string, type : string, id: number, photo:string) {
     return this.updateProductForm.patchValue({
       id: id,
       name: product_name,
       price: product_price,
       type: type,
       description: product_description,
-      photo : null
+      photo : photo
     })
   }
 
   updateProduct(){
-  let product_id = this.updateProductForm.get('id')?.value;
-  let formUpdateProduct = this.updateProductForm.value;
-  this.store.dispatch(UpdateSingleProductAction({ product_id: product_id, product: formUpdateProduct})); 
+    if(this.updateProductForm.valid){
+      let product_id = this.updateProductForm.get('id')?.value;
+      let formUpdateProduct = this.updateProductForm.value;
+      this.store.dispatch(UpdateSingleProductAction({ product_id: product_id, product: formUpdateProduct})); 
+    }
   }
 
   

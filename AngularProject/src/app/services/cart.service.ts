@@ -35,7 +35,7 @@ export class CartService {
         return this.http.get<[]>(`${AppConstants.SERVICES_BASE_URL}/user/carts`);
     }
 
-    deleteCartItem(id : number): Observable<Cart>{
+    deleteCartItem(id : number): Observable<unknown>{
         return this.http.delete<Cart>(`${AppConstants.SERVICES_BASE_URL}/user/carts/${id}`).pipe(tap(() =>{
             this.refreshCart.next();
         })

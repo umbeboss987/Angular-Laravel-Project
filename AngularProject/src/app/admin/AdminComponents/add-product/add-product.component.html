@@ -12,20 +12,27 @@
                   <div class="form-group col-lg-6">
                     <label for="exampleInputEmail1" style=" font-size:14px;">Name</label>
                     <input type="text" formControlName="name" style="text-align:center; font-size:12px;" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+                    <p class="errors" *ngIf="this.addProductForm.get('name')?.errors?.required && this.addProductForm.get('name')?.touched"> This field is required</p>
+                    <p class="errors" *ngIf="this.addProductForm.get('name')?.errors?.minlength && this.addProductForm.get('name')?.touched"> Name must be at least 4 characters long</p>
                   </div>
                   <div class="form-group col-lg-6">
                     <label for="exampleInputPassword1" style=" font-size:14px;">Price</label>
                     <input type="text"  style="text-align:center;font-size:12px;"class="form-control" id="exampleInputPassword1" formControlName="price">
+                    <p class="errors" *ngIf="this.addProductForm.get('price')?.errors?.required && this.addProductForm.get('price')?.touched"> This field is required</p>
+                    <p class="errors" *ngIf="this.addProductForm.get('price')?.errors?.pattern && this.addProductForm.get('price')?.touched"> this field has to be a number</p>
                   </div>
                 </div>              
                   <div class="form-group">                   
                     <label for="exampleInputPassword1" style=" font-size:14px;">Description</label>
                     <textarea   style="font-size:12px;"class="form-control" id="exampleInputPassword1" formControlName="description"></textarea>
+                    <p class="errors" *ngIf="this.addProductForm.get('description')?.errors?.required && this.addProductForm.get('description')?.touched"> This field is required</p>
+                    <p class="errors" *ngIf="this.addProductForm.get('description')?.errors?.minlength && this.addProductForm.get('description')?.touched"> Description must be at least 4 characters long</p>
                   </div>
                   <div class="row">
                         <div class="form-group col-lg-9">
                         <label for="exampleFormControlFile1" style=" font-size:14px;">Image</label>
                         <input type="text" class="form-control-file" formControlName="photo" id="exampleFormControlFile1">
+                        <p class="errors" *ngIf="this.addProductForm.get('photo')?.errors?.required && this.addProductForm.get('photo')?.touched"> This field is required</p>
                         </div>
                         <div class="form-group col-lg-3" style="margin-top:25px;">
                             <label for="exampleFormControlFile1" style=" font-size:14px;">Type</label>
@@ -34,7 +41,8 @@
                                 <option value="phone" class="">phone</option>
                                 <option value="tablet" class="">tablet</option>
                             </select>
-                       </div>
+                            <p class="errors" *ngIf="this.addProductForm.get('type')?.errors?.required && this.addProductForm.get('type')?.touched"> This field is required</p>
+                          </div>
                   </div>
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary" style="margin-top:7%; width:50%;">Submit</button>

@@ -19,9 +19,13 @@ const _reviewReducer = createReducer(initialReviewState,
         }
     }),
      on(DeleteProductReviewActionSuccess, (state, action :any) => {
+         let reviews = state.reviews.filter(review => {
+             review.id != action.review_id
+            })
         return {
             ...state,
-            reviewsProduct: action.review
+            reviewsProduct: action.review,
+            reviews : reviews
         }
     }),
 )

@@ -1,3 +1,9 @@
 .navbarContainer{
     height:131px;
 }
+
+
+.language-picker{
+    height: 15px;
+    border-radius: 20px;;
+}

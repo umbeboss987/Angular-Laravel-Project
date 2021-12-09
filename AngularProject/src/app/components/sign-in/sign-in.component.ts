@@ -33,7 +33,7 @@ export class SignInComponent implements OnInit {
     this.formGroup = this.fb.group({
       id: null,
       username: ["",[Validators.required, Validators.minLength(4), Validators.maxLength(13)]],
-      email: ["",[Validators.required, Validators.email ,Validators.minLength(8), Validators.maxLength(20)]],
+      email: ["",[Validators.required, Validators.email ,Validators.minLength(8), Validators.maxLength(40)]],
       password: ["",[Validators.required, Validators.minLength(5), Validators.maxLength(17)]],
       confirmPassword: ["",[Validators.required, ]],
       role: 2,

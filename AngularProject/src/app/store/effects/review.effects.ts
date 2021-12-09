@@ -48,7 +48,7 @@ export class ReviewEffects {
             ofType(DeleteProductReviewAction),
             switchMap(action => {
                 return this.review_service.deleteProductReview(action.product_id, action.review_id).pipe(                  
-                    map((reviews) => DeleteProductReviewActionSuccess({ review: reviews }))
+                    map((reviews) => DeleteProductReviewActionSuccess({ review_id: action.review_id }))
                 )
             }),
             catchError((error) => {

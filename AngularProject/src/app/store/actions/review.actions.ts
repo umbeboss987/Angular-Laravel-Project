@@ -12,5 +12,5 @@ export const GetReviewsProductActionSuccess = createAction('[Review] Get review 
 export const GetReviewsProductActionFail = createAction('[Review] Get review product Fail', props<{review : Review}>());
 
 export const DeleteProductReviewAction = createAction('[Review] delete review product', props<{ product_id : number, review_id : number}>());
-export const DeleteProductReviewActionSuccess = createAction('[Review] delete review product success', props<{review : Review}>());
+export const DeleteProductReviewActionSuccess = createAction('[Review] delete review product success', props<{review_id : number}>());
 export const DeleteProductReviewActionFail = createAction('[Review] delete review product Fail', props<{review : Review}>());

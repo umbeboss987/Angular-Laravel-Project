@@ -22,7 +22,7 @@ export class UsersAdminComponent implements OnInit {
     this.users$ = this.store.select(selectUserAuth);
   }
 
-  deleteUser(user_id: any){
+  deleteUser(user_id: number){
     this.store.dispatch(DeleteUserAction({user_id : user_id}));
   }
 

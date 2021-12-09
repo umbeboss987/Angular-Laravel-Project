@@ -15,7 +15,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-8" *ngIf="admin != undefined">
+          <div class="col-md-8" *ngIf="(admin$ | async) as admin">
             <div class="card mb-3" style="padding-bottom: 17px; height:270px;" >
               <div class="card-body" >
                 <div class="row" style="margin-top:3%;">
@@ -56,10 +56,13 @@
                                 <div class="form-group">
                                   <label for="exampleInputEmail1" style=" font-size:14px;">Name</label>
                                   <input type="text" style="text-align:center; font-size:12px;" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="username">
+                                  <p class="errors" *ngIf="this.updateProfileForm.get('name')?.errors?.required && this.updateProfileForm.get('name')?.touched">*this field is required</p>
                                 </div>
                                 <div class="form-group">
                                   <label for="exampleInputPassword1" style=" font-size:14px;">Email</label>
                                   <input type="text" style="text-align:center;font-size:12px;"class="form-control" id="exampleInputPassword1" formControlName="email">
+                                  <p class="errors"  *ngIf="this.updateProfileForm.get('email')?.errors?.required && this.updateProfileForm.get('email')?.touched">this field is required</p>
+                                  <p class="errors"  *ngIf="this.updateProfileForm.get('email')?.errors?.email && this.updateProfileForm.get('email')?.touched">email not valid</p>
                                 </div>
                                 <button type="submit" class="btn btn-primary" style="margin-top:7%; width:50%;">Submit</button>
                               </form>                     

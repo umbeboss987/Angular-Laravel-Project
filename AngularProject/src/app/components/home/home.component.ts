@@ -19,8 +19,8 @@ export class HomeComponent implements OnInit {
   products$ : Observable<Product[]>;;
 
   constructor(private router: ActivatedRoute, private store: Store<IAppState>) {
-    this.products$ = this.store.select<Product[]>(selectProductList);
     this.store.dispatch( GetProductsAction());
+    this.products$ = this.store.select<Product[]>(selectProductList);
    }
 
   ngOnInit(): void {

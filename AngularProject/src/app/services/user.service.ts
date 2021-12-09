@@ -17,32 +17,32 @@ export class UserService {
   constructor(private http : HttpClient) { }
 
 
-  signUp (user: User){
-   return  this.http.post<User>(Url, user, {observe: 'response'});
+  signUp (user: User) : Observable<User>{
+   return  this.http.post<User>(Url, user);
   }
 
-  signIn (user: User){
-    return this.http.post<User>(signIn_Url, user, {observe: 'response'});
+  signIn (user: User) : Observable<User>{
+    return this.http.post<User>(signIn_Url, user);
   }
 
   getToken (){
     return localStorage.getItem('token');
   }
 
-  updateUser(user: User){
+  updateUser(user: User) : Observable<User>{
     return this.http.put<User>(`${AppConstants.SERVICES_BASE_URL}/users`, user);
   }
 
-  getUser(){
+  getUser() : Observable<User>{
     return this.http.get<User>('http://127.0.0.1:8000/api/auth/getId');
   }
 
-  getAllUsers(){
+  getAllUsers() : Observable<User[]>{
     return this.http.get<User[]>(`${AppConstants.SERVICES_BASE_URL}/users`);
   }
 
-  deleteUser (user_id: number){
-    return this.http.delete<User>(`${AppConstants.SERVICES_BASE_URL}/users/${user_id}`);
+  deleteUser (user_id: number) : Observable<unknown>{
+    return this.http.delete(`${AppConstants.SERVICES_BASE_URL}/users/${user_id}`);
   }
 
 

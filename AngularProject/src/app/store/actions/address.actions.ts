@@ -7,7 +7,6 @@ export const CreateAddressAction = createAction('[ADDRESS] Create Address', prop
 export const CreateAddressActionSuccess = createAction('[ADDRESS] Create Address success', props<{address: Address}>());
 export const CreateAddressActionFail = createAction('[ADDRESS] Create Address fail', props<{message: string}>());
 
-
 export const GetAddressAction = createAction('[ADDRESS] Get address ');
 export const GetAddressActionSuccess = createAction('[ADDRESS] Get address success', props<{address: Address[]}>());
 export const GetAddressActionFail = createAction('[ADDRESS] Get address fail');

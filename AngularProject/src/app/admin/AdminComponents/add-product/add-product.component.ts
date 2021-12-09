@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Store} from '@ngrx/store';
 import { AddSingleProductAction } from 'src/app/store/actions/product.actions';
 import{IAppState} from 'src/app/store/state/app.state';
@@ -15,11 +15,11 @@ export class AddProductComponent implements OnInit {
 
   constructor(private fb : FormBuilder, private store: Store<IAppState>) { 
     this.addProductForm = this.fb.group({
-      name :[''],
-      price :[''],
-      description :[''],
-      photo :[''],
-      type :[''],
+      name :['', [Validators.required, Validators.minLength(4)]],
+      price :['', [Validators.required, Validators.pattern("^[0-9]+(.[0-9]{0,2})?$")]],
+      description :['', [Validators.required, Validators.minLength(4)]],
+      photo :['', [Validators.required, Validators.minLength(4)]],
+      type :['', [Validators.required]],
     })
   }
 
@@ -27,8 +27,10 @@ export class AddProductComponent implements OnInit {
   }
 
   addProduct (){
-    let valueForm =  this.addProductForm.value;
-    this.store.dispatch(AddSingleProductAction({product : valueForm}));
+    if(this.addProductForm.valid){
+      let valueForm =  this.addProductForm.value;
+      this.store.dispatch(AddSingleProductAction({product : valueForm}));
+    }
   }
 
 }
