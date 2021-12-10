@@ -25,6 +25,7 @@ import {RouterModule} from '@angular/router';
 import { ReviewEffects } from './store/effects/review.effects';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ImageEffects } from './store/effects/image.effects';
 
 
 export function tokenGetter() {
@@ -61,7 +62,7 @@ export function httpTranslateLoader(http: HttpClient):any {
     BrowserAnimationsModule,
     CommonModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([ProductsEffect, CartEffects, UserEffects, OrderEffects, AccountEffects, ReviewEffects]),
+    EffectsModule.forRoot([ProductsEffect, CartEffects, UserEffects, OrderEffects, AccountEffects, ReviewEffects, ImageEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
       JwtModule.forRoot({
        config: { //aggiunge athorization header

@@ -56,14 +56,7 @@ export class SignInComponent implements OnInit {
 
 
   signUp() {
-    let formUser: User = {
-      'id' : this.formGroup.value.id,
-      'username': this.formGroup.value.username,
-      'email': this.formGroup.value.email,
-      'password': this.formGroup.value.password,
-      'role': this.formGroup.value.role,
-      'order' : this.formGroup.value.order
-    }
+    let formUser : User = this.formGroup.value;
     checkPasswords
     if(this.formGroup.valid){
        this.store.dispatch(UserSignUpAction({ user: formUser }));

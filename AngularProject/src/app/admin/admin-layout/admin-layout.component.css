@@ -1,3 +1,13 @@
 
 @import url('~admin-lte/dist/css/adminlte.css');
 @import url('~admin-lte/plugins/fontawesome-free/css/all.min.css');
+
+
+.main-header{
+    background-color:rgb(255,193,8);
+}
+
+.dahsboard{
+    background-color:rgb(255,193,8) !important;
+
+}

@@ -61,6 +61,8 @@ Route::prefix('user')->group(function () {
     Route::get('/orders', [OrderController::class, 'orderList']);
     Route::post('/orders',[OrderController::class, 'addOrder']);
     Route::get ('/address/{address_id}', [AddressController::class, 'getAddressById'])->name('getAddressById');
+    Route::post('/photo',[UserController::class, 'addUserPhoto']);
+    Route::get('/photo',[UserController::class, 'getUserPhoto']);
 });
 
 

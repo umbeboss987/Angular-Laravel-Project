@@ -8,6 +8,7 @@ import { orderReducer } from './order.reducer';
 import { addressReducer } from './address.reducer';
 import { responseReducer } from './response.reducer';
 import { reviewReducer } from './review.reducer';
+import { imageReducer } from './image.reducer';
 
 
 
@@ -19,6 +20,7 @@ export const appReducers: ActionReducerMap<IAppState, any> = {
     orderState: orderReducer,
     addressState: addressReducer,
     responseState : responseReducer,
-    reviewState: reviewReducer
+    reviewState: reviewReducer,
+    imageState : imageReducer
 };
 

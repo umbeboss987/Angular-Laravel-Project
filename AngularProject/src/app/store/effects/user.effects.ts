@@ -3,23 +3,26 @@ import { Actions, ofType,createEffect } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { Observable, of , } from 'rxjs';
-import { switchMap, map , mergeMap, filter, withLatestFrom, catchError, tap, exhaustMap } from 'rxjs/operators';
-import { Subscription} from 'rxjs';
+import { switchMap, map , mergeMap, catchError, tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-
-
-import {
-  routerNavigationAction,
-  ROUTER_NAVIGATION,
-} from '@ngrx/router-store';
-import { DeleteUserAction, DeleteUserActionSuccess, GetAllUserAction, GetAllUserActionFail, GetAllUserActionSuccess, GetUserAction, GetUserActionFail, GetUserActionSuccess, UpdateUserAction, 
+import {  DeleteUserAction, 
+         DeleteUserActionSuccess, 
+         GetAllUserAction, 
+         GetAllUserActionFail, 
+         GetAllUserActionSuccess, 
+         GetUserAction, 
+         GetUserActionFail, 
+         GetUserActionSuccess, 
+         GetUserImageAction, 
+         GetUserImageActionFail, 
+         GetUserImageActionSuccess, 
+         UpdateUserAction, 
          UpdateUserActionSuccess, 
          UserLoginAction, 
          UserLoginActionFail, 
          UserLoginActionSuccess, 
          UserSignUpAction, 
-         UserSignUpActionFail, 
          UserSignUpActionSuccess } from "src/app/store/actions/user.actions";
 import { AuthService } from "src/app/auth/auth.service";
 
@@ -30,7 +33,7 @@ export class UserEffects {
     constructor(private actions$ : Actions, private user_service: UserService, private auth_service: AuthService, private toastr: ToastrService, private router: Router){}
     
    
-  UserSignUp$ = createEffect(() => {
+  userSignUp$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(UserSignUpAction),
       switchMap((action) => {
@@ -40,7 +43,6 @@ export class UserEffects {
           }),
           map((data: any) => UserSignUpActionSuccess({ responseUser: data, user: action.user})),
            catchError((errorResp) => {
-             console.log(errorResp);
             return of(UserLoginActionFail({ responseUser: errorResp.error.message })).pipe(
               tap(action => {
                 this.toastr.error(errorResp.error.message);
@@ -55,7 +57,7 @@ export class UserEffects {
   
   
   
-  UserSignIn$ = createEffect(() => {
+  userSignIn$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(UserLoginAction),
       switchMap((action) => {
@@ -145,5 +147,23 @@ export class UserEffects {
       })
     );
   });
+
+  getUserPhoto$: Observable<Action> = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(GetUserImageAction),
+      mergeMap((action) => {
+        return this.user_service.getUserPhoto().
+          pipe(
+            map((data :any) => {
+              return GetUserImageActionSuccess({image : data});
+            }),
+            catchError((errorResp) => {
+              return of(GetUserImageActionFail({message : errorResp.error.message}))
+            })
+          );
+      })
+    );
+  });
+
 }
 

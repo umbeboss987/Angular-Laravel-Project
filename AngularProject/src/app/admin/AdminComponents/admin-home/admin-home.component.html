@@ -2,15 +2,18 @@
   <div class="main-body">
         <div class="row gutters-sm">
           <div class="col-md-4 mb-3">
-            <div class="card" style="padding-bottom: 25px;">
+            <div class="card" style="padding-bottom: 25px;" *ngIf="(userImage | async) as image">
               <div class="card-body">
                 <div class="d-flex flex-column align-items-center text-center">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
-                  <div class="mt-3">
-                    <h4>John Doe</h4>
-                    <p class="text-secondary mb-1">Admin</p>
-                    <button class="btn btn-primary">Follow</button>
-                  </div>
+                  <img  [src]="image.image ? this.imagePath + image.image : 'https://bootdey.com/img/Content/avatar/avatar7.png'" alt="Admin" class="rounded-circle" width="150">
+                  <form action="" [formGroup]="addPhotoForm" class="" (ngSubmit)="addImage()">
+                    <div class="mt-3">
+                      <h4>John Doe</h4>
+                      <p class="text-secondary mb-1">Admin</p>
+                      <input type="file" (change)="uploadImage($event)" formControlName="photo" >
+                      <button type="submit" class="btn btn-primary profile-image">Profile Image</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -41,7 +44,7 @@
                     <div class="text-center" style="margin-top:80px;">
                     <a class="text-muted">
                       <input type="checkbox" id="modal">
-                      <label for="modal"  style="width:30%;height:90%;font-size:14px" (click)="setValueForm(admin.username, admin.email)" class="btn btn-primary" >Edit</label>
+                      <label for="modal"  style="width:30%;height:90%;font-size:14px" (click)="setValueForm(admin.username, admin.email)" class="btn btn-primary edit" >Edit</label>
                       <label for="modal"  class="modal-background"></label>
                       <div class="modal" style="width: 40%;height: 40%;overflow-y:scroll;">
                         <div class="modal-header" >

@@ -1,4 +1,7 @@
 import { Order } from "./Order";
+import { Image } from "./Image";
+
+
 
 export interface User {
     id: number;
@@ -7,4 +10,5 @@ export interface User {
     email: string;
     role: number;
     order : Order[];
+    image : Image;
 }

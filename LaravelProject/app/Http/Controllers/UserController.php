@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Image;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Input;
 use Illuminate\Http\Request;
 use Illuminate\Http\Session;
@@ -82,6 +84,27 @@ class UserController extends Controller
        $user = DB::table('user')->delete($user_id); 
        return response()->json($user);       
     } 
+
+
+    function addUserPhoto(Request $req){
+        if($req->hasfile('image')){
+            $photo = $req->file('image');
+            $filename = time() . '.' . $photo->getClientOriginalExtension();
+            $photo->move(public_path('/uploads/products/'), $filename);
+            $user = JWTAuth::user();
+            $image = new Image();
+            $image->image = $filename;
+            $image->save();
+            $user->image_id =  $image->id;
+            $user->save();
+        }
+    }
+
+
+    function getUserPhoto(){
+            $user = User::with('image')->where('id', 1)->first();
+            return new UserResource($user);
+    }
 
  
    

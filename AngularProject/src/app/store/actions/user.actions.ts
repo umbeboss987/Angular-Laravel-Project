@@ -33,3 +33,7 @@ export const GetAllUserActionFail = createAction('[USER] Get users fail', props<
 export const DeleteUserAction = createAction('[USER] Delete user', props<{user_id: number}>());
 export const DeleteUserActionSuccess = createAction('[USER] Delete user success', props<{ id: number}>());
 export const DeleteUserActionFail = createAction('[USER] Delete user fail', props<{message: string}>());
+
+export const GetUserImageAction = createAction('[USER] Get User photo ');
+export const GetUserImageActionSuccess = createAction('[USER] Get User photo success', props<{ image: any}>());
+export const GetUserImageActionFail = createAction('[USER] Get User photo fail', props<{message: string}>());

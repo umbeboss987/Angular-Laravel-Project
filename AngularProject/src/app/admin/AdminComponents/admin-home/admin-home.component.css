@@ -151,3 +151,13 @@ input[type="checkbox"]:checked ~ .modal-background {
     border: 1px solid red;
 }
 
+
+.edit{
+    background-color:rgb(255,193,8) !important;
+    border:none;
+}
+
+.profile-image{ 
+    background-color:rgb(255,193,8) !important;
+    border:none;
+}

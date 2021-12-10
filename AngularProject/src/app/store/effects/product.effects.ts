@@ -4,7 +4,7 @@ import { ProductsService } from "src/app/services/product.service";
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { NgxSpinnerService } from "ngx-spinner";
-import { switchMap, map , mergeMap, filter, withLatestFrom, catchError, exhaustMap, tap, } from 'rxjs/operators';
+import { switchMap, map , catchError, tap, } from 'rxjs/operators';
 
 import {
         GetProductsAction, 

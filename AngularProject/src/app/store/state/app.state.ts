@@ -6,6 +6,7 @@ import { User } from 'src/app/model/User';
 import { Address } from 'src/app/model/Address';
 import { UserAuth } from 'src/app/model/UserAuth';
 import { Review } from 'src/app/model/Review';
+import { Image } from 'src/app/model/Image';
 
 
 export interface IAppState{
@@ -17,6 +18,7 @@ export interface IAppState{
     addressState: AddressState;
     responseState : ResponseState;
     reviewState : ReviewState;
+    imageState: ImageState;
 }
 
 export interface ProductsState {
@@ -63,6 +65,7 @@ export interface UserState{
     token: string
     loading: boolean;
     singleUser: User;
+    userImage : Image;
 }
 
 export const initialUserState :UserState = {
@@ -76,7 +79,15 @@ export const initialUserState :UserState = {
         'password': '',
         'email': '',
         'role': 0,
-        'order' : []
+        'order' : [],
+        'image' : {
+            'id' : 0,
+            'image': ''
+        }
+    },
+    userImage :{
+        'id' : 0,
+        'image': ''
     }
    
 }
@@ -111,8 +122,12 @@ export const initialAccountState :AddressState = {
             'password': '',
             'email': '',
             'role': 0,
-            'order' : []
-        },
+            'order' : [],
+            'image': {
+                'id': 0,
+                'image' : ''
+            },
+        },       
         'city': '',
         'postal_code': '',
         'address': '',
@@ -138,3 +153,12 @@ export interface ResponseState{
 export const initialResponseState : ResponseState = {
    responseData: [],
 }
+
+export interface ImageState{
+    image : Image[];
+}
+
+
+export const initialImageState : ImageState = {
+    image : []
+ }

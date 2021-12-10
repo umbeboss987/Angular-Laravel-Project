@@ -34,3 +34,8 @@ export const selectUserResponse = createSelector(
     selectUser,
     (state: UserState) => state.singleUser
   );
+
+  export const selectUserImage = createSelector(
+    selectUser,
+    (state: UserState) => state.userImage
+  );

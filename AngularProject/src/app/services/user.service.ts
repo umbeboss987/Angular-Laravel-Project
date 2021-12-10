@@ -45,5 +45,13 @@ export class UserService {
     return this.http.delete(`${AppConstants.SERVICES_BASE_URL}/users/${user_id}`);
   }
 
+  addUserPhoto(photo : File) : Observable<any>{
+    return this.http.post<any>(`${AppConstants.SERVICES_BASE_URL}/user/photo`, photo);
+  }
+
+  getUserPhoto() : Observable<any>{
+    return this.http.get<any>(`${AppConstants.SERVICES_BASE_URL}/user/photo`);
+  }
+
 
 }

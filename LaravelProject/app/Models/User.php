@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Order;
 use App\Models\Account;
 use App\Models\Cart;
+use App\Models\Image;
 
 
 
@@ -15,6 +16,7 @@ class User extends Authenticatable implements JWTSubject
 {   
     
     protected $table = 'user';
+    protected $fillable = ["image_id", "image"];
 
     use Notifiable;
 
@@ -56,4 +58,9 @@ class User extends Authenticatable implements JWTSubject
     public function carts (){
         return  $this->hasMany(Cart::class);
      }
+
+     public function image (){
+        return  $this->belongsTo(Image::class);
+     }
+
 }

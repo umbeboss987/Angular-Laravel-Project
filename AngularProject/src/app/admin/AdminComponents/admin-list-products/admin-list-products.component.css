@@ -95,3 +95,8 @@ input[type="checkbox"]:checked ~ .modal-background {
     border: 1px solid green;
 }
 
+.add-product{
+    background-color:rgb(255,193,8) !important;
+    border:none; 
+}
+

@@ -17,3 +17,8 @@
 .errors{
     color:  red;
 }
+
+.add-product{
+    background-color:rgb(255,193,8) !important;
+    border:none; 
+}

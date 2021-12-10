@@ -30,6 +30,8 @@ export class AddProductComponent implements OnInit {
     if(this.addProductForm.valid){
       let valueForm =  this.addProductForm.value;
       this.store.dispatch(AddSingleProductAction({product : valueForm}));
+    }else{
+      alert("Form is not valid")
     }
   }
 

@@ -21,6 +21,8 @@ class CreateUserTable extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->text('email');
+            $table->bigInteger('image_id')->nullable()->unsigned();
+            $table->foreign('image_id')->references('id')->on('image');
             $table->timestamps();
         });
     }
