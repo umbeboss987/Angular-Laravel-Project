@@ -48,7 +48,6 @@ export class UpdateAddressComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   console.log(this.address?.name);
   }
 
   updateAddress(){

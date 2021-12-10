@@ -13,70 +13,81 @@
     </ul>
   </div>
 </div>
-  <!-- =====  BANNER STRAT  ===== -->
-  <div class="text-center" *ngIf="(loadingUser | async ) === true">
-    <div class="lds-roller">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+<!-- =====  BANNER STRAT  ===== -->
+<div class="text-center" *ngIf="(loadingUser | async ) === true">
+  <div class="lds-roller">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
   </div>
+</div>
 
-<div class="text-center all"  *ngIf="(loadingUser | async ) === false">
+<div class="text-center all" *ngIf="(loadingUser | async ) === false">
   <h2 class=" account">{{'profile.bigInformation' | translate}}</h2>
-    <div class="row" >
-      <div class="col-md-12">
-        <div class="tab-content ">
-          <div class="tab-pane active" id="r1" >
-            <div class="heading-part">
-            </div>
-            <div class="row" >
-              <div class="col-sm-6">
-                <div class="cart-total-table address-box commun-table">
-                  <div class="table-responsive">
-                    <table class="table account-table" *ngIf="(user | async) as user">
-                      <thead>
-                        <tr>
-                          <th>Account</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            <ul>
-                              <li class="inner-heading">
-                                <b>Username</b>
-                              </li>
-                              <li>
-                                <p>{{user.username}}</p>
-                              </li>
-                              <li>
-                                <b>Email</b>
-                                <p>{{user.email}}</p>
-                              </li>   
-                              <li class="button-update">
-                                <button class="btn btn-primary bottoni"  [routerLink]="['/account/updateProfile']">{{'profile.updateProfile' | translate}}</button>
-                              </li>                             
-                            </ul>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tab-content ">
+        <div class="tab-pane active" id="r1">
+          <div class="heading-part">
+          </div>
+          <div class="row">
+            <div class="col-lg-5">
+              <div class="card" style="padding-bottom: 25px;">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img *ngIf="(userImage | async) as image" [src]="image.image ? this.imagePath + image.image : 'https://bootdey.com/img/Content/avatar/avatar7.png'" alt="Admin" class="rounded-circle"
+                      width="150">
+                    <form action="" class="" [formGroup]="addPhotoForm" (ngSubmit)="addImage()">
+                      <div class="mt-3">
+                        <h4>John Doe</h4>
+                        <label for="file" class="image-profile">Profile image</label>
+                        <input type="file" id="file" class="upload-input" formControlName="photo" (change)="uploadImage($event)">
+                      </div>
+                      <button class="hiddenButton" [hidden]="hideAddPhoto" type="submit">Add Photo</button>
+
+                    </form>
                   </div>
                 </div>
               </div>
-              <div class="col-sm-6">
+            </div>
+            <div class="col-lg-6">
+              <div class="card-body" *ngIf="(user | async) as user">
+                <div class="row" style="margin-top:3%;">
+                  <div class="col-sm-3">
+                    <h5 class="mb-0">Username</h5>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <h6 class="">{{user.username}}</h6>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h5 class="mb-0">Email</h5>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <h6 class=""> {{user.email}}</h6>
+                  </div>
+                </div>
+                <hr>
+                <div class="row" style="margin-top:110px;">
+                  <div class="col-sm-12">
+                    <button class="btn btn-warning edit-profile" [routerLink]="['/account/updateProfile']">Edit Profile</button>
+                </div>
               </div>
             </div>
-          </div>    
-         
+          </div>
+          <div class="col-lg-1">
+          </div>
         </div>
       </div>
+
     </div>
   </div>
-  
+</div>
+</div>

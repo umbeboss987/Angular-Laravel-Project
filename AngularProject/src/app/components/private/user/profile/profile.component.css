@@ -171,3 +171,83 @@
   .spinner{
     width:100%;
   }
+
+
+
+  .card-body{
+    border-radius:20px;
+    padding-top:20px;
+    box-shadow: 0 0 3px;
+    padding-bottom:30px;
+    height:350px;
+
+  }
+
+  .table-responsive{
+
+    border-radius:20px;
+    padding-top:20px;
+    box-shadow: 0 0 5px;
+  }
+
+
+  input[type="file"]{
+  padding-top:20px;
+   display:none;
+  }
+
+  .image-profile{
+    cursor:pointer;
+    color:white;
+    width: 200px;
+    height: 30px;
+    padding-top:3px;
+    text-align: center;
+    border-radius:20px;
+    background-color:rgb(255,193,8);
+    margin-top:50px;
+    transition-duration:500ms;
+
+  }
+
+  .image-profile:hover{
+    background-color:black;
+  }
+
+
+  .edit-profile{
+    background-color:rgb(255,193,8);
+    width: 200px;
+    height: 30px;
+    padding-top:3px;
+    text-align: center;
+    border-radius:20px;
+    border:none;
+    transition-duration:500ms;
+  }
+
+  .edit-profile:hover{
+    background-color:black;
+  }
+
+
+  .hiddenButton{
+    border:none;
+    background-color: white;
+    border-radius: 20px;
+    width: 150px;
+    color:black;
+    height: 30px;
+    border: 1px solid rgb(150, 140, 140);
+    transition-duration:500ms;
+  }
+
+  .hiddenButton:hover{
+    background-color:orange;
+    color:white;
+    border:none;
+  }
+  
+
+
+  

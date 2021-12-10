@@ -5,11 +5,13 @@ import {select, Store} from '@ngrx/store';
 import { CreateAddressAction, GetAddressAction } from 'src/app/store/actions/address.actions';
 import { Address } from 'src/app/model/Address';
 import { _selectOrderAccount, _selectOrderLoading } from 'src/app/store/selectors/order.selector';
-import { GetUserAction } from 'src/app/store/actions/user.actions';
+import { GetUserAction, GetUserImageAction } from 'src/app/store/actions/user.actions';
 import { User } from 'src/app/model/User';
 import { selectAddressLoading } from 'src/app/store/selectors/address.selector';
-import { selectSingleUser, selectUserLoading } from 'src/app/store/selectors/user.selector';
+import { selectSingleUser, selectUserImage, selectUserLoading } from 'src/app/store/selectors/user.selector';
 import {Observable} from 'rxjs';
+import { Image } from 'src/app/model/Image';
+import { AddImageAction } from 'src/app/store/actions/image.actions';
 
 
 @Component({
@@ -23,16 +25,32 @@ export class ProfileComponent implements OnInit {
 
   loadingUser: Observable<boolean>;
 
+  userImage : Observable<Image>;
+
+  addPhotoForm : FormGroup;
+
+  file: any;
+
+  imagePath : string = "http://localhost:8000/uploads/products/";
+
+  hideAddPhoto = true;
 
 
-  constructor( private store: Store<IAppState>) { 
+  constructor( private store: Store<IAppState>, private fb : FormBuilder) { 
  
    
     this.getUser();
+    this.store.dispatch(GetUserImageAction()) 
+    this.userImage = this.store.select(selectUserImage);
 
     this.user = this.store.select(selectSingleUser);
 
     this.loadingUser= this.store.select(selectUserLoading);  
+
+
+    this.addPhotoForm = this.fb.group({
+      photo : null
+    })
   }
 
   ngOnInit(): void {
@@ -42,5 +60,20 @@ export class ProfileComponent implements OnInit {
   getUser(){
     this.store.dispatch(GetUserAction());
   }
+
+  uploadImage(event: any){
+    this.file = event.target.files[0];
+    if(this.file){
+      this.hideAddPhoto =false;
+    }
+  }
+
+
+  addImage (){
+    let formData = new FormData();
+    formData.append('image', this.file, this.file.name);
+    this.store.dispatch(AddImageAction({photo : formData}))
+  }
+
 
 }

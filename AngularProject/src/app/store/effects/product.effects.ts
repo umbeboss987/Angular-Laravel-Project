@@ -37,11 +37,12 @@ loadSingleProducts$ : Observable<Action> = createEffect(() => {
   return  this.actions$.pipe(
       ofType(GetSingleProductAction),
       switchMap((action) =>  this.products_service.getSingleProduct(action.item_id).pipe(
-        map((product) => GetSingleProductActionSuccess({products : product}))       
+        map((product) => GetSingleProductActionSuccess({products : product})) ,      
+        catchError((errorResp) =>{
+          return of(GetSingleProductActionFail({message : errorResp.error.message}))
+        })
       )
-    ),catchError((errorResp) =>{
-      return of(GetSingleProductActionFail({message : errorResp.error.message}))
-    })
+    )
   )   
 }); 
 
@@ -53,10 +54,10 @@ loadSingleProducts$ : Observable<Action> = createEffect(() => {
           return this.products_service.getProductsType(action.type_item).pipe(           
             map((data) => {
               return ProductsTypeActionSuccess({ products: data });
+            }),catchError((errorResp) =>{
+              return of(ProductsTypeActionFail({message : errorResp.error.message}))
             })
           );
-      }),catchError((errorResp) =>{
-        return of(ProductsTypeActionFail({message : errorResp.error.message}))
       })
     )
   });
@@ -69,10 +70,11 @@ loadSingleProducts$ : Observable<Action> = createEffect(() => {
           return this.products_service.getProducts().pipe(           
             map((data) => {
               return GetProductsActionSuccess({ products: data });
+            }),
+            catchError((errorResp) =>{
+              return of(GetProductsActionFail({message : errorResp.error.message}))
             })
           );
-      }),catchError((errorResp) =>{
-        return of(GetProductsActionFail({message : errorResp.error.message}))
       })
     )
   });
@@ -82,11 +84,12 @@ loadSingleProducts$ : Observable<Action> = createEffect(() => {
   return  this.actions$.pipe(
       ofType(DeleteSingleProductAction),
       switchMap((action) =>  this.products_service.deleteProduct(action.product_id).pipe(
-        map((product) => DeleteSingleProductActionSuccess({product_id : action.product_id}))       
+        map((product) => DeleteSingleProductActionSuccess({product_id : action.product_id})),
+        catchError((errorResp) =>{
+          return of(DeleteSingleProductActionFail({message : errorResp.error.message}))
+        })      
       )
-    ),catchError((errorResp) =>{
-      return of(DeleteSingleProductActionFail({message : errorResp.error.message}))
-    })
+    )
   )   
  }); 
 
@@ -94,11 +97,12 @@ loadSingleProducts$ : Observable<Action> = createEffect(() => {
   return  this.actions$.pipe(
       ofType(UpdateSingleProductAction),
       switchMap((action) =>  this.products_service.updateProduct(action.product, action.product_id).pipe(      
-        map((product, id) => UpdateSingleProductActionSuccess({products : action.product, product_id : action.product_id}))              
+        map((product, id) => UpdateSingleProductActionSuccess({products : action.product, product_id : action.product_id})) 
+        ,catchError((errorResp) =>{
+          return of(UpdateSingleProductActionFail({message : errorResp.error.message}))
+        })             
       )
-    ),catchError((errorResp) =>{
-      return of(UpdateSingleProductActionFail({message : errorResp.error.message}))
-    })
+    )
   )   
  });
  
@@ -107,10 +111,11 @@ loadSingleProducts$ : Observable<Action> = createEffect(() => {
       ofType(AddSingleProductAction),
       switchMap((action) =>  this.products_service.addProduct(action.product).pipe(      
         map((product) => AddSingleProductActionSuccess({products : product})),
+        catchError((errorResp) =>{
+          return of(AddSingleProductActionFail({message : errorResp.error.message}))
+        })
       )             
-    ),catchError((errorResp) =>{
-      return of(AddSingleProductActionFail({message : errorResp.error.message}))
-    })
+    )
   )   
  }); 
 
