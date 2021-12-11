@@ -25,6 +25,7 @@ export class OrderListComponent implements OnInit {
 
 
   constructor(private store: Store<IAppState>, private fb : FormBuilder) { 
+
     this.getOrdersList();
 
     this.formReview = this.fb.group({
@@ -33,8 +34,8 @@ export class OrderListComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {    
-    this.orders = this.store.select(selectUsersOrders);
+  ngOnInit(): void {
+    this.orders = this.store.select(selectUsersOrders);    
   }
 
 

@@ -27,10 +27,10 @@
         <div class="card-header">
           <div class="row">
             <div class="col-lg-2">
-              {{'profile.orderMade' | translate}}:{{order.created_at | date}} 
+              {{'profile.orderMade' | translate}}:{{order?.created_at | date}} 
             </div>
             <div class="col-lg-8">
-              {{'profile.total' | translate}}: {{order.total}}$
+              {{'profile.total' | translate}}: {{order?.total}}$
             </div>
             <div class="col-lg-2">
               Order:ORD{{order.code}}
