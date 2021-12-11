@@ -21,7 +21,7 @@ export class OrderEffects{
         return this.order_service.addOrder(action.item).pipe(
           tap(()=>{
             this.toastr.success('Order done');
-            this.router.navigate(['/account']);
+            this.router.navigate(['/account/orders']);
           }),
           map((data) => {
             return AddOrderActionSuccess({ item: data});

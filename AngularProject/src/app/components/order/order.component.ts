@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IAppState } from 'src/app/store/state/app.state';
 import {select, Store} from '@ngrx/store';
-import { DeleteCartItemAction, GetCartItemAction, GetCartTotalAction } from 'src/app/store/actions/cart.actions';
+import {  GetCartItemAction, GetCartTotalAction } from 'src/app/store/actions/cart.actions';
 import { selectCartList, selectCartTotal} from 'src/app/store/selectors/cart.selector';
 import { AddOrderAction } from 'src/app/store/actions/order.actions';
 import {Address} from '../../model/Address';
@@ -19,16 +19,16 @@ import { Cart } from 'src/app/model/Cart';
 })
 export class OrderComponent implements OnInit {
 
-  items? : Cart[];
-  total? : number;
+  items$? : Observable<Cart[]>;
+  total$? : Observable<number>;
+  loadingAddress?: Observable<boolean>;
+  addresses$? : Observable<Address[]>;
   orderForm: FormGroup;
   formAddress : FormGroup;
-  loadingAddress?: boolean;
   hideNewAddressForm = true;
   hideExistingAddress= false;
   hideCheckExistingAddress= false;
   hideCheckNewAddress = false;
-  addresses? : Address[];
   hiddenButton : boolean = false;
 
   constructor(private store : Store<IAppState>, private fb: FormBuilder,private router: Router) { 
@@ -45,53 +45,36 @@ export class OrderComponent implements OnInit {
       postal_code: ["",[Validators.required, Validators.minLength(3), Validators.maxLength(6), Validators.pattern("^[0-9]*$")]]  
     })
 
-    this.orderForm = this.fb.group({    
-      address_id: ["", Validators.required],
+
+    this.orderForm = this.fb.group({ 
+      address_id: [1,[Validators.required]],
     })
 
+    this.getCartList();
     this.getSumPriceCart();
-    this.store.dispatch(GetCartItemAction());
-    this.store.dispatch(GetCartTotalAction());
-    this.store.dispatch(GetAddressAction());
-     this.store.select(selectAddress).subscribe(res => {
-       this.addresses = res;
-     });
+    this.getUserAddresses();
 
-    this.store.select(selectAddressLoading).subscribe(res =>{
-      this.loadingAddress = res;
-      if(this.loadingAddress == false && this.addresses != undefined){
-        if(this.addresses.length <= 0){
-          this.hideNewAddressForm = false;
-          this.hideExistingAddress = true;
-          this.hiddenButton = true;
-          this.hideCheckExistingAddress = true;
-          this.hideCheckNewAddress = true;
-        }
-        let firstAddress = this.addresses[this.addresses.length - 1];
-        this.orderForm.patchValue({
-          address_id : firstAddress.id
-        })
-      }
-    })
   }
 
   ngOnInit(): void {
-    this.getCartList();  
+    this.items$ = this.store.select(selectCartList);
+    this.total$ = this.store.select(selectCartTotal);
+    this.loadingAddress = this.store.select(selectAddressLoading)
+    this.addresses$ = this.store.select(selectAddress);
   }
 
 
 
   getCartList (){
-    this.store.select(selectCartList).subscribe(res => {
-      this.items = res;
-    });
-
+    this.store.dispatch(GetCartItemAction());
   }
 
   getSumPriceCart (){
-    this.store.select(selectCartTotal).subscribe(res =>{
-      this.total = res;
-    });   
+    this.store.dispatch(GetCartTotalAction());
+  }
+
+  getUserAddresses(){
+    this.store.dispatch(GetAddressAction());
   }
 
   addOrder(){
@@ -99,6 +82,11 @@ export class OrderComponent implements OnInit {
       this.store.dispatch(AddOrderAction({item: order}));
   }
 
+  addAddress(){
+    let newAddress = this.formAddress.value;
+    this.store.dispatch(CreateAddressAction({address: newAddress}));
+    this.router.navigateByUrl('/checkOut');
+  }
 
   displayNewAddress(){
     this.hideNewAddressForm = false;
@@ -112,11 +100,7 @@ export class OrderComponent implements OnInit {
     this.hiddenButton = false;
   }
 
-  addAddress(){
-    let newAddress = this.formAddress.value;
-    this.store.dispatch(CreateAddressAction({address: newAddress}));
-    this.router.navigateByUrl('/checkOut');
-  }
+  
 
 
 

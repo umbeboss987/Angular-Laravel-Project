@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="text-center" *ngIf="loadingAddress== true">
+  <div class="text-center" *ngIf="(loadingAddress | async ) == true">
     <div class="lds-roller">
       <div></div>
       <div></div>
@@ -11,7 +11,7 @@
       <div></div>
     </div>
   </div>
-  <div class="row " *ngIf="loadingAddress== false">
+  <div class="row " *ngIf="(loadingAddress | async ) == false">
     <div class="col-lg-2"></div>
     <div class="col-lg-8">
       <div class="purchase" style="border: 1px solid #cfcfcf; padding:20px; margin-top:20px;">
@@ -28,7 +28,7 @@
         </div>
         <hr style="margin-top:0">
         <div>
-          <div class="container-fluid" *ngFor="let item of items">
+          <div class="container-fluid" *ngFor="let item of items$ | async">
             <div class="row" >
               <div class="col-lg-11">
                 <div class="product">
@@ -54,7 +54,7 @@
               <div class="col-lg-1">
                 <div class="subtotal">
                   <h5 class="">{{'order.total' | translate}}</h5>
-                  <h6 class="">{{total}}</h6>
+                  <h6 class="" *ngIf="(total$ | async) as total">{{total}}</h6>
                 </div>
               </div>
             </div>
@@ -75,7 +75,7 @@
             <form action="" [formGroup]="orderForm" class="" (ngSubmit)="addOrder()">
               <div id="payment-existing" [hidden]="hideExistingAddress">
                 <select class="form-control select" formControlName="address_id">
-                  <option  [value]="address.id" selected="selected" *ngFor="let address of addresses">{{address.address}}, {{address.city}}, {{address.postal_code}},{{address.name}} {{address.surname}}, {{address.telephone_number}}</option>
+                  <option *ngFor="let address of addresses$ | async " [value]="address.id"  selected="selected" >{{address.address}}, {{address.city}}, {{address.postal_code}},{{address.name}} {{address.surname}}, {{address.telephone_number}}</option>
                 </select>
                 <div class="alert alert-danger" role="alert" 
                 *ngIf="!orderForm.get('address_id')?.valid && orderForm.get('address_id')?.touched">

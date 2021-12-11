@@ -30,14 +30,16 @@ export class ProductComponent implements OnInit {
       product_id : null,
       quantity: [" ",[Validators.required,Validators.min(1), Validators.max(5)]]    
     });
+    
     this.getProductReviews()
     this.getSingleProduct();
-    this.loading$ = this.store.select<Boolean>(selectProductLoading)    
-    this.product$ = this.store.select<Product>(selectSingleProduct);
-    this.reviews$ = this.store.select<Review[]>(selectReviewsList);
+   
   }
 
   ngOnInit(): void {
+    this.loading$ = this.store.select<Boolean>(selectProductLoading)    
+    this.product$ = this.store.select<Product>(selectSingleProduct);
+    this.reviews$ = this.store.select<Review[]>(selectReviewsList);
   }
 
   addCartItem(product_id: number) {
