@@ -28,7 +28,7 @@ export class ProductComponent implements OnInit {
      //form group insert product in the cart
     this.formGroup = this.fb.group({
       product_id : null,
-      quantity: [" ",[Validators.required,Validators.min(1), Validators.max(5)]]    
+      quantity: [1,[Validators.required,Validators.min(1), Validators.max(5)]]    
     });
     
     this.getProductReviews()
@@ -43,9 +43,11 @@ export class ProductComponent implements OnInit {
   }
 
   addCartItem(product_id: number) {
-    this.formGroup.patchValue({product_id : product_id});
-    let CartItem: Cart = this.formGroup?.value
-    this.store.dispatch(AddCartItemAction({ item: CartItem}));
+    if(this.formGroup.valid){
+      this.formGroup.patchValue({product_id : product_id});
+      let CartItem: Cart = this.formGroup?.value
+      this.store.dispatch(AddCartItemAction({ item: CartItem}));
+    }
   }
 
 

@@ -30,6 +30,7 @@ Route::group([], function () {
     Route::get('products/{product_id}',[ProductController::class ,'getProductById'])->name('getProductById')->where(['product_id' => '[0-9]+']);
     Route::get('products/{products_type}',[ProductController::class, 'getProductsByType'])->name('getProductsByType')->where(['products_type' => '[a-z]+']);
     Route::get('products/reviews', [ReviewController::class, 'getReviews']);
+    Route::get('products/{product_id}/reviews',[ProductController::class, 'getProductReviews'])->name('getProductReviews');
 
     //Login and registration
     Route::post('signUp', [UserController::class, 'signUp']);
@@ -39,7 +40,10 @@ Route::group([], function () {
         Route::prefix('auth')->group(function(){
             Route::get('logout', 'AuthController@logout');
             Route::get('user', [AuthController::class, 'getAuthUser']); 
-        });         
+        });
+        Route::prefix('products')->group(function () {
+            Route::post('/{product_id}/reviews',[ReviewController::class, 'addReview'])->name('addReview');     
+        });
     });
 
     Route::group(['middleware' => 'auth', 'prefix' => 'user'],function () {
@@ -57,14 +61,13 @@ Route::group([], function () {
         Route::post('/photo',[UserController::class, 'addUserPhoto']);
         Route::get('/photo',[UserController::class, 'getUserPhoto']);
     });
+
     //admin
     Route::group(['middleware' => 'admin'], function () {
         Route::prefix('products')->group(function () {
             Route::delete('/{product_id}', [ProductController::class, 'deleteProductById'])->name('deleteProductById');
             Route::post('', [ProductController::class, 'addProduct'])->name('addProduct');
             Route::post('/{product_id}',[ProductController::class, 'updateProduct'])->name('updateProduct');
-            Route::post('/{product_id}/reviews',[ReviewController::class, 'addReview'])->name('addReview');
-            Route::get('/{product_id}/reviews',[ProductController::class, 'getProductReviews'])->name('getProductReviews');
             Route::delete('/{product_id}/reviews/{review_id}',[ProductController::class, 'deleteProductReview'])->name('deleteProductReview'); 
         });
 
