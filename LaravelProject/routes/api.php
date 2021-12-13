@@ -33,7 +33,7 @@ Route::group([], function () {
 
     //Login and registration
     Route::post('signUp', [UserController::class, 'signUp']);
-    Route::post('login', [ AuthController::class, 'login'])->name('login');
+    Route::post('login', [AuthController::class, 'login'])->name('login');
     //auth user
     Route::group(['middleware' => 'auth'], function(){
         Route::prefix('auth')->group(function(){

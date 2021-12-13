@@ -103,7 +103,8 @@ class UserController extends Controller
 
 
     function getUserPhoto(){
-            $user = User::with('image')->where('id', 1)->first();
+            $user_id = JWTAuth::user()->id;
+            $user = User::with('image')->where('id', $user_id)->first();
             return new UserResource($user);
     }
 

@@ -61,7 +61,12 @@ export function httpTranslateLoader(http: HttpClient):any {
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     CommonModule,
-    StoreModule.forRoot(appReducers),
+    StoreModule.forRoot(appReducers, {
+      runtimeChecks: {
+        strictStateImmutability: false,
+        strictActionImmutability: false,
+      },
+    }),
     EffectsModule.forRoot([ProductsEffect, CartEffects, UserEffects, OrderEffects, AccountEffects, ReviewEffects, ImageEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
       JwtModule.forRoot({

@@ -17,11 +17,11 @@ export class UserService {
 
 
   signUp (user: User) : Observable<User>{
-   return  this.http.post<User>(`${AppConstants.SERVICES_BASE_URL}/auth/signUp`, user);
+   return  this.http.post<User>(`${AppConstants.SERVICES_BASE_URL}/signUp`, user);
   }
 
   signIn (user: User) : Observable<User>{
-    return this.http.post<User>(`${AppConstants.SERVICES_BASE_URL}/auth/login`, user);
+    return this.http.post<User>(`${AppConstants.SERVICES_BASE_URL}/login`, user);
   }
 
   getToken (){

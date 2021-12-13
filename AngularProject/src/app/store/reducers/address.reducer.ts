@@ -5,7 +5,10 @@ import { initialAccountState } from '../state/app.state';
 const _accountReducer = createReducer(
     initialAccountState,
     on(CreateAddressActionSuccess, (state, action :any) => {
+        let address_id= state.address.length;
+        action.address['id'] = address_id + 2;
         let newAddress = {...action.address};
+        Object.preventExtensions(action.address);
         return {
             ...state,
             address: [...state.address,newAddress]

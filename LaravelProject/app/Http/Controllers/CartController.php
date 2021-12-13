@@ -25,12 +25,6 @@ class CartController extends Controller
         return response(null, 201);
     }
 
-    function countCartProduct(){
-        $cart = new Cart();
-        $totalCount = $cart->select('*')->count();
-        return $totalCount;
-    }
-
     function cart (){
         $product = new Product();
         $data = $product->select('cart.id','name', 'price','photo', 'cart.quantity')->join('cart', 'product.id', '=' , 'cart.product_id')->get();
@@ -47,11 +41,6 @@ class CartController extends Controller
        
         return  $result ;
     }
-
-    function check_out(){
-        return view('checkout_page');
-    }
-
 
     function getUserCart (){
         $user = JWTAuth::user()->id;
