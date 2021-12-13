@@ -23,4 +23,8 @@ export class OrderService {
   getAllOrders (): Observable<Order[]>{
     return this.http.get<Order[]>(`${AppConstants.SERVICES_BASE_URL}/orders`);
   }
+
+  deleteOrder(order_id : number){
+    return this.http.delete<Order>(`${AppConstants.SERVICES_BASE_URL}/orders/${order_id}`)
+  }
 }

@@ -5,8 +5,7 @@ import { User } from '../model/User';
 import { Observable } from 'rxjs';
 import { AppConstants } from '../app.constants';
 
-const Url = 'http://127.0.0.1:8000/api/signUp';
-const signIn_Url = 'http://127.0.0.1:8000/api/auth/login';
+const signIn_Url = 'http://127.0.0.1:8000/api/login';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +17,11 @@ export class UserService {
 
 
   signUp (user: User) : Observable<User>{
-   return  this.http.post<User>(Url, user);
+   return  this.http.post<User>(`${AppConstants.SERVICES_BASE_URL}/auth/signUp`, user);
   }
 
   signIn (user: User) : Observable<User>{
-    return this.http.post<User>(signIn_Url, user);
+    return this.http.post<User>(`${AppConstants.SERVICES_BASE_URL}/auth/login`, user);
   }
 
   getToken (){
@@ -30,11 +29,11 @@ export class UserService {
   }
 
   updateUser(user: User) : Observable<User>{
-    return this.http.put<User>(`${AppConstants.SERVICES_BASE_URL}/users`, user);
+    return this.http.put<User>(`${AppConstants.SERVICES_BASE_URL}/user`, user);
   }
 
   getUser() : Observable<User>{
-    return this.http.get<User>('http://127.0.0.1:8000/api/auth/getId');
+    return this.http.get<User>(`${AppConstants.SERVICES_BASE_URL}/auth/user`);
   }
 
   getAllUsers() : Observable<User[]>{

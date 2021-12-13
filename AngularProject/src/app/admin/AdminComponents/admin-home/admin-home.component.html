@@ -10,8 +10,9 @@
                     <div class="mt-3">
                       <h4>John Doe</h4>
                       <p class="text-secondary mb-1">Admin</p>
-                      <input type="file" (change)="uploadImage($event)" formControlName="photo" >
-                      <button type="submit" class="btn btn-primary profile-image">Profile Image</button>
+                      <label for="file" class="image-profile">Profile image</label>
+                      <input type="file" id="file" class="upload-input" formControlName="photo" (change)="uploadImage($event)">
+                      <button class="hiddenButton" [hidden]="hideAddPhoto" type="submit">Add Photo</button>
                     </div>
                   </form>
                 </div>
@@ -19,7 +20,7 @@
             </div>
           </div>
           <div class="col-md-8" *ngIf="(admin$ | async) as admin">
-            <div class="card mb-3" style="padding-bottom: 17px; height:270px;" >
+            <div class="card mb-3" style="padding-bottom: 17px; height:325px;" >
               <div class="card-body" >
                 <div class="row" style="margin-top:3%;">
                   <div class="col-sm-3">
@@ -55,7 +56,7 @@
                           </div>
                         <div class="text-center">
                           <div class="container" style="margin-top:7%;">
-                              <form [formGroup]="updateProfileForm" method="Put" (ngSubmit)="updateProfile()">
+                              <form [formGroup]="updateProfileForm" (ngSubmit)="updateProfile()">
                                 <div class="form-group">
                                   <label for="exampleInputEmail1" style=" font-size:14px;">Name</label>
                                   <input type="text" style="text-align:center; font-size:12px;" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="username">

@@ -92,10 +92,6 @@ class ProductController extends Controller
         }
     }
 
-    function getPhoto(){
-      $product = Photo::select()->product_id()->name;
-        return ['product' => $product];
-    }
 
     function addProduct(Request $req){
         $product = new Product();

@@ -6,7 +6,7 @@ import { switchMap, map ,  catchError, tap, } from 'rxjs/operators';
 import { OrderService } from "src/app/services/order.service";
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { AddOrderAction, AddOrderActionFail, AddOrderActionSuccess, GetOrders, GetOrdersSuccess, GetUserOrdersSuccess, GetUserOrdersFail, GetUserOrders, GetOrdersFail,  } from 'src/app/store/actions/order.actions';
+import { AddOrderAction, AddOrderActionFail, AddOrderActionSuccess, GetOrders, GetOrdersSuccess, GetUserOrdersSuccess, GetUserOrdersFail, GetUserOrders, GetOrdersFail, DeleteOrderAction, DeleteOrderActionSuccess, DeleteOrderActionFail,  } from 'src/app/store/actions/order.actions';
 
 @Injectable ()
 
@@ -65,6 +65,26 @@ export class OrderEffects{
             return GetOrdersSuccess({orderAccounts: data});
           }), catchError(errorResp => {
             return of(GetOrdersFail({message : errorResp.error.message})).pipe(
+              tap(() =>{
+                this.toastr.error(errorResp.error.message);
+              })
+            )
+          })
+        );
+      })
+    );
+  });
+
+
+    deleteOrder$: Observable<Action> = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(DeleteOrderAction),
+      switchMap((action) => {
+        return this.order_service.deleteOrder(action.order_id).pipe(
+          map((data) => {
+            return DeleteOrderActionSuccess({order_id: action.order_id});
+          }), catchError(errorResp => {
+            return of(DeleteOrderActionFail({message : errorResp.error.message})).pipe(
               tap(() =>{
                 this.toastr.error(errorResp.error.message);
               })

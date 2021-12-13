@@ -1,6 +1,6 @@
 <body class="">
     <div class="wrapper">
- 
+    <header class="header"> 
       <!-- Navbar -->
       <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
@@ -8,10 +8,13 @@
           <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li>
-        </ul>
-    
-        <!-- Right navbar links -->
+
+        </ul>   
       </nav>
+
+      <button [routerLink]="['/home']" class="button btn btn-warning">Go to HomePage</button>
+
+    </header>
       <!-- /.navbar -->
     
       <!-- Main Sidebar Container -->

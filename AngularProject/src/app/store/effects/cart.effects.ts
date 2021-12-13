@@ -24,6 +24,7 @@ import {AddCartItemAction,
   GetCartItemActionFail, 
   GetCartItemActionSuccess,  
   GetCartTotalAction, 
+  GetCartTotalActionFail, 
   GetCartTotalActionSuccess } from '../actions/cart.actions'
 import { CartService } from 'src/app/services/cart.service';
 import { Router } from '@angular/router';
@@ -101,6 +102,9 @@ export class CartEffects {
         return this.cart_service.getSumPriceCart().pipe(
           map((data) => {
             return GetCartTotalActionSuccess({ total: data});
+          }),
+          catchError((errorResp) => {
+            return of(GetCartTotalActionFail({message : errorResp.error.message}))
           })
         );
       })

@@ -43,7 +43,7 @@ export class CartService {
     }
 
     getSumPriceCart () : Observable <number>{
-        return this.http.get<number>(`${AppConstants.SERVICES_BASE_URL}/sumPriceProducts`)
+        return this.http.get<number>(`${AppConstants.SERVICES_BASE_URL}/user/carts/total`)
     }
 
     getSubTotals () : Observable <[]>{

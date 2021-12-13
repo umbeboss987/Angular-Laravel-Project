@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Store} from '@ngrx/store';
-import { GetUserAction, GetUserImageAction, UpdateUserAction } from 'src/app/store/actions/user.actions';
+import { AddUserImageAction, GetUserAction, GetUserImageAction, UpdateUserAction } from 'src/app/store/actions/user.actions';
 import{IAppState} from '../../../store/state/app.state';
 import {Observable} from 'rxjs';
 import {User} from '../../../model/User';
@@ -22,7 +22,7 @@ export class AdminHomeComponent implements OnInit {
   file : any;
   userImage? : Observable<Image>;
   imagePath : string = "http://localhost:8000/uploads/products/"
-
+  hideAddPhoto : boolean = true;
 
   constructor(private store: Store<IAppState>, private fb : FormBuilder) { 
     this.updateProfileForm = this.fb.group({
@@ -60,12 +60,15 @@ export class AdminHomeComponent implements OnInit {
 
   uploadImage(event: any){
     this.file = event.target.files[0];
+    if(this.file){
+      this.hideAddPhoto = false;
+    }
   }
 
   addImage (){
     let formData = new FormData();
     formData.append('image', this.file, this.file.name);
-    this.store.dispatch(AddImageAction({photo : formData}))
+    this.store.dispatch(AddUserImageAction({image : formData}))
   }
 
 

@@ -65,14 +65,14 @@ class UserController extends Controller
         $user_id = JWTAuth::user()->id;
         $user = User::find($user_id);
         $user->email = $req->input('email');
-        $user->name = $req->input('name');
+        $user->username = $req->input('username');
         $user->save();
+        return response(null, 204);
     }
 
     function getId(Request $request){
-       $token = $request->bearerToken();
-       $payload = $user = auth()->user();
-       return response()->json($payload);
+       $user = auth()->user();
+       return response()->json($user);
     }
 
     function getAllUsers(){
@@ -97,6 +97,7 @@ class UserController extends Controller
             $image->save();
             $user->image_id =  $image->id;
             $user->save();
+            return response(null, 201);
         }
     }
 

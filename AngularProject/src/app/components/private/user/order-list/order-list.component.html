@@ -1,24 +1,27 @@
-  <div class="row">
-    <div class="col-lg-12" style="margin-left:60px;">
-      <ul class="nav nav-tabs">
-        <li class="nav-item ">
-          <a class="nav-link order link active" style="padding-bottom:14px;margin-top:3px;"[routerLink]="['/account']">{{'profile.information' | translate}}</a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link order link active"  style="padding-bottom:14px;margin-top:3px;" [routerLink]="['/account/orders']">{{'profile.orders' | translate}}</a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link order link active"  style="padding-bottom:14px;margin-top:3px;" [routerLink]="['/account/address']">{{'profile.address' | translate}}</a>
-        </li>
-      </ul>
-    </div>
-    <div class="col-lg-0"></div>
-    <div class="col-lg-0"></div>
+<div class="row">
+  <div class="col-lg-12" style="margin-left:60px;">
+    <ul class="nav nav-tabs">
+      <li class="nav-item ">
+        <a class="nav-link order link active" style="padding-bottom:14px;margin-top:3px;"
+          [routerLink]="['/account']">{{'profile.information' | translate}}</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link order link active" style="padding-bottom:14px;margin-top:3px;"
+          [routerLink]="['/account/orders']">{{'profile.orders' | translate}}</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link order link active" style="padding-bottom:14px;margin-top:3px;"
+          [routerLink]="['/account/address']">{{'profile.address' | translate}}</a>
+      </li>
+    </ul>
   </div>
-<div class="tab-pane" id="r3">
-  <div class="text-center">
-  <h3 class="orderList">{{'profile.orderlist' | translate}}</h3>
+  <div class="col-lg-0"></div>
+  <div class="col-lg-0"></div>
 </div>
+<div class="tab-pane" id="r3" *ngIf="(loadingOrders | async) == false">
+  <div class="text-center">
+    <h3 class="orderList">{{'profile.orderlist' | translate}}</h3>
+  </div>
   <div class="row">
     <div class="col-lg-2">
     </div>
@@ -27,7 +30,7 @@
         <div class="card-header">
           <div class="row">
             <div class="col-lg-2">
-              {{'profile.orderMade' | translate}}:{{order?.created_at | date}} 
+              {{'profile.orderMade' | translate}}:{{order?.created_at | date}}
             </div>
             <div class="col-lg-8">
               {{'profile.total' | translate}}: {{order?.total}}$
@@ -35,58 +38,65 @@
             <div class="col-lg-2">
               Order:ORD{{order.code}}
             </div>
-          </div>         
+          </div>
         </div>
         <div class="card-body" *ngFor="let product of order.product">
           <div class="row">
             <div class="col-lg-2">
               <div class="">
-                <img src="{{product.photo}}"style="width:50%;">
+                <img src="{{product.photo}}" style="width:50%;">
               </div>
             </div>
             <div class="col-lg-5">
               <div class="">
                 <h4 class="card-title">{{product.name}}</h4>
-                <button type="button" [routerLink]="['/products/' + product.id]" style="width:150px;"class="btn btn-warning">{{'profile.goProducts' | translate}}</button>              
+                <button type="button" [routerLink]="['/products/' + product.id]" style="width:150px;"
+                  class="btn btn-warning">{{'profile.goProducts' | translate}}</button>
               </div>
             </div>
             <div class="col-lg-5">
               <div class="">
-                <h4 class="card-title">{{'profile.addReview' | translate}}</h4>                   
+                <h4 class="card-title">{{'profile.addReview' | translate}}</h4>
                 <a class="text-muted">
                   <input type="checkbox" id="modal">
-                  <label for="modal"  style="width:60%;height:100%;font-size:9px" class="btn btn-warning" >{{'profile.addReview' | translate}}</label>
-                  <label for="modal"  class="modal-background"></label>
+                  <label for="modal" style="width:60%;height:100%;font-size:9px"
+                    class="btn btn-warning">{{'profile.addReview' | translate}}</label>
+                  <label for="modal" class="modal-background"></label>
                   <div class="modal" style="overflow-y:scroll;">
-                    <div class="modal-header" >
+                    <div class="modal-header">
                       <h3> {{'profile.modalReview' | translate}} </h3>
-                          <label for="modal">
-                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAdVBMVEUAAABNTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0N3NIOAAAAJnRSTlMAAQIDBAUGBwgRFRYZGiEjQ3l7hYaqtLm8vsDFx87a4uvv8fP1+bbY9ZEAAAB8SURBVBhXXY5LFoJAAMOCIP4VBRXEv5j7H9HFDOizu2TRFljedgCQHeocWHVaAWStXnKyl2oVWI+kd1XLvFV1D7Ng3qrWKYMZ+MdEhk3gbhw59KvlH0eTnf2mgiRwvQ7NW6aqNmncukKhnvo/zzlQ2PR/HgsAJkncH6XwAcr0FUY5BVeFAAAAAElFTkSuQmCC" width="16" height="16" alt="">
-                          </label>
-                      </div>
+                      <label for="modal">
+                        <img
+                          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAdVBMVEUAAABNTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU0N3NIOAAAAJnRSTlMAAQIDBAUGBwgRFRYZGiEjQ3l7hYaqtLm8vsDFx87a4uvv8fP1+bbY9ZEAAAB8SURBVBhXXY5LFoJAAMOCIP4VBRXEv5j7H9HFDOizu2TRFljedgCQHeocWHVaAWStXnKyl2oVWI+kd1XLvFV1D7Ng3qrWKYMZ+MdEhk3gbhw59KvlH0eTnf2mgiRwvQ7NW6aqNmncukKhnvo/zzlQ2PR/HgsAJkncH6XwAcr0FUY5BVeFAAAAAElFTkSuQmCC"
+                          width="16" height="16" alt="">
+                      </label>
+                    </div>
                     <div class="text-center">
                       <div class="container" style="margin-top:7%;">
-                          <form method="Post" [formGroup]="formReview"(ngSubmit)="addReview(product.id)">
-                            <div class="form-group">
-                              <label for="exampleInputEmail1" style=" font-size:14px;">{{'profile.modalReview' | translate}}</label>
-                              <textarea type="text" style="text-align:center; font-size:12px;" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="review"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-warning" style="margin-top:7%; width:50%;">Submit</button>
-                          </form>                     
+                        <form method="Post" [formGroup]="formReview" (ngSubmit)="addReview(product.id)">
+                          <div class="form-group">
+                            <label for="exampleInputEmail1" style=" font-size:14px;">{{'profile.modalReview' |
+                              translate}}</label>
+                            <textarea type="text" style="text-align:center; font-size:12px;" class="form-control"
+                              id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="review"></textarea>
+                          </div>
+                          <button type="submit" class="btn btn-warning"
+                            style="margin-top:7%; width:50%;">Submit</button>
+                        </form>
                       </div>
+                    </div>
                   </div>
-                </div>
-                </a>           
+                </a>
               </div>
             </div>
           </div>
-        
+
           <hr>
         </div>
       </div>
     </div>
     <div class="col-lg-2">
-     
+
     </div>
   </div>
 </div>

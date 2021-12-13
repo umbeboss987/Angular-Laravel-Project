@@ -19,7 +19,7 @@ class JWT
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, ...$roles)
+    public function handle($request, Closure $next)
     {
         try {
             //Access token from the request        

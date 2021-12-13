@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import {TranslateService} from '@ngx-translate/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -10,8 +11,9 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private authService: AuthService, private translate: TranslateService){
-  }
+
+  constructor(private authService: AuthService, private translate: TranslateService){}
+
   ngOnInit(): void {
   }
 

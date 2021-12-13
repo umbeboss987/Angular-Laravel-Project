@@ -11,3 +11,34 @@
     background-color:rgb(255,193,8) !important;
 
 }
+
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    background-color:rgb(255,193,8);
+    height: 50px;
+}
+
+.button{
+    color:white;
+    height: 25px;
+    font-size:11px;
+    padding-bottom:5px;
+    border-radius:20px;
+    background-color:rgb(52,58,64);
+    transition-duration: 250ms;
+    margin-top:15px;
+    border:none;
+}
+
+.button:hover{
+    color:white;
+    height: 25px;
+    font-size:11px;
+    border-radius:20px;
+    padding-bottom:5px;
+    background-color:orange;
+    transition-duration: 250ms;
+    border:none;
+}

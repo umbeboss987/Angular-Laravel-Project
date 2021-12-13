@@ -21,11 +21,11 @@ import { AddImageAction } from 'src/app/store/actions/image.actions';
 })
 export class ProfileComponent implements OnInit {
 
-  user: Observable<User>;
+  user?: Observable<User>;
 
-  loadingUser: Observable<boolean>;
+  loadingUser?: Observable<boolean>;
 
-  userImage : Observable<Image>;
+  userImage? : Observable<Image>;
 
   addPhotoForm : FormGroup;
 
@@ -41,12 +41,7 @@ export class ProfileComponent implements OnInit {
    
     this.getUser();
     this.store.dispatch(GetUserImageAction()) 
-    this.userImage = this.store.select(selectUserImage);
-
-    this.user = this.store.select(selectSingleUser);
-
-    this.loadingUser= this.store.select(selectUserLoading);  
-
+    
 
     this.addPhotoForm = this.fb.group({
       photo : null
@@ -54,7 +49,12 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this.userImage = this.store.select(selectUserImage);
+
+    this.user = this.store.select(selectSingleUser);
+
+    this.loadingUser= this.store.select(selectUserLoading);  
+
   }
   
   getUser(){

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 //import { OrderAccount } from 'src/app/model/orderAccount';
 import { IAppState } from 'src/app/store/state/app.state';
 import {select, Store} from '@ngrx/store';
-import { selectUsersOrders, _selectOrderAccount } from 'src/app/store/selectors/order.selector';
+import { selectUsersOrders, _selectOrderAccount, _selectOrderLoading } from 'src/app/store/selectors/order.selector';
 import { GetUserOrders } from 'src/app/store/actions/order.actions';
 import{Observable} from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -23,10 +23,15 @@ export class OrderListComponent implements OnInit {
 
   formReview : FormGroup;
 
+  loadingOrders? : Observable<boolean>;
+
 
   constructor(private store: Store<IAppState>, private fb : FormBuilder) { 
 
     this.getOrdersList();
+    this.orders = this.store.select(selectUsersOrders); 
+    this.loadingOrders = this.store.select(_selectOrderLoading);
+    
 
     this.formReview = this.fb.group({
       review : ['', Validators.required]
@@ -35,7 +40,6 @@ export class OrderListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.orders = this.store.select(selectUsersOrders);    
   }
 
 

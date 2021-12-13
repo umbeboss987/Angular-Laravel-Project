@@ -6,7 +6,7 @@ import { Observable, of , } from 'rxjs';
 import { switchMap, map , mergeMap, catchError, tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import {  DeleteUserAction, 
+import {  AddUserImageAction, AddUserImageActionFail, AddUserImageActionSuccess, DeleteUserAction, 
          DeleteUserActionSuccess, 
          GetAllUserAction, 
          GetAllUserActionFail, 
@@ -18,6 +18,7 @@ import {  DeleteUserAction,
          GetUserImageActionFail, 
          GetUserImageActionSuccess, 
          UpdateUserAction, 
+         UpdateUserActionFail, 
          UpdateUserActionSuccess, 
          UserLoginAction, 
          UserLoginActionFail, 
@@ -63,7 +64,6 @@ export class UserEffects {
       switchMap((action) => {
         return this.auth_service.authenticate(action.user).pipe(
           tap(action => {
-            console.log(action);
             this.toastr.success("Logged succesfully");
             localStorage.setItem('token',JSON.stringify(action.token));
             this.router.navigate(['/']);
@@ -90,6 +90,9 @@ export class UserEffects {
             map((user :any) => {
               return UpdateUserActionSuccess({ user: action.user });
             }),
+            catchError((errorResp) =>{
+              return of(UpdateUserActionFail({ message: errorResp.error.message}))
+            })
           );
       })
     );
@@ -161,6 +164,22 @@ export class UserEffects {
               return of(GetUserImageActionFail({message : errorResp.error.message}))
             })
           );
+      })
+    );
+  });
+
+
+  addImage$: Observable<Action> = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AddUserImageAction),
+      switchMap((action) => {
+        return this.user_service.addUserPhoto(action.image).pipe(
+          map((data) => {
+            return AddUserImageActionSuccess({ image: action.image});
+          }), catchError (error => {
+            return of(AddUserImageActionFail({message: error.error.message}))
+          })
+        );
       })
     );
   });
