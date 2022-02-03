@@ -47,7 +47,7 @@ export class OrderComponent implements OnInit {
 
 
     this.orderForm = this.fb.group({ 
-      address_id: [1,[Validators.required]],
+      address_id: [null,[Validators.required]],
     })
 
     this.getCartList();
@@ -78,14 +78,22 @@ export class OrderComponent implements OnInit {
   }
 
   addOrder(){
+    if(this.orderForm.valid){
       let order = this.orderForm.value;
       this.store.dispatch(AddOrderAction({item: order}));
+    }else{
+      window.alert("Insert an  address to purchase");
+    }
   }
 
   addAddress(){
-    let newAddress = this.formAddress.value;
-    this.store.dispatch(CreateAddressAction({address: newAddress}));
-    this.router.navigateByUrl('/checkOut');
+    if(this.formAddress.valid){
+      let newAddress = this.formAddress.value;
+      this.store.dispatch(CreateAddressAction({address: newAddress}));
+      this.router.navigateByUrl('/checkOut');
+    } else{
+      window.alert("Invalid Address");
+    }
   }
 
   displayNewAddress(){

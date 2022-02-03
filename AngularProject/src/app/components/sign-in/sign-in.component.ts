@@ -65,8 +65,10 @@ export class SignInComponent implements OnInit {
 
 
   signIn() {
-    let form: User = this.formUserSignIn.value;
-    this.store.dispatch(UserLoginAction({ user: form }));
+    if(this.formUserSignIn.valid){
+      let form: User = this.formUserSignIn.value;
+      this.store.dispatch(UserLoginAction({ user: form }));
+    }
   }
 
   login() {

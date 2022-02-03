@@ -6,20 +6,23 @@ import { switchMap, map, tap, catchError, } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { ReviewService } from 'src/app/services/review.service';
 import { AddReviewAction, AddReviewActionFail, AddReviewActionSuccess, DeleteProductReviewAction, DeleteProductReviewActionFail, DeleteProductReviewActionSuccess, GetReviewsProductAction, GetReviewsProductActionSuccess, } from '../actions/review.actions';
+import { Router } from '@angular/router';
 
 
 @Injectable()
 
 export class ReviewEffects {
 
-    constructor(private review_service: ReviewService, private actions$: Actions) { }
+    constructor(private review_service: ReviewService, private actions$: Actions, private router: Router) { }
 
     addReview$: Observable<Action> = createEffect(() => {
         return this.actions$.pipe(
             ofType(AddReviewAction),
             switchMap(action => {
                 return this.review_service.addReview(action.review, action.product_id).pipe(
-                    map(() => AddReviewActionSuccess({ review: action.review })),
+                    map(() => AddReviewActionSuccess({ review: action.review }),
+                    this.router.navigate([`/products/${action.product_id}`])
+                    ),
                     catchError((error) => {
                         return of(AddReviewActionFail({ review: error.error.message }))
                     })

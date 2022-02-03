@@ -58,7 +58,7 @@
       
                   <div class="card-content">
                       <p>{{review.review}}</p>
-                      <button class="delete-review btn btn-warning" (click)="deleteProductReview(review.id)">Delete review</button>
+                      <button class="delete-review btn btn-warning" style="border-radius:20px;background-color:rgb(255,193,8); border:none;" *ngIf="isAdmin()" (click)="deleteProductReview(review.id)">Delete review</button>
                   </div>
               </div>
               <hr style="margin:0; border-color:rgb(194, 181, 181)">

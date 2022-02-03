@@ -29,65 +29,7 @@
             <div class="navbar-header"> <a class="navbar-brand" [routerLink]="['/home']"> <img alt="MoonStored" src="/assets/images/logo.png"> </a> </div>
             <div class="header-right pull-right mt_50">
               <button class="navbar-toggle pull-right" type="button" data-toggle="collapse" data-target=".js-navbar-collapse"> <span class="i-bar"><i class="fa fa-bars"></i></span></button>
-              <div class="shopping-icon" data-target="#cart-dropdown" data-toggle="collapse" aria-expanded="true" role="list">
-                <div class="cart-item"><span class="cart-qty">02</span></div>
-                <div id="cart-dropdown" class="cart-menu collapse">
-                  <ul>
-                    <li>
-                      <table class="table table-striped">
-                        <tbody>
-                          <tr>
-                            <td class="text-center"><a href="#"><img src="/assets/images/product/70x84.jpg" alt="iPod Classic" title="iPod Classic"></a></td>
-                            <td class="text-left product-name"><a href="#">MacBook Pro</a>
-                              <span class="text-left price">$20.00</span>
-                              <input class="cart-qty" name="product_quantity" min="1" value="1" type="number">
-                            </td>
-                            <td class="text-center"><a class="close-cart"><i class="fa fa-times-circle"></i></a></td>
-                          </tr>
-                          <tr>
-                            <td class="text-center"><a href="#"><img src="/assets/images/product/70x84.jpg" alt="iPod Classic" title="iPod Classic"></a></td>
-                            <td class="text-left product-name"><a href="#">MacBook Pro</a>
-                              <span class="text-left price">$20.00</span>
-                              <input class="cart-qty" name="product_quantity" min="1" value="1" type="number">
-                            </td>
-                            <td class="text-center"><a class="close-cart"><i class="fa fa-times-circle"></i></a></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </li>
-                    <li>
-                      <table class="table">
-                        <tbody>
-                          <tr>
-                            <td class="text-right"><strong>Sub-Total</strong></td>
-                            <td class="text-right">$2,100.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-right"><strong>Eco Tax (-2.00)</strong></td>
-                            <td class="text-right">$2.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-right"><strong>VAT (20%)</strong></td>
-                            <td class="text-right">$20.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-right"><strong>Total</strong></td>
-                            <td class="text-right">$2,122.00</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </li>
-                    <li>
-                      <form action="http://html.lionode.com/moontheme/m004/cart_page.html">
-                        <input class="btn pull-left mt_10" value="View cart" type="submit">
-                      </form>
-                      <form action="http://html.lionode.com/moontheme/m004/checkout_page.html">
-                        <input class="btn pull-right mt_10" value="Checkout" type="submit">
-                      </form>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+             
               <div class="main-search pull-right">
                 <div class="header_search_toggle desktop-view" *ngIf="isLoggedIn()">
                     <div class="search-box">
@@ -118,17 +60,6 @@
                     <li> <a   [routerLink]="['/products/type/tablet']" >Tablet</a></li>
                   </ul>
                 </li>
-                <li class="dropdown">
-                  <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages </a>
-                    <ul class="dropdown-menu">
-                      <li> <a href="login.html">Login/Register</a></li>
-                      <li> <a href="contact_us.html">Contact us</a></li>
-                      <li> <a href="cart_page.html">My Cart</a></li>
-                      <li> <a href="checkout_page.html">Checkout</a></li>
-                      <li> <a href="wishlist.html">Wishlist</a></li>
-                    </ul>
-                  </li>
-                  <li> <a [routerLink]="['/about']" >About us</a></li>
               </ul>
             </div>
             <!-- /.nav-collapse -->

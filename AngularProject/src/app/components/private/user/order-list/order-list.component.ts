@@ -34,7 +34,7 @@ export class OrderListComponent implements OnInit {
     
 
     this.formReview = this.fb.group({
-      review : ['', Validators.required]
+      review : ['', [Validators.required, Validators.minLength(3)]]
     })
 
   }
@@ -49,8 +49,10 @@ export class OrderListComponent implements OnInit {
   }
 
   addReview(product_id : number){
-   let reviewValue = this.formReview.value;
-    this.store.dispatch(AddReviewAction({review : reviewValue, product_id : product_id}));
+    if(this.formReview.valid){
+      let reviewValue = this.formReview.value;
+      this.store.dispatch(AddReviewAction({review : reviewValue, product_id : product_id}));
+    }
   }
 
   

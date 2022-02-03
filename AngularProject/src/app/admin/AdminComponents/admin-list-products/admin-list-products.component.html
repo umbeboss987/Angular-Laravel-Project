@@ -1,6 +1,6 @@
 <div class="container">
   <div class="" style="margin-left:20px;">
-    <h2 class=""><i style="font-size:15px;margin-right:7px;;"class="fad fa-clipboard-list"></i>Products</h2>  
+    <h2 class=""><i style="font-size:15px;margin-right:7px;;"class="fad fa-clipboard-list"></i>{{'adminProducts.products' | translate}}</h2>  
   </div>
   <hr class="" style="margin-bottom:15px;">
 <div class="card">
@@ -8,10 +8,10 @@
       <table class="table table-striped table-valign-middle">
         <thead>
         <tr>
-          <th><h4 class="">Product</h4></th>
-          <th><h4 class="">Price</h4></th>
-          <th><h4 class="">Delete</h4></th>
-          <th><h4 class="">Update</h4></th>
+          <th><h4 class="">{{'adminProducts.singleProduct' | translate}}</h4></th>
+          <th><h4 class="">{{'adminProducts.price' | translate}}</h4></th>
+          <th><h4 class="">{{'adminProducts.delete' | translate}}</h4></th>
+          <th><h4 class="">{{'adminProducts.update' | translate}}</h4></th>
         </tr>
         </thead>
         <tbody *ngIf="products != undefined ">
@@ -20,7 +20,7 @@
             <img src="{{product.photo}}" alt="Product 1" class="img-circle img-size-32 mr-2">
             <h4 class="">{{product.name}}</h4>
           </td>
-          <td><h4>{{product.price}}</h4></td>
+          <td><h4>{{product.price}}$</h4></td>
           <td>
             <a class="text-muted">
                 <i class="fa fa-trash" (click)="deleteProduct(product.id)"aria-hidden="true" style="font-size:14px"></i>
@@ -82,6 +82,6 @@
   </div>
 </div>
     <div class="text-center">
-      <button class="btn btn-primary add-product" [routerLink]="['addProduct']" style="margin-top:20px;width:20%;">Add Product</button>
+      <button class="btn btn-primary add-product" [routerLink]="['addProduct']" style="margin-top:20px;width:20%;">{{'adminProducts.addProduct' | translate}}</button>
     </div>
    

@@ -78,8 +78,6 @@
         "changeAccountUsername" : "new Username",
         "changeAccountEmail" : "Email",
         "changeAccountButton" : "Change Account"
-
-
     },
     "insertAddressModal":{
         "title" : "Insert Address",
@@ -100,6 +98,36 @@
         "city" : "City",
         "postalCode" : "PostalCode",
         "button" : "Subscribe"
+    },
+    "adminLayout":{
+        "goToHomepage" : "Go to Homepage",
+        "products" : "Products",
+        "orders" : "Orders",
+        "users" : "Users",
+        "administrationPages" : "Administration Pages"
+    },
+    "adminHome":{
+        "profileImage": "Profile Image",
+        "edit": "Edit"
+    },
+    "adminProducts":{
+        "products": "Products",
+        "singleProduct": "Product",
+        "price": "Price",
+        "delete": "Delete",
+        "update": "Update",
+        "addProduct": "Add Product"
+    },
+    "adminOrders":{
+        "code": "Code",
+        "orders": "Orders",
+        "date": "Date",
+        "total": "Total",
+        "delete": "Delete"
+    },
+    "adminUsers":{
+        "users": "Users",
+        "delete": "Delete"
     }
     
     

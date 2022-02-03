@@ -9,10 +9,14 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li>
 
-        </ul>   
+        </ul>  
+        <select (change)="selectLanguage($event)" name="" id="language" class="language-picker" style="width:100px; height:35px;border-radius:20px;">
+          <option selected value="en">english</option>
+           <option value="it">italian</option>
+         </select> 
       </nav>
 
-      <button [routerLink]="['/home']" class="button btn btn-warning">Go to HomePage</button>
+      <button [routerLink]="['/home']" class="button btn btn-warning">{{'adminLayout.goToHomepage' | translate}}</button>
 
     </header>
       <!-- /.navbar -->
@@ -20,7 +24,7 @@
       <!-- Main Sidebar Container -->
       <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="index3.html" class="brand-link">
+        <a  class="brand-link">
           <span class="brand-text font-weight-light"><b class="">Admin</b>General</span>
         </a>
     
@@ -32,7 +36,7 @@
               <img src="../../../assets/images/admin-logo.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-              <a href="#" class="d-block"><h5 class="">Alexander Pierce</h5></a>
+              <a href="#" class="d-block"><h5 class=""></h5></a>
             </div>
           </div>
     
@@ -50,27 +54,24 @@
                 
                 </a>
               </li>
-              <li class="nav-header">Administration Pages</li>
+              <li class="nav-header">{{'adminLayout.administrationPages' | translate}}</li>
               <li class="nav-item">
                 <a [routerLink]="['products']" class="nav-link">
-                 <h5 class="">Products</h5>
+                 <h5 class="">{{'adminLayout.products' | translate}}</h5>
                 </a>
               </li>
               <li class="nav-item">
                 <a [routerLink]="['orders']" class="nav-link">
-                  <h5 class="">Orders</h5>
+                  <h5 class="">{{'adminLayout.orders' | translate}}</h5>
                 </a>
               </li>
               <li class="nav-item">
                 <a [routerLink]="['users']" class="nav-link">
-                  <h5 class="">Users</h5>
+                  <h5 class="">{{'adminLayout.users' | translate}}</h5>
                 </a>
               </li>
               <li class="nav-header">Financial Pages</li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <h5 class="">Pages</h5>
-                </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
                     <a href="pages/examples/invoice.html" class="nav-link">
@@ -83,10 +84,7 @@
                       <i class="far fa-circle nav-icon"></i>
                       <p>Profile</p>
                     </a>
-                  </li>
-               
-                
-                  
+                  </li>                  
                 </ul>
               </li>
             </ul>

@@ -99,5 +99,37 @@
         "city" : "Città",
         "postalCode" : "Indirizzo postale",
         "button" : "Inserisci"
+    },
+    "adminLayout":{
+        "goToHomepage" : "Vai alla HomePage",
+        "products" : "Prodotti",
+        "orders" : "Ordini",
+        "users" : "Utenti",
+        "administrationPages" : "Pagine Amministrative"
+    },
+    "adminHome":{
+        "profileImage": "Immagine Profilo",
+        "edit": "Modifica"
+    },
+    "adminProducts":{
+        "products": "Prodotti",
+        "singleProduct": "Prodotto",
+        "price": "Prezzo",
+        "delete": "Elimina",
+        "update": "Modifica",
+        "addProduct": "Aggiungi Prodotto"
+    },
+    "adminOrders":{
+        "code": "Codice",
+        "orders": "Ordini",
+        "date": "Data",
+        "total": "Totale",
+        "delete": "Elimina"
+    },
+    "adminUsers":{
+        "users": "Utenti",
+        "delete": "Elimina"
     }
+    
+   
 }

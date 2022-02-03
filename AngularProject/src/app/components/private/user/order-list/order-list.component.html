@@ -80,6 +80,9 @@
                             <textarea type="text" style="text-align:center; font-size:12px;" class="form-control"
                               id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="review"></textarea>
                           </div>
+                          <div *ngIf="!formReview.valid && formReview.touched" class="alert alert-danger" role="alert">
+                            Review non valida
+                          </div>
                           <button type="submit" class="btn btn-warning"
                             style="margin-top:7%; width:50%;">Submit</button>
                         </form>

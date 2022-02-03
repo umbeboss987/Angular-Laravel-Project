@@ -33,7 +33,7 @@ class UserController extends Controller
         $user->password = bcrypt($req->input('password'));
         $user->role_id = $req->role;
         $user->save();
-        return response()->json(["message" => "user registered"], 200);
+        return response()->json(["message" => "user registered"], 201);
        }
 
     }

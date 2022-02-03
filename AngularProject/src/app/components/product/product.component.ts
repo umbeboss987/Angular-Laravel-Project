@@ -12,6 +12,7 @@ import { Cart } from 'src/app/model/Cart';
 import { DeleteProductReviewAction, GetReviewsProductAction } from 'src/app/store/actions/review.actions';
 import { selectReviewsList } from 'src/app/store/selectors/review.selectors';
 import { Review } from 'src/app/model/Review';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-product',
@@ -24,7 +25,7 @@ export class ProductComponent implements OnInit {
   loading$? : Observable<Boolean>;
   reviews$? : Observable<Review[]>;
 
-  constructor( private fb: FormBuilder, private store : Store<IAppState> , private router: ActivatedRoute) { 
+  constructor( private fb: FormBuilder, private store : Store<IAppState> , private router: ActivatedRoute, private authService: AuthService) { 
      //form group insert product in the cart
     this.formGroup = this.fb.group({
       product_id : null,
@@ -67,5 +68,10 @@ export class ProductComponent implements OnInit {
   }
 
  
+
+
+  isAdmin(){
+    return this.authService.isAdmin();
+  }
   
 }

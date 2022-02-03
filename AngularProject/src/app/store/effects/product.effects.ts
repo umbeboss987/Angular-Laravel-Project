@@ -109,8 +109,10 @@ loadSingleProducts$ : Observable<Action> = createEffect(() => {
  addSingleProduct$ : Observable<Action> = createEffect(() => {
   return  this.actions$.pipe(
       ofType(AddSingleProductAction),
-      switchMap((action) =>  this.products_service.addProduct(action.product).pipe(      
-        map((product) => AddSingleProductActionSuccess({products : product})),
+      switchMap((action) =>  this.products_service.addProduct(action.product).pipe(
+        map((product) => AddSingleProductActionSuccess({products : product}),
+        this.router.navigate(['/admin/products'])
+        ),
         catchError((errorResp) =>{
           return of(AddSingleProductActionFail({message : errorResp.error.message}))
         })

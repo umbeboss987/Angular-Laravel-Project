@@ -5,6 +5,7 @@ import { DeleteUserAction, GetAllUserAction } from 'src/app/store/actions/user.a
 import { selectUserAuth } from 'src/app/store/selectors/user.selector';
 import { IAppState } from 'src/app/store/state/app.state';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 @Component({
   selector: 'app-users-admin',
   templateUrl: './users-admin.component.html',
@@ -14,7 +15,7 @@ export class UsersAdminComponent implements OnInit {
 
   users$? : Observable<User[]>;
 
-  constructor(private store : Store<IAppState>) { 
+  constructor(private store : Store<IAppState>, private authService: AuthService) { 
     this.store.dispatch(GetAllUserAction());
   }
 
@@ -24,6 +25,10 @@ export class UsersAdminComponent implements OnInit {
 
   deleteUser(user_id: number){
     this.store.dispatch(DeleteUserAction({user_id : user_id}));
+  }
+
+  isAdmin(){
+    return this.authService.isAdmin();
   }
 
 }

@@ -9,7 +9,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrdersAdminComponent } from './AdminComponents/orders-admin/orders-admin.component';
 import { AddProductComponent } from './AdminComponents/add-product/add-product.component';
 import { UsersAdminComponent } from './AdminComponents/users-admin/users-admin.component';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
+export function httpTranslateLoader(http: HttpClient):any {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -25,7 +31,15 @@ import { UsersAdminComponent } from './AdminComponents/users-admin/users-admin.c
   imports: [
     CommonModule,
     AdminRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule.forChild({
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    }), 
   ]
 })
 export class AdminModule { }
