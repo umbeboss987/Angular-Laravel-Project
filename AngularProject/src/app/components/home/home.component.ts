@@ -8,6 +8,7 @@ import { selectProductList} from 'src/app/store/selectors/product.selector';
 import { GetProductsAction, ProductsTypeAction } from 'src/app/store/actions/product.actions';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import jwt_decode from 'jwt-decode';
+import { ProductsService } from 'src/app/services/product.service';
 
 
 @Component({
@@ -16,11 +17,16 @@ import jwt_decode from 'jwt-decode';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  products$ : Observable<Product[]>;;
+  products$ : Observable<Product[]>;
+  images : any;
 
-  constructor(private router: ActivatedRoute, private store: Store<IAppState>) {
+  constructor(private router: ActivatedRoute, private store: Store<IAppState>, private productsService : ProductsService) {
     this.store.dispatch( GetProductsAction());
     this.products$ = this.store.select<Product[]>(selectProductList);
+
+    this.productsService.getIages().subscribe((res)=>{
+     this.images = res;
+    })  
    }
 
   ngOnInit(): void {

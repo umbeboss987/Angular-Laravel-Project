@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Review;
 use App\Models\Product;
 use App\Models\Photo;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Url;
 use Illuminate\Support\Facades\DB;
@@ -113,5 +114,11 @@ class ProductController extends Controller
     function deleteProductReview($product_id, $review_id) {
         Review::where('id', $review_id)->delete();
         return response(null, 204);
+    }
+
+
+    function getImages(){
+        $data = Image::all();
+        return response()->json($data);
     }
 }

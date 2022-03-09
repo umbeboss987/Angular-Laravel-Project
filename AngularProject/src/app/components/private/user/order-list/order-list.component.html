@@ -72,13 +72,12 @@
                       </label>
                     </div>
                     <div class="text-center">
-                      <div class="container" style="margin-top:7%;">
+                      <div class="container">
                         <form method="Post" [formGroup]="formReview" (ngSubmit)="addReview(product.id)">
                           <div class="form-group">
-                            <label for="exampleInputEmail1" style=" font-size:14px;">{{'profile.modalReview' |
-                              translate}}</label>
-                            <textarea type="text" style="text-align:center; font-size:12px;" class="form-control"
-                              id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="review"></textarea>
+                           
+                              <angular-editor formControlName="htmlContent" [config]="editorConfig" formControlName="review"></angular-editor>
+                            
                           </div>
                           <div *ngIf="!formReview.valid && formReview.touched" class="alert alert-danger" role="alert">
                             Review non valida

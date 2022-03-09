@@ -43,5 +43,8 @@ export class ProductsService {
   addProduct(product: Product) : Observable <Product>{
     return this.http.post<Product>(`${AppConstants.SERVICES_BASE_URL}/products`, product);
   }
-  
+
+  getIages(): Observable <any>{
+    return this.http.get<any>(`${AppConstants.SERVICES_BASE_URL}/images`);  
+  }
 }

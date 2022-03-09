@@ -20,6 +20,7 @@ import { UserAddressComponent } from '../../private/user/user-address/user-addre
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
 import { HttpClient } from '@angular/common/http';
+import {AngularEditorModule} from '@kolkov/angular-editor';
 
 
 export function HttpLoaderFactory(http: HttpClient) {  
@@ -58,7 +59,7 @@ export function HttpLoaderFactory(http: HttpClient) {
          useFactory: HttpLoaderFactory,          
          deps: [HttpClient]}  
        }), 
-
+    AngularEditorModule
   ]
 })
 export class LayoutModule { }

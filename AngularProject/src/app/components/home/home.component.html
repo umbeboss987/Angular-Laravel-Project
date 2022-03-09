@@ -1,14 +1,8 @@
 <div class="text-center m-0">
   <div class="banner">
     <owl-carousel-o [options]="customOptions">
-      <ng-template carouselSlide>
-        <img src="/assets/images/pixel-6.jpeg" alt="" class="">
-      </ng-template>
-      <ng-template carouselSlide>
-        <img src="/assets/images/macbook-pro-13.jpeg" alt="" class="">
-      </ng-template>
-      <ng-template carouselSlide>
-        <img src="/assets/images/surface-laptop-4.jpeg" alt="" class="">
+      <ng-template carouselSlide *ngFor="let image of images">
+        <img src="{{image.image}}" alt="" class="">
       </ng-template>
     </owl-carousel-o>
   </div>

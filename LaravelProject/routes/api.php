@@ -26,6 +26,7 @@ use Illuminate\Foundation\Auth\User;
 
 Route::group([], function () {
     //Not auth
+    Route::get('/images',[ProductController::class, 'getImages']);
     Route::get('products',[ProductController::class ,'getProducts'])->name('getProducts');
     Route::get('products/{product_id}',[ProductController::class ,'getProductById'])->name('getProductById')->where(['product_id' => '[0-9]+']);
     Route::get('products/{products_type}',[ProductController::class, 'getProductsByType'])->name('getProductsByType')->where(['products_type' => '[a-z]+']);
