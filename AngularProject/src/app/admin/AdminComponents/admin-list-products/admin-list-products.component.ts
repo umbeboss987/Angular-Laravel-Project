@@ -59,6 +59,6 @@ export class AdminListProductsComponent implements OnInit {
   }
 
   
-
+  
 
 }

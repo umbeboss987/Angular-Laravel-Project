@@ -12,6 +12,7 @@ import { UsersAdminComponent } from './AdminComponents/users-admin/users-admin.c
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 export function httpTranslateLoader(http: HttpClient):any {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -40,6 +41,7 @@ export function httpTranslateLoader(http: HttpClient):any {
         deps: [HttpClient]
       }
     }), 
+    AngularEditorModule
   ]
 })
 export class AdminModule { }
