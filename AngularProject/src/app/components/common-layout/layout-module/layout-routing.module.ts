@@ -10,7 +10,7 @@ import { SignInComponent } from '../../sign-in/sign-in.component';
 import{AuthGuardService} from '../../../auth/auth-guard.service';
 import { OrderListComponent } from '../../private/user/order-list/order-list.component';
 import { UserAddressComponent } from '../../private/user/user-address/user-address.component';
-
+import {TerminiCondizioniComponent} from '../termini-condizioni/termini-condizioni.component';
 
 const routes: Routes = [
   { path: '', component:HomeComponent},
@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'account/address/:id', component: UpdateAddressComponent, canActivate :[AuthGuardService] },
   { path: 'account/orders', component: OrderListComponent, canActivate :[AuthGuardService] },
   { path: 'account/address', component: UserAddressComponent, canActivate :[AuthGuardService] },
+  { path: 'termini', component: TerminiCondizioniComponent },
 ];
 
 @NgModule({
